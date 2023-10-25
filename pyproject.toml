@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dyad"
+version = "0.0.0.dev"
+description = "A binary star kinematics package"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {file = "./LICENSE"}
+authors = [
+    {name="Amery Gration", email="amerygration@proton.me"},
+]
+maintainers = [
+    {name="Amery Gration", email="amerygration@proton.me"},
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "numpy>=1.19", "scipy>=1.5"
+]
+
+# [project.urls]
+# Homepage = ""
+# Documentation = ""
+# Repository = ""
+# Changelog = ""
+
