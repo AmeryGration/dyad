@@ -153,7 +153,6 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
     return eta
 
 def eccentric_anomaly_from_mean_anomaly(mu, e):
-    # Numerically for e > 0.98
     def f(eta, t):
         return mean_anomaly_from_eccentric_anomaly(eta, e) - t
 
@@ -190,8 +189,8 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
 
         return eta
 
-    # eta = np.vectorize(solve)(mu)
-    eta = solve(mu)
+    eta = np.vectorize(solve)(mu)
+    # eta = solve(mu)
     
     if is_scalar:
         return eta.squeeze()

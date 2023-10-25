@@ -3,7 +3,7 @@
 import unittest
 import numpy as np
 
-import dyad.dyad_api as dyad
+import dyad
 import data_test
 
 from parameterized import parameterized
@@ -12,7 +12,7 @@ from parameterized import parameterized
 class TestFunctions(unittest.TestCase):
     @parameterized.expand(data_test.check_eccentricity)
     def test_check_eccentricity(self, x):
-        self.assertRaises(ValueError, dyad._check_eccentricity, x)
+        self.assertRaises(ValueError, dyad.kinematics._check_eccentricity, x)
         
     @parameterized.expand(data_test.true_anomaly_from_mean_anomaly)
     def test_true_anomaly_from_mean_anomaly(self, x, target):
