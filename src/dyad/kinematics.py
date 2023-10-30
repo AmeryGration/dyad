@@ -191,14 +191,12 @@ class Orbit:
         elements = np.asarray(elements)
 
         if np.isscalar(mass):
-            self._scalar_mass = True
             if not elements.shape == (6,):
                 raise ValueError(
                     "mass must be (n,) array_like and elements must be "
                     "(6, n) array_like."
                 )
         else:
-            self._scalar_mass = False
             mass = np.asarray(mass)
             if not elements.shape == (6,) + mass.shape:
                 raise ValueError(

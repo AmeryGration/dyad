@@ -57,19 +57,22 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
     def _pdf(self, x, e):
         A = 2.*np.pi
         eta = 2*np.arctan(np.sqrt(1. - e)*np.tan(x/2.)/np.sqrt(1. + e))
-        # eta = 2*np.arctan2(np.sqrt(1. + e), np.sqrt(1. - e)*np.tan(theta/2.))
+        # eta = 2*np.arctan2(np.sqrt(1. + e), np.sqrt(1. - e)*np.tan(x/2.))
         Y = (
             (np.sqrt(1. - e)/(np.sqrt(1. + e)*np.cos(x/2.)**2.))
             /((1. - e)*np.tan(x/2.)**2./(1. + e) + 1.)
         )
+        res = (1. - e*np.cos(eta))*Y/A
 
-        return (1. - e*np.cos(eta))*Y/A
+        return res
 
     def _cdf(self, x, e):
         A = 2.*np.pi
-        eta = 2*np.arctan(np.sqrt(1. - e)*np.tan(x/2.)/np.sqrt(1. + e))
-
-        return (eta - e*np.sin(eta))/A
+        eta = 2.*np.arctan(np.sqrt(1. - e)*np.tan(x/2.)/np.sqrt(1. + e))
+        # eta = eta%(2.*np.pi)
+        res = (eta - e*np.sin(eta))/A
+        
+        return res
 
     def _rvs(self, e, size=None, random_state=None):
         def f(eta, t):
@@ -88,13 +91,14 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
             eta = np.array(
                 [sp.optimize.fsolve(f, mu_i, mu_i, fprime) for mu_i in mu]
             )
+            eta = eta%(2.*np.pi)
             res = (
                 2.*np.arctan(np.sqrt((1. + e)/(1. - e))*np.tan(eta/2.))
             )
             # res = 2.*np.arctan2(
             #     np.sqrt(1. - e), np.sqrt(1. + e)*np.tan(eta/2.)
             # )
-            return res.squeeze()
+            return res.squeeze()%(2.*np.pi)
 
 
 class _rv_uniform_gen(sp.stats.rv_continuous):
