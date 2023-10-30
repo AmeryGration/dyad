@@ -65,8 +65,6 @@ class _kroupa_gen(sp.stats.rv_continuous):
         def f2(x):
             return s**(c - d)*x**d
 
-        # c = -1.3
-        # d = -2.3
         A = (
             (s**(c + 1.) - a**(c + 1.))/(c + 1.)
             + s**(c - d)*(b**(d + 1.) - s**(d + 1.))/(d + 1.)
@@ -81,8 +79,6 @@ class _kroupa_gen(sp.stats.rv_continuous):
         def f2(x):
             return f1(s) + s**(c - d)*(x**(d + 1.) - s**(d + 1.))/(d + 1.)
 
-        # c = -1.3
-        # d = -2.3
         A = (
             (s**(c + 1.) - a**(c + 1.))/(c + 1.)
             + s**(c - d)*(b**(d + 1.) - s**(d + 1.))/(d + 1.)
@@ -96,19 +92,18 @@ class _kroupa_gen(sp.stats.rv_continuous):
 
         def f2(q):
             res = (
-                A*(d + 1.)*(q - self._cdf(s, s, a, b))/s**(c - d) + s**(d + 1.)
+                A*(d + 1.)*(q - self._cdf(s, s, a, b, c, d))/s**(c - d)
+                + s**(d + 1.)
             )
 
             return res**(1./(d + 1.))
 
-        # c = -1.3
-        # d = -2.3
         A = (
             (s**(c + 1.) - a**(c + 1.))/(c + 1.)
             + s**(c - d)*(b**(d + 1.) - s**(d + 1.))/(d + 1.)
         )
 
-        return np.where(q < self._cdf(s, s, a, b), f1(q), f2(q))
+        return np.where(q < self._cdf(s, s, a, b, c, d), f1(q), f2(q))
 
     
 kroupa = _kroupa_gen(name="kroupa")
