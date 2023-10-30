@@ -10,6 +10,7 @@ __all__ = [
 
 import numpy as np
 import scipy as sp
+import operator
 
 GRAV_CONST = sp.constants.gravitational_constant
 
@@ -162,6 +163,27 @@ class Orbit:
 
             The orbital elements
 
+        Results
+        -------
+
+        Scalar parameters.
+
+        >>> dyad.Orbit(1., [1., 0., 0., 0., 0., 0.])
+
+        Array-like parameters.
+
+        >>> mass = [1., 1.]
+        >>> elements = [[1., 1.], [0., 0.], [0., 0.], [0., 0.],
+        [0., 0.], [0., 0.]]
+        >>> orb.Orbit(mass, elements)
+
+        The shape of the items in `elements` must be the same as the
+        shape of `mass` but that shape may be arbitrary.
+
+        >>> mass = np.ones(2*3).reshape(2, 3)
+        >>> elements = 0.5*np.zeros(6*2*3).reshape(6, 2, 3)
+        >>> orb.Orbit(mass, elements)
+
         """
         ################################################################
         # Check shapes of args are consistent
@@ -169,12 +191,14 @@ class Orbit:
         elements = np.asarray(elements)
 
         if np.isscalar(mass):
-            if not elements.ndim == 1:
+            self._scalar_mass = True
+            if not elements.shape == (6,):
                 raise ValueError(
                     "mass must be (n,) array_like and elements must be "
                     "(6, n) array_like."
                 )
         else:
+            self._scalar_mass = False
             mass = np.asarray(mass)
             if not elements.shape == (6,) + mass.shape:
                 raise ValueError(
@@ -191,22 +215,70 @@ class Orbit:
             raise ValueError(
                 "first item in elements (semimajor axis) must be positive."
             )
-        if np.any(elements[1] < 0.) or np.any(elements[1] >= 1.):
+        if not (np.any(0. <= elements[1]) and np.any(elements[1] < 1.)):
             raise ValueError(
                 "second item in elements (eccentricity) must be nonnegative "
                 "and less than one."
+            )
+        if not (np.any(0. <= elements[2]) and np.any(elements[2] < 2.*np.pi)):
+            raise ValueError(
+                "third item in elements (true anomaly) must be nonnegative "
+                "and less than 2 pi."
+            )
+        if not (np.any(0. <= elements[3]) and np.any(elements[3] < 2.*np.pi)):
+            raise ValueError(
+                "fourth item in elements (longitude of ascending node) must "
+                "be nonnegative and less than 2 pi."
+            )
+        if not (np.any(0. <= elements[4]) and np.any(elements[4] < np.pi)):
+            raise ValueError(
+                "fifth item in elements (inclination) must be nonnegative "
+                "and less than pi."
+            )
+        if not (np.any(0. <= elements[5]) and np.any(elements[5] < 2.*np.pi)):
+            raise ValueError(
+                "sixth item in elements (argument of pericentre) must be "
+                "nonnegative and less than 2 pi."
             )
 
         ################################################################
         # Attributes
         ################################################################
-        self.mass = mass
-        self.semimajor_axis = elements[0]
-        self.eccentricity = elements[1]
-        self.true_anomaly = elements[2]%(2.*np.pi)
-        self.longitude_of_ascending_node = elements[3]%(2.*np.pi)
-        self.inclination = elements[4]%np.pi
-        self.argument_of_pericentre = elements[5]%(2.*np.pi)
+        self._mass = mass
+        self._semimajor_axis = elements[0]
+        self._eccentricity = elements[1]
+        self._true_anomaly = elements[2]
+        self._longitude_of_ascending_node = elements[3]
+        self._inclination = elements[4]
+        self._argument_of_pericentre = elements[5]
+        
+    @property
+    def mass(self):
+        return self._mass
+
+    @property
+    def semimajor_axis(self):
+        return self._semimajor_axis
+
+    @property
+    def eccentricity(self):
+        return self._eccentricity
+
+    @property
+    def true_anomaly(self):
+        return self._true_anomaly
+
+    @property
+    def longitude_of_ascending_node(self):
+        return self._longitude_of_ascending_node
+
+    @property
+    def inclination(self):
+        return self._inclination
+        
+    @property
+    def argument_of_pericentre(self):
+        return self._argument_of_pericentre
 
     @property
     def orbital_elements(self):

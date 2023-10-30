@@ -6,7 +6,7 @@ import numpy as np
 import dyad
 import data_test
 
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 
 
 class TestFunctions(unittest.TestCase):
@@ -63,24 +63,27 @@ class TestFunctions(unittest.TestCase):
         self.assertAlmostEqual(result, target)
 
 
-# class TestOrbit(unittest.TestCase):
-#     def setUp(self):
-#         self.m = 0.5488135039273248
-#         self.a = 0.7151893663724195
-#         self.e = 0.6027633760716439
-#         self.theta = 0.5448831829968969
-#         self.Omega = 0.4236547993389047
-#         self.i = 0.6458941130666561
-#         self.omega = 0.4375872112626925
+class TestOrbit(unittest.TestCase):
+    # def setUp(self, x):
+    #     # self.m = 0.5488135039273248
+    #     # self.a = 0.7151893663724195
+    #     # self.e = 0.6027633760716439
+    #     # self.theta = 0.5448831829968969
+    #     # self.Omega = 0.4236547993389047
+    #     # self.i = 0.6458941130666561
+    #     # self.omega = 0.4375872112626925
 
-#         self.orbit = dyad.Orbit(
-#             self.m,
-#             [self.a, self.e, self.theta, self.Omega, self.i, self.omega]
-#         )
+    #     self.orbit = dyad.Orbit(*x)
 
-#     @parameterized.expand(data_test.initialization)
-#     def test_initialization(self, x):
-#         self.assertRaises(ValueError, dyad.Orbit, *x)
+    @parameterized.expand(data_test.initialization)
+    def test_initialization(self, x):
+        self.assertRaises(ValueError, dyad.Orbit, *x)
+
+    # @parameterized_class(data_test.initialization)
+    # def test_initialization(self, mass, elements):
+    #     print(mass, elements)
+        # self.orbit = dyad.Orbit(*x)
+        # self.assertRaises(ValueError, self.Orbit, x)
 
 #     def test_semiminor_axis(self):
 #         result = self.orbit.semiminor_axis()
