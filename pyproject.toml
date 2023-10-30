@@ -25,6 +25,6 @@ dependencies = [
 # [project.urls]
 # Homepage = ""
 # Documentation = ""
-# Repository = ""
+# Repository = "https://github.com/AmeryGration/dyad"
 # Changelog = ""
 
