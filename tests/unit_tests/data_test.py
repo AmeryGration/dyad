@@ -1,5 +1,7 @@
 """Data to be used when testing Dyad
 
+This module is not to be run on its own. It is imported by `unit_test.py`.
+
 When checking for value errors each list contains arguments that should cause such an error. If a value error is raised then the test is passed.
 
 Each element in a list is itself a list that contains two elements:

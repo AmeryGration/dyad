@@ -64,153 +64,172 @@ class TestFunctions(unittest.TestCase):
 
 
 class TestOrbit(unittest.TestCase):
-    # def setUp(self, x):
-    #     # self.m = 0.5488135039273248
-    #     # self.a = 0.7151893663724195
-    #     # self.e = 0.6027633760716439
-    #     # self.theta = 0.5448831829968969
-    #     # self.Omega = 0.4236547993389047
-    #     # self.i = 0.6458941130666561
-    #     # self.omega = 0.4375872112626925
+    def setUp(self):
+        self.m = 0.5488135039273248
+        self.a = 0.7151893663724195
+        self.e = 0.6027633760716439
+        self.theta = 0.5448831829968969
+        self.Omega = 0.4236547993389047
+        self.i = 0.6458941130666561
+        self.omega = 0.4375872112626925
 
-    #     self.orbit = dyad.Orbit(*x)
+        self.orbit = dyad.Orbit(
+            self.m,
+            [self.a, self.e, self.theta, self.Omega, self.i, self.omega]
+        )
 
-    @parameterized.expand(data_test.initialization)
-    def test_initialization(self, x):
-        self.assertRaises(ValueError, dyad.Orbit, *x)
+    # @parameterized.expand(data_test.initialization)
+    # def test_initialization(self, x):
+    #     self.assertRaises(ValueError, dyad.Orbit, *x)
 
-    # @parameterized_class(data_test.initialization)
-    # def test_initialization(self, mass, elements):
-    #     print(mass, elements)
-        # self.orbit = dyad.Orbit(*x)
-        # self.assertRaises(ValueError, self.Orbit, x)
+    def test_mass(self):
+        result = self.orbit.mass
+        target = self.m
 
-#     def test_semiminor_axis(self):
-#         result = self.orbit.semiminor_axis()
-#         target = 0.
+        self.assertEqual(result, target)
 
-#         self.assertEqual(result, target)
+    def test_semimajor_axis(self):
+        result = self.orbit.semimajor_axis
+        target = self.a
 
-#     def test_semilatus_axis(self):
-#         result = self.orbit.semilatus_rectum
-#         target = 0.
+        self.assertEqual(result, target)
+        
+    def test_eccentricity(self):
+        result = self.orbit.eccentricity
+        target = self.e
 
-#         self.assertEqual(result, target)
+        self.assertEqual(result, target)
 
-#     def test_area(self):
-#         result = self.orbit.area
-#         target = 0.
+    def true_anomaly(self):
+        result = self.orbit.true_anomaly
+        target = self.theta
 
-#         self.assertEqual(result, target)
+        self.assertEqual(result, target)
 
-#     def test_eccentricity(self):
-#         result = self.orbit.eccentricity
-#         target = self.e
+    def test_longitude_of_ascending_node(self):
+        result = self.orbit.longitude_of_ascending_node
+        target = self.Omega
 
-#         self.assertEqual(result, target)
+        self.assertEqual(result, target)
 
-#     def true_anomaly(self):
-#         result = self.orbit.true_anomaly
-#         target = self.theta
+    def test_inclination(self):
+        result = self.orbit.inclination
+        target = self.i
 
-#         self.assertEqual(result, target)
+        self.assertEqual(result, target)
 
-#     def test_mean_anomaly(self):
-#         result = self.orbit.mean_anomaly
-#         target = 0.
+    def test_argument_of_pericentre(self):
+        result = self.orbit.argument_of_pericentre
+        target = self.omega
 
-#         self.assertEqual(result, target)
+        self.assertEqual(result, target)
 
-#     def test_eccentric_anomaly(self):
-#         result = self.orbit.eccentric_anomaly
-#         target = 0.
+    def test_orbital_elements(self):
+        result = self.orbit.orbital_elements
+        target = dict(
+            semimajor_axis=self.a,
+            eccentricity=self.e,
+            true_anomaly=self.theta,
+            longitude_of_ascending_node=self.Omega,
+            inclination=self.i,
+            argument_of_pericentre=self.omega
+        )
 
-#         self.assertEqual(result, target)
+        self.assertEqual(result, target)
 
-#     def test_longitude_of_ascending_node(self):
-#         result = self.orbit.longitude_of_ascending_node
-#         target = self.Omega
+    def test_semiminor_axis(self):
+        result = self.orbit.semiminor_axis
+        target = 0.5706638929715594
 
-#         self.assertEqual(result, target)
+        self.assertEqual(result, target)
 
-#     def test_inclination(self):
-#         result = self.orbit.inclination
-#         target = self.i
+    def test_semilatus_rectum(self):
+        result = self.orbit.semilatus_rectum
+        target = 0.4553441284973978
+        
+        self.assertEqual(result, target)
 
-#         self.assertEqual(result, target)
+    def test_apoapsis(self):
+        result = self.orbit.apoapsis
+        target = 1.146279323377599
 
-#     def test_argument_of_pericentre(self):
-#         result = self.orbit.argument_of_pericentre
-#         target = self.omega
+        self.assertEqual(result, target)
 
-#         self.assertEqual(result, target)
+    def test_periapsis(self):
+        result = self.orbit.periapsis
+        target = 0.2840994093672401
 
-#     def test_orbital_elements(self):
-#         result = self.orbit.orbital_elements
-#         target = dict(
-#             semimajor_axis=self.a,
-#             eccentricity=self.e,
-#             true_anomaly=self.theta,
-#             longitude_of_ascending_node=self.Omega,
-#             inclination=self.i,
-#             argument_of_pericentre=self.omega
-#         )
+        self.assertEqual(result, target)
 
-#         self.assertEqual(result, target)
+    def test_area(self):
+        result = self.orbit.area
+        target = 1.2821868428877317
 
-#     def test_energy(self):
-#         result = self.orbit.energy
-#         target = 0.
+        self.assertEqual(result, target)
 
-#         self.assertEqual(result, target)
+    def test_mean_anomaly(self):
+        result = self.orbit.mean_anomaly
+        target = 0.11191292831895089
 
-#     def test_angular_momentum(self):
-#         result = self.orbit.angular_momentum
-#         target = 0., 0., 0.
+        self.assertEqual(result, target)
 
-#         self.assertEqual(result, target)
+    def test_eccentric_anomaly(self):
+        result = self.orbit.eccentric_anomaly
+        target = 0.2764082754722965
 
-#     def test_laplace_runge_lenz(self):
-#         result = self.orbit.laplace_runge_lenz
-#         target = 0., 0., 0.
+        self.assertEqual(result, target)
 
-#         self.assertEqual(result, target)
+    def test_energy(self):
+        result = self.orbit.energy
+        target = -2.5608224489140006e-11
 
-#     def test_period(self):
-#         result = self.orbit.period
-#         target = 0.
+        self.assertEqual(result, target)
 
-#         self.assertEqual(result, target)
+    # def test_angular_momentum_magnitude(self):
+    #     result = self.orbit.angular_momentum_magnitude
+    #     target = 0.
 
-#     def test_radius(self):
-#         result = self.orbit.radius
-#         target = 0.
+    #     self.assertEqual(result, target)
 
-#         self.assertEqual(result, target)
+    # def test_angular_momentum(self):
+    #     result = self.orbit.angular_momentum
+    #     target = 0., 0., 0.
 
-#     def test_speed(self):
-#         result = self.orbit.speed
-#         target = 0.
+    #     self.assertEqual(result, target)
 
-#         self.assertEqual(result, target)
+    # # def test_laplace_runge_lenz_magnitude(self):
+    # #     result = self.orbit.laplace_runge_lenz_magnitude
+    # #     target = 0.
 
-#     def test_state(self):
-#         result = self.orbit.state
-#         target = 0., 0., 0., 0., 0., 0.
+    # # def test_laplace_runge_lenz(self):
+    # #     result = self.orbit.laplace_runge_lenz
+    # #     target = 0., 0., 0.
 
-#         self.assertEqual(result, target)
+    # #     self.assertEqual(result, target)
 
-#     def position(self):
-#         result = self.orbit.position
-#         target = 0., 0., 0.
+    # def test_period(self):
+    #     result = self.orbit.period
+    #     target = 0.
 
-#         self.assertEqual(result, target)
+    #     self.assertEqual(result, target)
 
-#     def velocity(self):
-#         result = self.orbit.velocity
-#         target = 0., 0., 0.
+    # def test_state(self):
+    #     result = self.orbit.state
+    #     target = 0., 0., 0., 0., 0., 0.
 
-#         self.assertEqual(result, target)
+    #     self.assertEqual(result, target)
+
+    # def test_radius(self):
+    #     result = self.orbit.radius
+    #     target = 0.
+
+    #     self.assertEqual(result, target)
+
+    # def test_speed(self):
+    #     result = self.orbit.speed
+    #     target = 0.
+
+    #     self.assertEqual(result, target)
 
 
 if __name__ == "__main__":

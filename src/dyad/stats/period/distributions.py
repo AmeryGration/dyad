@@ -65,7 +65,7 @@ class _trunclognorm_gen(sp.stats.rv_continuous):
     defined in standardized form:
 
     .. math::
-
+    
         a = (u_{\mathrm{l}} - \mathrm{loc})/\mathrm{scale}, 
         b = (u_{\mathrm{r}} - \mathrm{loc})/\mathrm{scale}
 

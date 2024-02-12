@@ -10,9 +10,9 @@ __all__ = [
 
 import numpy as np
 import scipy as sp
-import operator
 
 GRAV_CONST = sp.constants.gravitational_constant
+
 
 def _check_eccentricity(e):
     # The the number 0.9999999999999999 < 1.
@@ -115,14 +115,14 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
     def f(eta, t):
         return mean_anomaly_from_eccentric_anomaly(eta, e) - t
 
-    def fprime(eta, t):
+    def f_gradient(eta, t):
         return 1. - e*np.cos(eta)
 
     def solve(x):
         # Keyword factor=1. required to avoid numerical instability for big e
         x = x%(2.*np.pi)
 
-        res = sp.optimize.fsolve(f, x, x, fprime, factor=1.)
+        res = sp.optimize.fsolve(f, x, x, f_gradient, factor=1.)
         # Fake it: ensure that the function returns np.float64:
         # 1. res.item() extracts a float;
         # 2. np.asarray(res.item()) casts this as a (1,) np.ndarray;
@@ -150,27 +150,27 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
 
 
 class Orbit:
-    def __init__(self, mass, elements):
+    def __init__(self, central_mass, elements):
         """A class for specifying a body's orbit
 
         Parameters
         ----------
         mass: (n,) array-like
 
-            The effective mass of the attracting body
+            The mass of the attracting body
 
         elements: (6, n) array-like
 
             The orbital elements
 
-        Results
+        Example
         -------
 
-        Scalar parameters.
+        Scalar parameters defining a single orbit.
 
         >>> dyad.Orbit(1., [1., 0., 0., 0., 0., 0.])
 
-        Array-like parameters.
+        Array-like parameters defining multiple orbits.
 
         >>> mass = [1., 1.]
         >>> elements = [[1., 1.], [0., 0.], [0., 0.], [0., 0.],
@@ -190,25 +190,25 @@ class Orbit:
         ################################################################
         elements = np.asarray(elements)
 
-        if np.isscalar(mass):
+        if np.isscalar(central_mass):
             if not elements.shape == (6,):
                 raise ValueError(
-                    "mass must be (n,) array_like and elements must be "
-                    "(6, n) array_like."
+                    "central_mass must be (n,) array_like and elements must "
+                    "ve (6, n) array_like."
                 )
         else:
-            mass = np.asarray(mass)
-            if not elements.shape == (6,) + mass.shape:
+            central_mass = np.asarray(central_mass)
+            if not elements.shape == (6,) + central_mass.shape:
                 raise ValueError(
-                    "mass must be (n,) array_like and elements must be "
-                    "(6, n) array_like."
+                    "central_mass must be (n,) array_like and elements must "
+                    "be (6, n) array_like."
                 )
 
         ################################################################
         # Check values of args
         ################################################################
-        if np.any(mass <= 0):
-            raise ValueError("mass must be positive.")
+        if np.any(central_mass <= 0):
+            raise ValueError("central_mass must be positive.")
         if np.any(elements[0] <= 0.):
             raise ValueError(
                 "first item in elements (semimajor axis) must be positive."
@@ -242,17 +242,17 @@ class Orbit:
         ################################################################
         # Attributes
         ################################################################
-        self._mass = mass
+        self._central_mass = central_mass
         self._semimajor_axis = elements[0]
         self._eccentricity = elements[1]
         self._true_anomaly = elements[2]
         self._longitude_of_ascending_node = elements[3]
         self._inclination = elements[4]
         self._argument_of_pericentre = elements[5]
-        
+
     @property
-    def mass(self):
-        return self._mass
+    def central_mass(self):
+        return self._central_mass
 
     @property
     def semimajor_axis(self):
@@ -295,7 +295,15 @@ class Orbit:
 
     @property
     def semilatus_rectum(self):
-        return np.sqrt(self.semimajor_axis*(1. - self.eccentricity**2.))
+        return self.semimajor_axis*(1. - self.eccentricity**2.)
+
+    @property
+    def apoapsis(self):
+        return self.semimajor_axis*(1. + self.eccentricity)
+
+    @property
+    def periapsis(self):
+        return self.semimajor_axis*(1. - self.eccentricity)
 
     @property
     def area(self):
@@ -309,33 +317,28 @@ class Orbit:
 
     @property
     def eccentric_anomaly(self):
-        return eccentric_anomaly_from_mean_anomaly(
-            self.mean_anomaly, self.eccentricity
+        return eccentric_anomaly_from_true_anomaly(
+            self.true_anomaly, self.eccentricity
         )
 
     @property
     def energy(self):
-        return -0.5*GRAV_CONST*self.mass/self.semimajor_axis
+        """Specific energy"""
+        pass
 
     @property
     def angular_momentum_magnitude(self):
-        return np.sqrt(
-            GRAV_CONST
-            *self.mass
-            *self.semimajor_axis
-            *(1. - self.eccentricity**2.)
-        )
+        pass
 
     @property
     def angular_momentum(self):
-        h = self.angular_momentum_magnitude
-        h_x = h*(
+        h_x = self.angular_momentum_magnitude*(
             np.sin(self.longitude_of_ascending_node)*np.sin(self.inclination)
         )
-        h_y = -h*(
+        h_y = -self.angular_momentum_magnitude*(
             np.cos(self.longitude_of_ascending_node)*np.sin(self.inclination)
         )
-        h_z = h*np.cos(self.inclination)
+        h_z = self.angular_momentum_magnitude*np.cos(self.inclination)
 
         return np.hstack([h_x, h_y, h_z])
 
@@ -372,7 +375,10 @@ class Orbit:
 
     @property
     def period(self):
-        return 2.*np.pi*self.semimajor_axis**1.5/np.sqrt(GRAV_CONST*self.mass)
+        return (
+            2.*np.pi
+            *np.sqrt(self.semimajor_axis**3./(GRAV_CONST*self.central_mass))
+        )
 
     @property
     def state(self):
@@ -385,8 +391,9 @@ class Orbit:
             /(1. + self.eccentricity*np.cos(self.true_anomaly))
         )
 
+    @property
     def _position(self):
-        r = self.radius()
+        r = self.radius
         x = r*(
             np.cos(self.longitude_of_ascending_node)
             *(
@@ -420,14 +427,20 @@ class Orbit:
 
     @property
     def speed(self):
-        return (
+        # This should use the
+        return np.sqrt(
+            GRAV_CONST
+            *self.central_mass
+            *(2./self.radius - 1./self.semimajor_axis)
+        )
+
+    @property
+    def _velocity(self):
+        A = (
             2.*np.pi*self.semimajor_axis
             /(self.period*np.sqrt(1. - self.eccentricity**2.))
         )
-
-    def _velocity(self):
-        v_magnitude = self.speed()
-        v_x = -v_magnitude*(
+        v_x = -A*(
             np.cos(self.longitude_of_ascending_node)
             *np.sin(self.true_anomaly + self.argument_of_pericentre)
             + (
@@ -445,10 +458,10 @@ class Orbit:
                 )
             )
         )
-        v_y = -v_magnitude*(
+        v_y = -A*(
             np.sin(self.longitude_of_ascending_node)
             *np.sin(self.true_anomaly + self.argument_of_pericentre)
-            - (
+           - (
                 np.cos(self.inclination)
                 *np.cos(self.longitude_of_ascending_node)
                 *np.cos(self.true_anomaly + self.argument_of_pericentre)
@@ -463,9 +476,77 @@ class Orbit:
                 )
             )
         )
-        v_z = v_magnitude*np.sin(self.inclination)*(
+        v_z = A*np.sin(self.inclination)*(
             np.cos(self.true_anomaly + self.argument_of_pericentre)
             + self.eccentricity*np.cos(self.argument_of_pericentre)
         )
 
         return np.hstack([v_x, v_y, v_z])
+
+
+class Binary:
+    def __init__(self, m, q, a, e, theta, Omega, i, omega):
+        """A class for specifying the two orbits of a binary system
+
+        Quantities m, a, e, theta, Omega, i, omega are for the primary star.
+        
+        Parameters
+        ----------
+        m: (n,) array-like
+
+            The mass of the primary component
+
+        q: (n,) array-like
+
+            The mass ratio, i.e. the ratio of the mass of the
+            secondary component to the mass of the primary component.
+
+        elements: (6, n) array-like
+
+            The orbital elements of the primary component
+
+        Example
+        -------
+
+        """
+        m1 = m
+        m2 = m*q
+        elements1 = [a, e, theta, Omega, i, omega]
+        elements2 = [a/q, e, theta, Omega, i, omega + np.pi]
+        self.primary = Orbit(m2**3./(m1 + m2)**2., elements1)
+        self.secondary = Orbit(m1**3./(m1 + m2)**2., elements2)
+
+# m1 = 2.
+# m2 = 3.
+# a1 = 4.
+# a2 = a1*m1/m2
+# e1 = 0.3
+# theta1 = 0.
+# P = 2.*np.pi*np.sqrt((a1 + a2)**3./(GRAV_CONST*(m1 + m2)))
+# # print(P)
+
+# M = m2**3./(m1 + m2)**2.
+# P = 2.*np.pi*np.sqrt(a1**3./(GRAV_CONST*M))
+# # print(P)
+
+# orb = Orbit(M, [a1, e1, theta1, 0., 0., 0.])
+# # print(orb.period)
+
+# m1 = 0.5488135039273248
+# a1 = 0.7151893663724195
+# e1 = 0.6027633760716439
+# theta1 = 0.5448831829968969
+# Omega1 = 0.4236547993389047
+# i1 = 0.6458941130666561
+# omega1 = 0.4375872112626925
+# q = m2/m1
+
+# bin = Binary(m1, q, a1, e1, theta1, Omega1, i1, omega1)
+# print(bin.primary.period)
+# print(bin.secondary.period)
+# print(bin.primary.speed)
+# print(bin.secondary.speed)
+
+# orb = Orbit(M, [a1, e1, theta1, Omega1, i1, omega1])
+# print(orb.speed)
+# print(np.sqrt(np.sum(orb._velocity**2.)))
