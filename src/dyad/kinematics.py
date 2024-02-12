@@ -1,5 +1,16 @@
+"""
+A binary kinematics module.
+
+The module contains:
+(1) functions that allow pairwise transformations between true anomaly, mean anomaly, and eccentric anomaly,
+(2) a class `Orbit` that holds kinematic information about an elliptical orbit, and
+(3) a class `Binary` that holds kinematic information about the two orbits of a bound binary system.
+
+"""
+
 __all__ = [
     "Orbit",
+    "Binary",
     "true_anomaly_from_mean_anomaly",
     "true_anomaly_from_eccentric_anomaly",
     "mean_anomaly_from_eccentric_anomaly",
@@ -252,34 +263,42 @@ class Orbit:
 
     @property
     def central_mass(self):
+        """Get the central mass"""
         return self._central_mass
 
     @property
     def semimajor_axis(self):
+        """Get the orbit's semimajor axis"""
         return self._semimajor_axis
 
     @property
     def eccentricity(self):
+        """Get the orbit's eccentricity"""
         return self._eccentricity
 
     @property
     def true_anomaly(self):
+        """Get the body's true anomaly"""
         return self._true_anomaly
 
     @property
     def longitude_of_ascending_node(self):
+        """Get the longitude of the ascending node of the orbit"""
         return self._longitude_of_ascending_node
 
     @property
     def inclination(self):
+        """Get the inclination of the orbit"""
         return self._inclination
         
     @property
     def argument_of_pericentre(self):
+        """Get the orbit's argument of pericentre"""
         return self._argument_of_pericentre
 
     @property
     def orbital_elements(self):
+        """Get the orbital elements as a dictionary"""
         return dict(
             semimajor_axis=self.semimajor_axis,
             eccentricity=self.eccentricity,
@@ -291,47 +310,56 @@ class Orbit:
 
     @property
     def semiminor_axis(self):
+        """Get the orbit's semiminor axis"""
         return self.semimajor_axis*np.sqrt(1. - self.eccentricity**2.)
 
     @property
     def semilatus_rectum(self):
+        """Get the orbit's semilatus rectum"""
         return self.semimajor_axis*(1. - self.eccentricity**2.)
 
     @property
     def apoapsis(self):
+        """Get the apoapsis of the orbit"""
         return self.semimajor_axis*(1. + self.eccentricity)
 
     @property
     def periapsis(self):
+        """Get the periapsis of the orbit"""
         return self.semimajor_axis*(1. - self.eccentricity)
 
     @property
     def area(self):
+        """Get the area contained by the orbit"""
         return np.pi*self.semimajor_axis*self.semiminor_axis
 
     @property
     def mean_anomaly(self):
+        """Get the body's mean anomaly"""
         return mean_anomaly_from_true_anomaly(
             self.true_anomaly, self.eccentricity
         )
 
     @property
     def eccentric_anomaly(self):
+        """Get the body's eccentric anomaly"""
         return eccentric_anomaly_from_true_anomaly(
             self.true_anomaly, self.eccentricity
         )
 
     @property
     def energy(self):
-        """Specific energy"""
+        """Get the body's total specific orbital energy"""
         pass
 
     @property
     def angular_momentum_magnitude(self):
+        """Get the maginutude of the body's specific angular momentum"""
         pass
 
     @property
     def angular_momentum(self):
+        """Get the body's specific angular momentum"""
         h_x = self.angular_momentum_magnitude*(
             np.sin(self.longitude_of_ascending_node)*np.sin(self.inclination)
         )
@@ -375,6 +403,7 @@ class Orbit:
 
     @property
     def period(self):
+        """Get the orbital period"""
         return (
             2.*np.pi
             *np.sqrt(self.semimajor_axis**3./(GRAV_CONST*self.central_mass))
@@ -382,10 +411,12 @@ class Orbit:
 
     @property
     def state(self):
+        """Get the orbital state vector in Cartesian coordinates"""
         return np.hstack([self._position(), self._velocity()])
 
     @property
     def radius(self):
+        """Get the body's radius"""
         return (
             self.semilatus_rectum
             /(1. + self.eccentricity*np.cos(self.true_anomaly))
@@ -393,6 +424,7 @@ class Orbit:
 
     @property
     def _position(self):
+        """Get the body's position"""
         r = self.radius
         x = r*(
             np.cos(self.longitude_of_ascending_node)
@@ -427,7 +459,7 @@ class Orbit:
 
     @property
     def speed(self):
-        # This should use the
+        """Get the body's speed"""
         return np.sqrt(
             GRAV_CONST
             *self.central_mass
@@ -436,6 +468,7 @@ class Orbit:
 
     @property
     def _velocity(self):
+        """Get the body's velocity"""
         A = (
             2.*np.pi*self.semimajor_axis
             /(self.period*np.sqrt(1. - self.eccentricity**2.))
@@ -515,38 +548,3 @@ class Binary:
         elements2 = [a/q, e, theta, Omega, i, omega + np.pi]
         self.primary = Orbit(m2**3./(m1 + m2)**2., elements1)
         self.secondary = Orbit(m1**3./(m1 + m2)**2., elements2)
-
-# m1 = 2.
-# m2 = 3.
-# a1 = 4.
-# a2 = a1*m1/m2
-# e1 = 0.3
-# theta1 = 0.
-# P = 2.*np.pi*np.sqrt((a1 + a2)**3./(GRAV_CONST*(m1 + m2)))
-# # print(P)
-
-# M = m2**3./(m1 + m2)**2.
-# P = 2.*np.pi*np.sqrt(a1**3./(GRAV_CONST*M))
-# # print(P)
-
-# orb = Orbit(M, [a1, e1, theta1, 0., 0., 0.])
-# # print(orb.period)
-
-# m1 = 0.5488135039273248
-# a1 = 0.7151893663724195
-# e1 = 0.6027633760716439
-# theta1 = 0.5448831829968969
-# Omega1 = 0.4236547993389047
-# i1 = 0.6458941130666561
-# omega1 = 0.4375872112626925
-# q = m2/m1
-
-# bin = Binary(m1, q, a1, e1, theta1, Omega1, i1, omega1)
-# print(bin.primary.period)
-# print(bin.secondary.period)
-# print(bin.primary.speed)
-# print(bin.secondary.speed)
-
-# orb = Orbit(M, [a1, e1, theta1, Omega1, i1, omega1])
-# print(orb.speed)
-# print(np.sqrt(np.sum(orb._velocity**2.)))
