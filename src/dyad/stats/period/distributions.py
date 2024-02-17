@@ -125,3 +125,4 @@ class _trunclognorm_gen(sp.stats.rv_continuous):
 
 
 trunclognorm = _trunclognorm_gen(name="trunclognorm")
+truncnorm = sp.stats.truncnorm

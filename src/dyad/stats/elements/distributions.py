@@ -82,7 +82,10 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
             return 1. - e*np.cos(eta)
 
         # Compute mean anomaly
-        mu = sp.stats.uniform(0., 2.*np.pi).rvs(size, random_state)
+        mu = np.atleast_1d(
+            sp.stats.uniform(0., 2.*np.pi).rvs(size, random_state)
+        )
+        
         if e == 0.:
             # True anomaly equal to mean anomaly
             return mu
@@ -248,7 +251,9 @@ class _argument_of_pericentre_gen(_rv_uniform_gen):
         super().__init__(*args, **kwargs)
 
 
-true_anomaly = _true_anomaly_gen(a=0., b=2.*np.pi, name="true_anomaly")
+true_anomaly = _true_anomaly_gen(
+    a=0., b=2.*np.pi, name="true_anomaly"
+)
 longitude_of_ascending_node = _longitude_of_ascending_node_gen(
     a=0., b=2.*np.pi, name="longitude_of_ascending_node"
 )

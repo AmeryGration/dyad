@@ -1,5 +1,4 @@
-"""
-A binary kinematics module.
+"""A binary kinematics module.
 
 The module contains:
 (1) functions that allow pairwise transformations between true anomaly, mean anomaly, and eccentric anomaly,
@@ -11,6 +10,8 @@ The module contains:
 __all__ = [
     "Orbit",
     "Binary",
+    "period_to_semimajor_axis",
+    "semimajor_axis_to_period",
     "true_anomaly_from_mean_anomaly",
     "true_anomaly_from_eccentric_anomaly",
     "mean_anomaly_from_eccentric_anomaly",
@@ -22,8 +23,21 @@ __all__ = [
 import numpy as np
 import scipy as sp
 
-GRAV_CONST = sp.constants.gravitational_constant
+from scipy import constants as const
 
+M_SUN = 2.e30
+AU = const.astronomical_unit
+DAY = const.day
+GRAV_CONST = sp.constants.gravitational_constant*M_SUN*DAY**2./AU**3.
+KPS = AU/DAY/1.e3
+
+def period_to_semimajor_axis(P, m_1, m_2):
+    """Return the semimajor axis given the period"""
+    return np.cbrt(GRAV_CONST*(m_1 + m_2)*P**2./4./np.pi**2.)
+
+def semimajor_axis_to_period(a, m_1, m_2):
+    """Return the period given the semimajor axis"""
+    return np.sqrt(4.*np.pi**2.*a**3./GRAV_CONST/(m_1 + m_2))
 
 def _check_eccentricity(e):
     # The the number 0.9999999999999999 < 1.
@@ -348,14 +362,9 @@ class Orbit:
         )
 
     @property
-    def energy(self):
-        """Get the body's total specific orbital energy"""
-        pass
-
-    @property
     def angular_momentum_magnitude(self):
-        """Get the maginutude of the body's specific angular momentum"""
-        pass
+        """Get the magnitude of the body's specific angular momentum"""
+        return np.sqrt(GRAV_CONST*self.central_mass*self.semilatus_rectum)
 
     @property
     def angular_momentum(self):
@@ -368,7 +377,7 @@ class Orbit:
         )
         h_z = self.angular_momentum_magnitude*np.cos(self.inclination)
 
-        return np.hstack([h_x, h_y, h_z])
+        return np.hstack([[h_x, h_y, h_z]]).T
 
     # @property
     # def laplace_runge_lenz_magnitude(self):
@@ -412,7 +421,7 @@ class Orbit:
     @property
     def state(self):
         """Get the orbital state vector in Cartesian coordinates"""
-        return np.hstack([self._position(), self._velocity()])
+        return np.hstack([self._position, self._velocity])
 
     @property
     def radius(self):
@@ -455,8 +464,8 @@ class Orbit:
             + np.cos(self.argument_of_pericentre)*np.sin(self.true_anomaly)
         )
 
-        return np.hstack([x, y, z])
-
+        return np.hstack([[x, y, z]]).T
+    
     @property
     def speed(self):
         """Get the body's speed"""
@@ -464,7 +473,7 @@ class Orbit:
             GRAV_CONST
             *self.central_mass
             *(2./self.radius - 1./self.semimajor_axis)
-        )
+        )*KPS
 
     @property
     def _velocity(self):
@@ -514,7 +523,7 @@ class Orbit:
             + self.eccentricity*np.cos(self.argument_of_pericentre)
         )
 
-        return np.hstack([v_x, v_y, v_z])
+        return np.hstack([[v_x, v_y, v_z]]).T*KPS
 
 
 class Binary:
@@ -543,8 +552,45 @@ class Binary:
 
         """
         m1 = m
-        m2 = m*q
+        m2 = m1*q
         elements1 = [a, e, theta, Omega, i, omega]
         elements2 = [a/q, e, theta, Omega, i, omega + np.pi]
         self.primary = Orbit(m2**3./(m1 + m2)**2., elements1)
         self.secondary = Orbit(m1**3./(m1 + m2)**2., elements2)
+
+if __name__ == "__main__":
+    m1 = 2.
+    m2 = 3.
+    a1 = 4.
+    a2 = a1*m1/m2
+    e1 = 0.3
+    theta1 = 0.
+    P = 2.*np.pi*np.sqrt((a1 + a2)**3./(GRAV_CONST*(m1 + m2)))
+    # print(P)
+
+    M = m2**3./(m1 + m2)**2.
+    print(M)
+    # P = 2.*np.pi*np.sqrt(a1**3./(GRAV_CONST*M))
+    # # print(P)
+
+    # orb = Orbit(M, [a1, e1, theta1, 0., 0., 0.])
+    # # print(orb.period)
+
+    # m1 = 0.5488135039273248
+    # a1 = 0.7151893663724195
+    # e1 = 0.6027633760716439
+    # theta1 = 0.5448831829968969
+    # Omega1 = 0.4236547993389047
+    # i1 = 0.6458941130666561
+    # omega1 = 0.4375872112626925
+    # q = m2/m1
+
+    # bin = Binary(m1, q, a1, e1, theta1, Omega1, i1, omega1)
+    # print(bin.primary.period)
+    # print(bin.secondary.period)
+    # print(bin.primary.speed)
+    # print(bin.secondary.speed)
+
+    # orb = Orbit(M, [a1, e1, theta1, Omega1, i1, omega1])
+    # print(orb.speed)
+    # print(np.sqrt(np.sum(orb._velocity**2.)))
