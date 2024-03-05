@@ -1,0 +1,120 @@
+Python 3.10.12 (main, Dec 16 2023, 13:46:12) [GCC 11.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 0.23/0.42
+0.5476190476190477
+>>> 23/42
+0.5476190476190477
+>>> duquennoy1991 = sp.stats.truncnorm(a=-0.23/0.42, loc=0.23, scale=0.42)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'sp' is not defined
+>>> import scipy as sp
+>>> import numpy as np
+>>> duquennoy1991 = sp.stats.truncnorm(a=-0.23/0.42, loc=0.23, scale=0.42)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/ag0082/.pyenv/versions/3.10.12/lib/python3.10/site-packages/scipy/stats/_distn_infrastructure.py", line 849, in __call__
+    return self.freeze(*args, **kwds)
+  File "/home/ag0082/.pyenv/versions/3.10.12/lib/python3.10/site-packages/scipy/stats/_distn_infrastructure.py", line 844, in freeze
+    return rv_continuous_frozen(self, *args, **kwds)
+  File "/home/ag0082/.pyenv/versions/3.10.12/lib/python3.10/site-packages/scipy/stats/_distn_infrastructure.py", line 465, in __init__
+    shapes, _, _ = self.dist._parse_args(*args, **kwds)
+TypeError: _parse_args() missing 1 required positional argument: 'b'
+>>> duquennoy1991 = sp.stats.truncnorm(a=-0.23/0.42, b=np.inf, loc=0.23, scale=0.42)
+>>> duquennoy1991.rvs()
+0.07543007611599287
+>>> duquennoy1991.rvs(10000)
+array([0.17628532, 1.02721101, 0.95157617, ..., 0.69883831, 0.44842487,
+       0.54245606])
+>>> import plot
+>>> import matplotlib.pyplot as plt
+>>> plt.histogram(duquennoy1991.rvs(10000))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'matplotlib.pyplot' has no attribute 'histogram'
+>>> plt.hist(duquennoy1991.rvs(10000))
+(array([2038., 2221., 2042., 1575., 1042.,  599.,  312.,  109.,   46.,
+         16.]), array([3.61037228e-04, 1.66240894e-01, 3.32120751e-01, 4.98000608e-01,
+       6.63880464e-01, 8.29760321e-01, 9.95640178e-01, 1.16152003e+00,
+       1.32739989e+00, 1.49327975e+00, 1.65915961e+00]), <BarContainer object of 10 artists>)
+>>> plt.show()
+>>> 
+Traceback (most recent call last):
+  File "<string>", line 8, in __PYTHON_EL_eval
+  File "/home/ag0082/.pyenv/versions/3.10.12/lib/python3.10/ast.py", line 50, in parse
+    return compile(source, filename, mode, flags,
+  File "/home/ag0082/Documents/Work/Software/Dyad/dyad/src/dyad/stats/period/distributions.py", line 130
+    duquennoy1991 = trunclognorm(2.3, 1.e-2.4, 1.e12)
+                                      ^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>> 10.**-2.3
+0.005011872336272725
+>>> 
+>>> duquennoy1991.rvs()
+3.6216773989608604
+>>> plt.histogram(duquennoy1991.rvs(10000)); plt.show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'matplotlib.pyplot' has no attribute 'histogram'
+>>> plt.hist(duquennoy1991.rvs(10000)); plt.show()
+(array([9.962e+03, 2.100e+01, 4.000e+00, 4.000e+00, 5.000e+00, 1.000e+00,
+       0.000e+00, 0.000e+00, 2.000e+00, 1.000e+00]), array([4.00132776e-03, 4.93872985e+02, 9.87741970e+02, 1.48161095e+03,
+       1.97547994e+03, 2.46934892e+03, 2.96321791e+03, 3.45708689e+03,
+       3.95095587e+03, 4.44482486e+03, 4.93869384e+03]), <BarContainer object of 10 artists>)
+>>> plt.hist(np.log10(duquennoy1991.rvs(10000))); plt.show()
+(array([ 277.,  849., 1686., 2343., 2242., 1545.,  761.,  232.,   52.,
+         13.]), array([-2.39627328, -1.78601834, -1.1757634 , -0.56550846,  0.04474648,
+        0.65500143,  1.26525637,  1.87551131,  2.48576625,  3.09602119,
+        3.70627613]), <BarContainer object of 10 artists>)
+>>> duquennoy1991 = trunclognorm(s=2.3, a=10.**-2.4, b=10.**12)
+>>> plt.hist(np.log10(duquennoy1991.rvs(10000))); plt.show()
+(array([ 291.,  927., 1847., 2439., 2268., 1458.,  576.,  157.,   31.,
+          6.]), array([-2.3956848 , -1.75988326, -1.12408171, -0.48828017,  0.14752137,
+        0.78332292,  1.41912446,  2.054926  ,  2.69072755,  3.32652909,
+        3.96233064]), <BarContainer object of 10 artists>)
+>>> plt.hist(np.log10(duquennoy1991.rvs(1000000))); plt.show()
+(array([3.95840e+04, 1.29206e+05, 2.48484e+05, 2.85553e+05, 1.95301e+05,
+       7.98040e+04, 1.90500e+04, 2.79900e+03, 2.05000e+02, 1.40000e+01]), array([-2.39995532, -1.66504049, -0.93012567, -0.19521084,  0.53970398,
+        1.27461881,  2.00953363,  2.74444846,  3.47936328,  4.21427811,
+        4.94919294]), <BarContainer object of 10 artists>)
+>>> duquennoy1991 = trunclognorm(s=2.3, a=10.**-2.4, b=10.**12, loc=10.**4.8)
+>>> plt.hist(np.log10(duquennoy1991.rvs(1000000))); plt.show()
+(array([9.99804e+05, 1.30000e+02, 3.40000e+01, 1.80000e+01, 6.00000e+00,
+       3.00000e+00, 1.00000e+00, 2.00000e+00, 0.00000e+00, 2.00000e+00]), array([4.80000003, 4.82170666, 4.84341329, 4.86511992, 4.88682655,
+       4.90853319, 4.93023982, 4.95194645, 4.97365308, 4.99535971,
+       5.01706634]), <BarContainer object of 10 artists>)
+>>> plt.hist(np.log10(duquennoy1991.rvs(1000000))); plt.show()
+(array([9.99901e+05, 7.40000e+01, 8.00000e+00, 8.00000e+00, 3.00000e+00,
+       2.00000e+00, 2.00000e+00, 0.00000e+00, 1.00000e+00, 1.00000e+00]), array([4.80000003, 4.8354333 , 4.87086657, 4.90629985, 4.94173312,
+       4.9771664 , 5.01259967, 5.04803294, 5.08346622, 5.11889949,
+       5.15433276]), <BarContainer object of 10 artists>)
+>>> duquennoy1991 = trunclognorm(s=2.3, a=10.**-2.4, b=10.**12, loc=4.8)
+>>> plt.hist(np.log10(duquennoy1991.rvs(1000000))); plt.show()
+(array([8.07070e+05, 1.14887e+05, 4.72500e+04, 1.98180e+04, 7.62100e+03,
+       2.46300e+03, 7.01000e+02, 1.56000e+02, 2.60000e+01, 8.00000e+00]), array([0.68160129, 1.08772885, 1.4938564 , 1.89998395, 2.30611151,
+       2.71223906, 3.11836661, 3.52449417, 3.93062172, 4.33674927,
+       4.74287683]), <BarContainer object of 10 artists>)
+>>> duquennoy1991 = trunclognorm(s=2.3, a=10.**-2.4, b=10.**12, loc=10.**4.8)
+>>> plt.hist(np.log10(duquennoy1991.rvs(1000000))); plt.show()
+(array([9.99775e+05, 1.57000e+02, 4.00000e+01, 1.20000e+01, 8.00000e+00,
+       3.00000e+00, 1.00000e+00, 2.00000e+00, 1.00000e+00, 1.00000e+00]), array([4.80000003, 4.82179148, 4.84358294, 4.8653744 , 4.88716585,
+       4.90895731, 4.93074876, 4.95254022, 4.97433168, 4.99612313,
+       5.01791459]), <BarContainer object of 10 artists>)
+>>> duquennoy1991 = trunclognorm(s=2.3, a=10.**-2.4, b=10.**12, scale=10.**4.8)
+>>> plt.hist(np.log10(duquennoy1991.rvs(1000000))); plt.show()
+(array([3.89800e+04, 1.24266e+05, 2.41946e+05, 2.83330e+05, 1.99630e+05,
+       8.57470e+04, 2.22920e+04, 3.46800e+03, 3.17000e+02, 2.40000e+01]), array([2.40009169, 3.12424406, 3.84839643, 4.57254879, 5.29670116,
+       6.02085353, 6.7450059 , 7.46915827, 8.19331063, 8.917463  ,
+       9.64161537]), <BarContainer object of 10 artists>)
+>>> plt.hist(np.log10(duquennoy1991.rvs(1000000))); plt.show()
+(array([4.00220e+04, 1.28796e+05, 2.49368e+05, 2.85532e+05, 1.95300e+05,
+       7.89610e+04, 1.90520e+04, 2.73600e+03, 2.16000e+02, 1.70000e+01]), array([2.40003153, 3.13535219, 3.87067285, 4.60599351, 5.34131418,
+       6.07663484, 6.8119555 , 7.54727616, 8.28259682, 9.01791749,
+       9.75323815]), <BarContainer object of 10 artists>)
+>>> duquennoy1991 = trunclognorm(s=2.3, a=10.**-2.4, b=10.**12, scale=np.exp(4.8))
+>>> plt.hist(np.log10(duquennoy1991.rvs(1000000))); plt.show()
+(array([3.89290e+04, 1.25324e+05, 2.41747e+05, 2.83679e+05, 1.99483e+05,
+       8.51680e+04, 2.18930e+04, 3.43400e+03, 3.29000e+02, 1.40000e+01]), array([-0.31536316,  0.40976889,  1.13490094,  1.86003299,  2.58516504,
+        3.31029709,  4.03542913,  4.76056118,  5.48569323,  6.21082528,
+        6.93595733]), <BarContainer object of 10 artists>)
+>>> duquennoy1991 = trunclognorm(s=2.3, a=10.**-2.4, b=10.**12, scale=10.**4.8)

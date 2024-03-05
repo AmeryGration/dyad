@@ -5,6 +5,8 @@ The module contains:
 (2) a class `Orbit` that holds kinematic information about an elliptical orbit, and
 (3) a class `Binary` that holds kinematic information about the two orbits of a bound binary system.
 
+Distances are in AU. Times are in days. Velocities are in km/s.
+
 """
 
 __all__ = [
@@ -25,7 +27,7 @@ import scipy as sp
 
 from scipy import constants as const
 
-M_SUN = 2.e30
+M_SUN = 1.98847e30
 AU = const.astronomical_unit
 DAY = const.day
 GRAV_CONST = sp.constants.gravitational_constant*M_SUN*DAY**2./AU**3.
@@ -219,7 +221,7 @@ class Orbit:
             if not elements.shape == (6,):
                 raise ValueError(
                     "central_mass must be (n,) array_like and elements must "
-                    "ve (6, n) array_like."
+                    "be (6, n) array_like."
                 )
         else:
             central_mass = np.asarray(central_mass)
@@ -243,26 +245,26 @@ class Orbit:
                 "second item in elements (eccentricity) must be nonnegative "
                 "and less than one."
             )
-        if not (np.any(0. <= elements[2]) and np.any(elements[2] < 2.*np.pi)):
-            raise ValueError(
-                "third item in elements (true anomaly) must be nonnegative "
-                "and less than 2 pi."
-            )
-        if not (np.any(0. <= elements[3]) and np.any(elements[3] < 2.*np.pi)):
-            raise ValueError(
-                "fourth item in elements (longitude of ascending node) must "
-                "be nonnegative and less than 2 pi."
-            )
-        if not (np.any(0. <= elements[4]) and np.any(elements[4] < np.pi)):
-            raise ValueError(
-                "fifth item in elements (inclination) must be nonnegative "
-                "and less than pi."
-            )
-        if not (np.any(0. <= elements[5]) and np.any(elements[5] < 2.*np.pi)):
-            raise ValueError(
-                "sixth item in elements (argument of pericentre) must be "
-                "nonnegative and less than 2 pi."
-            )
+        # if not (np.any(0. <= elements[2]) and np.any(elements[2] < 2.*np.pi)):
+        #     raise ValueError(
+        #         "third item in elements (true anomaly) must be nonnegative "
+        #         "and less than 2 pi."
+        #     )
+        # if not (np.any(0. <= elements[3]) and np.any(elements[3] < 2.*np.pi)):
+        #     raise ValueError(
+        #         "fourth item in elements (longitude of ascending node) must "
+        #         "be nonnegative and less than 2 pi."
+        #     )
+        # if not (np.any(0. <= elements[4]) and np.any(elements[4] < np.pi)):
+        #     raise ValueError(
+        #         "fifth item in elements (inclination) must be nonnegative "
+        #         "and less than pi."
+        #     )
+        # if not (np.any(0. <= elements[5]) and np.any(elements[5] < 2.*np.pi)):
+        #     raise ValueError(
+        #         "sixth item in elements (argument of pericentre) must be "
+        #         "nonnegative and less than 2 pi."
+        #     )
 
         ################################################################
         # Attributes
@@ -364,7 +366,9 @@ class Orbit:
     @property
     def angular_momentum_magnitude(self):
         """Get the magnitude of the body's specific angular momentum"""
-        return np.sqrt(GRAV_CONST*self.central_mass*self.semilatus_rectum)
+        return np.sqrt(
+            GRAV_CONST*self.central_mass*self.semilatus_rectum
+        )*AU*KPS
 
     @property
     def angular_momentum(self):
@@ -377,7 +381,7 @@ class Orbit:
         )
         h_z = self.angular_momentum_magnitude*np.cos(self.inclination)
 
-        return np.hstack([[h_x, h_y, h_z]]).T
+        return np.hstack([[h_x, h_y, h_z]]).T*AU*KPS
 
     # @property
     # def laplace_runge_lenz_magnitude(self):
@@ -551,8 +555,11 @@ class Binary:
         -------
 
         """
+        m, q, a, e, theta, Omega, i, omega = np.asarray(
+            [m, q, a, e, theta, Omega, i, omega]
+        )
         m1 = m
-        m2 = m1*q
+        m2 = q*m1
         elements1 = [a, e, theta, Omega, i, omega]
         elements2 = [a/q, e, theta, Omega, i, omega + np.pi]
         self.primary = Orbit(m2**3./(m1 + m2)**2., elements1)

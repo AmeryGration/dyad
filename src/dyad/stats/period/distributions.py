@@ -1,5 +1,6 @@
 __all__ = [
-    "trunclognorm"
+    "trunclognorm",
+    "duquennoy1991",
 ]
 
 import numpy as np
@@ -54,7 +55,10 @@ class _trunclognorm_gen(sp.stats.rv_continuous):
 
     .. math::
 
-        f(x, a, b, s) = \dfrac{\exp\left(-\dfrac{\log^{2}(x)}{2s^{2}}\right)}{\erf\left(\dfrac{\log(b)}{s}\right) - \erf\left(\dfrac{\log(a)}{s}\right)}
+        f(x, a, b, s) =
+        \dfrac{\exp\left(-\dfrac{\log^{2}(x)}{2s^{2}}\right)}
+        {\erf\left(\dfrac{\log(b)}{s}\right)
+        - \erf\left(\dfrac{\log(a)}{s}\right)}
 
     where :math:`a < x < 0`, :math:`0 < a < b`, and :math:`s > 0` [1]_.
 
@@ -78,17 +82,19 @@ class _trunclognorm_gen(sp.stats.rv_continuous):
     
     %(after_notes)s
     
-    Suppose a normally distributed random variable ``X`` has  mean ``mu`` and
-    standard deviation ``sigma``. Then ``Y = exp(X)`` is lognormally
-    distributed with ``s = sigma`` and ``scale = exp(mu)``.
+    Suppose a normally distributed random variable ``X`` has mean
+    ``mu`` and standard deviation ``sigma``. Then ``Y = exp(X)`` is
+    lognormally distributed with ``s = sigma`` and ``scale =
+    exp(mu)``. To change the base of the lognormal distribution from
+    ``e`` to base ``b`` multiply ``mu`` and ``sigma`` by ``ln(b)``.
     
     References
     ----------
     .. [1] Reference
 
     %(example)s
-    
-    """ 
+
+    """
     def _argcheck(self, s, a, b):
         return (a >= 0.) & (b > a) & (s > 0.)
 
@@ -96,6 +102,7 @@ class _trunclognorm_gen(sp.stats.rv_continuous):
         is_ = _ShapeInfo("s", False, (0, np.inf), (False, False))
         ia = _ShapeInfo("a", False, (0, np.inf), (True, False))
         ib = _ShapeInfo("b", False, (0, np.inf), (False, False))
+
         return [is_, ia, ib]
 
     # def _fitstart(self, data):
@@ -125,4 +132,88 @@ class _trunclognorm_gen(sp.stats.rv_continuous):
 
 
 trunclognorm = _trunclognorm_gen(name="trunclognorm")
-truncnorm = sp.stats.truncnorm
+
+
+class _duquennoy1991_gen(sp.stats.rv_continuous):
+    r"""The Duquennoy and Mayor (1991) mass-ratio random variable
+
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `duquennoy1991` is:
+
+    .. math::
+
+        f(x) = 
+
+    where
+
+    .. math::
+
+        A := 
+    
+    :math:`x > 0` [1]_.
+
+    %(after_notes)s
+
+    References
+    ----------
+    .. [1] Reference
+
+    %(example)s
+
+    """
+    # Check 0 < a < b.
+    def _pdf(self, x):
+        return _duquennoy1991.pdf(x)
+
+    def _cdf(self, x):
+        return _duquennoy1991.cdf(x)
+
+    def _ppf(self, q):
+        return _duquennoy1991.ppf(q)
+
+
+# Duquennoy and Mayor (1991) period: truncated lognormal
+mu = np.exp(np.log(10.)*4.8)
+sigma = np.log(10.)*2.3
+loc = 0.
+scale = mu
+s = sigma
+a = 10.**-2./scale
+b = 10.**12./scale
+_duquennoy1991 = trunclognorm(s=s, a=a, b=b, scale=scale)    
+duquennoy1991 = _duquennoy1991_gen(a=10.**-2.3, b=10.**12.,
+                                   name="duquennoy1991")
+
+if __name__ == "__main__":
+    import matplotlib as mpl
+    import matplotlib.pyplot as plt
+
+    # mpl.style.use("sm")
+    
+    # Plot Duquennoy 1991
+    periods = duquennoy1991.rvs(size=100_000)
+    counts, edges = np.histogram(periods, bins=np.linspace(0., 10_000., 25),
+                                 density=True)
+    print(np.min(periods), np.max(periods))
+    
+    fig, ax = plt.subplots()
+    ax.stairs(counts, edges)
+    ax.set_xlabel(r"$P/\mathrm{day}$")
+    ax.set_ylabel(r"$\hat{f}$")
+    plt.show()
+
+    # Plot Duquennoy 1991: log period
+    periods = np.log10(duquennoy1991.rvs(size=100_000))
+    counts, edges = np.histogram(periods, bins=np.linspace(-3., 13., 17),
+                                 density=True)
+    print(np.min(periods), np.max(periods))
+    
+    fig, ax = plt.subplots()
+    ax.stairs(counts, edges)
+    ax.set_xlabel(r"$P/\mathrm{day}$")
+    ax.set_ylabel(r"$\hat{f}$")
+    plt.show()
+
