@@ -36,25 +36,25 @@ class _duquennoy1991_gen(sp.stats.rv_continuous):
     # Inherit the rv_continuous class but override its methods with
     # those of a frozen rv.
     def _argcheck(self, s):
-        return 11 < s
+        return 11. < s
     
     def _pdf(self, x, s):
         return np.where(
-            (11 < s) & (s <= 1000),
+            (11. < s) & (s <= 1000.),
             _duquennoy1991_f1.pdf(x),
             _duquennoy1991_f2.pdf(x)
         )
 
     def _cdf(self, x, s):
         return np.where(
-            (11 < s) & (s <= 1000),
+            (11. < s) & (s <= 1000.),
             _duquennoy1991_f1.cdf(x),
             _duquennoy1991_f2.cdf(x)
         )
 
     def _ppf(self, q, s):
         return np.where(
-            (11 < s) & (s <= 1000),
+            (11. < s) & (s <= 1000.),
             _duquennoy1991_f1.ppf(q),
             _duquennoy1991_f2.ppf(q)
         )

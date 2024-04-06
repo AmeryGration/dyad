@@ -6,7 +6,7 @@ import numpy as np
 import scipy as sp
 
 class _opik1924_gen(sp.stats._continuous_distns.reciprocal_gen):
-    r"""An Öpik-type semimajor axis random variable
+    r"""An Öpik (1924) semimajor axis random variable
 
     """
     def __init__(self, *args, **kwargs):

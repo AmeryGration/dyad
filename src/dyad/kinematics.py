@@ -12,8 +12,8 @@ Distances are in AU. Times are in days. Velocities are in km/s.
 __all__ = [
     "Orbit",
     "Binary",
-    "period_to_semimajor_axis",
-    "semimajor_axis_to_period",
+    "semimajor_axis_from_period",
+    "period_from_semimajor_axis",
     "true_anomaly_from_mean_anomaly",
     "true_anomaly_from_eccentric_anomaly",
     "mean_anomaly_from_eccentric_anomaly",
@@ -33,14 +33,6 @@ DAY = const.day
 GRAV_CONST = sp.constants.gravitational_constant*M_SUN*DAY**2./AU**3.
 KPS = AU/DAY/1.e3
 
-def period_to_semimajor_axis(P, m_1, m_2):
-    """Return the semimajor axis given the period"""
-    return np.cbrt(GRAV_CONST*(m_1 + m_2)*P**2./4./np.pi**2.)
-
-def semimajor_axis_to_period(a, m_1, m_2):
-    """Return the period given the semimajor axis"""
-    return np.sqrt(4.*np.pi**2.*a**3./GRAV_CONST/(m_1 + m_2))
-
 def _check_eccentricity(e):
     # The the number 0.9999999999999999 < 1.
     # But the number 0.99999999999999999 == 1.
@@ -51,6 +43,14 @@ def _check_eccentricity(e):
         raise ValueError("e must be nonnegative and less than one.")
 
     return e
+
+def semimajor_axis_from_period(P, m_1, m_2):
+    """Return the semimajor axis given the period"""
+    return np.cbrt(GRAV_CONST*(m_1 + m_2)*P**2./4./np.pi**2.)
+
+def period_from_semimajor_axis(a, m_1, m_2):
+    """Return the period given the semimajor axis"""
+    return np.sqrt(4.*np.pi**2.*a**3./GRAV_CONST/(m_1 + m_2))
 
 def true_anomaly_from_mean_anomaly(mu, e):
     """Return the true anomaly modulo :math:`2\pi`."""
@@ -179,6 +179,8 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
 class Orbit:
     def __init__(self, central_mass, elements):
         """A class for specifying a body's orbit
+
+        A test particle in a central potential.
 
         Parameters
         ----------
@@ -531,7 +533,7 @@ class Orbit:
 
 
 class Binary:
-    def __init__(self, m, q, a, e, theta, Omega, i, omega):
+    def __init__(self, m, q, a, e, theta, Omega=0., i=0., omega=0.):
         """A class for specifying the two orbits of a binary system
 
         Quantities m, a, e, theta, Omega, i, omega are for the primary star.
@@ -562,42 +564,44 @@ class Binary:
         m2 = q*m1
         elements1 = [a, e, theta, Omega, i, omega]
         elements2 = [a/q, e, theta, Omega, i, omega + np.pi]
+        # Propertize these
         self.primary = Orbit(m2**3./(m1 + m2)**2., elements1)
         self.secondary = Orbit(m1**3./(m1 + m2)**2., elements2)
 
+
 if __name__ == "__main__":
-    m1 = 2.
-    m2 = 3.
-    a1 = 4.
-    a2 = a1*m1/m2
-    e1 = 0.3
-    theta1 = 0.
-    P = 2.*np.pi*np.sqrt((a1 + a2)**3./(GRAV_CONST*(m1 + m2)))
-    # print(P)
+    m1 = 0.5488135039273248*np.ones(3)
+    a1 = 0.7151893663724195*np.ones(3)
+    e1 = 0.6027633760716439*np.ones(3)
+    theta1 = 0.5448831829968969*np.ones(3)
+    Omega1 = 0.4236547993389047*np.ones(3)
+    i1 = 0.6458941130666561*np.ones(3)
+    omega1 = 0.4375872112626925*np.ones(3)
+    q = 0.8070353890880327*np.ones(3)
+    
+    bin = Binary(m1, q, a1, e1, theta1, Omega1, i1, omega1)
+    print(bin.primary.period)
+    print(bin.secondary.period)
+    print(bin.primary.speed)
+    print(bin.secondary.speed)
 
+    m2 = q*m1
     M = m2**3./(m1 + m2)**2.
-    print(M)
-    # P = 2.*np.pi*np.sqrt(a1**3./(GRAV_CONST*M))
-    # # print(P)
+    orb = Orbit(M, [a1, e1, theta1, Omega1, i1, omega1])
+    print(orb.speed)
+    print(np.sqrt(np.sum(orb._velocity**2., axis=1)))
 
-    # orb = Orbit(M, [a1, e1, theta1, 0., 0., 0.])
-    # # print(orb.period)
+    #########################################################################
+    # How to find the luminosity-weighted velocity?
+    #########################################################################
+    T1 = 0.30526230045514713*np.ones(3)
+    T2 = 0.46441980639616787*np.ones(3)
+    body_1 = Body(m1, T1)
+    body_2 = Body(m2, T2)
 
-    # m1 = 0.5488135039273248
-    # a1 = 0.7151893663724195
-    # e1 = 0.6027633760716439
-    # theta1 = 0.5448831829968969
-    # Omega1 = 0.4236547993389047
-    # i1 = 0.6458941130666561
-    # omega1 = 0.4375872112626925
-    # q = m2/m1
+    binary = Binary(body_1.mass, body_2.mass/body_1.mass, a1, e1,
+                    theta1, Omega1, i1, omega1)
 
-    # bin = Binary(m1, q, a1, e1, theta1, Omega1, i1, omega1)
-    # print(bin.primary.period)
-    # print(bin.secondary.period)
-    # print(bin.primary.speed)
-    # print(bin.secondary.speed)
-
-    # orb = Orbit(M, [a1, e1, theta1, Omega1, i1, omega1])
-    # print(orb.speed)
-    # print(np.sqrt(np.sum(orb._velocity**2.)))
+    a = [binary.primary.state[:,-1], binary.secondary.state[:,-1]]
+    weights = [body_1.luminosity, body_2.luminosity]
+    lv = np.average(a, axis=0, weights=weights)
