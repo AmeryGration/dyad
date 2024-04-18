@@ -2,3 +2,5 @@
 __pycache__
 dyad.egg-info
 dev
+*.pdf
+*.jpg

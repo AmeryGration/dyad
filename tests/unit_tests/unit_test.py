@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+"""Test functions for kinematics module"""
 
 import unittest
 import numpy as np
@@ -19,7 +19,6 @@ class TestFunctions(unittest.TestCase):
         result = dyad.true_anomaly_from_mean_anomaly(*x)
         if __debug__:
             print(result)
-
         self.assertAlmostEqual(result, target)
 
     @parameterized.expand(data_test.true_anomaly_from_eccentric_anomaly)
