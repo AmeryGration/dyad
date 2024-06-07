@@ -1,8 +1,8 @@
+build/
+dyad.egg-info/
+dev/
+env/
 __pycache__
-build
-dyad.egg-info
-dev
-env
 .gitignore
 *.pdf
 *.jpg
