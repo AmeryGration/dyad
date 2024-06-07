@@ -52,41 +52,41 @@ cum_freq_sample = cumulative_trapezoid(
     freq_sample, log10_period_sample, initial=0.
 )
 
-np.savetxt("primary_mass_sample.dat", primary_mass_sample)
-np.savetxt("log10_period_sample.dat", log10_period_sample)
-np.savetxt("cumulative_frequency_sample.dat", cum_freq_sample)
+# np.savetxt("primary_mass_sample.dat", primary_mass_sample)
+# np.savetxt("log10_period_sample.dat", log10_period_sample)
+# np.savetxt("cumulative_frequency_sample.dat", cum_freq_sample)
 
-# # Period: PDF
-# fig, ax = plt.subplots()
-# im = ax.pcolormesh(log10_period_sample, primary_mass_sample, freq_sample,
-#                    rasterized=True)
-# ax.contour(log10_period_sample, primary_mass_sample, freq_sample, colors="k",
-#            levels=10)
-# ax.vlines(log10_period_boundary, 0., 60., ls="dashed")
-# ax.hlines(primary_mass_boundary, 0., 8., ls="dashed")
-# ax.set_yscale("log")
-# ax.set_xlim(0.2, 8.)
-# ax.set_ylim(0.8, 60.)
-# ax.set_xlabel(r"$x$")
-# ax.set_ylabel(r"$M_{1}$")
-# # fig.savefig("moe2017_logperiod_pdf_2d.pdf")
-# plt.show()
+# Period: PDF
+fig, ax = plt.subplots()
+im = ax.pcolormesh(log10_period_sample, primary_mass_sample, freq_sample,
+                   rasterized=True)
+ax.contour(log10_period_sample, primary_mass_sample, freq_sample, colors="k",
+           levels=10)
+ax.vlines(log10_period_boundary, 0., 60., ls="dashed")
+ax.hlines(primary_mass_boundary, 0., 8., ls="dashed")
+ax.set_yscale("log")
+ax.set_xlim(0.2, 8.)
+ax.set_ylim(0.8, 60.)
+ax.set_xlabel(r"$x$")
+ax.set_ylabel(r"$M_{1}$")
+# fig.savefig("moe2017_logperiod_pdf_2d.pdf")
+plt.show()
 
-# # Period: CDF
-# fig, ax = plt.subplots()
-# im = ax.pcolormesh(log10_period_sample, primary_mass_sample, cum_freq_sample,
-#                    rasterized=True)
-# ax.contour(log10_period_sample, primary_mass_sample, cum_freq_sample,
-#            colors="k", levels=10)
-# ax.vlines(log10_period_boundary, 0., 60., ls="dashed")
-# ax.hlines(primary_mass_boundary, 0., 8., ls="dashed")
-# ax.set_yscale("log")
-# ax.set_xlim(0.2, 8.)
+# Period: CDF
+fig, ax = plt.subplots()
+im = ax.pcolormesh(log10_period_sample, primary_mass_sample, cum_freq_sample,
+                   rasterized=True)
+ax.contour(log10_period_sample, primary_mass_sample, cum_freq_sample,
+           colors="k", levels=10)
+ax.vlines(log10_period_boundary, 0., 60., ls="dashed")
+ax.hlines(primary_mass_boundary, 0., 8., ls="dashed")
+ax.set_yscale("log")
+ax.set_xlim(0.2, 8.)
 
-# ax.set_ylim(0.8, 60.)
-# ax.set_xlabel(r"$x$")
-# ax.set_ylabel(r"$M_{1}$")
-# # fig.savefig("moe2017_logperiod_cdf.pdf")
-# plt.show()
+ax.set_ylim(0.8, 60.)
+ax.set_xlabel(r"$x$")
+ax.set_ylabel(r"$M_{1}$")
+# fig.savefig("moe2017_logperiod_cdf.pdf")
+plt.show()
 
 

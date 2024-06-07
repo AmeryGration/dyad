@@ -93,8 +93,8 @@ class _kroupa2002_gen(sp.stats.rv_continuous):
         return _kroupa2002.ppf(q)
 
     
-_kroupa2002 = splitpowerlaw(s=0.5, a=0.1, b=50., c=-1.3, d=-2.3)
-kroupa2002 = _kroupa2002_gen(a=0.1, b=50., name="kroupa2002")
+_kroupa2002 = splitpowerlaw(s=0.5, a=0.1, b=60., c=-1.3, d=-2.3)
+kroupa2002 = _kroupa2002_gen(a=0.1, b=60., name="kroupa2002")
 
 
 # class _salpeter1955_gen(sp.stats.rv_continuous):

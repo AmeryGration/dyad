@@ -1,6 +1,9 @@
-*~
 __pycache__
+build
 dyad.egg-info
 dev
+env
+.gitignore
 *.pdf
 *.jpg
+*~

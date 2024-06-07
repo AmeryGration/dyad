@@ -2,6 +2,7 @@
 
 __all__ = [
     "moe2017",
+    "duquennoy1991",
 ]
 
 import numpy as np
@@ -83,24 +84,24 @@ def _moe2017_c_8(log10_primary_mass):
 
     return res
 
-# log10_period_sample = np.loadtxt(
-#     "/home/ag0082/Documents/Work/Software/Dyad/dyad/src/dyad/stats/"
-#     + "log_period/log10_period_sample.dat"    
-# )
-# primary_mass_sample = np.loadtxt(
-#     "/home/ag0082/Documents/Work/Software/Dyad/dyad/src/dyad/stats/"
-#     + "log_period/primary_mass_sample.dat"
-# )
-# cumulative_frequency_sample = np.loadtxt(
-#     "/home/ag0082/Documents/Work/Software/Dyad/dyad/src/dyad/stats/"
-#     + "log_period/cumulative_frequency_sample.dat"
-# )
-# _moe2017_cumulative_frequency = interp2d(
-#     log10_period_sample,
-#     primary_mass_sample,
-#     cumulative_frequency_sample,
-#     bounds_error=True
-# )
+_moe2017_log10_period_sample = np.loadtxt(
+    "/home/ag0082/Documents/Work/Software/Dyad/dyad/src/dyad/stats/"
+    + "log_period/log10_period_sample.dat"    
+)
+_moe2017_primary_mass_sample = np.loadtxt(
+    "/home/ag0082/Documents/Work/Software/Dyad/dyad/src/dyad/stats/"
+    + "log_period/primary_mass_sample.dat"
+)
+_moe2017_cumulative_frequency_sample = np.loadtxt(
+    "/home/ag0082/Documents/Work/Software/Dyad/dyad/src/dyad/stats/"
+    + "log_period/cumulative_frequency_sample.dat"
+)
+_moe2017_cumulative_frequency = interp2d(
+    _moe2017_log10_period_sample,
+    _moe2017_primary_mass_sample,
+    _moe2017_cumulative_frequency_sample,
+    bounds_error=True
+)
 
 class _moe2017_gen(sp.stats.rv_continuous):
     r"""The Moe and Stefano (2017) log-period random variable
@@ -220,6 +221,64 @@ class _moe2017_gen(sp.stats.rv_continuous):
 
 
 moe2017 = _moe2017_gen(a=0.2, b=8., name="moe2017")
+
+
+class _duquennoy1991_gen(sp.stats.rv_continuous):
+    r"""The Duquennoy and Mayor (1991) mass-ratio random variable
+
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `duquennoy1991` is:
+
+    .. math::
+
+        f(x) = 
+
+    where
+
+    .. math::
+
+        A := 
+
+    :math:`x > 0` [1]_.
+
+    %(after_notes)s
+
+    References
+    ----------
+    .. [1] Reference
+
+    %(example)s
+
+    """
+    def _pdf(self, x):
+        res = _duquennoy1991.pdf(x)
+
+        return res
+
+    def _cdf(self, x):
+        res = _duquennoy1991.cdf(x)
+
+        return res
+
+    def _ppf(self, x):
+        res = _duquennoy1991.ppf(x)
+
+        return res
+
+
+# Duquennoy and Mayor (1991) period: truncated lognormal
+_duquennoy1991_loc = 4.8
+_duquennoy1991_scale = 2.3
+_duquennoy1991_a = (-2. - _duquennoy1991_loc)/_duquennoy1991_scale
+_duquennoy1991_b = (12. - _duquennoy1991_loc)/_duquennoy1991_scale
+_duquennoy1991 = sp.stats.truncnorm(
+    a=_duquennoy1991_a, b=_duquennoy1991_b, loc=_duquennoy1991_loc,
+    scale=_duquennoy1991_scale
+)
+duquennoy1991 = _duquennoy1991_gen(a=-2., b=12., name="duquennoy1991")
 
 def main():
     import matplotlib as mpl
