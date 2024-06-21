@@ -1,8 +1,8 @@
 *~
 __pycache__
-build
-dyad.egg-info
-dev
-env
+build/
+dyad.egg-info/
+dev/
+env/
 *.pdf
 *.jpg
