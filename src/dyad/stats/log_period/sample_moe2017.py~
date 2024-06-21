@@ -1,0 +1,173 @@
+#!/usr/bin/env python
+
+import numpy as np
+import scipy as sp
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+import plot
+
+from scipy.integrate import cumulative_trapezoid
+from scipy.interpolate import RegularGridInterpolator
+from scipy.interpolate import interp2d
+
+from dyad import stats
+
+mpl.style.use("sm")
+
+# # Sample the domain using a rectilinear lattice 
+# primary_mass_boundary = (0.8, 1.2, 3.5, 6., 60.)
+# log10_period_boundary = (
+#     0.2, 1., 1.3, 2., 2.5, 3.4, 3.5, 4., 4.5, 5.5, 6., 6.5, 8.
+# )
+
+# n = 50
+# # n = 100
+# primary_mass_sample = np.hstack(
+#     [
+#         np.linspace(0.8, 1.2, n),
+#         np.linspace(1.2, 3.5, n)[1:],
+#         np.linspace(3.5, 6., n)[1:],
+#         np.linspace(6., 60., n)[1:],
+#     ]
+# )
+# log10_period_sample = np.hstack(
+#     [
+#         np.linspace(0.2, 1., n),
+#         np.linspace(1., 1.3, n)[1:],
+#         np.linspace(1.3, 2., n)[1:],
+#         np.linspace(2., 2.5, n)[1:],
+#         np.linspace(2.5, 3.4, n)[1:],
+#         np.linspace(3.4, 3.5, n)[1:],
+#         np.linspace(3.5, 4., n)[1:],
+#         np.linspace(4., 4.5, n)[1:],
+#         np.linspace(4.5, 5.5, n)[1:],
+#         np.linspace(5.5, 6., n)[1:],
+#         np.linspace(6., 6.5, n)[1:],
+#         np.linspace(6.5, 8., n)[1:],
+#     ]
+# )
+
+# rv_period = stats.log_period.moe2017(primary_mass_sample.reshape([-1, 1]))
+
+# freq_sample = rv_period.pdf(log10_period_sample)
+# cum_freq_sample = cumulative_trapezoid(
+#     freq_sample, log10_period_sample, initial=0.
+# )
+
+# # freq_sample = freq_sample/cum_freq_sample[:, [-1]]
+# # cum_freq_sample = cum_freq_sample/cum_freq_sample[:, [-1]]
+
+# # # Period: PDF
+# # fig, ax, cbar = plot.plot(cbar=True)
+# # im = ax.pcolormesh(log10_period_sample, primary_mass_sample, freq_sample,
+# #                    rasterized=True)
+# # ax.contour(log10_period_sample, primary_mass_sample, freq_sample, colors="k",
+# #            levels=10)
+# # ax.vlines(log10_period_boundary, 0., 60., ls="dashed")
+# # ax.hlines(primary_mass_boundary, 0., 8., ls="dashed")
+# # ax.set_yscale("log")
+# # ax.set_xlim(0.2, 8.)
+# # ax.set_ylim(0.8, 60.)
+# # ax.set_xlabel(r"$x$")
+# # ax.set_ylabel(r"$M_{1}$")
+# # cbar = fig.colorbar(im, cax=cbar)
+# # cbar.set_label(r"$f_{X|M_{1}}$")
+# # fig.savefig("moe2017_logperiod_pdf_2d.pdf")
+# # plt.show()
+
+# # # Period: CDF
+# # fig, ax, cbar = plot.plot(cbar=True)
+# # im = ax.pcolormesh(log10_period_sample, primary_mass_sample, cdf_period,
+# #                    rasterized=True)
+# # ax.contour(log10_period_sample, primary_mass_sample, cdf_period, colors="k",
+# #            levels=10)
+# # ax.vlines(log10_period_boundary, 0., 60., ls="dashed")
+# # ax.hlines(primary_mass_boundary, 0., 8., ls="dashed")
+# # ax.set_yscale("log")
+# # ax.set_xlim(0.2, 8.)
+
+# # ax.set_ylim(0.8, 60.)
+# # ax.set_xlabel(r"$x$")
+# # ax.set_ylabel(r"$M_{1}$")
+# # cbar = fig.colorbar(im, cax=cbar)
+# # cbar.set_label(r"$f_{X|M_{1}}$")
+# # fig.savefig("moe2017_logperiod_cdf.pdf")
+# # plt.show()
+
+# # Interpolator
+# np.savetxt("primary_mass_sample.dat", primary_mass_sample)
+# np.savetxt("log10_period_sample.dat", log10_period_sample)
+# np.savetxt("cumulative_frequency_sample.dat", cum_freq_sample)
+
+#############################################################################
+# Here
+#############################################################################
+# primary_mass_sample = np.loadtxt("primary_mass_sample.dat")
+# log10_period_sample = np.loadtxt("log10_period_sample.dat")
+# cum_freq_sample = np.loadtxt("cumulative_frequency_sample.dat")
+
+# _cum_freq = interp2d(
+#     log10_period_sample,
+#     primary_mass_sample, 
+#     cum_freq_sample,
+#     bounds_error=True
+# )
+
+def _pdf(x, primary_mass):
+    rv_period = stats.log_period.moe2017(primary_mass.reshape([-1, 1]))
+    res = rv_period.pdf(x)#/_cum_freq(8., primary_mass)
+    
+    return res
+
+# def _cdf(x, primary_mass):
+#     res = _cum_freq(x, primary_mass)/_cum_freq(8., primary_mass)
+    
+#     return res
+
+# def _mds(x, primary_mass):
+#     res = _cum_freq(x, primary_mass)
+    
+#     return res
+
+#############################################################################
+
+primary_mass = np.array([1., 3.5, 7., 12.5, 25.])
+res = _cdf(log10_period_sample, primary_mass)
+plt.plot(log10_period_sample, res[0], ls="solid", color="red")
+plt.plot(log10_period_sample, res[1], ls="solid", color="red")
+plt.plot(log10_period_sample, res[2], ls="solid", color="red")
+plt.plot(log10_period_sample, res[3], ls="solid", color="red")
+plt.plot(log10_period_sample, res[4], ls="solid", color="red")
+
+# primary_mass = np.array([1., 3.5, 7., 12.5, 25.])
+# rv_period = stats.log_period.moe2017(primary_mass.reshape([-1, 1]))
+
+# freq_sample = rv_period.pdf(log10_period_sample)
+# cum_freq_sample = cumulative_trapezoid(
+#     freq_sample, log10_period_sample, initial=0.
+# )
+
+# freq_sample = freq_sample/cum_freq_sample[:, [-1]]
+# cum_freq_sample = cum_freq_sample/cum_freq_sample[:, [-1]]
+
+res = _pdf(log10_period_sample, primary_mass)
+plt.plot(log10_period_sample, res[0], ls="solid")
+plt.plot(log10_period_sample, res[1], ls="solid")
+plt.plot(log10_period_sample, res[2], ls="solid")
+plt.plot(log10_period_sample, res[3], ls="solid")
+plt.plot(log10_period_sample, res[4], ls="solid")
+
+primary_mass = np.array([1., 3.5, 7., 12.5, 25.])
+# res = _mds(log10_period_sample, primary_mass)
+res = (
+    _moe2017_cumulative_frequency(log10_period_sample, primary_mass)
+    # /_moe2017_cumulative_frequency(8., primary_mass)
+)
+plt.plot(log10_period_sample, res[0], ls="solid", color="red")
+plt.plot(log10_period_sample, res[1], ls="solid", color="red")
+plt.plot(log10_period_sample, res[2], ls="solid", color="red")
+plt.plot(log10_period_sample, res[3], ls="solid", color="red")
+plt.plot(log10_period_sample, res[4], ls="solid", color="red")
+
+plt.show()

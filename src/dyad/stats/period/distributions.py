@@ -181,14 +181,17 @@ class _duquennoy1991_gen(sp.stats.rv_continuous):
 
 
 # Duquennoy and Mayor (1991) period: truncated lognormal
-mu = np.exp(np.log(10.)*4.8)
-sigma = np.log(10.)*2.3
-loc = 0.
-scale = mu
-s = sigma
-a = 10.**-2./scale
-b = 10.**12./scale
-_duquennoy1991 = trunclognorm(s=s, a=a, b=b, scale=scale)
+_duquennoy1991_mu = np.exp(np.log(10.)*4.8)
+_duquennoy1991_sigma = np.log(10.)*2.3
+_duquennoy1991_loc = 0.
+_duquennoy1991_scale = _duquennoy1991_mu
+_duquennoy1991_s = _duquennoy1991_sigma
+_duquennoy1991_a = (10.**-2. - 0.)/_duquennoy1991_scale
+_duquennoy1991_b = (10.**12. - 0.)/_duquennoy1991_scale
+_duquennoy1991 = trunclognorm(
+    s=_duquennoy1991_s, a=_duquennoy1991_a, b=_duquennoy1991_b,
+    scale=_duquennoy1991_scale
+)
 duquennoy1991 = _duquennoy1991_gen(
     a=10.**-2.3, b=10.**12., name="duquennoy1991"
 )

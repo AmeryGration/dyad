@@ -1,0 +1,60 @@
+__all__ = [
+    "opik",
+]
+
+import numpy as np
+import scipy as sp
+
+
+class _opik1924_gen(sp.stats.rv_continuous):
+    r"""The Öpik (1924) initial stellar mass random variable
+
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `opik1924` is:
+
+    .. math::
+
+        f(x) = 
+
+    where
+
+    .. math::
+
+        A := 
+    
+    :math:`x > 0` [1]_.
+
+    %(after_notes)s
+
+    References
+    ----------
+    .. [1] Reference
+
+    %(example)s
+
+    """
+    # Check 0 < a < b.
+    def _pdf(self, x):
+        pass
+
+
+opik1924 = _opik1924_gen(a=0., b=3.e3., name="opik1924")
+
+if __name__ == "__main__":
+    import matplotlib.pyplot as plt
+    
+    # Plot Duquennoy 1991
+    sample = opik1924(a=1., b=2.).rvs(1_000_000)
+    counts, edges = np.histogram(sample, bins=np.linspace(0.5, 2.5, 25),
+                                 density=True)
+    print(np.min(sample), np.max(sample))
+    
+    fig, ax = plt.subplots()
+    ax.stairs(counts, edges)
+    ax.set_xlabel(r"$a/\mathrm{AU}$")
+    ax.set_ylabel(r"$\hat{f}$")
+    plt.show()
+

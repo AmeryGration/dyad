@@ -1,0 +1,9 @@
+__all__ = [
+    "reciprocal", "lognorm"
+]
+
+import numpy as np
+import scipy as sp
+
+reciprocal = sp.stats.reciprocal
+lognorm = sp.stats.lognorm

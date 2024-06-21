@@ -11,12 +11,19 @@ import scipy as sp
 
 from astropy import constants
 
-GRAV_CONST = constants.G.cgs.to_value() # 6.67408e-08 # G (cgs)
-M_SUN = constants.M_sun.cgs.to_value() # 1.989e33 # Msun (cgs)
-R_SUN = constants.R_sun.cgs.to_value() # 6.9566e+10 # Rsun (cgs)
-L_SUN = constants.L_sun.cgs.to_value() # 3.8515e+33 # Lsun (cgs)
-SIGMA = constants.sigma_sb.cgs.to_value()  # 5.670352798e-5 # Stefan-Boltzmann constant (cgs)
-KSB = 4.*np.pi*SIGMA # 4pi * Stefan-Boltzmann - used often
+GRAV_CONST = 6.6743e-08 # Units: cgs
+M_SUN = 1.98840987e+33 # Units: cgs
+R_SUN = 6.9570000000e10 # Units: cgs
+L_SUN = 3.828e+33 # Units: cgs
+SIGMA = 5.6703744191844314e-05 # Units: cgs
+KSB = 4.*np.pi*SIGMA # Units: cgs
+
+# GRAV_CONST = constants.G.cgs.to_value() # 6.6743e-08 # G (cgs)
+# M_SUN = constants.M_sun.cgs.to_value() # 1.989e33 # Msun (cgs)
+# R_SUN = constants.R_sun.cgs.to_value() # 6.9566e+10 # Rsun (cgs)
+# L_SUN = constants.L_sun.cgs.to_value() # 3.8515e+33 # Lsun (cgs)
+# SIGMA = constants.sigma_sb.cgs.to_value()  # 5.670352798e-5 # Stefan-Boltzmann constant (cgs)
+# KSB = 4.*np.pi*SIGMA # 4pi * Stefan-Boltzmann - used often
 
 def hrd(m):
     """
@@ -85,9 +92,9 @@ def hrd(m):
 
     g = GRAV_CONST*(m*M_SUN)/(R*R_SUN)**2.
 
-    Teff = ((L*L_SUN)/(KSB*(R*R_SUN)**2))**0.25
+    T_eff = ((L*L_SUN)/(KSB*(R*R_SUN)**2))**0.25
 
-    return (Teff, L, g, R)
+    return (T_eff, L, g, R)
 
 
 class Body:

@@ -1,7 +1,6 @@
 """Module providing random variables for mass ratio"""
 
 __all__ = [
-    "truncnorm",
     "duquennoy1991",
     "moe2017"
 ]
@@ -9,9 +8,7 @@ __all__ = [
 import numpy as np
 import scipy as sp
 
-import plot
-
-truncnorm = sp.stats.truncnorm
+_truncnorm = sp.stats.truncnorm
 
 
 class _duquennoy1991_gen(sp.stats.rv_continuous):
@@ -60,11 +57,14 @@ class _duquennoy1991_gen(sp.stats.rv_continuous):
         return res
 
 
-loc = 0.23
-scale = 0.42
-a = (0. - loc)/scale
-b = (np.inf - loc)/scale
-_duquennoy1991 = truncnorm(a=a, b=b, loc=loc, scale=scale)
+_duquennoy1991_loc = 0.23
+_duquennoy1991_scale = 0.42
+_duquennoy1991_a = (0. - _duquennoy1991_loc)/_duquennoy1991_scale
+_duquennoy1991_b = (np.inf - _duquennoy1991_loc)/_duquennoy1991_scale
+_duquennoy1991 = _truncnorm(
+    a=_duquennoy1991_a, b=_duquennoy1991_b, loc=_duquennoy1991_loc,
+    scale=_duquennoy1991_scale
+)
 duquennoy1991 = _duquennoy1991_gen(a=0., b=np.inf, name="duquennoy1991")
 
 def _moe2017_norm(gamma, delta, log10_period, primary_mass):
