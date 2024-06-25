@@ -18,9 +18,9 @@ maintainers = [
 classifiers = [
     "Programming Language :: Python :: 3",
 ]
-dependencies = [
-    "numpy>=1.19", "scipy>=1.5"
-]
+# dependencies = [
+#     "numpy>=1.19", "scipy==1.5"
+# ]
 
 # [project.urls]
 # Homepage = ""
@@ -28,3 +28,8 @@ dependencies = [
 # Repository = "https://github.com/AmeryGration/dyad"
 # Changelog = ""
 
+# [tool.setuptools.packages.find]
+# where = ["src"]
+
+# [tool.setuptools.package-data]
+# "dyad.data" = ["*.dat"]

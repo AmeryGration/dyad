@@ -2,19 +2,20 @@
 
 __all__ = [
     "duquennoy1991",
-    "moe2017",
+    # "moe2017",
 ]
 
 import os
 import numpy as np
 import scipy as sp
 
+from importlib.resources import files
 from scipy.integrate import quad
 from scipy.integrate import fixed_quad
 from scipy.interpolate import interp2d
 from dyad.stats import mass_ratio
 
-_dir = os.path.abspath(os.path.dirname(__file__))
+# _dir = os.path.abspath(os.path.dirname(__file__))
 
 _truncnorm = sp.stats.truncnorm
 
@@ -75,342 +76,212 @@ _duquennoy1991 = _truncnorm(
 )
 duquennoy1991 = _duquennoy1991_gen(a=-2.3, b=12., name="duquennoy1991")
     
-def _moe2017_c_1(log10_primary_mass):
-    res = (
-        0.07*log10_primary_mass**2.
-        + 0.04*log10_primary_mass
-        + 0.020
-    )
-
-    return res
-
-def _moe2017_c_2(log10_primary_mass):
-    res = (
-        - 0.06*log10_primary_mass**2.
-        + 0.03*log10_primary_mass
-        + 0.0064
-    )
-
-    return res
-
-def _moe2017_c_3(log10_primary_mass):
-    res = (
-        0.13*log10_primary_mass**2.
-        + 0.01*log10_primary_mass
-        + 0.0136
-    )
-
-    return res
-
-def _moe2017_c_4(log10_primary_mass):
-    res = 0.018
-
-    return res
-
-def _moe2017_c_5(log10_primary_mass):
-    res = (
-        0.01*log10_primary_mass**2.
-        + 0.07*log10_primary_mass
-        - 0.0096
-    )
-
-    return res
-
-def _moe2017_c_6(log10_primary_mass):
-    res = (
-        0.03*log10_primary_mass**2./2.1
-        - 0.12*log10_primary_mass/2.1
-        + 0.0264/2.1
-    )
-
-    return res
-
-def _moe2017_c_7(log10_primary_mass):
-    res = (
-        - 0.081*log10_primary_mass**2./2.1
-        + 0.555*log10_primary_mass/2.1
-        + 0.0186/2.1
-    )
-
-    return res
-
-def _moe2017_c_8(log10_primary_mass):
-    res = (
-        np.exp(1.65)
-        *(
-            0.04*log10_primary_mass**2.
-            - 0.05*log10_primary_mass
-            + 0.078
-        )
-    )
-
-    return res
-
-_log10_period_sample = np.loadtxt(
-    # "~/Documents/Work/Software/Dyad/dyad/src/dyad/stats/log_period/"
-    # + "log10_period_sample.dat"
-        os.path.join(_dir, "Data/log10_period_sample.dat")
-)
-_primary_mass_sample = np.loadtxt(
-    # "~/Documents/Work/Software/Dyad/dyad/src/dyad/stats/"
-    # + "log_period/primary_mass_sample.dat"
-    os.path.join(_dir, "Data/primary_mass_sample.dat")
-)
-_cumulative_frequency_sample = np.loadtxt(
-    # "~/Documents/Work/Software/Dyad/dyad/src/dyad/stats/"
-    # + "log_period/cumulative_frequency_sample.dat"
-    os.path.join(_dir, "Data/cumulative_frequency_sample.dat")
-)
-_moe2017_cumulative_frequency = interp2d(
-    _log10_period_sample,
-    _primary_mass_sample,
-    _cumulative_frequency_sample,
-    bounds_error=True
-)
-
-class _moe2017_gen(sp.stats.rv_continuous):
-    r"""The Moe and Stefano (2017) log-period random variable
-
-    %(before_notes)s
-
-    Notes
-    -----
-    The probability density function for `moe1991` is:
+# def _moe2017_c_1(log10_primary_mass):
+#     res = (
+#         0.07*log10_primary_mass**2.
+#         + 0.04*log10_primary_mass
+#         + 0.020
+#     )
+
+#     return res
+
+# def _moe2017_c_2(log10_primary_mass):
+#     res = (
+#         - 0.06*log10_primary_mass**2.
+#         + 0.03*log10_primary_mass
+#         + 0.0064
+#     )
+
+#     return res
+
+# def _moe2017_c_3(log10_primary_mass):
+#     res = (
+#         0.13*log10_primary_mass**2.
+#         + 0.01*log10_primary_mass
+#         + 0.0136
+#     )
 
-    .. math::
+#     return res
+
+# def _moe2017_c_4(log10_primary_mass):
+#     res = 0.018
+
+#     return res
 
-        f(x) =
+# def _moe2017_c_5(log10_primary_mass):
+#     res = (
+#         0.01*log10_primary_mass**2.
+#         + 0.07*log10_primary_mass
+#         - 0.0096
+#     )
 
-    where
+#     return res
 
-    .. math::
+# def _moe2017_c_6(log10_primary_mass):
+#     res = (
+#         0.03*log10_primary_mass**2./2.1
+#         - 0.12*log10_primary_mass/2.1
+#         + 0.0264/2.1
+#     )
 
-        A :=
+#     return res
+
+# def _moe2017_c_7(log10_primary_mass):
+#     res = (
+#         - 0.081*log10_primary_mass**2./2.1
+#         + 0.555*log10_primary_mass/2.1
+#         + 0.0186/2.1
+#     )
 
-    :math:`x > 0` [1]_.
+#     return res
+
+# def _moe2017_c_8(log10_primary_mass):
+#     res = (
+#         np.exp(1.65)
+#         *(
+#             0.04*log10_primary_mass**2.
+#             - 0.05*log10_primary_mass
+#             + 0.078
+#         )
+#     )
 
-    %(after_notes)s
+#     return res
 
-    References
-    ----------
-    .. [1] Reference
+# # For guidance on the use of data files see:
+# # https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+# # (section `Accessing Data Files at Runtime')
+# _log10_period_sample = (
+#     files("dyad.data").joinpath("log10_period_sample.dat").read_text()
+# )
+# _primary_mass_sample = (
+#     files("dyad.data").joinpath("primary_mass_sample.dat").read_text()
+# )
+# _cumulative_frequency_sample = (
+#     files("dyad.data").joinpath("cumulative_frequency_sample.dat").read_text()
+# )
+# _moe2017_cumulative_frequency = interp2d(
+#     _log10_period_sample,
+#     _primary_mass_sample,
+#     _cumulative_frequency_sample,
+#     bounds_error=True
+# )
+
+
+# class _moe2017_gen(sp.stats.rv_continuous):
+#     r"""The Moe and Stefano (2017) log-period random variable
+
+#     %(before_notes)s
+
+#     Notes
+#     -----
+#     The probability density function for `moe1991` is:
+
+#     .. math::
 
-    %(example)s
+#         f(x) =
 
-    """
-    def _argcheck(self, primary_mass):
-        return (0. <= primary_mass) & (primary_mass < np.inf)
+#     where
 
-    def _pdf(self, x, primary_mass):
-        def f_1(x, log10_primary_mass):
-            res = _moe2017_c_1(log10_primary_mass)
+#     .. math::
 
-            return res
+#         A :=
 
-        def f_2(x, log10_primary_mass):
-            res = (
-                _moe2017_c_2(log10_primary_mass)*x
-                + _moe2017_c_3(log10_primary_mass)
-            )
+#     :math:`x > 0` [1]_.
 
-            return res
+#     %(after_notes)s
 
-        def f_3(x, log10_primary_mass):
-            res = (
-                _moe2017_c_4(log10_primary_mass)*x
-                + _moe2017_c_5(log10_primary_mass)
-            )
+#     References
+#     ----------
+#     .. [1] Reference
 
-            return res
+#     %(example)s
 
-        def f_4(x, log10_primary_mass):
-            res = (
-                _moe2017_c_6(log10_primary_mass)*x
-                + _moe2017_c_7(log10_primary_mass)
-            )
+#     """
+#     def _argcheck(self, primary_mass):
+#         return (0. <= primary_mass) & (primary_mass < np.inf)
 
-            return res
+#     def _pdf(self, x, primary_mass):
+#         def f_1(x, log10_primary_mass):
+#             res = _moe2017_c_1(log10_primary_mass)
 
-        def f_5(x, log10_primary_mass):
-            res = (
-                _moe2017_c_8(log10_primary_mass)
-                *np.exp(-0.3*x)
-            )
-
-            return res
-
-        x = np.asarray(x)
-        primary_mass = np.asarray(primary_mass)
-        log10_primary_mass = np.log10(primary_mass)
-
-        rv_mass_ratio = mass_ratio.moe2017(x, 10.**log10_primary_mass)
-        correction_factor = 1./(1. - rv_mass_ratio.cdf(0.3))
-
-        condition = [
-            (0.2 <= x) & (x <= 1.),
-            (1. < x) & (x <= 2.),
-            (2. < x) & (x <= 3.4),
-            (3.4 < x) & (x <= 5.5),
-            (5.5 < x) & (x <= 8.),
-        ]
-        value = [
-            f_1(x, log10_primary_mass),
-            f_2(x, log10_primary_mass),
-            f_3(x, log10_primary_mass),
-            f_4(x, log10_primary_mass),
-            f_5(x, log10_primary_mass),
-        ]
-        res = (
-            correction_factor
-            *np.select(condition, value)
-            /_moe2017_cumulative_frequency(8., primary_mass).T
-        )
-
-        return res
-
-    def _cdf(self, x, primary_mass):
-        x = np.unique(x)
-        primary_mass = np.unique(primary_mass)
-
-        res = (
-            _moe2017_cumulative_frequency(x, primary_mass)
-            /_moe2017_cumulative_frequency(8., primary_mass)
-        )            
-
-        return res
-
-    # def _ppf(self, q, primary_mass):
-    #     res = 0.
-
-    #     return res
-
-
-moe2017 = _moe2017_gen(a=0.2, b=8., name="moe2017")
-
-def main():
-    import matplotlib as mpl
-    import matplotlib.pyplot as plt
-
-    mpl.style.use("sm")
-
-    _ROOT = (
-        "/home/clws00198-ag0082/Documents/Work/Software/Dyad/dyad/src/dyad/"
-        + "stats/log_period"
-    )
-
-    ######################################################################### 
-    # Plot Moe 2017
-    #########################################################################
-    primary_mass = np.array([1., 3.5, 7., 12.5, 25.])
-    rv = moe2017(primary_mass.reshape([-1, 1]))
-
-    n = 500
-    x_1 = np.linspace(-1., 0.2, n)[:-1]
-    x_2 = np.linspace(0.2, 8., n)
-    x_3 = np.linspace(8., 9., n)[1:]
-
-    pdf_1 = rv.pdf(x_1)
-    pdf_2 = rv.pdf(x_2)
-    pdf_3 = rv.pdf(x_3)
-
-    cdf_1 = rv.cdf(x_1)
-    cdf_2 = rv.cdf(x_2)
-    cdf_3 = rv.cdf(x_3)
-
-    pdf_open_dots_x = (0.2, 0.2, 0.2, 0.2, 0.2, 8., 8., 8., 8., 8.)
-    pdf_open_dots_y = (0., 0., 0., 0., 0., 0., 0., 0., 0., 0.)
-    pdf_closed_dots_x = (0.2, 0.2, 0.2, 0.2, 0.2, 8., 8., 8., 8., 8.)
-    pdf_closed_dots_y = (*pdf_2[:, 0], *pdf_2[:, -1])
-
-    fig, ax_1 = plt.subplots()
-    ax_2 = ax_1.twinx()
-    ax_1.plot(x_1, pdf_1[0], color="red", ls="solid" )
-    ax_1.plot(x_2, pdf_2[0], color="red", ls="solid",
-              label=r"$M_{{1}} = {}$".format(primary_mass[0]))
-    ax_1.plot(x_3, pdf_3[0], color="red", ls="solid")
-    ax_1.plot(x_1, pdf_1[1], color="orange", ls="solid" )
-    ax_1.plot(x_2, pdf_2[1], color="orange", ls="solid",
-              label=r"$M_{{1}} = {}$".format(primary_mass[1]))
-    ax_1.plot(x_3, pdf_3[1], color="orange", ls="solid")
-    ax_1.plot(x_1, pdf_1[2], color="green", ls="solid" )
-    ax_1.plot(x_2, pdf_2[2], color="green", ls="solid",
-              label=r"$M_{{1}} = {}$".format(primary_mass[2]))
-    ax_1.plot(x_3, pdf_3[2], color="green", ls="solid")
-    ax_1.plot(x_1, pdf_1[3], color="blue", ls="solid" )
-    ax_1.plot(x_2, pdf_2[3], color="blue", ls="solid",
-              label=r"$M_{{1}} = {}$".format(primary_mass[3]))
-    ax_1.plot(x_3, pdf_3[3], color="blue", ls="solid")
-    ax_1.plot(x_1, pdf_1[4], color="magenta", ls="solid" )
-    ax_1.plot(x_2, pdf_2[4], color="magenta", ls="solid",
-              label=r"$M_{{1}} = {}$".format(primary_mass[4]))
-    ax_1.plot(x_3, pdf_3[4], color="magenta", ls="solid")
-    ax_1.legend(frameon=False, loc=2)
-    ax_1.set_xlim(-1., 9.)
-    ax_1.set_ylim(-0.05, 0.25)
-    ax_1.set_xlabel(r"$x$")
-    ax_1.set_ylabel(r"$f_{X|M_{1}}$")
-    ax_2.plot(x_1, cdf_1[0], color="red", ls="dashed" )
-    ax_2.plot(x_2, cdf_2[0], color="red", ls="dashed",
-              label=r"$M_{{1}} = {}$".format(primary_mass[0]))
-    ax_2.plot(x_3, cdf_3[0], color="red", ls="dashed")
-    ax_2.plot(x_1, cdf_1[1], color="orange", ls="dashed" )
-    ax_2.plot(x_2, cdf_2[1], color="orange", ls="dashed",
-              label=r"$M_{{1}} = {}$".format(primary_mass[1]))
-    ax_2.plot(x_3, cdf_3[1], color="orange", ls="dashed")
-    ax_2.plot(x_1, cdf_1[2], color="green", ls="dashed" )
-    ax_2.plot(x_2, cdf_2[2], color="green", ls="dashed",
-              label=r"$M_{{1}} = {}$".format(primary_mass[2]))
-    ax_2.plot(x_3, cdf_3[2], color="green", ls="dashed")
-    ax_2.plot(x_1, cdf_1[3], color="blue", ls="dashed" )
-    ax_2.plot(x_2, cdf_2[3], color="blue", ls="dashed",
-              label=r"$M_{{1}} = {}$".format(primary_mass[3]))
-    ax_2.plot(x_3, cdf_3[3], color="blue", ls="dashed")
-    ax_2.plot(x_1, cdf_1[4], color="magenta", ls="dashed" )
-    ax_2.plot(x_2, cdf_2[4], color="magenta", ls="dashed",
-              label=r"$M_{{1}} = {}$".format(primary_mass[4]))
-    ax_2.plot(x_3, cdf_3[4], color="magenta", ls="dashed")
-    ax_2.set_ylim(-0.25, 1.25)
-    ax_2.set_ylabel(r"$F_{X|M_{1}}$")
-
-    ax_1.scatter(pdf_closed_dots_x[0::5], pdf_closed_dots_y[0::5],
-                 s=2., color="red", zorder=np.inf)
-    ax_1.scatter(pdf_closed_dots_x[1::5], pdf_closed_dots_y[1::5],
-                 s=2., color="orange", zorder=np.inf)
-    ax_1.scatter(pdf_closed_dots_x[2::5], pdf_closed_dots_y[2::5],
-                 s=2., color="green", zorder=np.inf)
-    ax_1.scatter(pdf_closed_dots_x[3::5], pdf_closed_dots_y[3::5],
-                 s=2., color="blue", zorder=np.inf)
-    ax_1.scatter(pdf_closed_dots_x[4::5], pdf_closed_dots_y[4::5],
-                 s=2., color="magenta", zorder=np.inf)
-    ax_1.scatter(pdf_open_dots_x[4::5], pdf_open_dots_y[4::5],
-                 s=2., color="magenta", facecolor="white", zorder=np.inf)
-
-    plt.savefig("moe2017_logperiod_pdf.pdf")
-    plt.savefig("moe2017_logperiod_pdf.jpg")
-    plt.show()
-
-    # Test class methods: PPF (no twin excess)
-    p = np.linspace(0., 1., 50)
-    ppf = rv.ppf(p)
-
-    fig, ax = plt.subplots()
-    ax.plot(p, ppf[0], color="red", ls="solid",
-            label=r"$M_{{1}} = {}$".format(primary_mass[0]))
-    ax.plot(p, ppf[1], color="orange", ls="solid",
-            label=r"$M_{{1}} = {}$".format(primary_mass[1]))
-    ax.plot(p, ppf[2], color="green", ls="solid",
-            label=r"$M_{{1}} = {}$".format(primary_mass[2]))
-    ax.plot(p, ppf[3], color="blue", ls="solid",
-            label=r"$M_{{1}} = {}$".format(primary_mass[3]))
-    ax.plot(p, ppf[4], color="magenta", ls="solid",
-            label=r"$M_{{1}} = {}$".format(primary_mass[4]))
-    ax.legend(frameon=False, loc=2)
-    ax.set_ylim(0., 8.)
-    ax.set_xlabel(r"$p$")
-    ax.set_ylabel(r"$F^{-1}_{q|P, M_{1}}$")
-    fig.savefig("moe2017_logperiod_ppf.pdf")
-    fig.savefig("moe2017_logperiod_ppf.jpg")
-    plt.show()
-
-if __name__ == "__main__":
-    main()
+#             return res
+
+#         def f_2(x, log10_primary_mass):
+#             res = (
+#                 _moe2017_c_2(log10_primary_mass)*x
+#                 + _moe2017_c_3(log10_primary_mass)
+#             )
+
+#             return res
+
+#         def f_3(x, log10_primary_mass):
+#             res = (
+#                 _moe2017_c_4(log10_primary_mass)*x
+#                 + _moe2017_c_5(log10_primary_mass)
+#             )
+
+#             return res
+
+#         def f_4(x, log10_primary_mass):
+#             res = (
+#                 _moe2017_c_6(log10_primary_mass)*x
+#                 + _moe2017_c_7(log10_primary_mass)
+#             )
+
+#             return res
+
+#         def f_5(x, log10_primary_mass):
+#             res = (
+#                 _moe2017_c_8(log10_primary_mass)
+#                 *np.exp(-0.3*x)
+#             )
+
+#             return res
+
+#         x = np.asarray(x)
+#         primary_mass = np.asarray(primary_mass)
+#         log10_primary_mass = np.log10(primary_mass)
+
+#         rv_mass_ratio = mass_ratio.moe2017(x, 10.**log10_primary_mass)
+#         correction_factor = 1./(1. - rv_mass_ratio.cdf(0.3))
+
+#         condition = [
+#             (0.2 <= x) & (x <= 1.),
+#             (1. < x) & (x <= 2.),
+#             (2. < x) & (x <= 3.4),
+#             (3.4 < x) & (x <= 5.5),
+#             (5.5 < x) & (x <= 8.),
+#         ]
+#         value = [
+#             f_1(x, log10_primary_mass),
+#             f_2(x, log10_primary_mass),
+#             f_3(x, log10_primary_mass),
+#             f_4(x, log10_primary_mass),
+#             f_5(x, log10_primary_mass),
+#         ]
+#         res = (
+#             correction_factor
+#             *np.select(condition, value)
+#             /_moe2017_cumulative_frequency(8., primary_mass).T
+#         )
+
+#         return res
+
+#     def _cdf(self, x, primary_mass):
+#         x = np.unique(x)
+#         primary_mass = np.unique(primary_mass)
+
+#         res = (
+#             _moe2017_cumulative_frequency(x, primary_mass)
+#             /_moe2017_cumulative_frequency(8., primary_mass)
+#         )            
+
+#         return res
+
+#     # def _ppf(self, q, primary_mass):
+#     #     res = 0.
+
+#     #     return res
+
+
+# moe2017 = _moe2017_gen(a=0.2, b=8., name="moe2017")

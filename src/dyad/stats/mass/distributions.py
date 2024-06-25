@@ -157,20 +157,3 @@ kroupa2002 = _kroupa2002_gen(a=0.1, b=50., name="kroupa2002")
 
 # _chabrier2003 = xxx
 # chabrier2003 = _chabrier2003_gen(a=0.4, b=10., name="chabrier2003")
-
-if __name__ == "__main__":
-    import matplotlib.pyplot as plt
-   
-    # Plot Duquennoy 1991
-    masses = kroupa2002.rvs(size=100_000)
-    counts, edges = np.histogram(masses, bins=np.logspace(-2., 2.),
-                                 density=True)
-    print(np.min(masses), np.max(masses))
-    
-    fig, ax = plt.subplots()
-    ax.stairs(counts, edges)
-    ax.set_xlabel(r"$M/\mathrm{M}_{\odot}$")
-    ax.set_ylabel(r"$\hat{f}$")
-    ax.set_xscale("log")
-    ax.set_yscale("log")
-    plt.show()

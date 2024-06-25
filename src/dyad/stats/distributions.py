@@ -87,55 +87,27 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
 
         def fprime(x, t, e):
             return 1. - e*np.cos(x)
-
-        # # Compute mean anomaly
-        # mu = sp.stats.uniform(0., 2.*np.pi).rvs(size, random_state)
         
         def fsolve(x, e):
-            # True anomaly xst be computed numerically
-            eta = sp.optimize.fsolve(f, x, (x, e), fprime)
+            # True anomaly must be computed numerically
+            eta = sp.optimize.fsolve(f, x, (x, e))#, fprime)
             eta = np.array(eta).squeeze()
-            eta = eta%(2.*np.pi)
-            res = (
-                2.*np.arctan(np.sqrt((1. + e)/(1. - e))*np.tan(eta/2.))
+            # eta = eta%(2.*np.pi)
+            res = 2.*np.arctan(
+                np.sqrt((1. + e)/(1. - e))
+                *np.tan(eta/2.)
             )
 
-            return res#%(2.*np.pi)
+            return res%(2.*np.pi)
 
-        x = np.atleast_1d(x)
+        x = 2.*np.pi*np.atleast_1d(x)
         e = np.atleast_1d(e)
 
         res = np.vectorize(fsolve)(x, e)
 
         return res
 
-    # def _rvs(self, e, size=None, random_state=None):
-    #     def f(eta, t, e):
-    #         return eta - e*np.sin(eta) - t
-
-    #     def fprime(eta, t, e):
-    #         return 1. - e*np.cos(eta)
-
-    #     # Compute mean anomaly
-    #     mu = sp.stats.uniform(0., 2.*np.pi).rvs(size, random_state)
-        
-    #     def fsolve(mu):
-    #         # True anomaly must be computed numerically
-    #         eta = [sp.optimize.fsolve(f, mu_i, (mu_i, e_i), fprime)
-    #                for (mu_i, e_i) in zip(mu, e)]
-    #         eta = np.array(eta).squeeze()
-    #         eta = eta%(2.*np.pi)
-    #         res = (
-    #             2.*np.arctan(np.sqrt((1. + e)/(1. - e))*np.tan(eta/2.))
-    #         )
-
-    #         return res%(2.*np.pi)
-
-    #     e = np.atleast_1d(e)
-        
-    #     return np.where(e == 0., mu, fsolve(mu))
-
-
+    
 class _rv_uniform_gen(sp.stats.rv_continuous):
     def _shape_info(self):
         return []
@@ -240,136 +212,3 @@ inclination = _inclination_gen(
 argument_of_pericentre = _argument_of_pericentre_gen(
     a=0., b=2.*np.pi, name="argument_of_pericentre"
 )
-
-if __name__ == "__main__":
-    import matplotlib as mpl
-    import matplotlib.pyplot as plt
-    
-    N_SAMPLE = 10
-
-    def test_single_shape_param(rv):
-        #####################################################################
-        # Single argument
-        #####################################################################
-        x = 0.5
-        f = rv.pdf(x)
-        print(f)
-        F = rv.cdf(x)
-        print(F)
-        q = 0.5
-        F_inv = rv.ppf(q)
-        print(F_inv)
-        sample = rv.rvs()
-        print(sample)
-        sample = rv.rvs(size=1)
-        print(sample)
-
-        #####################################################################
-        # Multiple argument
-        #####################################################################
-        x = np.linspace(0., 2.*np.pi, 50)
-        f = rv.pdf(x)
-        print(f)
-        F = rv.cdf(x)
-        print(F)
-        q = np.linspace(0., 1., 50)
-        F_inv = rv.ppf(q)
-        print(F_inv)
-
-        fig, ax = plt.subplots()
-        ax.plot(x, f)
-        ax.plot(x, F)
-        ax.plot(q, F_inv)
-        plt.show()
-
-        res = rv.rvs(size=100_000)
-        print(res)
-
-        counts, edges = np.histogram(res, bins=50, density=True)
-
-        fig, ax = plt.subplots()
-        ax.stairs(counts, edges)
-        plt.show()
-
-    def test_multiple_shape_params(rv):
-        #####################################################################
-        # Single argument
-        #####################################################################
-        x = 0.5
-        f = rv.pdf(x)
-        print(f)
-        F = rv.cdf(x)
-        print(F)
-        q = 0.5
-        F_inv = rv.ppf(q)
-        print(F_inv)
-        sample = rv.rvs()
-        print(sample)
-
-        #####################################################################
-        # Multiple argument
-        #####################################################################
-        x = np.linspace(0., 2.*np.pi, 50)
-        f = rv.pdf(x)
-        print(f)
-        F = rv.cdf(x)
-        print(F)
-        q = np.linspace(0., 1., 50)
-        F_inv = rv.ppf(q)
-        print(F_inv)
-
-        fig, ax = plt.subplots()
-        ax.plot(x, f)
-        ax.plot(x, F)
-        ax.plot(q, F_inv)
-        plt.show()
-
-        res = rv.rvs()
-        print(res)
-
-        counts, edges = np.histogram(res, bins=50, density=True)
-
-        fig, ax = plt.subplots()
-        ax.stairs(counts, edges)
-        plt.show()
-
-
-    #########################################################################
-    #########################################################################
-    #########################################################################
-    # TO DO:
-    # Check broadcasting of shape params and method args
-    #########################################################################
-    #########################################################################
-    #########################################################################
-        
-    #########################################################################
-    # Single shape parameter
-    #########################################################################
-    test_single_shape_param(sp.stats.norm())
-    test_single_shape_param(longitude_of_ascending_node)
-    test_single_shape_param(inclination)
-    test_single_shape_param(argument_of_pericentre)
-    test_single_shape_param(true_anomaly(0.5))
-
-    #########################################################################
-    # Multiple shape parameter
-    #########################################################################
-    test_multiple_shape_params(
-        sp.stats.norm(np.linspace(0., 2.), np.linspace(1., 2.))
-    )
-    test_multiple_shape_params(
-        true_anomaly(np.linspace(0, 1., endpoint=False))
-    )
-
-    x = np.linspace(0., 1.)
-    ppf = [true_anomaly(0.5).ppf(x_i) for x_i in x]
-    x = np.linspace(0., 2.*np.pi)
-    cdf = [true_anomaly(0.5).cdf(x_i) for x_i in x]
-    print(ppf)
-    plt.plot(ppf)
-    plt.plot(cdf)
-    plt.show()
-
-    rv = true_anomaly(0.)
-

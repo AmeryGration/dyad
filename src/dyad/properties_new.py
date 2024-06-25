@@ -37,7 +37,7 @@ def hrd(m):
     Output :
     (Teff, L, g) tuples (units: Kelvin, Lsun, gsun)
     """
-    ms_parameters = (
+    ms_parameter = (
         0.,
         0.397042,
         8.52763,
@@ -57,36 +57,27 @@ def hrd(m):
         0.00022582
     )
 
-    m2 = m*m
-    m3 = m2*m
-    m5 = m3*m2
-    m8 = m5*m3
-    m05 = np.sqrt(m)
-    m25 = m05*m2
-    m65 = m25*m2*m2
-    m90 = m25*m65
-    m190 = m90*m90*m
-    m195 = m190*m05
-
-    num = ms_parameters[1]*m5*m05 + ms_parameters[2]*m8*m3
+    num = ms_parameter[1]*m**5.*m**0.5 + ms_parameter[2]*m**8.*m**3.
     denom = (
-        ms_parameters[3] + m3 + ms_parameters[4]*m5
-        + ms_parameters[5]*m5*m2 + ms_parameters[6]*m8
-        + ms_parameters[7]*m8*m*m05
+        ms_parameter[3] + m**3.
+        + ms_parameter[4]*m**5.
+        + ms_parameter[5]*m**5.*m**2.
+        + ms_parameter[6]*m**8.
+        + ms_parameter[7]*m**8.*m*m**0.5
     )
     L = num/denom
 
     num = (
-        ms_parameters[8]*m25
-        + ms_parameters[9]*m65
-        + ms_parameters[10]*m2*m90
-        + ms_parameters[11]*m190
-        + ms_parameters[12]*m195
+        ms_parameter[8]*m**2.5
+        + ms_parameter[9]*m**6.5
+        + ms_parameter[10]*m**2.*m**9.
+        + ms_parameter[11]*m**19.
+        + ms_parameter[12]*m**19.5
     )
     denom = (
-        ms_parameters[13]
-        + m2*(ms_parameters[14] + m65*(ms_parameters[15] + m90*m))
-        + ms_parameters[16]*m195
+        ms_parameter[13]
+        + m**2.*(ms_parameter[14] + m**6.5*(ms_parameter[15] + m**9.*m))
+        + ms_parameter[16]*m**19.5
     )
     R = num/denom
 
