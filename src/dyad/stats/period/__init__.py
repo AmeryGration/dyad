@@ -1,6 +1,4 @@
-"""
-Statistics of binary period
-===========================
+"""Period
 
 """
 

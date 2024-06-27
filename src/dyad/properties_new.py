@@ -1,7 +1,3 @@
-"""A binary kinematics module.
-
-"""
-
 __all__ = [
     "Body",
 ]

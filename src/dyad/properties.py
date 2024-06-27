@@ -1,4 +1,6 @@
-"""A binary kinematics module.
+"""Properties
+
+A stellar properties module for Dyad.
 
 """
 

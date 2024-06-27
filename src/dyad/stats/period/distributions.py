@@ -1,4 +1,6 @@
-"""Module providing random variables for period"""
+"""Distributions
+
+"""
 
 __all__ = [
     "trunclognorm",

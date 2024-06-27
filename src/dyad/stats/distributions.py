@@ -1,3 +1,7 @@
+"""Distributions
+
+"""
+
 __all__ = [
     "longitude_of_ascending_node",
     "inclination",

@@ -1,6 +1,6 @@
-"""
-Statistics of stellar and orbital properties
-============================================
+"""Stats
+
+A statistics module for Dyad. It provides statistics for stellar and orbital properties.
 
 """
 

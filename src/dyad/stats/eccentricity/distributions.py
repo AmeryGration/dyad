@@ -1,3 +1,7 @@
+"""Distributions
+
+"""
+
 __all__ = [
     "uniform",
     "powerlaw",

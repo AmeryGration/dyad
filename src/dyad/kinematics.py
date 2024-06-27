@@ -1,6 +1,6 @@
-"""A binary kinematics module.
+"""Kinematics
 
-The module contains:
+A binary kinematics module. The module contains:
 (1) functions that allow pairwise transformations between true anomaly, mean anomaly, and eccentric anomaly,
 (2) a class `Orbit` that holds kinematic information about an elliptical orbit, and
 (3) a class `Binary` that holds kinematic information about the two orbits of a bound binary system.

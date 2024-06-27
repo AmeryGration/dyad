@@ -1,4 +1,6 @@
-"""Module providing random variables for mass ratio"""
+"""Distributions
+
+"""
 
 __all__ = [
     "duquennoy1991",

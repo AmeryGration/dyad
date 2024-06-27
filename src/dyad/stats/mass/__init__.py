@@ -1,6 +1,5 @@
-"""
-Statistics of stellar mass
-==========================
+"""Mass
 
 """
+
 from .distributions import *

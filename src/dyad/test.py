@@ -64,7 +64,7 @@ plt.plot(cdf_theta, theta)
 plt.plot(q, ppf_theta, color="red")
 plt.show()
 
-theta = dyad.stats.true_anomaly(e).rvs(size=100_000)
+theta = dyad.stats.true_anomaly(e).rvs(size=10_000)
 hist = np.histogram(theta/(2.*np.pi), np.linspace(0., 1), density=True)
 plt.stairs(*hist)
 plt.show()

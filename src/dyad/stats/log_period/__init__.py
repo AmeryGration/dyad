@@ -1,6 +1,4 @@
-"""
-Statistics of binary log-period
-===============================
+"""Log-period
 
 """
 
