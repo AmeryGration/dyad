@@ -98,6 +98,54 @@ class _thermal_gen(sp.stats.rv_continuous):
 _thermal = sp.stats.powerlaw(2.)
 thermal = _thermal_gen(a=0., b=1., name="thermal")
 
+
+class _moe2017_gen(sp.stats.rv_continuous):
+    r"""The Moe and Stefano (2017) eccentricity random variable
+
+    %(before_notes)s
+
+    Notes
+    -----
+
+    """
+    def _argcheck(self, log10_period, primary_mass):
+        res = _moe2017_eta(log10_period, primary_mass) >= 0.
+
+        return res
+
+    def _get_support(self, log10_period, primary_mass):
+        e_min = 0.
+        e_max = 1 - (0.5*10.**log10_period)**(-2./3.)
+        res = [e_min, e_max]
+
+        return res
+    
+    def _pdf(self, x, log10_period, primary_mass):
+        res = (
+            _moe2017_norm(log10_period, primary_mass)
+            *x**_moe2017_eta(log10_period, primary_mass)
+        )
+
+        return res
+
+    def _cdf(self, x, log10_period, primary_mass):
+        res = (
+            _moe2017_norm(log10_period, primary_mass)
+            *x**(_moe2017_eta(log10_period, primary_mass) + 1.)
+            /(_moe2017_eta(log10_period, primary_mass) + 1.)
+        )
+
+        return res
+
+    def _ppf(self, q, log10_period, primary_mass):
+        num = q*(_moe2017_eta(log10_period, primary_mass) + 1.)
+        denom = _moe2017_norm(log10_period, primary_mass)
+        res = (num/denom)**(1./(_moe2017_eta(log10_period, primary_mass) + 1.))
+
+        return res
+
+
+
 def _moe2017_norm(log10_period, primary_mass):
     """Return the normalization constant"""
     e_max = 1 - (0.5*10.**log10_period)**(-2./3.)
@@ -184,51 +232,5 @@ def _moe2017_eta(log10_period, primary_mass):
     res = np.select(condition, value)
 
     return res
-
-class _moe2017_gen(sp.stats.rv_continuous):
-    r"""The Moe and Stefano (2017) eccentricity random variable
-
-    %(before_notes)s
-
-    Notes
-    -----
-
-    """
-    def _argcheck(self, log10_period, primary_mass):
-        res = _moe2017_eta(log10_period, primary_mass) >= 0.
-
-        return res
-
-    def _get_support(self, log10_period, primary_mass):
-        e_min = 0.
-        e_max = 1 - (0.5*10.**log10_period)**(-2./3.)
-        res = [e_min, e_max]
-
-        return res
-    
-    def _pdf(self, x, log10_period, primary_mass):
-        res = (
-            _moe2017_norm(log10_period, primary_mass)
-            *x**_moe2017_eta(log10_period, primary_mass)
-        )
-
-        return res
-
-    def _cdf(self, x, log10_period, primary_mass):
-        res = (
-            _moe2017_norm(log10_period, primary_mass)
-            *x**(_moe2017_eta(log10_period, primary_mass) + 1.)
-            /(_moe2017_eta(log10_period, primary_mass) + 1.)
-        )
-
-        return res
-
-    def _ppf(self, q, log10_period, primary_mass):
-        num = q*(_moe2017_eta(log10_period, primary_mass) + 1.)
-        denom = _moe2017_norm(log10_period, primary_mass)
-        res = (num/denom)**(1./(_moe2017_eta(log10_period, primary_mass) + 1.))
-
-        return res
-
 
 moe2017 = _moe2017_gen(a=0., b=1., name="moe2017")

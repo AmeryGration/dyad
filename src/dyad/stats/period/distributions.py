@@ -11,30 +11,32 @@ __all__ = [
 import numpy as np
 import scipy as sp
 
-def _lazywhere(cond, arrays, f, fillvalue=None, f2=None):
-    cond = np.asarray(cond)
+from scipy._lib._util import _lazywhere
 
-    if fillvalue is None:
-        if f2 is None:
-            raise ValueError("One of (fillvalue, f2) must be given.")
-        else:
-            fillvalue = np.nan
-    else:
-        if f2 is not None:
-            raise ValueError("Only one of (fillvalue, f2) can be given.")
+# def _lazywhere(cond, arrays, f, fillvalue=None, f2=None):
+#     cond = np.asarray(cond)
 
-    args = np.broadcast_arrays(cond, *arrays)
-    cond, arrays = args[0], args[1:]
-    temp = tuple(np.extract(cond, arr) for arr in arrays)
-    tcode = np.mintypecode([a.dtype.char for a in arrays])
-    out = np.full(np.shape(arrays[0]), fill_value=fillvalue, dtype=tcode)
-    np.place(out, cond, f(*temp))
+#     if fillvalue is None:
+#         if f2 is None:
+#             raise ValueError("One of (fillvalue, f2) must be given.")
+#         else:
+#             fillvalue = np.nan
+#     else:
+#         if f2 is not None:
+#             raise ValueError("Only one of (fillvalue, f2) can be given.")
 
-    if f2 is not None:
-        temp = tuple(np.extract(~cond, arr) for arr in arrays)
-        np.place(out, ~cond, f2(*temp))
+#     args = np.broadcast_arrays(cond, *arrays)
+#     cond, arrays = args[0], args[1:]
+#     temp = tuple(np.extract(cond, arr) for arr in arrays)
+#     tcode = np.mintypecode([a.dtype.char for a in arrays])
+#     out = np.full(np.shape(arrays[0]), fill_value=fillvalue, dtype=tcode)
+#     np.place(out, cond, f(*temp))
 
-    return out
+#     if f2 is not None:
+#         temp = tuple(np.extract(~cond, arr) for arr in arrays)
+#         np.place(out, ~cond, f2(*temp))
+
+#     return out
 
 def _lognorm_logpdf(x, s):
     # Replica of ~scipy.stats._continuous_distns.cd._lognorm_logpdf~,

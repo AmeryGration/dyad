@@ -117,6 +117,7 @@ class _salpeter1955_gen(sp.stats.rv_continuous):
     def _ppf(self, q):
         return _salpeter1955.ppf(q)
 
+
 _salpeter1955_lb = 0.4 # Lower bound
 _salpeter1955_ub = 10. # Lower bound
 _salpeter1955_loc = 0.
@@ -129,9 +130,6 @@ _salpeter1955 = sp.stats.truncpareto(
 salpeter1955 = _salpeter1955_gen(
     a=_salpeter1955_lb, b=_salpeter1955_ub, name="salpeter1955"
 )
-
-# _salpeter1955 = sp.stats.truncpareto(1.35, (10. - 0.)/0.4, scale=0.4)
-# salpeter1955 = _salpeter1955_gen(a=0.4, b=10., name="salpeter1955")
 
 
 # class _millerscalo1979_gen(sp.stats.rv_continuous):

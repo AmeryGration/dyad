@@ -18,7 +18,7 @@ from scipy.integrate import cumulative_trapezoid
 from dyad.stats import mass_ratio
 
 #############################################################################
-# Definte the frequency function
+# Define the frequency function
 #############################################################################
 def moe2017_c_1(log10_primary_mass):
     res = (
@@ -224,68 +224,4 @@ np.savetxt("../../data/frequency_sample.dat",
            frequency_sample)
 np.savetxt("../../data/cumulative_frequency_sample.dat",
            cumulative_frequency_sample)
-
-# #############################################################################
-# # Create interpolating functions
-# #############################################################################
-# from scipy.interpolate import RegularGridInterpolator
-# from scipy.interpolate import LinearNDInterpolator
-
-# frequency_interp = RegularGridInterpolator(
-#     (log10_period_sample, primary_mass_sample),
-#     frequency_sample.T
-# )
-
-# cumulative_frequency_interp = RegularGridInterpolator(
-#     (log10_period_sample, primary_mass_sample),
-#     cumulative_frequency_sample.T
-# )
-# # Suppose that we have an invertible function, :math:`f`, of some variable, :math:`t`, represented by arrays `f` and `t`. We can interpolate between function values as follows.
-# # >>> interp = RegularGridInterpolator((t,), f)
-# # To interpolate between equivalent points of the inverse function, :math:`f^{-1}`, of some variable, :math:`q \in [0, 1]`, we may reverse the arguments.
-# # >>> interp_inv = RegularGridInterpolator(f[::-1], (t[::-1],))
-# # Note that in doing this we are not sampling :math:`q` uniformly on :math:`[0, 1]`. Instead we may take advantage of points of interest in :math:`x := log(P)`
-# # To find the inverse of the conditional cumulative distribution function we may extend this trick to two dimensions. In this two-dimensional case the values `f` are no longer regularly spaced so we must use a interpolator that accepts irregularly space data, such as Scipy's ~LinearNDInterpolator~.
-# # See https://kitchingroup.cheme.cmu.edu/blog/category/interpolation/.
-# xx = cumulative_frequency_sample[:,::-1]
-# yy = np.tile(primary_mass_sample, (log10_period_sample.size, 1)).T
-# points = np.vstack([xx.ravel(), yy.ravel()])
-# values = np.tile(log10_period_sample[::-1], primary_mass_sample.size)
-# inverse_cumulative_frequency_interp = LinearNDInterpolator(points.T, values)
-
-# #############################################################################
-# # Plot results
-# #############################################################################
-# import matplotlib.pyplot as plt
-
-# idx = 98
-# primary_mass = primary_mass_sample[idx]
-# q_sample = np.linspace(0., 1.)
-
-# plt.plot(log10_period_sample,
-#          frequency_sample[idx])
-# plt.plot(log10_period_sample,
-#          frequency_interp((log10_period_sample, primary_mass)),
-#          color="red")
-# plt.show()
-
-# plt.plot(log10_period_sample,
-#          cumulative_frequency_sample[idx])
-# plt.plot(log10_period_sample,
-#          cumulative_frequency_interp((log10_period_sample, primary_mass)),
-#          color="red")
-# plt.plot(cumulative_frequency_sample[idx][::-1],
-#          log10_period_sample[::-1])
-# plt.plot(q_sample,
-#          inverse_cumulative_frequency_interp((q_sample, primary_mass)),
-#          color="red")
-# plt.show()
-
-# # idx = 108
-# # mass = primary_mass_sample[idx]
-# # inverse_cumulative_frequency_interp = RegularGridInterpolator(
-# #     (cumulative_frequency_sample[idx][::-1], primary_mass_sample),
-# #     np.tile(log10_period_sample[::-1], (primary_mass_sample.size, 1)).T,
-# #     bounds_error=True
-# # )
 

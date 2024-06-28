@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 
-"""Plot mass-ratio distributions"""
+"""Plot mass-ratio distributions (Moe & Stefano, 2017)"""
 
+import time
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-import dyad
 import plot
 
 mpl.style.use("sm")
 
-#########################################################################
-# Plot Moe 2017
-#########################################################################
+N_HIST = 100_000
+
 # Test utility functions: F_twin, c_twin
 primary_mass_boundary = (0.8, 1.2, 3.5, 6., 60.)
 log10_period_boundary = (
@@ -147,9 +146,9 @@ ax[1].set_xlim(-1., 9.)
 ax[1].set_ylim(-2., 10.)
 ax[1].set_xlabel(r"$\log(P)$")
 ax[1].set_ylabel(r"$c_{\text{twin}}$")
-fig.savefig("moe2017_twin_excess.pdf")
-fig.savefig("moe2017_twin_excess.jpg")
-fig.show()
+fig.savefig("Figures/moe2017_twin_excess.pdf")
+fig.savefig("Figures/moe2017_twin_excess.jpg")
+# fig.show()
 
 # Test utility functions: gamma, delta
 gamma = _moe2017_gamma(log10_period, primary_mass.reshape([-1, 1]))
@@ -211,9 +210,9 @@ ax[1].set_xlim(-1., 9.)
 ax[1].set_ylim(-2.5, 1.5)
 ax[1].set_xlabel(r"$\log(P)$")
 ax[1].set_ylabel(r"$\gamma$")
-fig.savefig("moe2017_gamma_delta.pdf")
-fig.savefig("moe2017_gamma_delta.jpg")
-fig.show()
+fig.savefig("Figures/moe2017_gamma_delta.pdf")
+fig.savefig("Figures/moe2017_gamma_delta.jpg")
+# fig.show()
 
 # Test utility functions: twin period
 primary_mass = np.linspace(0., 10., 250)
@@ -226,9 +225,9 @@ ax.set_xlim(-1., 10.)
 ax.set_ylim(0., 10.)
 ax.set_xlabel(r"$M_{1}$")
 ax.set_ylabel(r"$\log_{10}(P_{\text{twin}})$")
-fig.savefig("moe2017_twin_excess_period.pdf")
-fig.savefig("moe2017_twin_excess_period.jpg")
-fig.show()
+fig.savefig("Figures/moe2017_twin_excess_period.pdf")
+fig.savefig("Figures/moe2017_twin_excess_period.jpg")
+# fig.show()
 
 # Test utility functions: norm
 primary_mass_boundary = (0.8, 1.2, 3.5, 6., 60.)
@@ -282,11 +281,11 @@ cbar = fig.colorbar(im, cax=cbar)
 cbar.set_label(r"$A_{q}$")
 plt.savefig("norm.pdf")
 plt.savefig("norm.jpg")
-plt.show()
+# plt.show()
 
 # Test class methods: PDF and CDF (no twin excess)
 primary_mass = np.array([1., 3.5, 7., 12.5, 25.])
-print("primary_mass =", primary_mass)
+# print("primary_mass =", primary_mass)
 # log10_excess_twin_period = _moe2017_log10_excess_twin_period(primary_mass)
 # print("log10_excess_twin_period =", log10_excess_twin_period)
 
@@ -372,9 +371,9 @@ ax_2.plot(q_1, cdf_1[4], ls="dashed", color="magenta",
 ax_2.plot(q_2, cdf_2[4], ls="dashed", color="magenta")
 ax_2.set_ylim(-0.1, 1.1)
 ax_2.set_ylabel(r"$F_{q|P, M_{1}}$")
-fig.savefig("moe2017_mass_ratio_pdf.pdf")
-fig.savefig("moe2017_mass_ratio_pdf.jpg")
-plt.show()
+fig.savefig("Figures/moe2017_mass_ratio_pdf.pdf")
+fig.savefig("Figures/moe2017_mass_ratio_pdf.jpg")
+# plt.show()
 
 # Test class methods: PPF (no twin excess)
 p = np.linspace(0., 1., n)
@@ -395,15 +394,30 @@ ax.legend(frameon=False)
 ax.set_ylim(0., 1.)
 ax.set_xlabel(r"$q$")
 ax.set_ylabel(r"$F^{-1}_{q|P, M_{1}}$")
-fig.savefig("moe2017_mass_ratio_ppf.pdf")
-fig.savefig("moe2017_mass_ratio_ppf.jpg")
-plt.show()
+fig.savefig("Figures/moe2017_mass_ratio_ppf.pdf")
+fig.savefig("Figures/moe2017_mass_ratio_ppf.jpg")
+# plt.show()
+
+# Test class methods: RVS (twin excess)
+rv = moe2017(log10_period, primary_mass[0])
+t_0 = time.time()
+rvs = rv.rvs(size=N_HIST)
+t_1 = time.time()
+print("t")
+print(t_1 - t_0)
+hist = np.histogram(rvs, 72)
+
+fig, ax = plot.plot()
+ax.stairs(*hist)
+fig.savefig("Figures/moe2017_mass_ratio_rvs.pdf")
+fig.savefig("Figures/moe2017_mass_ratio_rvs.jpg")
+# plt.show()
 
 # Test class methods: PDF and CDF (twin excess)
 primary_mass = np.array([1., 3.5, 7., 12.5, 25.])
-print("primary_mass =", primary_mass)
-log10_excess_twin_period = _moe2017_log10_excess_twin_period(primary_mass)
-print("log10_excess_twin_period =", log10_excess_twin_period)
+# print("primary_mass =", primary_mass)
+# log10_excess_twin_period = _moe2017_log10_excess_twin_period(primary_mass)
+# print("log10_excess_twin_period =", log10_excess_twin_period)
 
 log10_period = 0.2
 # log10_period = log10_excess_twin_period + 1.
@@ -522,9 +536,9 @@ ax_2.set_ylim(-0.1, 1.1)
 ax_2.set_ylabel(r"$F_{q|P, M_{1}}$")
 # ax_1.set_zorder(1000.)
 # ax_2.set_zorder(999.)
-fig.savefig("moe2017_mass_ratio_pdf_excess.pdf")
-fig.savefig("moe2017_mass_ratio_pdf_excess.jpg")
-plt.show()
+fig.savefig("Figures/moe2017_mass_ratio_pdf_excess.pdf")
+fig.savefig("Figures/moe2017_mass_ratio_pdf_excess.jpg")
+# plt.show()
 
 # Test class methods: PPF (twin excess)
 p = np.linspace(0., 1., n)
@@ -545,7 +559,21 @@ ax.legend(frameon=False)
 ax.set_ylim(0., 1.)
 ax.set_xlabel(r"$p$")
 ax.set_ylabel(r"$F^{-1}_{q|P, M_{1}}$")
-fig.savefig("moe2017_mass_ratio_ppf_excess.pdf")
-fig.savefig("moe2017_mass_ratio_ppf_excess.jpg")
-plt.show()
+fig.savefig("Figures/moe2017_mass_ratio_ppf_excess.pdf")
+fig.savefig("Figures/moe2017_mass_ratio_ppf_excess.jpg")
+# plt.show()
 
+# Test class methods: RVS (twin excess)
+rv = moe2017(log10_period, primary_mass[1])
+t_0 = time.time()
+rvs = rv.rvs(size=N_HIST)
+t_1 = time.time()
+print("t")
+print(t_1 - t_0)
+hist = np.histogram(rvs, 72)
+
+fig, ax = plot.plot()
+ax.stairs(*hist)
+fig.savefig("Figures/moe2017_mass_ratio_rvs_excess.pdf")
+fig.savefig("Figures/moe2017_mass_ratio_rvs_excess.jpg")
+plt.show()

@@ -14,6 +14,7 @@ import scipy as sp
 from importlib.resources import files
 from scipy.interpolate import RegularGridInterpolator
 from scipy.interpolate import LinearNDInterpolator
+# from scipy.interpolate import interp2d
 from dyad.stats import mass_ratio
 
 _truncnorm = sp.stats.truncnorm
@@ -74,77 +75,6 @@ _duquennoy1991 = _truncnorm(
     scale=_duquennoy1991_scale
 )
 duquennoy1991 = _duquennoy1991_gen(a=-2.3, b=12., name="duquennoy1991")
-    
-def _moe2017_c_1(log10_primary_mass):
-    res = (
-        0.07*log10_primary_mass**2.
-        + 0.04*log10_primary_mass
-        + 0.020
-    )
-
-    return res
-
-def _moe2017_c_2(log10_primary_mass):
-    res = (
-        - 0.06*log10_primary_mass**2.
-        + 0.03*log10_primary_mass
-        + 0.0064
-    )
-
-    return res
-
-def _moe2017_c_3(log10_primary_mass):
-    res = (
-        0.13*log10_primary_mass**2.
-        + 0.01*log10_primary_mass
-        + 0.0136
-    )
-
-    return res
-
-def _moe2017_c_4(log10_primary_mass):
-    res = 0.018
-
-    return res
-
-def _moe2017_c_5(log10_primary_mass):
-    res = (
-        0.01*log10_primary_mass**2.
-        + 0.07*log10_primary_mass
-        - 0.0096
-    )
-
-    return res
-
-def _moe2017_c_6(log10_primary_mass):
-    res = (
-        0.03*log10_primary_mass**2./2.1
-        - 0.12*log10_primary_mass/2.1
-        + 0.0264/2.1
-    )
-
-    return res
-
-def _moe2017_c_7(log10_primary_mass):
-    res = (
-        - 0.081*log10_primary_mass**2./2.1
-        + 0.555*log10_primary_mass/2.1
-        + 0.0186/2.1
-    )
-
-    return res
-
-def _moe2017_c_8(log10_primary_mass):
-    res = (
-        np.exp(1.65)
-        *(
-            0.04*log10_primary_mass**2.
-            - 0.05*log10_primary_mass
-            + 0.078
-        )
-    )
-
-    return res
 
 
 class _moe2017_gen(sp.stats.rv_continuous):
@@ -183,22 +113,25 @@ class _moe2017_gen(sp.stats.rv_continuous):
     def _pdf(self, x, primary_mass):
         x = np.asarray(x)
 
-        res = _moe2017_pdf_interp((x, primary_mass))
+        # res = _moe2017_pdf_interp((x, primary_mass))
+        res = _moe2017_pdf_interp(x, primary_mass)
         
         return res
 
     def _cdf(self, x, primary_mass):
         x = np.asarray(x)
 
-        res = _moe2017_cdf_interp((x, primary_mass))
-
+        # res = _moe2017_cdf_interp((x, primary_mass))
+        res = _moe2017_cdf_interp(x, primary_mass)
+        
         return res
 
     def _ppf(self, q, primary_mass):
         q = np.asarray(q)
         
-        res = _moe2017_ppf_interp((q, primary_mass))
-
+        # res = _moe2017_ppf_interp((q, primary_mass))
+        res = _moe2017_ppf_interp(q, primary_mass)
+        
         return res
 
 # For guidance on the use of data files see:
@@ -237,6 +170,10 @@ _values = np.tile(
     _moe2017_log10_period_sample[::-1], _moe2017_primary_mass_sample.size
 )
 _moe2017_ppf_interp = LinearNDInterpolator(_points.T, _values)
+# _moe2017_ppf_interp = interp2d(
+#     _moe2017_log10_period_sample, _moe2017_primary_mass_sample,
+#     _moe2017_cumulative_frequency_sample
+# )
 
 moe2017 = _moe2017_gen(a=0.2, b=8., name="moe2017")
 
@@ -358,5 +295,76 @@ moe2017 = _moe2017_gen(a=0.2, b=8., name="moe2017")
 
 #     #     return res
 
+
+# def _moe2017_c_1(log10_primary_mass):
+#     res = (
+#         0.07*log10_primary_mass**2.
+#         + 0.04*log10_primary_mass
+#         + 0.020
+#     )
+
+#     return res
+
+# def _moe2017_c_2(log10_primary_mass):
+#     res = (
+#         - 0.06*log10_primary_mass**2.
+#         + 0.03*log10_primary_mass
+#         + 0.0064
+#     )
+
+#     return res
+
+# def _moe2017_c_3(log10_primary_mass):
+#     res = (
+#         0.13*log10_primary_mass**2.
+#         + 0.01*log10_primary_mass
+#         + 0.0136
+#     )
+
+#     return res
+
+# def _moe2017_c_4(log10_primary_mass):
+#     res = 0.018
+
+#     return res
+
+# def _moe2017_c_5(log10_primary_mass):
+#     res = (
+#         0.01*log10_primary_mass**2.
+#         + 0.07*log10_primary_mass
+#         - 0.0096
+#     )
+
+#     return res
+
+# def _moe2017_c_6(log10_primary_mass):
+#     res = (
+#         0.03*log10_primary_mass**2./2.1
+#         - 0.12*log10_primary_mass/2.1
+#         + 0.0264/2.1
+#     )
+
+#     return res
+
+# def _moe2017_c_7(log10_primary_mass):
+#     res = (
+#         - 0.081*log10_primary_mass**2./2.1
+#         + 0.555*log10_primary_mass/2.1
+#         + 0.0186/2.1
+#     )
+
+#     return res
+
+# def _moe2017_c_8(log10_primary_mass):
+#     res = (
+#         np.exp(1.65)
+#         *(
+#             0.04*log10_primary_mass**2.
+#             - 0.05*log10_primary_mass
+#             + 0.078
+#         )
+#     )
+
+#     return res
 
 # moe2017 = _moe2017_gen(a=0.2, b=8., name="moe2017")
