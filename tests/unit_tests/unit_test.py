@@ -1,8 +1,10 @@
-"""Test functions for kinematics module"""
+"""
+Test functions of _core module
+
+"""
 
 import unittest
 import numpy as np
-
 import dyad
 import data_test
 
@@ -10,55 +12,42 @@ from parameterized import parameterized, parameterized_class
 
 
 class TestFunctions(unittest.TestCase):
-    @parameterized.expand(data_test.check_eccentricity)
+    @parameterized.expand(data_test.check_eccentricity_type)
     def test_check_eccentricity(self, x):
-        self.assertRaises(ValueError, dyad.kinematics._check_eccentricity, x)
+        self.assertRaises(TypeError, dyad._core._check_eccentricity, x)
         
+    @parameterized.expand(data_test.check_eccentricity_value)
+    def test_check_eccentricity(self, x):
+        self.assertRaises(ValueError, dyad._core._check_eccentricity, x)
+
     @parameterized.expand(data_test.true_anomaly_from_mean_anomaly)
     def test_true_anomaly_from_mean_anomaly(self, x, target):
         result = dyad.true_anomaly_from_mean_anomaly(*x)
-        if __debug__:
-            print(result)
         self.assertAlmostEqual(result, target)
 
     @parameterized.expand(data_test.true_anomaly_from_eccentric_anomaly)
     def test_true_anomaly_from_eccentric_anomaly(self, x, target):
         result = dyad.true_anomaly_from_eccentric_anomaly(*x)
-        if __debug__:
-            print(result)
-        
         self.assertAlmostEqual(result, target)
         
     @parameterized.expand(data_test.mean_anomaly_from_eccentric_anomaly)
     def test_mean_anomaly_from_eccentric_anomaly(self, x, target):
         result = dyad.mean_anomaly_from_eccentric_anomaly(*x)
-        if __debug__:
-            print(result)
-        
         self.assertAlmostEqual(result, target)
         
     @parameterized.expand(data_test.mean_anomaly_from_true_anomaly)
     def test_mean_anomaly_from_true_anomaly(self, x, target):
         result = dyad.mean_anomaly_from_true_anomaly(*x)
-        if __debug__:
-            print(result)
-        
         self.assertAlmostEqual(result, target)
 
     @parameterized.expand(data_test.eccentric_anomaly_from_true_anomaly)
     def test_eccentric_anomaly_from_true_anomaly(self, x, target):
         result = dyad.eccentric_anomaly_from_true_anomaly(*x)
-        if __debug__:
-            print(result)
-        
         self.assertAlmostEqual(result, target)
 
     @parameterized.expand(data_test.eccentric_anomaly_from_mean_anomaly)
     def test_eccentric_anomaly_from_mean_anomaly(self, x, target):
         result = dyad.eccentric_anomaly_from_mean_anomaly(*x)
-        if __debug__:
-            print(result)
-        
         self.assertAlmostEqual(result, target)
 
 
@@ -67,19 +56,18 @@ class TestOrbit(unittest.TestCase):
         self.m = 0.5488135039273248
         self.a = 0.7151893663724195
         self.e = 0.6027633760716439
-        self.theta = 0.5448831829968969
         self.Omega = 0.4236547993389047
         self.i = 0.6458941130666561
         self.omega = 0.4375872112626925
+        # self.theta = 
 
         self.orbit = dyad.Orbit(
-            self.m,
-            [self.a, self.e, self.theta, self.Omega, self.i, self.omega]
+            self.m, self.a, self.e, self.Omega, self.i, self.omega
         )
 
-    # @parameterized.expand(data_test.initialization)
-    # def test_initialization(self, x):
-    #     self.assertRaises(ValueError, dyad.Orbit, *x)
+    @parameterized.expand(data_test.initialization)
+    def test_initialization(self, x):
+        self.assertRaises(ValueError, dyad.Orbit, *x)
 
     def test_mass(self):
         result = self.orbit.mass
@@ -99,11 +87,11 @@ class TestOrbit(unittest.TestCase):
 
         self.assertEqual(result, target)
 
-    def true_anomaly(self):
-        result = self.orbit.true_anomaly
-        target = self.theta
+    # def true_anomaly(self):
+    #     result = self.orbit.true_anomaly
+    #     target = self.theta
 
-        self.assertEqual(result, target)
+    #     self.assertEqual(result, target)
 
     def test_longitude_of_ascending_node(self):
         result = self.orbit.longitude_of_ascending_node
@@ -123,18 +111,18 @@ class TestOrbit(unittest.TestCase):
 
         self.assertEqual(result, target)
 
-    def test_orbital_elements(self):
-        result = self.orbit.orbital_elements
-        target = dict(
-            semimajor_axis=self.a,
-            eccentricity=self.e,
-            true_anomaly=self.theta,
-            longitude_of_ascending_node=self.Omega,
-            inclination=self.i,
-            argument_of_pericentre=self.omega
-        )
+    # def test_orbital_elements(self):
+    #     result = self.orbit.orbital_elements
+    #     target = dict(
+    #         semimajor_axis=self.a,
+    #         eccentricity=self.e,
+    #         true_anomaly=self.theta,
+    #         longitude_of_ascending_node=self.Omega,
+    #         inclination=self.i,
+    #         argument_of_pericentre=self.omega
+    #     )
 
-        self.assertEqual(result, target)
+    #     self.assertEqual(result, target)
 
     def test_semiminor_axis(self):
         result = self.orbit.semiminor_axis
@@ -166,23 +154,23 @@ class TestOrbit(unittest.TestCase):
 
         self.assertEqual(result, target)
 
-    def test_mean_anomaly(self):
-        result = self.orbit.mean_anomaly
-        target = 0.11191292831895089
+    # def test_mean_anomaly(self):
+    #     result = self.orbit.mean_anomaly
+    #     target = 0.11191292831895089
 
-        self.assertEqual(result, target)
+    #     self.assertEqual(result, target)
 
-    def test_eccentric_anomaly(self):
-        result = self.orbit.eccentric_anomaly
-        target = 0.2764082754722965
+    # def test_eccentric_anomaly(self):
+    #     result = self.orbit.eccentric_anomaly
+    #     target = 0.2764082754722965
 
-        self.assertEqual(result, target)
+    #     self.assertEqual(result, target)
 
-    def test_energy(self):
-        result = self.orbit.energy
-        target = -2.5608224489140006e-11
+    # def test_energy(self):
+    #     result = self.orbit.energy
+    #     target = -2.5608224489140006e-11
 
-        self.assertEqual(result, target)
+    #     self.assertEqual(result, target)
 
     # def test_angular_momentum_magnitude(self):
     #     result = self.orbit.angular_momentum_magnitude
@@ -192,7 +180,7 @@ class TestOrbit(unittest.TestCase):
 
     # def test_angular_momentum(self):
     #     result = self.orbit.angular_momentum
-    #     target = 0., 0., 0.
+    #     target = (0., 0., 0.)
 
     #     self.assertEqual(result, target)
 

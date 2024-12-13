@@ -1,5 +1,0 @@
-"""Eccentricity
-
-"""
-
-from .distributions import *

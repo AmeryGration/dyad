@@ -8,14 +8,15 @@ Each element in a list is itself a list that contains two elements:
 1. the arguments for a function being tested, and
 2. the desired return value of that function for these arguments.
 
-For example to test the function `dyad.func(*args)` we use the data::
+For example to test the function `dyad.func(*args)` we use the following data.
 
-func = [
-    [args, val],
-    [args, val],
-    ...
-    [args, val],
-]
+.. code-block:: python
+   func = [
+       [args, val],
+       [args, val],
+       ...
+       [args, val],
+   ]
 
 If the function `dyad.func(*args)` returns the value `val` then the test is passed.
 
@@ -23,7 +24,9 @@ If the function `dyad.func(*args)` returns the value `val` then the test is pass
 
 import numpy as np
 
-check_eccentricity = [-1, 1., 2.] # Invalid eccentricity
+check_eccentricity_type = [True, False, 1j] # Invalid eccentricity
+
+check_eccentricity_value = [-1, 1., 2.] # Invalid eccentricity
 
 true_anomaly_from_mean_anomaly = [
     # [[        mu,   e],      theta]
@@ -34,7 +37,6 @@ true_anomaly_from_mean_anomaly = [
     [[ 1.5*np.pi, 0.],  1.5*np.pi],
     [[ 2.0*np.pi, 0.],  0.       ],
     [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    #
     [[-0.5*np.pi, 0.5],  3.8366244292109135],
     [[ 0.       , 0.5],  0.                ],
     [[ 0.5*np.pi, 0.5],  2.446560877968672 ],
@@ -53,7 +55,6 @@ true_anomaly_from_eccentric_anomaly = [
     [[ 1.5*np.pi, 0.],  1.5*np.pi],
     [[ 2.0*np.pi, 0.],  0.       ],
     [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    #
     [[-0.5*np.pi, 0.5],  4.1887902047863905],
     [[ 0.       , 0.5],  0.                ],
     [[ 0.5*np.pi, 0.5],  2.0943951023931966],
@@ -72,7 +73,6 @@ mean_anomaly_from_eccentric_anomaly = [
     [[ 1.5*np.pi, 0.],  1.5*np.pi],
     [[ 2.0*np.pi, 0.],  0.       ],
     [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    #
     [[-0.5*np.pi, 0.5],  5.21238898038469  ],
     [[ 0.       , 0.5],  0.                ],
     [[ 0.5*np.pi, 0.5],  1.0707963267948966],
@@ -91,7 +91,6 @@ mean_anomaly_from_true_anomaly = [
     [[ 1.5*np.pi, 0.],  1.5*np.pi],
     [[ 2.0*np.pi, 0.],  0.       ],
     [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    #
     [[-0.5*np.pi, 0.5],  5.669000457875207 ],
     [[ 0.       , 0.5],  0.                ],
     [[ 0.5*np.pi, 0.5],  0.6141848493043787],
@@ -110,7 +109,6 @@ eccentric_anomaly_from_true_anomaly = [
     [[ 1.5*np.pi, 0.],  1.5*np.pi],
     [[ 2.0*np.pi, 0.],  0.       ],
     [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    #
     [[-0.5*np.pi, 0.5], 5.235987755982988 ],
     [[ 0.       , 0.5], 0.                ],
     [[ 0.5*np.pi, 0.5], 1.0471975511965983],
@@ -129,7 +127,6 @@ eccentric_anomaly_from_mean_anomaly = [
     [[ 1.5*np.pi, 0.],  1.5*np.pi],
     [[ 2.0*np.pi, 0.],  0.       ],
     [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    #
     [[-0.5*np.pi, 0.5],  4.262205369089816],
     [[ 0.       , 0.5],  0.               ],
     [[ 0.5*np.pi, 0.5],  2.02097993808977 ],
@@ -139,91 +136,10 @@ eccentric_anomaly_from_mean_anomaly = [
     [[ 2.5*np.pi, 0.5],  2.02097993808977 ],
 ]
 
-# delaunay_variables = [
-#     # [
-#     #     [a, e, theta, Omega, i, omega],
-#     #     [J_1, J_2, J_3, Theta_1, Theta_2, Theta_3],
-#     # ]
-#     [
-#         [0.548, 0.715, 0.602, 0.544, 0.423, 0.645, 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     # Test for single zeros
-#     [
-#         [0.   , 0.715, 0.602, 0.544, 0.423, 0.645, 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     [
-#         [0.548, 0.   , 0.602, 0.544, 0.423, 0.645, 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     [
-#         [0.548, 0.715, 0.   , 0.544, 0.423, 0.645, 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     [
-#         [0.548, 0.715, 0.602, 0.   , 0.423, 0.645, 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     [
-#         [0.548, 0.715, 0.602, 0.544, 0.   , 0.645, 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     [
-#         [0.548, 0.715, 0.602, 0.544, 0.423, 0.   , 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     [
-#         [0.548, 0.715, 0.602, 0.544, 0.423, 0.645, 0.   ],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     # Test for two zeros
-#     [
-#         [0.   , 0.   , 0.602, 0.544, 0.423, 0.645, 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     # Test for three zeros
-#     [
-#         [0.   , 0.   , 0.   , 0.544, 0.423, 0.645, 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     # Test for four zeros
-#     [
-#         [0.   , 0.   , 0.   , 0.   , 0.423, 0.645, 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     # Test for five zeros
-#     [
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.645, 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     # Test for six zeros
-#     [
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.437],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-#     # Test for all zeros
-#     [
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#         [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ],
-#     ],
-# ]
-
 initialization = [
-    # Negative eccentricity
-    [[ 1., [1., -1., 0., 0., 0., 0.]]],
-    # Parabolic orbit
-    [[ 1., [1.,  1., 0., 0., 0., 0.]]],
-    # Hyperbolic orbit
-    [[ 1., [1.,  2., 0., 0., 0., 0.]]],
-    # Zero mass
-    [[ 0., [1.,  0., 0., 0., 0., 0.]]],
-    # Negative mass
-    [[-1., [1.,  0., 0., 0., 0., 0.]]],
-    # Incomplete elements
-    [[ 1., [1.,  0., 0., 0., 0.]]],
-    # 2d mass, 1d elements
-    [[[ 1., 1.], [1.,  0., 0., 0., 0., 0.]]],
-    # 1d mass, 2d elements
-    [[ 1., [[1., 1.], [0., 0.], [0., 0.], [0., 0.], [0., 0.], [0., 0.]]]],
+    [[ 1., 1., -1.]], # Negative eccentricity
+    [[ 1., 1.,  1.]], # Parabolic orbit
+    [[ 1., 1.,  2.]], # Hyperbolic orbit
+    [[ 0., 1.,  0.]], # Zero mass
+    [[-1., 1.,  0.]], # Negative mass
 ]

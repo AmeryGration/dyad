@@ -1,0 +1,396 @@
+#+title: Docstrings
+#+subtitle: Project plan
+#+author: Amery Gration
+#+property: ProjectId Docstrings
+#+filetags: Docstrings
+#+setupfile: ~/.emacs.d/setup_files/org_defaults.org
+
+* Eccentricity
+
+** Duquennoy
+
+The probability density function for `duquennoy1991` is:
+\begin{align}
+f_{E|P}(e|p)
+=
+\begin{cases}
+\dfrac{\phi(e; \mu, \sigma^{2})}{\sigma^{2}{}(\Phi(1; \mu, \sigma^{2}) - \Phi(0; \mu, \sigma^{2}))} &\text{ if $p \in (11, 1000]$}\\
+2e &\text{ if $p \in (1000, \infty)$}
+\end{cases}
+\end{align}
+for $e \in [0, 1)$ and $p \in (11, \infty)$ where $\phi(\cdot; \mu, \sigma^{2})$ is the probability density function for the normal distribution with mean $\mu$ and variance $\sigma^{2}$ and where $\mu = 0.27$ and $\sigma^{2} = 0.0169$. Duquennoy and Mayor (1991) do not give a closed-form expression for the probability density function. They describe it only as `bell shaped' with mean $0.31$. This expression has been derived by fitting a normal distribution to their data under the assumption that the errors on this data are due to Poisson noise. If $p \in (0, 11]$ then the orbit is circular and $e = 0$.
+
+The probability density function `duquennoy1991` takes ``p`` as a shape parameter for $p$, the period.
+
+** Moe
+
+The probability density function for `moe2017` is:
+\begin{align}
+\label{eq:pdf_eccentricity}
+f_{E|X, M_{1}}(e|x, m_{1})
+= \dfrac{\eta(x, m_{1}) + 1}{e_{\text{max}}(10^{x})^{\eta(x, m_{1}) + 1}}e^{\eta(x, m_{1})},
+\end{align}
+where
+\begin{align}
+e_{\text{max}}(p) &= 1 - \left(\dfrac{1}{2}p\right)^{-2/3}\\
+\eta(x, m_{1})
+&=
+\begin{cases}
+\eta_{1}(x)
+&\text{if $m_{1} \in [0.8, 3]$}\\
+\eta_{2}(x)
+&\text{if $m_{1} \in (3, 7]$}\\
+\eta_{3}(x)
+&\text{if $m_{1} \in (7, \infty)$}
+\end{cases}\\
+\eta_{1}(x, m_{1})
+&=
+0.6 - \dfrac{0.7}{x - 0.5}\\
+\eta_{2}(x, m_{1})
+&= \eta_{1}(x) + \dfrac{1}{4}(\eta_{3}(x) - \eta_{1}(x))(m_{1} - 3)\\
+\eta_{3}(x, m_{1})
+&=
+0.9 - \dfrac{0.2}{x - 0.5}.
+\end{align}
+for $e \in [0, e_{\text{max}}(p)]$ and where log-period $x$ and primary mass $m_{1}$ are such that $\eta(x, m_{1}) \in (-1, 0.9)$. If $\eta \in (-\infty, -1]$ then the orbit is circular and $e = 0$.
+
+Note that this function differs from that proposed by Moe and Stefano (2017). Here the support of $\eta$ has been modified so that $f_{E|X, M_{1}}$ has a convergent integral. This increases the circularization period from $x_{\text{c}} = 0.5$ to some value between $0.9375$ and $0.6053$. Note also that the functions $\eta_{1}$ and $\eta_{3}$ may not be accurate above $x = 5$ and $x = 6$ respectively.
+
+* Log-period
+
+** Duquennoy
+
+The probability density function for `duquennoy1991` is:
+\begin{align}
+f_{X}(x) =
+\dfrac{\phi(\log(x); \mu, \sigma^{2})}{\Phi(\log(b); \mu, \sigma^{2}) - \phi(\log(a); \mu, \sigma^{2})}
+\end{align}
+for log-period $x \in [a, b]$, $a = -2.3$, and $b = 12$, where $\phi(\cdot; \mu, \sigma^{2})$ and $\Phi(\cdot; \mu, \sigma^{2})$ are the probability density function and the cumulative distribution function for a Gaussian random variable with mean $\mu$ and variance $\sigma^{2}$ and where $\mu = 4.8$ and $\sigma = 2.3$.
+
+** Moe
+
+The probability density function for `moe2017` is:
+\begin{align}
+f_{X|M_{1}}(x|m_{1})
+&= \dfrac{A_{X}(m_{1})}{1 - F_{Q|P, m_{1}}(0.3|10^{x}, m_{1})}
+\begin{cases}
+c_{1}(m_{1})
+&\text{if $x \in [0.2, 1]$}\\
+c_{2}(m_{1})x + c_{3}(m_{1})
+&\text{if $x \in (1, 2]$}\\
+c_{4}(m_{1})x + c_{5}(m_{1})
+&\text{if $x \in (2, 3.4]$}\\
+c_{6}(m_{1})x + c_{7}(m_{1})
+&\text{if $x \in (3.4, 5.5]$}\\
+c_{8}(m_{1})\exp(-0.3x)
+&\text{if $x \in (5.5, 8]$}
+\end{cases}
+\end{align}
+for log-period $x \in [0.2, 8]$ and primary mass $m_{1} \in (0, \infty)$ where the normalization constant, $A_{X}(m_{1})$, is such that
+\begin{align}
+\int_{0.2}^{8}f_{X|M_{1}}(x|m_{1})\diff{}x = 1
+\end{align}
+where $F_{Q|P, M_{1}}$ is the cumulative distribution function for the mass ratio (:func:`dyad.stats.mass_ratio.moe2017`) and where
+\begin{align}
+c_{1}(m_{1})
+&= 0.07\log_{10}(m_{1})^{2} + 0.04\log_{10}(m_{1}) + 0.02,\\
+c_{2}(m_{1})
+&= -0.06\log_{10}(m_{1})^{2} + 0.03\log_{10}(m_{1}) + 0.0064\\
+c_{3}(m_{1})
+&= 0.13\log_{10}(m_{1})^{2} + 0.01\log_{10}(m_{1}) + 0.0136\\
+c_{4}(m_{1})
+&= 0.018\\
+c_{5}(m_{1})
+&= 0.01\log_{10}(m_{1})^{2} + 0.07\log_{10}(m_{1}) - 0.0096\\
+c_{6}(m_{1})
+&= \dfrac{0.03}{2.1}\log_{10}(m_{1})^{2} - \dfrac{0.12}{2.1}\log_{10}(m_{1}) - \dfrac{0.0264}{2.1}\\
+c_{7}(m_{1})
+&= - \dfrac{0.081}{2.1}\log_{10}(m_{1})^{2} + \dfrac{0.555}{2.1}\log_{10}(m_{1}) + \dfrac{0.0186}{2.1}\\
+c_{8}(m_{1})
+&= \exp(1.65)\left(0.04\log_{10}(m_{1})^{2} - 0.05\log_{10}(m_{1}) + 0.078\right).
+\end{align}
+* Mass
+
+** Salpeter
+
+The probability density function for `salpeter1955` is:
+\begin{align}
+f_{M}(m) = \dfrac{c - 1}{a^{1 - c} - b^{1 - c}}\dfrac{1}{m^{c}}
+\end{align}
+for $m \in [a, b]$, $a = 0.4$, $b = 10$, and $c = 2.35$.
+
+** Kroupa
+
+The probability density function for `kroupa2002` is:
+\begin{align}
+f_{M}(m)
+=
+A_{M}
+\begin{cases}
+m^{-1.3} &\text{ if $m \in [0.08, 0.5)$}\\
+0.5m^{-2.3} &\text{ if $m \in [0.5, 60]$}\\
+\end{cases}
+\end{align}
+for
+\begin{align}
+A_{M} := \dfrac{0.5(0.5^{-1.3} - 60.^{-1.3})}{1.3} + \dfrac{0.08^{-0.3} - 0.5^{-0.3}}{0.3}
+\end{align}
+and $m \in [0.08, 60]$.
+
+* Mass ratio
+
+** Duquennoy
+
+The probability density function for `duquennoy1991` is:
+\begin{align}
+f(q)
+&= \dfrac{1}{1 - \Phi(0; \mu, \sigma^{2})}\phi(q; \mu, \sigma^{2})
+\end{align}
+for mass ratio $q \in (0, \infty)$ where $\phi(\cdot; \mu, \sigma^{2})$ and $\Phi(\cdot; \mu, \sigma^{2})$ are the probability density function and the cumulative distribution function for a Gaussian random variable with mean $\mu$ and variance $\sigma^{2}$ and where $\mu = 0.23$ and $\sigma = 0.42$.
+
+** Moe
+
+The probability density function for `moe2017` is:
+\begin{align}
+\label{eq:pdf_mass_ratio}
+f_{Q|P, M_{1}}(q|p, m_{1})
+=
+A_{Q}(p, m_{1})
+\begin{cases}
+0.3^{\delta(p, m_{1}) - \gamma(p, m_{1})}q^{\gamma(p, m_{1}]}
+&\text{if $q \in [0.1, 0.3]$}\\
+q^{\delta(p, m_{1})}
+&\text{if $q \in (0.3, 0.95]$}\\
+q^{\delta(p, m_{1})} + c_{\text{twin}}(p, m_{1})
+&\text{if $q \in (0.95, 1]$}
+\end{cases}
+\end{align}
+for mass ratio $q \in [0, 1]$, $p \in [0.2, 8]$, and $m_{1} \in [0.8, \infty)$, where the normalization constant, $A_{Q}(p, m_{1})$, is such that
+\begin{gather}
+\begin{split}
+\dfrac{1}{A_{Q}(p, m_{1})}
+&=
+\begin{cases}
+0.3^{\delta(p, m_{1}) - \gamma(p, m_{1})}\left(\ln(0.3) - \ln(0.1)\right)
+&\text{if $\gamma(p, m_{1}) = -1$}\\
+\dfrac{0.3^{\delta(p, m_{1}) - \gamma(p, m_{1})}(0.3^{\gamma(p, m_{1}) + 1} - 0.1^{\gamma(p, m_{1}) + 1})}{\gamma(p, m_{1}) + 1}
+&\text{otherwise}
+\end{cases}\\
+&\qquad +
+\begin{cases}
+- \ln(0.3)
+&\text{if $\delta(p, m_{1}) = -1$}\\
+\dfrac{1 - 0.3^{\delta(p, m_{1}) + 1}}{\delta(p, m_{1}) + 1}
+&\text{otherwise}
+\end{cases}\\
+&\qquad + 0.05c_{\text{twin}}(p, m_{1})
+\end{split}
+\end{gather}
+for twin-excess constant
+\begin{align}
+c_{\text{twin}}(p, m_{1})
+=
+\begin{cases}
+\dfrac{F_{\text{twin}}(p, m_{1})\ln(1/0.3)}{0.05(1 - F_{\text{twin}}(p, m_{1}))}
+&\text{if $\gamma(p, m_{1}) = -1$}\\
+\dfrac{F_{\text{twin}}(p, m_{1})(1 - 0.3^{\delta(p, m_{1}) + 1})}{0.05(\delta(p, m_{1}) + 1)(1 - F_{\text{twin}}(p, m_{1}))}
+&\text{otherwise}
+\end{cases}
+\end{align}
+where the /excess-twin fraction/, $F_{\text{twin}}$, is defined such that
+\begin{align}
+F_{\text{twin}}(p, m_{1})
+&= 
+\dfrac{\int_{0.95}^{1}c_{\text{twin}}(p, m_{1})\diff{}q}
+{\int_{0.3}^{1}q^{\delta(p, m_{1})}\diff{}q
++ \int_{0.95}^{1}c_{\text{twin}}(p, m_{1})\diff{}q},
+\end{align} and is piecewise linear in $\log_{10}(p)$ and given by
+\begin{align}
+F_{\text{twin}}(p, m_{1})
+= \begin{cases}
+f_{1}(p, m_{1})
+&\text{if $\log_{10}(p) \in (0, 1]$}\\
+f_{2}(p, m_{1})
+&\text{if $\log_{10}(p) \in (1, \log_{10}(p_{\text{twin}}(m_{1}))]$}\\
+0
+&\text{if $\log_{10}(p) \in (\log_{10}(p_{\text{twin}}(m_{1})), \infty)$}\\
+\end{cases}
+\end{align}
+where
+\begin{align}
+f_{1}(p, m_{1})
+&=
+0.3 - 0.15\log_{10}(m_{1})\\
+f_{2}(p, m_{1})
+&=
+\left(1 - \dfrac{\log_{10}(p) - 1}{\log_{10}(p_{\text{twin}}(m_{1})) - 1}\right)f_{1}(p, m_{1})
+\end{align}
+and where the logarithm of the excess-twin period is piecewise linear in primary mass:
+\begin{align}
+\log_{10}(p_{\text{twin}}(m_{1}))
+=
+\begin{cases}
+8 - m_{1}
+&\text{if $m_{1} \in (0, 6.5]$}\\
+1.5
+&\text{if $m_{1} \in (6.5, \infty)$}.
+\end{cases}
+\end{align}
+The functions $\gamma$ and $\delta$ are piecewise second-degree polynomials in $\log_{10}(p)$ and $m_{1}$ and are defined on the interval $[0.2, 8]$:
+\begin{align}
+\gamma(p, m_{1})
+=
+\begin{cases}
+\gamma_{1}(p, m_{1}) &\text{if $m_{1} \in (0.8, 1.2]$}\\
+\gamma_{2}(p, m_{1}) &\text{if $m_{1} \in (1.2, 3.5)$}\\
+\gamma_{3}(p, m_{1}) &\text{if $m_{1} = 3.5 $}\\
+\gamma_{4}(p, m_{1}) &\text{if $m_{1} \in (3.5, 6]$}\\
+\gamma_{5}(p, m_{1}) &\text{if $m_{1} \in (6, \infty)$}
+\end{cases}
+\end{align}
+and
+\begin{align}
+\delta(p, m_{1})
+=
+\begin{cases}
+\delta_{1}(p, m_{1}) &\text{if $m_{1} \in (0.8, 1.2]$}\\
+\delta_{2}(p, m_{1}) &\text{if $m_{1} \in (1.2, 3.5)$}\\
+\delta_{3}(p, m_{1}) &\text{if $m_{1} = 3.5 $}\\
+\delta_{4}(p, m_{1}) &\text{if $m_{1} \in (3.5, 6]$}\\
+\delta_{5}(p, m_{1}) &\text{if $m_{1} \in (6, \infty)$}
+\end{cases}
+\end{align}
+where
+\begin{align}
+\gamma_{1}(p, m_{1})
+&= 0.3\\
+\gamma_{2}(p, m_{1})
+&=
+\gamma_{1}(p, 1.2) + \dfrac{1}{2.3}(\gamma_{3}(p, 3.5) - \gamma_{1}(p, 1.2))(m_{1} - 1.2)\\
+\gamma_{3}(p, m_{1})
+&=
+\begin{cases}
+0.2
+&\text{ if $\log_{10}(p) \in [0.2, 2.5]$}\\
+0.2 - 0.3(\log_{10}(p) - 2.5)
+&\text{ if $\log_{10}(p) \in (2.5, 5.5]$}\\
+-0.7 - 0.2(\log_{10}(p) - 5.5)
+&\text{ if $\log_{10}(p) \in (5.5, 8]$}
+\end{cases}\\
+\gamma_{4}(p, m_{1})
+&=
+\gamma_{3}(p, 3.5) + \dfrac{1}{2.5}(\gamma_{5}(p, 6) - \gamma_{3}(p, 3.5))(m_{1} - 3.5)\\
+\gamma_{5}(p, m_{1})
+&=
+\begin{cases}
+0.1
+&\text{ if $\log_{10}(p) \in [0.2, 1]$}\\
+0.1 - 0.15(\log_{10}(p) - 1)
+&\text{ if $\log_{10}(p) \in (1, 3]$}\\
+-0.2 - 0.50(\log_{10}(p) - 3)
+&\text{ if $\log_{10}(p) \in (3, 5.6]$}\\
+-1.5
+&\text{ if $\log_{10}(p) \in (5.6, 8]$}
+\end{cases}
+\end{align}
+and
+\begin{align}
+\delta_{1}(p, m_{1})
+&=
+\begin{cases}
+-0.5
+&\text{if $\log_{10}(p) \in [0.2, 5]$}\\
+-0.5 - 0.3(\log_{10}(p) - 5)
+&\text{if $\log_{10}(p) \in (5, 8]$}
+\end{cases}\\
+\delta_{2}(p, m_{1})
+&= 
+\;\!\delta_{1}(p, 1.2) + \dfrac{1}{2.3}(\delta_{3}(p, 3.5) - \;\!\delta_{1}(p, 1.2))(m_{1} - 1.2)\\
+\delta_{3}(p, m_{1})
+&=
+\begin{cases}
+-0.5
+&\text{if $\log_{10}(p) \in [0.2, 1]$}\\
+-0.5 - 0.2(\log_{10}(p) - 1)
+&\text{if $\log_{10}(p) \in (1, 4.5]$}\\
+-1.2 - 0.4(\log_{10}(p) - 4.5)
+&\text{if $\log_{10}(p) \in (4.5, 6.5]$}\\
+-2
+&\text{if $\log_{10}(p) \in (6.5, 8]$}
+\end{cases}\\
+\delta_{4}(p, m_{1})
+&=
+\;\!\delta_{3}(p, 3.5) + \dfrac{1}{2.5}(\delta_{5}(p, 6) - \;\!\delta_{3}(p,  3.5))(m_{1} - 3.5)\\
+\delta_{5}(p, m_{1})
+&=
+\begin{cases}
+-0.5
+&\text{if $\log_{10}(p) \in [0.2, 1]$}\\
+-0.5 - 0.9(\log_{10}(p) - 1)
+&\text{if $\log_{10}(p) \in (1, 2]$}\\
+-1.4 - 0.3(\log_{10}(p) - 2)
+&\text{if $\log_{10}(p) \in (2, 4]$}\\
+-2
+&\text{if $\log_{10}(p) \in (4, 8]$}.
+\end{cases}
+\end{align}
+
+* Period
+
+** Trunclognorm
+
+The probability density function for `trunclognorm` is:
+\begin{align}
+f_{P}(p, a, b, s) =
+\dfrac{\exp\left(-\dfrac{\log(p)^{2}}{2s^{2}}\right)}
+{\sqrt{2\pi}sp\left(\operatorname{erf}\left(\dfrac{\log(b)}{s}\right)
+- \operatorname{erf}\left(\dfrac{\log(a)}{s}\right)\right)}
+\end{align}
+where $p \in (a, b)$, $a, b \in (0, \infty)$, and $s \in (0, \infty)$.
+
+The probability density function `trunclognorm` takes ``s`` as shape parameter for $s$.
+
+Notice that the truncation values, $a$ and $b$, are defined in standardized form:
+\begin{align}
+a = (u_{\mathrm{l}} - \mathrm{loc})/\mathrm{scale},
+b = (u_{\mathrm{r}} - \mathrm{loc})/\mathrm{scale}
+\end{align}
+where $u_{\mathrm{l}}$ and $u_{\text{r}}$ are the specific left and right truncation values, respectively. In other words, the support of the distribution becomes $(a*\mathrm{scale} + \mathrm{loc}) < x <= (b*\mathrm{scale} + \mathrm{loc})$ when $\mathrm{loc}$ and/or $\mathrm{scale}$ are provided.
+
+%(after_notes)s
+
+Suppose a normally distributed random variable ``X`` has mean ``mu`` and standard deviation ``sigma``. Then ``Y = exp(X)`` is lognormally distributed with ``s = sigma`` and ``scale = exp(mu)``. To change the base of the lognormal distribution from ``e`` to base ``b`` multiply ``mu`` and ``sigma`` by ``ln(b)``.
+
+** Duquennoy
+
+The probability density function for `duquennoy1991` is:
+\begin{align}
+f_{P}(p) =
+\dfrac{\exp\left(-\dfrac{(\log(p) - \mu)^{2}}{2\sigma^{2}}\right)}
+{\sqrt{2\pi}\sigma{}p\left(\operatorname{erf}\left(\dfrac{\log(b) - \mu}{\sigma}\right)
+- \operatorname{erf}\left(\dfrac{\log(a) - \mu}{\sigma}\right)\right)}
+\end{align}
+for $p \in (a, b]$, $a = 10^{-2.3}$, $b = 10^{12}$, $\mu = 4.8$, and $\sigma = 2.3$.
+
+** Moe
+
+The probability density function for `moe2017` is:
+\begin{align}
+\label{eq:cdf_period}
+f_{P|M_{1}}(p|m_{1}) = \left|\dfrac{1}{\ln(10)p}\right|f_{X|M_{1}}(\log_{10}(p)|m_{1}).
+\end{align}
+for $p \in [10^{0.2}, 10^{8}]$ and where $f_{X|M_{1}}$ is the probability density function for log-period given by Moe and Stefano (2017).
+
+See also
+--------
+dyad.stats.log_period.moe2017
+
+* Semimajor axis
+
+** Öpik
+
+The probability density function for `opik1924` is:
+\begin{align}
+f_A(a, b, c) = \dfrac{1}{a\log_{10}(c/b)}
+\end{align}
+for $a \in [b, c]$, $b, c \in (0, \infty)$, and $b < c$. The probability density function `opik1924` is identical to `scipy.stats.reciprocal`.

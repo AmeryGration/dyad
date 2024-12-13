@@ -1,5 +1,0 @@
-"""Period
-
-"""
-
-from .distributions import *

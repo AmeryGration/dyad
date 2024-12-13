@@ -1,0 +1,2 @@
+include dyad/stats/data/log_period/*.dat
+include dyad/stats/data/period/*.dat
