@@ -1,0 +1,812 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>dyad.stats package &#8212; Dyad 0.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/dyad.stats';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dyad 0.0.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/what_is_dyad.html">
+    What is Dyad?
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/tutorial_1.html">
+    Representing a Keplerian system
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/tutorial_2.html">
+    Synthesizing a population of binary stars
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/binary_star_statistics.html">
+    Binary-star statistics
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../api_reference/index.html">
+    Dyad API
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/what_is_dyad.html">
+    What is Dyad?
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/tutorial_1.html">
+    Representing a Keplerian system
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/tutorial_2.html">
+    Synthesizing a population of binary stars
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/binary_star_statistics.html">
+    Binary-star statistics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api_reference/index.html">
+    Dyad API
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="generated/dyad.Orbit.html">dyad.Orbit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/dyad.TwoBody.html">dyad.TwoBody</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="generated/dyad.semimajor_axis_from_period.html">dyad.semimajor_axis_from_period</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/dyad.period_from_semimajor_axis.html">dyad.period_from_semimajor_axis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/dyad.true_anomaly_from_mean_anomaly.html">dyad.true_anomaly_from_mean_anomaly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/dyad.true_anomaly_from_eccentric_anomaly.html">dyad.true_anomaly_from_eccentric_anomaly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/dyad.mean_anomaly_from_eccentric_anomaly.html">dyad.mean_anomaly_from_eccentric_anomaly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/dyad.mean_anomaly_from_true_anomaly.html">dyad.mean_anomaly_from_true_anomaly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/dyad.eccentric_anomaly_from_true_anomaly.html">dyad.eccentric_anomaly_from_true_anomaly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/dyad.eccentric_anomaly_from_mean_anomaly.html">dyad.eccentric_anomaly_from_mean_anomaly</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dyad.constants.html">dyad.constants package</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">dyad.stats package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.longitude_of_ascending_node.html">dyad.stats.longitude_of_ascending_node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.inclination.html">dyad.stats.inclination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.argument_of_pericentre.html">dyad.stats.argument_of_pericentre</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.true_anomaly.html">dyad.stats.true_anomaly</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="generated/dyad.stats.mass.html">dyad.stats.mass</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.mass.splitpowerlaw.html">dyad.stats.mass.splitpowerlaw</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.mass.kroupa2002.html">dyad.stats.mass.kroupa2002</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.mass.salpeter1955.html">dyad.stats.mass.salpeter1955</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="generated/dyad.stats.mass_ratio.html">dyad.stats.mass_ratio</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.mass_ratio.duquennoy1991.html">dyad.stats.mass_ratio.duquennoy1991</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.mass_ratio.moe2017.html">dyad.stats.mass_ratio.moe2017</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="generated/dyad.stats.semimajor_axis.html">dyad.stats.semimajor_axis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.semimajor_axis.opik1924.html">dyad.stats.semimajor_axis.opik1924</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="generated/dyad.stats.period.html">dyad.stats.period</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.period.trunclognorm.html">dyad.stats.period.trunclognorm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.period.duquennoy1991.html">dyad.stats.period.duquennoy1991</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.period.moe2017.html">dyad.stats.period.moe2017</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="generated/dyad.stats.log_period.html">dyad.stats.log_period</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.log_period.duquennoy1991.html">dyad.stats.log_period.duquennoy1991</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.log_period.moe2017.html">dyad.stats.log_period.moe2017</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="generated/dyad.stats.eccentricity.html">dyad.stats.eccentricity</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.eccentricity.uniform.html">dyad.stats.eccentricity.uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.eccentricity.powerlaw.html">dyad.stats.eccentricity.powerlaw</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.eccentricity.thermal.html">dyad.stats.eccentricity.thermal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.eccentricity.duquennoy1991.html">dyad.stats.eccentricity.duquennoy1991</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/generated/dyad.stats.eccentricity.moe2017.html">dyad.stats.eccentricity.moe2017</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.eccentricity.uniform.html">dyad.stats.eccentricity.uniform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.eccentricity.powerlaw.html">dyad.stats.eccentricity.powerlaw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.eccentricity.thermal.html">dyad.stats.eccentricity.thermal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.eccentricity.duquennoy1991.html">dyad.stats.eccentricity.duquennoy1991</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.eccentricity.moe2017.html">dyad.stats.eccentricity.moe2017</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.log_period.duquennoy1991.html">dyad.stats.log_period.duquennoy1991</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.log_period.moe2017.html">dyad.stats.log_period.moe2017</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.mass.splitpowerlaw.html">dyad.stats.mass.splitpowerlaw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.mass.kroupa2002.html">dyad.stats.mass.kroupa2002</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.mass.salpeter1955.html">dyad.stats.mass.salpeter1955</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.mass_ratio.duquennoy1991.html">dyad.stats.mass_ratio.duquennoy1991</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.mass_ratio.moe2017.html">dyad.stats.mass_ratio.moe2017</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.period.trunclognorm.html">dyad.stats.period.trunclognorm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.period.duquennoy1991.html">dyad.stats.period.duquennoy1991</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.period.moe2017.html">dyad.stats.period.moe2017</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/dyad.stats.semimajor_axis.opik1924.html">dyad.stats.semimajor_axis.opik1924</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">dyad.stats package</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-dyad.stats">
+<span id="dyad-stats-package"></span><h1>dyad.stats package<a class="headerlink" href="#module-dyad.stats" title="Link to this heading">#</a></h1>
+<section id="statistical-properties-dyad-stats">
+<span id="stats-api"></span><h2>Statistical properties (<a class="reference internal" href="#module-dyad.stats" title="dyad.stats"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats</span></code></a>)<a class="headerlink" href="#statistical-properties-dyad-stats" title="Link to this heading">#</a></h2>
+<p>This module contains probability distributions for the masses and
+orbital elements of a population of binary stars.</p>
+<section id="probability-distributions">
+<h3>Probability distributions<a class="headerlink" href="#probability-distributions" title="Link to this heading">#</a></h3>
+<p>Each univariate distribution is an instance of a subclass of Scipy’s
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rv_continuous.html#scipy.stats.rv_continuous" title="(in SciPy v1.14.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.stats.rv_continuous</span></code></a> class in the same way that
+univariate distributions in Scipy are.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.stats.longitude_of_ascending_node.html#dyad.stats.longitude_of_ascending_node" title="dyad.stats.longitude_of_ascending_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude_of_ascending_node</span></code></a></p></td>
+<td><p>The random variable for the longitude of the ascending node</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.stats.inclination.html#dyad.stats.inclination" title="dyad.stats.inclination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inclination</span></code></a></p></td>
+<td><p>The random variabe for inclination</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.stats.argument_of_pericentre.html#dyad.stats.argument_of_pericentre" title="dyad.stats.argument_of_pericentre"><code class="xref py py-obj docutils literal notranslate"><span class="pre">argument_of_pericentre</span></code></a></p></td>
+<td><p>The random variabe for the argument of pericentre</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.stats.true_anomaly.html#dyad.stats.true_anomaly" title="dyad.stats.true_anomaly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">true_anomaly</span></code></a></p></td>
+<td><p>The random variable for true anomaly</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="submodules">
+<h4>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h4>
+<p>Where there is a choice of distribution the options are made available
+in a submodule. For the distributions provided by a particular
+submodule see that module’s documentation. Conditional random
+variables are implemented using shape parameters to specify the value
+of the condition.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.stats.mass.html#module-dyad.stats.mass" title="dyad.stats.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a></p></td>
+<td><p>Mass (dyad.stats.mass)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.stats.mass_ratio.html#module-dyad.stats.mass_ratio" title="dyad.stats.mass_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_ratio</span></code></a></p></td>
+<td><p>Mass ratio (dyad.stats.mass_ratio)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.stats.semimajor_axis.html#module-dyad.stats.semimajor_axis" title="dyad.stats.semimajor_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimajor_axis</span></code></a></p></td>
+<td><p>Semimajor-axis (dyad.stats.semimajor_axis)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.stats.period.html#module-dyad.stats.period" title="dyad.stats.period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">period</span></code></a></p></td>
+<td><p>Period (dyad.stats.period)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.stats.log_period.html#module-dyad.stats.log_period" title="dyad.stats.log_period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_period</span></code></a></p></td>
+<td><p>Log-period (dyad.stats.log_period)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.stats.eccentricity.html#module-dyad.stats.eccentricity" title="dyad.stats.eccentricity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentricity</span></code></a></p></td>
+<td><p>Eccentricity (dyad.stats.eccentricity)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="warnings-errors-used-in-dyad-stats">
+<h4>Warnings/errors used in <a class="reference internal" href="#module-dyad.stats" title="dyad.stats"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats</span></code></a><a class="headerlink" href="#warnings-errors-used-in-dyad-stats" title="Link to this heading">#</a></h4>
+<p>Dyad inherits the warnings and errors used in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html#module-scipy.stats" title="(in SciPy v1.14.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">scipy.stats</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rv_continuous.html#scipy.stats.rv_continuous" title="(in SciPy v1.14.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.stats.rv_continuous</span></code></a></p>
+</div>
+</section>
+</section>
+</section>
+<section id="id1">
+<h2>Submodules<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-dyad.stats.eccentricity">
+<span id="dyad-stats-eccentricity-module"></span><h2>dyad.stats.eccentricity module<a class="headerlink" href="#module-dyad.stats.eccentricity" title="Link to this heading">#</a></h2>
+<section id="eccentricity-dyad-stats-eccentricity">
+<h3>Eccentricity (<a class="reference internal" href="generated/dyad.stats.eccentricity.html#module-dyad.stats.eccentricity" title="dyad.stats.eccentricity"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.eccentricity</span></code></a>)<a class="headerlink" href="#eccentricity-dyad-stats-eccentricity" title="Link to this heading">#</a></h3>
+<p>This module contains probability distributions for the orbital eccentricities of a population of binary stars. In its documentation the random variable is denoted <span class="math notranslate nohighlight">\(E\)</span> and a realization of that random variable is denoted <span class="math notranslate nohighlight">\(e\)</span>.</p>
+<section id="id2">
+<h4>Probability distributions<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/generated/dyad.stats.eccentricity.uniform.html#dyad.stats.eccentricity.uniform" title="dyad.stats.eccentricity.uniform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uniform</span></code></a></p></td>
+<td><p>A uniform continuous random variable.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/generated/dyad.stats.eccentricity.powerlaw.html#dyad.stats.eccentricity.powerlaw" title="dyad.stats.eccentricity.powerlaw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">powerlaw</span></code></a></p></td>
+<td><p>A power-function continuous random variable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/generated/dyad.stats.eccentricity.thermal.html#dyad.stats.eccentricity.thermal" title="dyad.stats.eccentricity.thermal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">thermal</span></code></a></p></td>
+<td><p>The thermal eccentricity random variable</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/generated/dyad.stats.eccentricity.duquennoy1991.html#dyad.stats.eccentricity.duquennoy1991" title="dyad.stats.eccentricity.duquennoy1991"><code class="xref py py-obj docutils literal notranslate"><span class="pre">duquennoy1991</span></code></a></p></td>
+<td><p>The eccentricity random variable of Duquennoy and Mayor (1991)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/generated/dyad.stats.eccentricity.moe2017.html#dyad.stats.eccentricity.moe2017" title="dyad.stats.eccentricity.moe2017"><code class="xref py py-obj docutils literal notranslate"><span class="pre">moe2017</span></code></a></p></td>
+<td><p>The eccentricity random variable of Moe and Stefano (2017)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="module-dyad.stats.log_period">
+<span id="dyad-stats-log-period-module"></span><h2>dyad.stats.log_period module<a class="headerlink" href="#module-dyad.stats.log_period" title="Link to this heading">#</a></h2>
+<section id="log-period-dyad-stats-log-period">
+<h3>Log-period (<a class="reference internal" href="generated/dyad.stats.log_period.html#module-dyad.stats.log_period" title="dyad.stats.log_period"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.log_period</span></code></a>)<a class="headerlink" href="#log-period-dyad-stats-log-period" title="Link to this heading">#</a></h3>
+<p>This module contains probability distributions for the orbital
+log-periods of a population of binary stars. In its documentation the
+random variable is denoted <span class="math notranslate nohighlight">\(X\)</span> and a realization of that random
+variable is denoted <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<section id="id3">
+<h4>Probability distributions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/generated/dyad.stats.log_period.duquennoy1991.html#dyad.stats.log_period.duquennoy1991" title="dyad.stats.log_period.duquennoy1991"><code class="xref py py-obj docutils literal notranslate"><span class="pre">duquennoy1991</span></code></a></p></td>
+<td><p>The log-period random variable of Duquennoy and Mayor (1991)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/generated/dyad.stats.log_period.moe2017.html#dyad.stats.log_period.moe2017" title="dyad.stats.log_period.moe2017"><code class="xref py py-obj docutils literal notranslate"><span class="pre">moe2017</span></code></a></p></td>
+<td><p>The log-period random variable of Moe and Stefano (2017)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="module-dyad.stats.mass">
+<span id="dyad-stats-mass-module"></span><h2>dyad.stats.mass module<a class="headerlink" href="#module-dyad.stats.mass" title="Link to this heading">#</a></h2>
+<section id="mass-dyad-stats-mass">
+<h3>Mass (<a class="reference internal" href="generated/dyad.stats.mass.html#module-dyad.stats.mass" title="dyad.stats.mass"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.mass</span></code></a>)<a class="headerlink" href="#mass-dyad-stats-mass" title="Link to this heading">#</a></h3>
+<p>This module contains probability distributions for the masses of a population of stars. In its documentation the random variable is denoted <span class="math notranslate nohighlight">\(M\)</span> and a realization of that random variable is denoted <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<section id="id4">
+<h4>Probability distributions<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/generated/dyad.stats.mass.splitpowerlaw.html#dyad.stats.mass.splitpowerlaw" title="dyad.stats.mass.splitpowerlaw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">splitpowerlaw</span></code></a></p></td>
+<td><p>The two-piece split-power-law initial-stellar-mass random variable</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/generated/dyad.stats.mass.kroupa2002.html#dyad.stats.mass.kroupa2002" title="dyad.stats.mass.kroupa2002"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kroupa2002</span></code></a></p></td>
+<td><p>The initial-stellar-mass random variable of Kroupa (2002)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/generated/dyad.stats.mass.salpeter1955.html#dyad.stats.mass.salpeter1955" title="dyad.stats.mass.salpeter1955"><code class="xref py py-obj docutils literal notranslate"><span class="pre">salpeter1955</span></code></a></p></td>
+<td><p>The initial-stellar-mass random variable Salpeter (1955)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="module-dyad.stats.mass_ratio">
+<span id="dyad-stats-mass-ratio-module"></span><h2>dyad.stats.mass_ratio module<a class="headerlink" href="#module-dyad.stats.mass_ratio" title="Link to this heading">#</a></h2>
+<section id="mass-ratio-dyad-stats-mass-ratio">
+<h3>Mass ratio (<a class="reference internal" href="generated/dyad.stats.mass_ratio.html#module-dyad.stats.mass_ratio" title="dyad.stats.mass_ratio"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.mass_ratio</span></code></a>)<a class="headerlink" href="#mass-ratio-dyad-stats-mass-ratio" title="Link to this heading">#</a></h3>
+<p>This module contains probability distributions for the mass ratios of the components of a population of binary stars. In its documentation the random variable is denoted <span class="math notranslate nohighlight">\(Q\)</span> and a realization of that random variable is denoted <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<section id="id5">
+<h4>Probability distributions<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/generated/dyad.stats.mass_ratio.duquennoy1991.html#dyad.stats.mass_ratio.duquennoy1991" title="dyad.stats.mass_ratio.duquennoy1991"><code class="xref py py-obj docutils literal notranslate"><span class="pre">duquennoy1991</span></code></a></p></td>
+<td><p>The mass-ratio random variable of Duquennoy and Mayor (1991)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/generated/dyad.stats.mass_ratio.moe2017.html#dyad.stats.mass_ratio.moe2017" title="dyad.stats.mass_ratio.moe2017"><code class="xref py py-obj docutils literal notranslate"><span class="pre">moe2017</span></code></a></p></td>
+<td><p>The mass-ratio random variable of Moe and Stefano (2017)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="module-dyad.stats.period">
+<span id="dyad-stats-period-module"></span><h2>dyad.stats.period module<a class="headerlink" href="#module-dyad.stats.period" title="Link to this heading">#</a></h2>
+<section id="period-dyad-stats-period">
+<h3>Period (<a class="reference internal" href="generated/dyad.stats.period.html#module-dyad.stats.period" title="dyad.stats.period"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.period</span></code></a>)<a class="headerlink" href="#period-dyad-stats-period" title="Link to this heading">#</a></h3>
+<p>This module contains probability distributions for the orbital periods
+of a population of binary stars. In its documentation the random
+variable is denoted <span class="math notranslate nohighlight">\(P\)</span> and a realization of that random
+variable is denoted <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<section id="id6">
+<h4>Probability distributions<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/generated/dyad.stats.period.trunclognorm.html#dyad.stats.period.trunclognorm" title="dyad.stats.period.trunclognorm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trunclognorm</span></code></a></p></td>
+<td><p>A truncated lognormal random variable</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/generated/dyad.stats.period.duquennoy1991.html#dyad.stats.period.duquennoy1991" title="dyad.stats.period.duquennoy1991"><code class="xref py py-obj docutils literal notranslate"><span class="pre">duquennoy1991</span></code></a></p></td>
+<td><p>The period random variable of Duquennoy and Mayor (1991)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/generated/dyad.stats.period.moe2017.html#dyad.stats.period.moe2017" title="dyad.stats.period.moe2017"><code class="xref py py-obj docutils literal notranslate"><span class="pre">moe2017</span></code></a></p></td>
+<td><p>The period random variable of Moe and Stefano (1991)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="module-dyad.stats.semimajor_axis">
+<span id="dyad-stats-semimajor-axis-module"></span><h2>dyad.stats.semimajor_axis module<a class="headerlink" href="#module-dyad.stats.semimajor_axis" title="Link to this heading">#</a></h2>
+<section id="semimajor-axis-dyad-stats-semimajor-axis">
+<h3>Semimajor-axis (<a class="reference internal" href="generated/dyad.stats.semimajor_axis.html#module-dyad.stats.semimajor_axis" title="dyad.stats.semimajor_axis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.semimajor_axis</span></code></a>)<a class="headerlink" href="#semimajor-axis-dyad-stats-semimajor-axis" title="Link to this heading">#</a></h3>
+<p>This module contains probability distributions for the orbital semimajor axes of a population of binary stars. In its documentation the random variable is denoted <span class="math notranslate nohighlight">\(A\)</span> and a realization of that random variable is denoted <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<section id="id7">
+<h4>Probability distributions<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/generated/dyad.stats.semimajor_axis.opik1924.html#dyad.stats.semimajor_axis.opik1924" title="dyad.stats.semimajor_axis.opik1924"><code class="xref py py-obj docutils literal notranslate"><span class="pre">opik1924</span></code></a></p></td>
+<td><p>The semimajor-axis random variable of Öpik (1924)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-properties-dyad-stats">Statistical properties (<code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distributions">Probability distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#warnings-errors-used-in-dyad-stats">Warnings/errors used in <code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dyad.stats.eccentricity">dyad.stats.eccentricity module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eccentricity-dyad-stats-eccentricity">Eccentricity (<code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.eccentricity</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Probability distributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dyad.stats.log_period">dyad.stats.log_period module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-period-dyad-stats-log-period">Log-period (<code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.log_period</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Probability distributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dyad.stats.mass">dyad.stats.mass module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-dyad-stats-mass">Mass (<code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.mass</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Probability distributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dyad.stats.mass_ratio">dyad.stats.mass_ratio module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-ratio-dyad-stats-mass-ratio">Mass ratio (<code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.mass_ratio</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Probability distributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dyad.stats.period">dyad.stats.period module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#period-dyad-stats-period">Period (<code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.period</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Probability distributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-dyad.stats.semimajor_axis">dyad.stats.semimajor_axis module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semimajor-axis-dyad-stats-semimajor-axis">Semimajor-axis (<code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad.stats.semimajor_axis</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Probability distributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/generated/dyad.stats.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Amery Gration.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

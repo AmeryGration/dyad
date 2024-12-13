@@ -1,0 +1,136 @@
+"""Properties
+
+A stellar properties module for Dyad.
+
+"""
+
+__all__ = [
+    "Body",
+]
+
+import numpy as np
+import scipy as sp
+
+from astropy import constants
+
+GRAV_CONST = 6.6743e-08 # Units: cgs
+M_SUN = 1.98840987e+33 # Units: cgs
+R_SUN = 6.9570000000e10 # Units: cgs
+L_SUN = 3.828e+33 # Units: cgs
+SIGMA = 5.6703744191844314e-05 # Units: cgs
+KSB = 4.*np.pi*SIGMA # Units: cgs
+
+# GRAV_CONST = constants.G.cgs.to_value() # 6.6743e-08 # G (cgs)
+# M_SUN = constants.M_sun.cgs.to_value() # 1.989e33 # Msun (cgs)
+# R_SUN = constants.R_sun.cgs.to_value() # 6.9566e+10 # Rsun (cgs)
+# L_SUN = constants.L_sun.cgs.to_value() # 3.8515e+33 # Lsun (cgs)
+# SIGMA = constants.sigma_sb.cgs.to_value()  # 5.670352798e-5 # Stefan-Boltzmann constant (cgs)
+# KSB = 4.*np.pi*SIGMA # 4pi * Stefan-Boltzmann - used often
+
+def hrd(m):
+    """
+    Function to evaluate zero-age main sequence location of a
+    hydrogen-burning star of mass m, given Z=0.02 (from Tout et al., 1996,
+    MNRAS, 281, 257, binary_c version)
+
+    Input :
+    * m = Mass (in solar unit)
+
+    Output :
+    (Teff, L, g) tuples (units: Kelvin, Lsun, gsun)
+    """
+    ms_parameters = (
+        0.,
+        0.397042,
+        8.52763,
+        0.00025546,
+        5.43289,
+        5.56358,
+        0.788661,
+        0.00586685,
+        1.71536,
+        6.59779,
+        10.0885,
+        1.01249,
+        0.0749017,
+        0.0107742,
+        3.08223,
+        17.8478,
+        0.00022582
+    )
+
+    m2 = m*m
+    m3 = m2*m
+    m5 = m3*m2
+    m8 = m5*m3
+    m05 = np.sqrt(m)
+    m25 = m05*m2
+    m65 = m25*m2*m2
+    m90 = m25*m65
+    m190 = m90*m90*m
+    m195 = m190*m05
+
+    num = ms_parameters[1]*m5*m05 + ms_parameters[2]*m8*m3
+    denom = (
+        ms_parameters[3] + m3 + ms_parameters[4]*m5
+        + ms_parameters[5]*m5*m2 + ms_parameters[6]*m8
+        + ms_parameters[7]*m8*m*m05
+    )
+    L = num/denom
+
+    num = (
+        ms_parameters[8]*m25
+        + ms_parameters[9]*m65
+        + ms_parameters[10]*m2*m90
+        + ms_parameters[11]*m190
+        + ms_parameters[12]*m195
+    )
+    denom = (
+        ms_parameters[13]
+        + m2*(ms_parameters[14] + m65*(ms_parameters[15] + m90*m))
+        + ms_parameters[16]*m195
+    )
+    R = num/denom
+
+    g = GRAV_CONST*(m*M_SUN)/(R*R_SUN)**2.
+
+    T_eff = ((L*L_SUN)/(KSB*(R*R_SUN)**2))**0.25
+
+    return (T_eff, L, g, R)
+
+
+class Body:
+    def __init__(self, m):
+        """Properties of zero-age main-sequence stars"""
+        self._mass = m
+        self._hrd = hrd(m)
+        # Properties to include:
+        # spectral type,
+        # luminosity,
+        # absolute_magnitude,
+        # radius,
+        # metallicity,
+        # age,
+        # colors,
+
+    # To compute color use, for example, `https://pyastronomy.readthedocs.io/en/latest/pyaslDoc/aslDoc/aslExt_1Doc/ramirez2005.html` or `https://github.com/casaluca/colte`
+
+    @property
+    def mass(self):
+        return self._mass
+
+    @property
+    def effective_temperature(self):
+        return self._hrd[0]
+
+    @property
+    def luminosity(self):
+        return self._hrd[1]
+
+    @property
+    def surface_gravity(self):
+        return self._hrd[2]
+
+    @property
+    def radius(self):
+        return self._hrd[3]
