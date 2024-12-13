@@ -12,7 +12,7 @@ from pathlib import Path
 # time
 
 description = (
-    "Dyad is a binary star kinematics and statistics package for "
+    "Dyad is a two-body dynamics and binary-star statistics package for "
     "astrophysicists."
 )
 long_description = (Path(__file__).parent/"README.md").read_text()
