@@ -4,14 +4,14 @@ r"""Generate a sample of the log-period distribution given by Moe2017
 
 The cumulative distribution function (CDF) for the log-period
 distribution given by Moe & Stefano (2017) does not have closed
-form. Instead we must compute it by numerically integrating the
+form. Instead we must compute it by numerically by integrating the
 frequency and then normalizing the result. This script performs the
 required numerical integration, saving the result as a text file. That
 text file is read by the ~distributions.py~, which implements the
 random variable `moe2017`. Note that the result of the integration is
 the /cumulative frequency/. It must be normalized to give the CDF.
-"""
 
+"""
 import numpy as np
 
 from scipy.integrate import cumulative_trapezoid
@@ -216,12 +216,83 @@ cumulative_frequency_sample = (
 #############################################################################
 # Save data
 #############################################################################
-np.savetxt("../../data/primary_mass_sample.dat",
-           primary_mass_sample)
-np.savetxt("../../data/log10_period_sample.dat",
-           log10_period_sample)
-np.savetxt("../../data/frequency_sample.dat",
-           frequency_sample)
-np.savetxt("../../data/cumulative_frequency_sample.dat",
-           cumulative_frequency_sample)
+np.savetxt(
+    "../../data/primary_mass_sample.dat", primary_mass_sample
+)
+np.savetxt(
+    "../../data/log10_period_sample.dat", log10_period_sample
+)
+np.savetxt(
+    "../../data/frequency_sample.dat", frequency_sample
+)
+np.savetxt(
+    "../../data/cumulative_frequency_sample.dat", cumulative_frequency_sample
+)
+
+#############################################################################
+#############################################################################
+#############################################################################
+#############################################################################
+#############################################################################
+
+#############################################################################
+# Create grid of sample points
+#############################################################################
+with files("dyad.data").joinpath("log10_period_sample.dat") as f_name:
+    log10_period_sample = np.loadtxt(f_name)
+with files("dyad.data").joinpath("primary_mass_sample.dat") as f_name:
+    primary_mass_sample = np.loadtxt(f_name)
+with files("dyad.data").joinpath("frequency_sample.dat") as f_name:
+    frequency_sample = np.loadtxt(f_name)
+with files("dyad.data").joinpath("cumulative_frequency_sample.dat") as f_name:
+    cumulative_frequency_sample = np.loadtxt(f_name)
+
+period_sample = 10.**log10_period_sample
+
+#############################################################################
+# Sample the frequency function using a rectilinear lattice 
+#############################################################################
+frequency_sample = frequency_sample/period_sample
+
+#############################################################################
+# Sample the cumulative frequency function using a rectilinear lattice 
+#############################################################################
+cumulative_frequency_sample = cumulative_trapezoid(
+    frequency_sample, log10_period_sample, initial=0.
+)
+
+#############################################################################
+# Compute equivalent sample of the PDF and CDF
+#############################################################################
+frequency_sample = frequency_sample/cumulative_frequency_sample[:,-1:]
+cumulative_frequency_sample = (
+    cumulative_frequency_sample/cumulative_frequency_sample[:,-1:]
+)
+
+#############################################################################
+# Save data
+#############################################################################
+# np.savetxt(
+#     "../../data/period/primary_mass_sample.dat", primary_mass_sample
+# )
+# np.savetxt(
+#     "../../data/period/period_sample.dat", period_sample
+# )
+# np.savetxt(
+#     "../../data/period/frequency_sample.dat", frequency_sample
+# )
+# np.savetxt(
+#     "../../data/period/cumulative_frequency_sample.dat",
+#     cumulative_frequency_sample
+# )
+
+_moe2017_pdf_interp = RegularGridInterpolator(
+    (_moe2017_log10_period_sample, _moe2017_primary_mass_sample),
+    _moe2017_frequency_sample.T
+)
+_moe2017_cdf_interp = RegularGridInterpolator(
+    (_moe2017_log10_period_sample, _moe2017_primary_mass_sample),
+    _moe2017_cumulative_frequency_sample.T
+)
+
 

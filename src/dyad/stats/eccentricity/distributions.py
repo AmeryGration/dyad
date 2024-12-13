@@ -7,6 +7,7 @@ __all__ = [
     "powerlaw",
     "thermal",
     "duquennoy1991",
+    "moe2017"
 ]
 
 import numpy as np
@@ -20,12 +21,36 @@ powerlaw = sp.stats._continuous_distns.powerlaw_gen(
 
 
 class _duquennoy1991_gen(sp.stats.rv_continuous):
-    r"""The Duquennoy and Mayor (1991) eccentricity random variable
+    r"""The eccentricity random variable of Duquennoy and Mayor (1991)
 
     %(before_notes)s
 
     Notes
     -----
+    The probability density function for `duquennoy1991` is:
+
+    .. math::
+
+        f(x) =
+
+    where
+
+    .. math::
+
+        A :=
+
+    :math:`x > 0` [1]_.
+
+    %(after_notes)s
+
+    References
+    ----------
+    .. [1] Duquennoy, A., and M. Mayor. 1991. `Multiplicity among
+    solar-type stars in the solar neighbourhood---II. Distribution of
+    the orbital elements in an unbiased Sample'. /Astronomy and
+    Astrophysics/ 248 (August): 485.
+
+    %(example)s
 
     """
     # Accept shape parameter
@@ -100,16 +125,40 @@ thermal = _thermal_gen(a=0., b=1., name="thermal")
 
 
 class _moe2017_gen(sp.stats.rv_continuous):
-    r"""The Moe and Stefano (2017) eccentricity random variable
+    r"""The eccentricity random variable of Moe and Stefano (2017)
 
     %(before_notes)s
 
     Notes
     -----
 
+    The probability density function for `moe2017` is:
+
+    .. math::
+
+        f(x) =
+
+    where
+
+    .. math::
+
+        A :=
+
+    :math:`x > 0` [1]_.
+
+    %(after_notes)s
+
+    References
+    ----------
+    .. [1] Moe, Maxwell, and Rosanne Di Stefano. 2017. `Mind your Ps and Qs:
+    the interrelation between period (P) and mass-ratio (Q) distributions of
+    binary stars.' /The Astrophysical Journal Supplement Series/ 230 (2): 15.
+
+    %(example)s
+
     """
     def _argcheck(self, log10_period, primary_mass):
-        res = _moe2017_eta(log10_period, primary_mass) >= 0.
+        res = _moe2017_eta(log10_period, primary_mass) > -1.
 
         return res
 
@@ -145,10 +194,9 @@ class _moe2017_gen(sp.stats.rv_continuous):
         return res
 
 
-
 def _moe2017_norm(log10_period, primary_mass):
     """Return the normalization constant"""
-    e_max = 1 - (0.5*10.**log10_period)**(-2./3.)
+    e_max = 1. - (0.5*10.**log10_period)**(-2./3.)
     num = _moe2017_eta(log10_period, primary_mass) + 1.
     denom = e_max**(_moe2017_eta(log10_period, primary_mass) + 1.)
     res = num/denom
@@ -170,7 +218,6 @@ def _moe2017_eta_1(log10_period, primary_mass):
     condition = [
         (0.5 <= log10_period) & (log10_period <= 6.),
         (6. < log10_period) & (log10_period <= 8.),
-
     ]
     value = [
         f_1(log10_period, primary_mass),
@@ -208,7 +255,6 @@ def _moe2017_eta_3(log10_period, primary_mass):
     condition = [
         (0.5/0.9 <= log10_period) & (log10_period <= 5.),        
         (5. < log10_period) & (log10_period <= 8.),
-
     ]
     value = [
         f_1(log10_period, primary_mass),

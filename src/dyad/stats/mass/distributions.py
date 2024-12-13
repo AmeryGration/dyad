@@ -17,6 +17,32 @@ import scipy as sp
 class _splitpowerlaw_gen(sp.stats.rv_continuous):
     r"""The two-piece split-power-law initial-stellar-mass random variable
 
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `splitpowerlaw` is:
+
+    .. math::
+
+        f(x) =
+
+    where
+
+    .. math::
+
+        A :=
+
+    :math:`x > 0` [1]_.
+
+    %(after_notes)s
+
+    References
+    ----------
+    .. [1] 
+
+    %(example)s
+
     """
     def _argcheck(self, s, a, b, c, d):
         return (0. < a) & (a < b) & (a < s) & (s < b) & (c < 0.) & (d < 0.)
@@ -83,7 +109,34 @@ splitpowerlaw = _splitpowerlaw_gen(name="splitpowerlaw")
 
 
 class _kroupa2002_gen(sp.stats.rv_continuous):
-    r"""The Kroupa (2002) initial stellar mass random variable
+    r"""The initial-stellar-mass random variable of Kroupa (2002)
+
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `kroupa2002` is:
+
+    .. math::
+
+        f(x) =
+
+    where
+
+    .. math::
+
+        A :=
+
+    :math:`x > 0` [1]_.
+
+    %(after_notes)s
+
+    References
+    ----------
+    .. [1] Kroupa, P. 2002. `The initial mass function and its variation
+    (review)' 285 (January):86.
+    
+    %(example)s
 
     """
     # Check 0 < a < b.
@@ -102,9 +155,34 @@ kroupa2002 = _kroupa2002_gen(a=0.1, b=60., name="kroupa2002")
 
 
 class _salpeter1955_gen(sp.stats.rv_continuous):
-    r"""The Salpeter (1955) initial stellar mass random variable
+    r"""The initial-stellar-mass random variable Salpeter (1955)
 
-    Equation 5 (Salpeter, 1955).
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `salpeter1955` is:
+
+    .. math::
+
+        f(x) =
+
+    where
+
+    .. math::
+
+        A :=
+
+    :math:`x > 0` [1]_.
+
+    %(after_notes)s
+
+    References
+    ----------
+    .. [1] Salpeter, Edwin E. 1955. `The Luminosity Function and Stellar
+    Evolution.' /The Astrophysical Journal/ 121 (January):161.
+
+    %(example)s
 
     """
     # Check 0 < a < b.
@@ -133,7 +211,7 @@ salpeter1955 = _salpeter1955_gen(
 
 
 # class _millerscalo1979_gen(sp.stats.rv_continuous):
-#     r"""The Miller-Scalo (1979) initial stellar mass random variable
+#     r"""The Miller-Scalo (1979) initial-stellar-mass random variable
 
 #     """
 #     # Check 0 < a < b.
@@ -157,7 +235,7 @@ salpeter1955 = _salpeter1955_gen(
 
 
 # class _chabrier2003_gen(sp.stats.rv_continuous):
-#     r"""The Chabrier (2003) initial stellar mass random variable
+#     r"""The Chabrier (2003) initial-stellar-mass random variable
 
 #     """
 #     # Check 0 < a < b.

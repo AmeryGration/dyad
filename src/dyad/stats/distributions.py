@@ -14,7 +14,7 @@ import scipy as sp
 
 
 class _true_anomaly_gen(sp.stats.rv_continuous):
-    r"""The true anomaly random variable
+    r"""The random variable for true anomaly
 
     %(before_notes)s
 
@@ -41,7 +41,7 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
 
     and where :math:`0 \le x < 2\pi` and :math:`0 \le e < 0` [1]_.
 
-    `true_anomaly` takes ``e`` as a shape parameter for :math:`e`.
+    `true_anomaly` takes `e` as a shape parameter for :math:`e`.
 
     %(after_notes)s
 
@@ -113,6 +113,22 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
 
     
 class _rv_uniform_gen(sp.stats.rv_continuous):
+    r"""A uniform continuous random variable
+
+    The distribution is uniform on `[0, 2\pi)`. Using the parameters
+    `loc` and `scale`, one obtains the uniform distribution on
+    `[loc, loc + 2.*np.pi*scale]`.
+
+    %(before_notes)s
+
+    See Also
+    --------
+    scipy.stats.uniform
+
+
+    %(example)s
+
+    """
     def _shape_info(self):
         return []
 
@@ -139,11 +155,11 @@ class _rv_uniform_gen(sp.stats.rv_continuous):
 
 
 class _longitude_of_ascending_node_gen(_rv_uniform_gen):
-    r"""The longitude of the ascending node random variable
+    r"""The random variable for the longitude of the ascending node
 
-    The distribution is uniform on ``[0, 2\pi)``. Using the parameters
-    ``loc`` and ``scale``, one obtains the uniform distribution on
-    ``[loc, loc + 2.*np.pi*scale]``.
+    The distribution is uniform on `[0, 2\pi)`. Using the parameters
+    `loc` and `scale`, one obtains the uniform distribution on
+    `[loc, loc + 2.*np.pi*scale]`.
 
     %(before_notes)s
 
@@ -155,7 +171,7 @@ class _longitude_of_ascending_node_gen(_rv_uniform_gen):
 
 
 class _inclination_gen(sp.stats.rv_continuous):
-    r"""The inclination random variabe
+    r"""The random variabe for inclination
 
     %(before_notes)s
 
@@ -189,11 +205,11 @@ class _inclination_gen(sp.stats.rv_continuous):
 
 
 class _argument_of_pericentre_gen(_rv_uniform_gen):
-    r"""The argument of pericentre random variable
+    r"""The random variabe for the argument of pericentre
 
-    The distribution is uniform on ``[0, 2\pi)``. Using the parameters
-    ``loc`` and ``scale``, one obtains the uniform distribution on
-    ``[loc, loc + 2.*np.pi*scale]``.
+    The distribution is uniform on `[0, 2\pi)`. Using the parameters
+    `loc` and `scale`, one obtains the uniform distribution on
+    `[loc, loc + 2.*np.pi*scale]`.
 
     %(before_notes)s
 

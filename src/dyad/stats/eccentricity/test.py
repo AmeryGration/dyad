@@ -39,8 +39,8 @@ plt.show()
 ######################################################################### 
 # Plot Moe 2017: PDF
 #########################################################################
-log10_period = 3.
 primary_mass = np.array([1., 3.5, 7., 12.5, 25.])
+log10_period = 1.
 rv = moe2017(log10_period, primary_mass.reshape([-1, 1]))
 e_max = 1 - (0.5*10.**log10_period)**(-2./3.)
 
@@ -84,9 +84,9 @@ ax_1.plot(x_1, pdf_1[4], color="magenta", ls="solid" )
 ax_1.plot(x_2, pdf_2[4], color="magenta", ls="solid",
         label=r"$M_{{1}} = {}$".format(primary_mass[4]))
 ax_1.plot(x_3, pdf_3[4], color="magenta", ls="solid")
-ax_1.legend(frameon=False, loc=2)
+ax_1.legend(frameon=False, loc=1)
 ax_1.set_xlim(-0.1, 1.1)
-ax_1.set_ylim(-0.5, 2.5)
+ax_1.set_ylim(-2., 12.)
 ax_1.set_xlabel(r"$x$")
 ax_1.set_ylabel(r"$f_{X|M_{1}}$")
 ax_2.plot(x_1, cdf_1[0], color="red", ls="dashed" )
@@ -109,7 +109,7 @@ ax_2.plot(x_1, cdf_1[4], color="magenta", ls="dashed" )
 ax_2.plot(x_2, cdf_2[4], color="magenta", ls="dashed",
           label=r"$M_{{1}} = {}$".format(primary_mass[4]))
 ax_2.plot(x_3, cdf_3[4], color="magenta", ls="dashed")
-ax_2.set_ylim(-0.25, 1.25)
+ax_2.set_ylim(-0.2, 1.2)
 ax_2.set_ylabel(r"$F_{X|M_{1}}$")
 
 ax_1.scatter(pdf_closed_dots_x[0::5], pdf_closed_dots_y[0::5],

@@ -17,7 +17,7 @@ _truncnorm = sp.stats.truncnorm
 
 
 class _duquennoy1991_gen(sp.stats.rv_continuous):
-    r"""The Duquennoy and Mayor (1991) mass-ratio random variable
+    r"""The mass-ratio random variable of Duquennoy and Mayor (1991)
 
     %(before_notes)s
 
@@ -41,7 +41,10 @@ class _duquennoy1991_gen(sp.stats.rv_continuous):
 
     References
     ----------
-    .. [1] Reference
+    .. [1] Duquennoy, A., and M. Mayor. 1991. `Multiplicity among
+    solar-type stars in the solar neighbourhood---II. Distribution of
+    the orbital elements in an unbiased Sample'. /Astronomy and
+    Astrophysics/ 248 (August): 485.
 
     %(example)s
 
@@ -74,7 +77,7 @@ duquennoy1991 = _duquennoy1991_gen(a=0., b=np.inf, name="duquennoy1991")
 
 
 class _moe2017_gen(sp.stats.rv_continuous):
-    r"""The Moe and Stefano (2017) mass-ratio random variable
+    r"""The mass-ratio random variable of Moe and Stefano (2017)
 
     %(before_notes)s
 
@@ -98,7 +101,9 @@ class _moe2017_gen(sp.stats.rv_continuous):
 
     References
     ----------
-    .. [1] Reference
+    .. [1] Moe, Maxwell, and Rosanne Di Stefano. 2017. `Mind your Ps and Qs:
+    the interrelation between period (P) and mass-ratio (Q) distributions of
+    binary stars.' /The Astrophysical Journal Supplement Series/ 230 (2): 15.
 
     %(example)s
 

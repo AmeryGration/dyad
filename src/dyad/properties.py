@@ -29,9 +29,9 @@ KSB = 4.*np.pi*SIGMA # Units: cgs
 
 def hrd(m):
     """
-    Function to evaluate zero-age main sequence location of
-    a hydrogen-burning star of mass m, given Z=0.02.
-     (from Tout et al., 1996, MNRAS, 281, 257, binary_c version)
+    Function to evaluate zero-age main sequence location of a
+    hydrogen-burning star of mass m, given Z=0.02 (from Tout et al., 1996,
+    MNRAS, 281, 257, binary_c version)
 
     Input :
     * m = Mass (in solar unit)
@@ -120,7 +120,7 @@ class Body:
         return self._mass
 
     @property
-    def T_eff(self):
+    def effective_temperature(self):
         return self._hrd[0]
 
     @property

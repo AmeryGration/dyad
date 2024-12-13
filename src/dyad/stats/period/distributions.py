@@ -50,7 +50,7 @@ def _lognorm_logpdf(x, s):
 
 
 class _trunclognorm_gen(sp.stats.rv_continuous):
-    r"""The truncated lognormal random variable
+    r"""A truncated lognormal random variable
 
     %(before_notes)s
 
@@ -99,7 +99,7 @@ class _trunclognorm_gen(sp.stats.rv_continuous):
 
     References
     ----------
-    .. [1] Reference
+    .. [1] `Truncated Normal Distribution'. 2024. In /Wikipedia/. https://en.wikipedia.org/w/index.php?title=Truncated_normal_distribution&oldid=1217498083.
 
     %(example)s
 
@@ -144,7 +144,7 @@ trunclognorm = _trunclognorm_gen(name="trunclognorm")
 
 
 class _duquennoy1991_gen(sp.stats.rv_continuous):
-    r"""The Duquennoy and Mayor (1991) mass-ratio random variable
+    r"""The mass-ratio random variable of Duquennoy and Mayor (1991)
 
     %(before_notes)s
 
@@ -168,7 +168,10 @@ class _duquennoy1991_gen(sp.stats.rv_continuous):
 
     References
     ----------
-    .. [1] Reference
+    .. [1] Duquennoy, A., and M. Mayor. 1991. `Multiplicity among
+    solar-type stars in the solar neighbourhood---II. Distribution of
+    the orbital elements in an unbiased Sample'. /Astronomy and
+    Astrophysics/ 248 (August): 485.
 
     %(example)s
 
@@ -199,3 +202,29 @@ _duquennoy1991 = trunclognorm(
 duquennoy1991 = _duquennoy1991_gen(
     a=10.**-2.3, b=10.**12., name="duquennoy1991"
 )
+
+
+class _moe2017_gen(sp.stats.rv_continuous):
+    def _pdf(self, x):
+        return _duquennoy1991.pdf(x)
+
+    def _cdf(self, x):
+        return _duquennoy1991.cdf(x)
+
+    def _ppf(self, q):
+        return _duquennoy1991.ppf(q)
+
+
+# # Duquennoy and Mayor (1991) period: truncated lognormal
+# _duquennoy1991_mu = np.exp(np.log(10.)*4.8)
+# _duquennoy1991_sigma = np.log(10.)*2.3
+# _duquennoy1991_loc = 0.
+# _duquennoy1991_scale = _duquennoy1991_mu
+# _duquennoy1991_s = _duquennoy1991_sigma
+# _duquennoy1991_a = (10.**-2. - 0.)/_duquennoy1991_scale
+# _duquennoy1991_b = (10.**12. - 0.)/_duquennoy1991_scale
+# _duquennoy1991 = trunclognorm(
+#     s=_duquennoy1991_s, a=_duquennoy1991_a, b=_duquennoy1991_b,
+#     scale=_duquennoy1991_scale
+# )
+moe2017 = _moe2017_gen(name="moe2017")
