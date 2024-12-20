@@ -4,9 +4,9 @@
 What is Dyad?
 *************
 
-Dyad is a pure-Python binary star kinematics and statistics package for astrophysicists. It allows the user to compute the kinematic properties of a bound gravitational two-body system given that system's physical properties (i.e. its component masses and orbital elements) and to synthesize a population of two-body systems with physical properties that follow a given distribution. Dyad allows the user to choose from a library of such distributions. This library includes:
+Dyad is a pure-Python binary star kinematics and statistics package for astrophysicists. It allows the user to compute the kinematic properties of a bound gravitational two-body system given that system's physical properties (i.e. its component masses and orbital elements) and to synthesize a population of two-body systems with physical properties that follow a given distribution. Dyad allows the user to choose from a library of such distributions. This library includes (but is not limited to):
 
-* the distributions published by Duquennoy and Mayor [DM91]_ and Moe and Stefano [MS17]_ for the mass-ratios and orbital elements of binary stars in the Solar neighbourhood,
+* the distributions published by Duquennoy and Mayor [DM91]_ and Moe and Stefano [MS17]_ for the mass-ratios and orbital elements of binary stars in the Solar neighbourhood, and
 
 * the distributions published by Chabrier [C03]_, Kroupa [K02]_, and Salpeter [S55]_ for the initial stellar mass.
 
@@ -47,12 +47,6 @@ References
     Kroupa, P. 2002. \'The initial mass function and its variation
     (review)\'. *ASP conference series* 285 (January): 86.
 
-.. [MS79]
-
-   Miller, G. E., and J. M. Scalo. 1979. \'The initial mass function
-   and stellar birthrate in the Solar neighborhood’. *The
-   Astrophysical Journal Supplement Series* 41 (November): 513.
-   
 .. [S55]
 
     Salpeter, E. E. 1955. \'The luminosity function and stellar

@@ -388,6 +388,15 @@
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">import</span> <span class="nn">dyad.constants</span> <span class="k">as</span> <span class="nn">constants</span>
 
+<span class="k">def</span> <span class="nf">_check_mass</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;m must be scalar.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">m</span> <span class="o">&lt;=</span> <span class="mf">0.</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;m must be positive.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">m</span>
+
 <span class="k">def</span> <span class="nf">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
     <span class="c1"># The the number 0.9999999999999999 &lt; 1.</span>
     <span class="c1"># But the number 0.99999999999999999 == 1.</span>
@@ -403,10 +412,19 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;a must be scalar.&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mf">0.</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;a must be nonnegative.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="mf">0.</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;a must be positive.&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">a</span>
+
+<span class="k">def</span> <span class="nf">_check_period</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;p must be scalar.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mf">0.</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;p must be positive.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">p</span>
 
 <div class="viewcode-block" id="semimajor_axis_from_period">
 <a class="viewcode-back" href="../../generated/generated/dyad.semimajor_axis_from_period.html#dyad.semimajor_axis_from_period">[docs]</a>
@@ -451,6 +469,17 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">_check_period</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">m_1</span> <span class="o">=</span> <span class="n">_check_mass</span><span class="p">(</span><span class="n">m_1</span><span class="p">)</span>
+    <span class="n">m_2</span> <span class="o">=</span> <span class="n">_check_mass</span><span class="p">(</span><span class="n">m_2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">m_1</span><span class="p">):</span>
+        <span class="n">m_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m_1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">m_2</span><span class="p">):</span>
+        <span class="n">m_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m_2</span><span class="p">)</span>
+    
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cbrt</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="p">(</span><span class="n">m_1</span> <span class="o">+</span> <span class="n">m_2</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="mf">2.</span><span class="o">/</span><span class="mf">4.</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span></div>
 
 
@@ -497,6 +526,17 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">m_1</span> <span class="o">=</span> <span class="n">_check_mass</span><span class="p">(</span><span class="n">m_1</span><span class="p">)</span>
+    <span class="n">m_2</span> <span class="o">=</span> <span class="n">_check_mass</span><span class="p">(</span><span class="n">m_2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">m_1</span><span class="p">):</span>
+        <span class="n">m_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m_1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">m_2</span><span class="p">):</span>
+        <span class="n">m_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m_2</span><span class="p">)</span>
+    
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">4.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mf">2.</span><span class="o">*</span><span class="n">a</span><span class="o">**</span><span class="mf">3.</span><span class="o">/</span><span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">/</span><span class="p">(</span><span class="n">m_1</span> <span class="o">+</span> <span class="n">m_2</span><span class="p">))</span></div>
 
 
@@ -896,6 +936,14 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    
     <span class="n">res</span> <span class="o">=</span> <span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">q</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">res</span>
@@ -937,23 +985,27 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    
     <span class="n">res</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">q</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">res</span>
 
-<span class="k">def</span> <span class="nf">primary_semimajor_axis_from_secondary_semimajor_axis</span><span class="p">(</span><span class="n">a_2</span><span class="p">,</span> <span class="n">m_1</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">primary_semimajor_axis_from_secondary_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the primary semimajor axis given the secondary semimajor axis</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 
-<span class="sd">    a_2 : (d, 2) array-like</span>
+<span class="sd">    a : (d, 2) array-like</span>
 
 <span class="sd">        Semimajor axis of the less-massive body, :math:`a_{2}`.</span>
-
-<span class="sd">    m_1 : </span>
-
-<span class="sd">        Mass of the more-massive body, :math:`m_{1}`.</span>
 
 <span class="sd">    q : </span>
 
@@ -982,23 +1034,27 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">a_2</span><span class="o">*</span><span class="n">q</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">q</span>
 
     <span class="k">return</span> <span class="n">res</span>
 
-<span class="k">def</span> <span class="nf">secondary_semimajor_axis_from_primary_semimajor_axis</span><span class="p">(</span><span class="n">a_1</span><span class="p">,</span> <span class="n">m_1</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">secondary_semimajor_axis_from_primary_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the secondary semimajor axis given the primary semimajor axis</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 
-<span class="sd">    a_1 : (d, 2) array-like</span>
+<span class="sd">    a : (d, 2) array-like</span>
 
-<span class="sd">        Semimajor axis of the more-massive body, :math:`a_{2}`.</span>
-
-<span class="sd">    m_1 : </span>
-
-<span class="sd">        Mass of the more-massive body, :math:`m_{1}`.</span>
+<span class="sd">        Semimajor axis of the more-massive body, :math:`a_{1}`.</span>
 
 <span class="sd">    q : </span>
 
@@ -1027,9 +1083,18 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">a_1</span><span class="o">/</span><span class="n">q</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="n">q</span>
 
     <span class="k">return</span> <span class="n">res</span>
+
 
 <div class="viewcode-block" id="Orbit">
 <a class="viewcode-back" href="../../generated/generated/dyad.Orbit.html#dyad.Orbit">[docs]</a>
@@ -1081,12 +1146,6 @@
 <span class="sd">    &gt;&gt;&gt; m, a, e = [1., 1.], [1., 1.], [0., 0.]</span>
 <span class="sd">    &gt;&gt;&gt; orb.Orbit(m, a, e)</span>
 
-<span class="sd">    The shape of ... .</span>
-<span class="sd">    </span>
-<span class="sd">    &gt;&gt;&gt; m = np.ones(2*3).reshape(2, 3)</span>
-<span class="sd">    &gt;&gt;&gt; elements = 0.5*np.zeros(6*2*3).reshape(6, 2, 3)</span>
-<span class="sd">    &gt;&gt;&gt; orb.Orbit(m, elements)</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Orbit.__init__">
 <a class="viewcode-back" href="../../generated/generated/dyad.Orbit.html#dyad.Orbit.__init__">[docs]</a>
@@ -1098,12 +1157,15 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
             <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">m</span> <span class="o">&lt;=</span> <span class="mf">0.</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;m must be positive.&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mf">0.</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;a must be positive.&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="mf">0.</span> <span class="o">&lt;=</span> <span class="n">e</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">e</span> <span class="o">&lt;</span> <span class="mf">1.</span><span class="p">)):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;e must be nonnegative and less than one.&quot;</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">_check_mass</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="c1"># if np.any(m &lt;= 0.):</span>
+        <span class="c1">#     raise ValueError(&quot;m must be positive.&quot;)</span>
+        <span class="c1"># if np.any(a &lt;= 0.):</span>
+        <span class="c1">#     raise ValueError(&quot;a must be positive.&quot;)</span>
+        <span class="c1"># if not (np.any(0. &lt;= e) and np.any(e &lt; 1.)):</span>
+        <span class="c1">#     raise ValueError(&quot;e must be nonnegative and less than one.&quot;)</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">_mass</span> <span class="o">=</span> <span class="n">m</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_semimajor_axis</span> <span class="o">=</span> <span class="n">a</span>
@@ -1240,8 +1302,7 @@
     <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the orbital period&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
-            <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
-            <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mf">3.</span>
                 <span class="o">/</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mass</span><span class="p">)</span>
             <span class="p">)</span>
@@ -1424,6 +1485,20 @@
 <div class="viewcode-block" id="TwoBody.__init__">
 <a class="viewcode-back" href="../../generated/generated/dyad.TwoBody.html#dyad.TwoBody.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">Omega</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+        <span class="c1"># m = _check_mass(m)</span>
+        <span class="c1"># q = _check_mass(q)</span>
+        <span class="c1"># a = _check_semimajoraxis(a)</span>
+        <span class="c1"># e = _check_eccentricity(e)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_mass</span> <span class="o">=</span> <span class="n">m</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mass_ratio</span> <span class="o">=</span> <span class="n">q</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_semimajor_axis</span> <span class="o">=</span> <span class="n">a</span>

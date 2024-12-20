@@ -131,7 +131,7 @@ Then instantiate a :class:`dyad.TwoBody` object.
 
    >>> binary = dyad.TwoBody(m_1, q, a_1, e, theta, Omega, i, omega)
 
-Inspect the phase state of the 42nd element, which is given in Cartesian coordinaes as :math:`(x, y, z, v_{x}, v_{y}, v_{z})`.
+Inspect the phase state of the 42nd element, which is given in Cartesian coordinates as :math:`(x, y, z, v_{x}, v_{y}, v_{z})`.
 
 .. sourcecode:: python
 

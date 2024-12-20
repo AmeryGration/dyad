@@ -82,13 +82,13 @@ binary. The two component stars have masses :math:`M_{A} =
 so that the mass ratio is :math:`q = 0.8428`. Both stars move on
 elliptical orbits with eccentricity :math:`e = 0.5195`. The semimajor
 axis of the primary star's orbit is :math:`a_{A} =
-10.60~\text{au}`. We may represent this system using the class
+~\text{au}`. We may represent this system using the class
 :class:`dyad.TwoBody`.
 
 .. sourcecode:: python
 
    >>> import dyad
-   >>> m_A, q, a_A, e = 1.079, 0.8428, 10.60, 0.5195
+   >>> m_A, q, a_A, e = 1.079, 0.8428, , 0.5195
    >>> binary = dyad.TwoBody(m_A, q, a_A, e)
 
 The total energy and total orbital angular momentum are properties of the system and are accessible as instance attributes.
