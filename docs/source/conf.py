@@ -23,7 +23,8 @@ extensions = [
     "sphinx_copybutton",
     # "sphinx_design",
     # "matplotlib.sphinxext.plot_directive",
-    "sphinx_rtd_theme"
+    "sphinx_rtd_theme",
+    "sphinx_exec_code",
 ]
 
 templates_path = ["_templates"]

@@ -172,6 +172,13 @@
   </a>
 </li>
 
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../community_guidelines/index.html">
+    Contribute to Dyad
+  </a>
+</li>
+
                 </ul>
             </li>
             
@@ -284,6 +291,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../api_reference/index.html">
     Dyad API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../community_guidelines/index.html">
+    Contribute to Dyad
   </a>
 </li>
 
@@ -480,7 +494,10 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">m_2</span><span class="p">):</span>
         <span class="n">m_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m_2</span><span class="p">)</span>
     
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cbrt</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="p">(</span><span class="n">m_1</span> <span class="o">+</span> <span class="n">m_2</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="mf">2.</span><span class="o">/</span><span class="mf">4.</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cbrt</span><span class="p">(</span>
+        <span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="p">(</span><span class="n">m_1</span> <span class="o">+</span> <span class="n">m_2</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="mf">2.</span>
+        <span class="o">/</span><span class="p">(</span><span class="mf">4.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="period_from_semimajor_axis">
@@ -944,9 +961,7 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
         <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
     
-    <span class="n">res</span> <span class="o">=</span> <span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">q</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">res</span>
+    <span class="k">return</span> <span class="n">q</span><span class="o">*</span><span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">q</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">secondary_semimajor_axis_from_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the secondary semimajor axis given the relative semimajor axis</span>
@@ -993,9 +1008,7 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
         <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
     
-    <span class="n">res</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">q</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">res</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">q</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">primary_semimajor_axis_from_secondary_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the primary semimajor axis given the secondary semimajor axis</span>
@@ -1042,9 +1055,7 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
         <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 
-    <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">q</span>
-
-    <span class="k">return</span> <span class="n">res</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">q</span>
 
 <span class="k">def</span> <span class="nf">secondary_semimajor_axis_from_primary_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the secondary semimajor axis given the primary semimajor axis</span>
@@ -1091,9 +1102,7 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
         <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 
-    <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="n">q</span>
-
-    <span class="k">return</span> <span class="n">res</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">/</span><span class="n">q</span>
 
 
 <div class="viewcode-block" id="Orbit">

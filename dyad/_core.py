@@ -27,42 +27,42 @@ import scipy as sp
 import dyad.constants as constants
 
 def _check_mass(m):
-    if not isinstance(m, (int, float)) or isinstance(m, bool):
+    if not all(np.isreal(m)):
         raise TypeError("m must be scalar.")
-
-    if m <= 0.:
+    if np.any(m <= 0.):
         raise ValueError("m must be positive.")
+    res = m
 
-    return m
+    return res
 
 def _check_eccentricity(e):
     # The the number 0.9999999999999999 < 1.
     # But the number 0.99999999999999999 == 1.
-    if not isinstance(e, (int, float)) or isinstance(e, bool):
+    if not all(np.isreal(e)):
         raise TypeError("e must be scalar.")
-
-    if e < 0. or e >= 1.:
+    if np.any((e < 0.) | (e >= 1.)):
         raise ValueError("e must be nonnegative and less than one.")
+    res = e
 
-    return e
+    return res
 
 def _check_semimajor_axis(a):
-    if not isinstance(a, (int, float)) or isinstance(a, bool):
+    if not all(np.isreal(a)):
         raise TypeError("a must be scalar.")
-
-    if a <= 0.:
+    if np.any(a <= 0.):
         raise ValueError("a must be positive.")
+    res = a
 
-    return a
+    return res
 
 def _check_period(p):
-    if not isinstance(p, (int, float)) or isinstance(p, bool):
+    if not all(np.isreal(p)):
         raise TypeError("p must be scalar.")
-
-    if p <= 0.:
+    if np.any(p <= 0.):
         raise ValueError("p must be positive.")
+    res = p
 
-    return p
+    return res
 
 def semimajor_axis_from_period(p, m_1, m_2):
     """Return the semimajor axis given the period
@@ -105,21 +105,19 @@ def semimajor_axis_from_period(p, m_1, m_2):
     --------
 
     """
-    p = _check_period(p)
-    m_1 = _check_mass(m_1)
-    m_2 = _check_mass(m_2)
-
-    if not np.isscalar(p):
-        p = np.asarray(p)
-    if not np.isscalar(m_1):
-        m_1 = np.asarray(m_1)
-    if not np.isscalar(m_2):
-        m_2 = np.asarray(m_2)
-    
-    return np.cbrt(
+    p = np.asarray(p)
+    m_1 = np.asarray(m_1)
+    m_2 = np.asarray(m_2)
+    # p = _check_period(p)
+    # m_1 = _check_mass(m_1)
+    # m_2 = _check_mass(m_2)
+    res = np.cbrt(
         constants.GRAV_CONST*(m_1 + m_2)*p**2.
         /(4.*np.pi**2.)
     )
+    res = res[()]
+
+    return res
 
 def period_from_semimajor_axis(a, m_1, m_2):
     """Return the period given the semimajor axis
@@ -162,18 +160,16 @@ def period_from_semimajor_axis(a, m_1, m_2):
     --------
 
     """
-    a = _check_semimajor_axis(a)
-    m_1 = _check_mass(m_1)
-    m_2 = _check_mass(m_2)
-
-    if not np.isscalar(a):
-        a = np.asarray(a)
-    if not np.isscalar(m_1):
-        m_1 = np.asarray(m_1)
-    if not np.isscalar(m_2):
-        m_2 = np.asarray(m_2)
+    a = np.asarray(a)
+    m_1 = np.asarray(m_1)
+    m_2 = np.asarray(m_2)
+    res = np.sqrt(
+        4.*np.pi**2.*a**3.
+        /(constants.GRAV_CONST*(m_1 + m_2))
+    )
+    res = res[()]
     
-    return np.sqrt(4.*np.pi**2.*a**3./constants.GRAV_CONST/(m_1 + m_2))
+    return res
 
 def true_anomaly_from_mean_anomaly(mu, e):
     """Return the true anomaly modulo :math:`2\pi`
@@ -212,16 +208,13 @@ def true_anomaly_from_mean_anomaly(mu, e):
     --------
 
     """
-    e = _check_eccentricity(e)
-
-    if not np.isscalar(mu):
-        mu = np.asarray(mu)
-
+    e = np.array(e)
+    # e = _check_eccentricity(e)
+    mu = np.asarray(mu)
     if e == 0.:
         theta = mu%(2.*np.pi)
 
         return theta
-
     eta = eccentric_anomaly_from_mean_anomaly(mu, e)
     theta = true_anomaly_from_eccentric_anomaly(eta, e)
     theta = theta%(2.*np.pi)
@@ -265,10 +258,8 @@ def true_anomaly_from_eccentric_anomaly(eta, e):
     --------
 
     """
-    e = _check_eccentricity(e)
-
-    if not np.isscalar(eta):
-        eta = np.asarray(eta)
+    # e = _check_eccentricity(e)
+    eta = np.asarray(eta)
 
     if e == 0.:
         theta = eta%(2.*np.pi)
@@ -317,10 +308,8 @@ def mean_anomaly_from_eccentric_anomaly(eta, e):
     --------
 
     """
-    e = _check_eccentricity(e)
-
-    if not np.isscalar(eta):
-        eta = np.asarray(eta)
+    # e = _check_eccentricity(e)
+    eta = np.asarray(eta)
 
     if e == 0.:
         mu = eta%(2.*np.pi)
@@ -369,10 +358,8 @@ def mean_anomaly_from_true_anomaly(theta, e):
     --------
 
     """
-    e = _check_eccentricity(e)
-
-    if not np.isscalar(theta):
-        theta = np.asarray(theta)
+    # e = _check_eccentricity(e)
+    theta = np.asarray(theta)
 
     if e == 0.:
         mu = theta%(2.*np.pi)
@@ -428,10 +415,8 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
     --------
 
     """
-    e = _check_eccentricity(e)
-
-    if not np.isscalar(theta):
-        theta = np.asarray(theta)
+    # e = _check_eccentricity(e)
+    theta = np.asarray(theta)
 
     if e == 0.:
         eta = theta%(2.*np.pi)
@@ -501,10 +486,8 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
 
         return res
 
-    e = _check_eccentricity(e)
-
-    if not np.isscalar(mu):
-        mu = np.asarray(mu)
+    # e = _check_eccentricity(e)
+    mu = np.asarray(mu)
 
     if e == 0.:
         eta = mu%(2.*np.pi)
@@ -553,15 +536,14 @@ def primary_semimajor_axis_from_semimajor_axis(a, q):
     --------
 
     """
-    a = _check_semimajor_axis(a)
-    q = _check_semimajor_axis(q)
+    # a = _check_semimajor_axis(a)
+    # q = _check_semimajor_axis(q)
+    a = np.asarray(a)
+    q = np.asarray(q)
+    res = q*a/(1. + q)
+    res = res[()]
 
-    if not np.isscalar(a):
-        a = np.asarray(a)
-    if not np.isscalar(q):
-        q = np.asarray(q)
-    
-    return q*a/(1. + q)
+    return res
 
 def secondary_semimajor_axis_from_semimajor_axis(a, q):
     """Return the secondary semimajor axis given the relative semimajor axis
@@ -600,15 +582,14 @@ def secondary_semimajor_axis_from_semimajor_axis(a, q):
     --------
 
     """
-    a = _check_semimajor_axis(a)
-    q = _check_semimajor_axis(q)
+    # a = _check_semimajor_axis(a)
+    # q = _check_semimajor_axis(q)
+    a = np.asarray(a)
+    q = np.asarray(q)
+    res = a/(1. + q)
+    res = res[()]
 
-    if not np.isscalar(a):
-        a = np.asarray(a)
-    if not np.isscalar(q):
-        q = np.asarray(q)
-    
-    return a/(1. + q)
+    return res
 
 def primary_semimajor_axis_from_secondary_semimajor_axis(a, q):
     """Return the primary semimajor axis given the secondary semimajor axis
@@ -647,15 +628,14 @@ def primary_semimajor_axis_from_secondary_semimajor_axis(a, q):
     --------
 
     """
-    a = _check_semimajor_axis(a)
-    q = _check_semimajor_axis(q)
+    # a = _check_semimajor_axis(a)
+    # q = _check_semimajor_axis(q)
+    a = np.asarray(a)
+    q = np.asarray(q)
+    res = a*q
+    res = res[()]
 
-    if not np.isscalar(a):
-        a = np.asarray(a)
-    if not np.isscalar(q):
-        q = np.asarray(q)
-
-    return a*q
+    return res
 
 def secondary_semimajor_axis_from_primary_semimajor_axis(a, q):
     """Return the secondary semimajor axis given the primary semimajor axis
@@ -694,16 +674,14 @@ def secondary_semimajor_axis_from_primary_semimajor_axis(a, q):
     --------
 
     """
-    a = _check_semimajor_axis(a)
-    q = _check_semimajor_axis(q)
+    # a = _check_semimajor_axis(a)
+    # q = _check_semimajor_axis(q)
+    a = np.asarray(a)
+    q = np.asarray(q)
+    res = a/q
+    res = res[()]
 
-    if not np.isscalar(a):
-        a = np.asarray(a)
-    if not np.isscalar(q):
-        q = np.asarray(q)
-
-    return a/q
-
+    return res
 
 class Orbit:
     """A class representing an elliptical orbit
@@ -755,22 +733,12 @@ class Orbit:
 
     """
     def __init__(self, m, a, e, Omega=0., i=0., omega=0.):
-        if not np.isscalar(m):
-            m = np.asarray(m)
-        if not np.isscalar(a):
-            a = np.asarray(a)
-        if not np.isscalar(e):
-            e = np.asarray(e)
-
-        m = _check_mass(m)
-        a = _check_semimajor_axis(a)
-        e = _check_eccentricity(e)
-        # if np.any(m <= 0.):
-        #     raise ValueError("m must be positive.")
-        # if np.any(a <= 0.):
-        #     raise ValueError("a must be positive.")
-        # if not (np.any(0. <= e) and np.any(e < 1.)):
-        #     raise ValueError("e must be nonnegative and less than one.")
+        m = np.asarray(m)[()]
+        a = np.asarray(a)[()]
+        e = np.asarray(e)[()]
+        # m = _check_mass(m)
+        # a = _check_semimajor_axis(a)
+        # e = _check_eccentricity(e)
         
         self._mass = m
         self._semimajor_axis = a
@@ -848,7 +816,7 @@ class Orbit:
 
     @property
     def energy(self):
-        """Get the energy of the orbit"""
+        """Get the body's specific total energy"""
         raise NotImplementedError
 
     @property
@@ -927,7 +895,7 @@ class Orbit:
 
     def state(self, theta):
         """Get the orbital state vector in Cartesian coordinates"""
-        return np.hstack([self._position, self._velocity])
+        return np.hstack([self._position(theta), self._velocity(theta)])
 
     def radius(self, theta):
         """Get the body's radius"""
@@ -935,7 +903,7 @@ class Orbit:
 
     def _position(self, theta):
         """Get the body's position"""
-        r = self.radius
+        r = self.radius(theta)
         x = r*(
             np.cos(self.longitude_of_ascending_node)
             *(
@@ -969,14 +937,22 @@ class Orbit:
     
     def potential(self, theta):
         """Get the gravitational potential at the body's position"""
-        raise NotImplementedError
+        res = -constants.GRAV_CONST*self.mass/self.radius(theta)
+
+        return res            
+    
+    def kinetic_energy(self, theta):
+        """Get the body's specific kinetic energy"""
+        res = 0.5*self.speed(theta)**2.
+
+        return res
     
     def speed(self, theta):
         """Get the body's speed"""
         return np.sqrt(
             constants.GRAV_CONST
             *self.mass
-            *(2./self.radius - 1./self.semimajor_axis)
+            *(2./self.radius(theta) - 1./self.semimajor_axis)
         )*constants.KPS
 
     def _velocity(self, theta):
@@ -1084,14 +1060,10 @@ class TwoBody:
 
     """
     def __init__(self, m, q, a, e, Omega=0., i=0., omega=0.):
-        if not np.isscalar(m):
-            m = np.asarray(m)
-        if not np.isscalar(1):
-            q = np.asarray(q)
-        if not np.isscalar(a):
-            a = np.asarray(a)
-        if not np.isscalar(e):
-            e = np.asarray(e)
+        m = np.asarray(m)
+        q = np.asarray(q)
+        a = np.asarray(a)
+        e = np.asarray(e)
 
         # m = _check_mass(m)
         # q = _check_mass(q)
