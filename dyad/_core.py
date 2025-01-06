@@ -765,18 +765,6 @@ class Orbit:
         """Get the orbit's argument of pericentre"""
         return self._argument_of_pericentre
 
-    # @property
-    # def orbital_elements(self):
-    #     """Get the orbital elements as a dictionary"""
-    #     return dict(
-    #         semimajor_axis=self.semimajor_axis,
-    #         eccentricity=self.eccentricity,
-    #         true_anomaly=self.true_anomaly,
-    #         longitude_of_ascending_node=self.longitude_of_ascending_node,
-    #         inclination=self.inclination,
-    #         argument_of_pericentre=self.argument_of_pericentre
-    #     )
-
     @property
     def semiminor_axis(self):
         """Get the orbit's semiminor axis"""
