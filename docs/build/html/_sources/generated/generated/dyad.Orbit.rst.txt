@@ -15,6 +15,7 @@
    
       ~Orbit.__init__
       ~Orbit.eccentric_anomaly
+      ~Orbit.kinetic_energy
       ~Orbit.mean_anomaly
       ~Orbit.potential
       ~Orbit.radius

@@ -82,8 +82,6 @@ Plot this.
 
 .. _binary_system:
 
-
-
 ****************************
 Representing a binary system
 ****************************

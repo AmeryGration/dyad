@@ -33,7 +33,9 @@ Now plot our results.
 
    >>> import matplot.pyplot as plt
    >>> fig, ax = plt.subplots()
-   >>> ax.histogram(sample, bins=25, density=True, histtype="step")
+   >>> ax.hist(sample, bins=25, density=True, histtype="step")
+   >>> ax.set_xlabel(r"$i$")
+   >>> ax.set_xlabel(r"$f_{I}$")
    >>> ax.plot(x, pdf)
    >>> plt.show()
 
@@ -53,8 +55,10 @@ Plot the results.
 .. sourcecode:: python
 
    >>> fig, ax = plt.subplots()
-   >>> ax.histogram(sample, bins=25, density=True, histtype="step")
+   >>> ax.hist(sample, bins=25, density=True, histtype="step")
    >>> ax.plot(x, pdf)
+   >>> ax.set_xlabel(r"$\theta$")
+   >>> ax.set_ylabel(r"$f_{\Theta}$")
    >>> plt.show()
 
 In some cases there is a choice of distribution. These are kept in the
@@ -102,7 +106,7 @@ Now sample the eccentricity, remembering that the circularization period is :mat
 .. sourcecode:: python
 		
    >>> e = np.zeros(n)
-   >>> e[p > 11.] = stats.eccentricity.duquennoy1991(p[p > 11.]).rvs(size=n)
+   >>> e[p > 11.] = stats.eccentricity.duquennoy1991(p[p > 11.]).rvs()
 
 Using these eccentricities sample the true anomaly.
 

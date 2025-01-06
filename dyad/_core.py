@@ -6,8 +6,6 @@ namespace.
 """
 
 __all__ = [
-    "Orbit",
-    "TwoBody",
     "semimajor_axis_from_period",
     "period_from_semimajor_axis",
     "true_anomaly_from_mean_anomaly",
@@ -20,6 +18,8 @@ __all__ = [
     "secondary_semimajor_axis_from_semimajor_axis",
     "primary_semimajor_axis_from_secondary_semimajor_axis",
     "secondary_semimajor_axis_from_primary_semimajor_axis",
+    "Orbit",
+    "TwoBody",
 ]
 
 import numpy as np
@@ -27,7 +27,7 @@ import scipy as sp
 import dyad.constants as constants
 
 def _check_mass(m):
-    if not all(np.isreal(m)):
+    if not np.all(np.isreal(m)):
         raise TypeError("m must be scalar.")
     if np.any(m <= 0.):
         raise ValueError("m must be positive.")
@@ -38,7 +38,7 @@ def _check_mass(m):
 def _check_eccentricity(e):
     # The the number 0.9999999999999999 < 1.
     # But the number 0.99999999999999999 == 1.
-    if not all(np.isreal(e)):
+    if not np.all(np.isreal(e)):
         raise TypeError("e must be scalar.")
     if np.any((e < 0.) | (e >= 1.)):
         raise ValueError("e must be nonnegative and less than one.")
@@ -47,7 +47,7 @@ def _check_eccentricity(e):
     return res
 
 def _check_semimajor_axis(a):
-    if not all(np.isreal(a)):
+    if not np.all(np.isreal(a)):
         raise TypeError("a must be scalar.")
     if np.any(a <= 0.):
         raise ValueError("a must be positive.")
@@ -56,7 +56,7 @@ def _check_semimajor_axis(a):
     return res
 
 def _check_period(p):
-    if not all(np.isreal(p)):
+    if not np.all(np.isreal(p)):
         raise TypeError("p must be scalar.")
     if np.any(p <= 0.):
         raise ValueError("p must be positive.")
@@ -108,9 +108,9 @@ def semimajor_axis_from_period(p, m_1, m_2):
     p = np.asarray(p)
     m_1 = np.asarray(m_1)
     m_2 = np.asarray(m_2)
-    # p = _check_period(p)
-    # m_1 = _check_mass(m_1)
-    # m_2 = _check_mass(m_2)
+    p = _check_period(p)
+    m_1 = _check_mass(m_1)
+    m_2 = _check_mass(m_2)
     res = np.cbrt(
         constants.GRAV_CONST*(m_1 + m_2)*p**2.
         /(4.*np.pi**2.)
@@ -171,106 +171,6 @@ def period_from_semimajor_axis(a, m_1, m_2):
     
     return res
 
-def true_anomaly_from_mean_anomaly(mu, e):
-    """Return the true anomaly modulo :math:`2\pi`
-
-    Parameters
-    ----------
-
-    mu : (d, 2) array-like
-
-        Mean anomaly.
-
-    e : 
-
-        Eccentricity.
-
-    Returns
-    -------
-
-    res : (n, d) ndarray
-
-        True anomaly.
-
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
-    Examples
-    --------
-
-    """
-    e = np.array(e)
-    # e = _check_eccentricity(e)
-    mu = np.asarray(mu)
-    if e == 0.:
-        theta = mu%(2.*np.pi)
-
-        return theta
-    eta = eccentric_anomaly_from_mean_anomaly(mu, e)
-    theta = true_anomaly_from_eccentric_anomaly(eta, e)
-    theta = theta%(2.*np.pi)
-
-    return theta
-
-def true_anomaly_from_eccentric_anomaly(eta, e):
-    """Return the true anomaly modulo :math:`2\pi`
-
-    Parameters
-    ----------
-
-    eta : (d, 2) array-like
-
-        Eccentric anomaly.
-
-    e : 
-    
-        Eccentricity.
-    
-    Returns
-    -------
-
-    res : (n, d) ndarray
-
-        True anomaly.
-
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
-    Examples
-    --------
-
-    """
-    # e = _check_eccentricity(e)
-    eta = np.asarray(eta)
-
-    if e == 0.:
-        theta = eta%(2.*np.pi)
-
-        return theta
-
-    theta = 2.*np.arctan(np.sqrt(1. + e)*np.tan(eta/2.)/np.sqrt(1. - e))
-    theta = (theta + 2.*np.pi)%(2.*np.pi)
-
-    return theta
-
 def mean_anomaly_from_eccentric_anomaly(eta, e):
     """Return the mean anomaly modulo :math:`2\pi`
 
@@ -308,66 +208,11 @@ def mean_anomaly_from_eccentric_anomaly(eta, e):
     --------
 
     """
-    # e = _check_eccentricity(e)
     eta = np.asarray(eta)
-
-    if e == 0.:
-        mu = eta%(2.*np.pi)
-
-        return mu
-
+    e = np.asarray(e)
+    e = _check_eccentricity(e)
     mu = eta - e*np.sin(eta)
-    mu = mu%(2.*np.pi)
-
-    return mu
-
-def mean_anomaly_from_true_anomaly(theta, e):
-    """Return the mean anomaly modulo :math:`2\pi`
-
-    Parameters
-    ----------
-
-    theta : (d, 2) array-like
-
-        True anomaly.
-
-    e : 
-    
-        Eccentricity.
-    
-    Returns
-    -------
-
-    res : (n, d) ndarray
-
-        Mean anomaly.
-
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
-    Examples
-    --------
-
-    """
-    # e = _check_eccentricity(e)
-    theta = np.asarray(theta)
-
-    if e == 0.:
-        mu = theta%(2.*np.pi)
-
-        return mu
-
-    eta = eccentric_anomaly_from_true_anomaly(theta, e)
-    mu = mean_anomaly_from_eccentric_anomaly(eta, e)
+    mu = mu[()]
 
     return mu
 
@@ -415,18 +260,120 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
     --------
 
     """
-    # e = _check_eccentricity(e)
     theta = np.asarray(theta)
-
-    if e == 0.:
-        eta = theta%(2.*np.pi)
-
-        return eta
-
-    eta = 2.*np.arctan(np.sqrt(1. - e)*np.tan(theta/2.)/np.sqrt(1. + e))
-    eta = (eta + 2.*np.pi)%(2.*np.pi)
-
+    e = np.asarray(e)
+    e = _check_eccentricity(e)
+    # The function np.arctan2 returns the principal angle,
+    # :math:`\eta \mod 2\pi`. So we work with the principal angle
+    # :math:`\theta \mod 2\pi`.
+    theta_principal = theta%(2.*np.pi)
+    eta = 2.*np.arctan2(
+        np.sqrt(1. - e)/np.sqrt(1. + e),
+        1./np.tan(theta_principal/2.)
+    )
+    eta = eta + 2.*np.pi*(theta//(2.*np.pi))
+    eta = eta[()]
+    
     return eta
+
+def true_anomaly_from_eccentric_anomaly(eta, e):
+    """Return the true anomaly modulo :math:`2\pi`
+
+    Parameters
+    ----------
+
+    eta : (d, 2) array-like
+
+        Eccentric anomaly.
+
+    e : 
+    
+        Eccentricity.
+    
+    Returns
+    -------
+
+    res : (n, d) ndarray
+
+        True anomaly.
+
+    Raises
+    ------
+
+    Warns
+    -----
+
+    See also
+    --------
+
+    Notes
+    -----
+
+    Examples
+    --------
+
+    """
+    eta = np.asarray(eta)
+    e = np.asarray(e)
+    e = _check_eccentricity(e)
+    # The function np.arctan2 returns the principal angle,
+    # :math:`\theta \mod 2\pi`. So we work with the principal angle
+    # :math:`\eta \mod 2\pi`.
+    eta_principal = eta%(2.*np.pi)
+    theta = 2.*np.arctan2(
+        np.sqrt(1. + e)/np.sqrt(1. - e),
+        1./np.tan(eta_principal/2.)
+    )
+    theta = theta + 2.*np.pi*(eta//(2.*np.pi))
+    theta = theta[()]
+
+    return theta
+
+def mean_anomaly_from_true_anomaly(theta, e):
+    """Return the mean anomaly modulo :math:`2\pi`
+
+    Parameters
+    ----------
+
+    theta : (d, 2) array-like
+
+        True anomaly.
+
+    e : 
+    
+        Eccentricity.
+    
+    Returns
+    -------
+
+    res : (n, d) ndarray
+
+        Mean anomaly.
+
+    Raises
+    ------
+
+    Warns
+    -----
+
+    See also
+    --------
+
+    Notes
+    -----
+
+    Examples
+    --------
+
+    """
+    theta = np.asarray(theta)
+    e = np.asarray(e)
+    e = _check_eccentricity(e)
+    eta = eccentric_anomaly_from_true_anomaly(theta, e)
+    mu = mean_anomaly_from_eccentric_anomaly(eta, e)
+    mu = mu[()]
+
+    return mu
 
 def eccentric_anomaly_from_mean_anomaly(mu, e):
     """Return the eccentric anomaly modulo :math:`2\pi`
@@ -473,8 +420,6 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
 
     def solve(x):
         # Keyword factor=1. required to avoid numerical instability for big e
-        x = x%(2.*np.pi)
-
         res = sp.optimize.fsolve(f, x, x, f_gradient, factor=1.)
         # Fake it: ensure that the function returns np.float64:
         # 1. res.item() extracts a float;
@@ -486,18 +431,60 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
 
         return res
 
-    # e = _check_eccentricity(e)
     mu = np.asarray(mu)
-
-    if e == 0.:
-        eta = mu%(2.*np.pi)
-
-        return eta
-
-    eta = np.vectorize(solve)(mu)
-    # eta = solve(mu)
+    e = np.asarray(e)
+    e = _check_eccentricity(e)
+    mu_principal = mu%(2.*np.pi)
+    eta = np.vectorize(solve)(mu_principal)
+    eta = eta + 2.*np.pi*(mu//(2.*np.pi))
+    eta = eta[()]
 
     return eta
+
+def true_anomaly_from_mean_anomaly(mu, e):
+    """Return the true anomaly modulo :math:`2\pi`
+
+    Parameters
+    ----------
+
+    mu : (d, 2) array-like
+
+        Mean anomaly.
+
+    e : 
+
+        Eccentricity.
+
+    Returns
+    -------
+
+    res : (n, d) ndarray
+
+        True anomaly.
+
+    Raises
+    ------
+
+    Warns
+    -----
+
+    See also
+    --------
+
+    Notes
+    -----
+
+    Examples
+    --------
+
+    """
+    mu = np.asarray(mu)
+    e = np.asarray(e)
+    e = _check_eccentricity(e)
+    eta = eccentric_anomaly_from_mean_anomaly(mu, e)
+    theta = true_anomaly_from_eccentric_anomaly(eta, e)
+
+    return theta
 
 def primary_semimajor_axis_from_semimajor_axis(a, q):
     """Return the primary semimajor axis given the relative semimajor axis
@@ -536,10 +523,10 @@ def primary_semimajor_axis_from_semimajor_axis(a, q):
     --------
 
     """
-    # a = _check_semimajor_axis(a)
-    # q = _check_semimajor_axis(q)
     a = np.asarray(a)
     q = np.asarray(q)
+    a = _check_semimajor_axis(a)
+    q = _check_semimajor_axis(q)
     res = q*a/(1. + q)
     res = res[()]
 
@@ -582,10 +569,10 @@ def secondary_semimajor_axis_from_semimajor_axis(a, q):
     --------
 
     """
-    # a = _check_semimajor_axis(a)
-    # q = _check_semimajor_axis(q)
     a = np.asarray(a)
     q = np.asarray(q)
+    a = _check_semimajor_axis(a)
+    q = _check_semimajor_axis(q)
     res = a/(1. + q)
     res = res[()]
 
@@ -628,10 +615,10 @@ def primary_semimajor_axis_from_secondary_semimajor_axis(a, q):
     --------
 
     """
-    # a = _check_semimajor_axis(a)
-    # q = _check_semimajor_axis(q)
     a = np.asarray(a)
     q = np.asarray(q)
+    a = _check_semimajor_axis(a)
+    q = _check_semimajor_axis(q)
     res = a*q
     res = res[()]
 
@@ -674,14 +661,15 @@ def secondary_semimajor_axis_from_primary_semimajor_axis(a, q):
     --------
 
     """
-    # a = _check_semimajor_axis(a)
-    # q = _check_semimajor_axis(q)
     a = np.asarray(a)
     q = np.asarray(q)
+    a = _check_semimajor_axis(a)
+    q = _check_semimajor_axis(q)
     res = a/q
     res = res[()]
 
     return res
+
 
 class Orbit:
     """A class representing an elliptical orbit
@@ -736,9 +724,9 @@ class Orbit:
         m = np.asarray(m)[()]
         a = np.asarray(a)[()]
         e = np.asarray(e)[()]
-        # m = _check_mass(m)
-        # a = _check_semimajor_axis(a)
-        # e = _check_eccentricity(e)
+        m = _check_mass(m)
+        a = _check_semimajor_axis(a)
+        e = _check_eccentricity(e)
         
         self._mass = m
         self._semimajor_axis = a

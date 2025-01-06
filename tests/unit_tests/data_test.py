@@ -24,116 +24,157 @@ If the function `dyad.func(*args)` returns the value `val` then the test is pass
 
 import numpy as np
 
-check_eccentricity_type = [True, False, 1j] # Invalid eccentricity
+check_real = ["1", 1.j, 1. + 1.j] # Invalid type
+check_nonnegative = [-1, 0.] # Invalid value
 
+check_mass_type = check_real
+check_mass_value = check_nonnegative
+
+check_eccentricity_type = check_real
 check_eccentricity_value = [-1, 1., 2.] # Invalid eccentricity
 
-true_anomaly_from_mean_anomaly = [
-    # [[        mu,   e],      theta]
-    [[-0.5*np.pi, 0.],  1.5*np.pi],
-    [[ 0.       , 0.],  0.       ],
-    [[ 0.5*np.pi, 0.],  0.5*np.pi],
-    [[     np.pi, 0.],      np.pi],
-    [[ 1.5*np.pi, 0.],  1.5*np.pi],
-    [[ 2.0*np.pi, 0.],  0.       ],
-    [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    [[-0.5*np.pi, 0.5],  3.8366244292109135],
-    [[ 0.       , 0.5],  0.                ],
-    [[ 0.5*np.pi, 0.5],  2.446560877968672 ],
-    [[     np.pi, 0.5],      np.pi         ],
-    [[ 1.5*np.pi, 0.5],  3.8366244292109135],
-    [[ 2.0*np.pi, 0.5],  0.                ],
-    [[ 2.5*np.pi, 0.5],  2.446560877968672 ],
+check_semimajor_axis_type = check_real
+check_semimajor_axis_value = check_nonnegative
+
+check_period_type = check_real
+check_period_value = check_nonnegative
+
+semimajor_axis_from_period = [
+    # [[p, m_1, m_2], a],
+    [[1., 1., 1.], 0.024657235354280858],
 ]
 
-true_anomaly_from_eccentric_anomaly = [
-    # [[        mu,   e],      theta]
-    [[-0.5*np.pi, 0.],  1.5*np.pi],
-    [[ 0.       , 0.],  0.       ],
-    [[ 0.5*np.pi, 0.],  0.5*np.pi],
-    [[     np.pi, 0.],      np.pi],
-    [[ 1.5*np.pi, 0.],  1.5*np.pi],
-    [[ 2.0*np.pi, 0.],  0.       ],
-    [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    [[-0.5*np.pi, 0.5],  4.1887902047863905],
-    [[ 0.       , 0.5],  0.                ],
-    [[ 0.5*np.pi, 0.5],  2.0943951023931966],
-    [[     np.pi, 0.5],      np.pi         ],
-    [[ 1.5*np.pi, 0.5],  4.1887902047863905],
-    [[ 2.0*np.pi, 0.5],  0.                ],
-    [[ 2.5*np.pi, 0.5],  2.094395102393195 ],
+period_from_semimajor_axis = [
+    # [[p, m_1, m_2], a],
+    [[0.024657235354280858, 1., 1.], 1.],
 ]
 
 mean_anomaly_from_eccentric_anomaly = [
     # [[        mu,   e],      theta]
-    [[-0.5*np.pi, 0.],  1.5*np.pi],
+    [[-0.5*np.pi, 0.], -0.5*np.pi],
     [[ 0.       , 0.],  0.       ],
     [[ 0.5*np.pi, 0.],  0.5*np.pi],
     [[     np.pi, 0.],      np.pi],
     [[ 1.5*np.pi, 0.],  1.5*np.pi],
-    [[ 2.0*np.pi, 0.],  0.       ],
-    [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    [[-0.5*np.pi, 0.5],  5.21238898038469  ],
+    [[ 2.0*np.pi, 0.],  2.0*np.pi],
+    [[ 2.5*np.pi, 0.],  2.5*np.pi],
+    [[-0.5*np.pi, 0.5], -1.07079633],
+    [[ 0.       , 0.5],  0.        ],
+    [[ 0.5*np.pi, 0.5],  1.07079633],
+    [[     np.pi, 0.5],     np.pi  ],
+    [[ 1.5*np.pi, 0.5],  5.21238898],
+    [[ 2.0*np.pi, 0.5],  6.28318531],
+    [[ 2.5*np.pi, 0.5],  7.35398163],
+]
+
+eccentric_anomaly_from_true_anomaly = [
+    # [[     theta,   e],      theta]
+    [[-0.5*np.pi, 0.], -0.5*np.pi],
+    [[ 0.       , 0.],  0.       ],
+    [[ 0.5*np.pi, 0.],  0.5*np.pi],
+    [[     np.pi, 0.],      np.pi],
+    [[ 1.5*np.pi, 0.],  1.5*np.pi],
+    [[ 2.0*np.pi, 0.],  2.0*np.pi],
+    [[ 2.5*np.pi, 0.],  2.5*np.pi],
+    [[-0.5*np.pi, 0.5], -1.0471975511965983],
     [[ 0.       , 0.5],  0.                ],
-    [[ 0.5*np.pi, 0.5],  1.0707963267948966],
-    [[     np.pi, 0.5],     np.pi          ],
-    [[ 1.5*np.pi, 0.5],  5.21238898038469  ],
-    [[ 2.0*np.pi, 0.5],  0.                ],
-    [[ 2.5*np.pi, 0.5],  1.0707963267948966],
+    [[ 0.5*np.pi, 0.5],  1.0471975511965983],
+    [[     np.pi, 0.5],      np.pi             ],
+    [[ 1.5*np.pi, 0.5],  5.235987755982988 ],
+    [[ 2.0*np.pi, 0.5],  2.0*np.pi         ],
+    [[ 2.5*np.pi, 0.5],  7.3303828583761845],
+]
+
+true_anomaly_from_eccentric_anomaly = [
+    # [[        mu,   e],      theta]
+    [[-0.5*np.pi, 0.], -0.5*np.pi],
+    [[ 0.       , 0.],  0.       ],
+    [[ 0.5*np.pi, 0.],  0.5*np.pi],
+    [[     np.pi, 0.],      np.pi],
+    [[ 1.5*np.pi, 0.],  1.5*np.pi],
+    [[ 2.0*np.pi, 0.],  2.0*np.pi],
+    [[ 2.5*np.pi, 0.],  2.5*np.pi],
+    [[-0.5*np.pi, 0.5], -2.0943951023931966],
+    [[ 0.       , 0.5],  0.                ],
+    [[ 0.5*np.pi, 0.5],  2.0943951023931966],
+    [[     np.pi, 0.5],      np.pi         ],
+    [[ 1.5*np.pi, 0.5],  4.1887902047863905],
+    [[ 2.0*np.pi, 0.5],  2.0*np.pi         ],
+    [[ 2.5*np.pi, 0.5],  8.377580409572783 ],
 ]
 
 mean_anomaly_from_true_anomaly = [
-    # [[        mu,   e],      theta]
-    [[-0.5*np.pi, 0.],  1.5*np.pi],
+    # [[     theta,   e],      theta]
+    [[-0.5*np.pi, 0.], -0.5*np.pi],
     [[ 0.       , 0.],  0.       ],
     [[ 0.5*np.pi, 0.],  0.5*np.pi],
     [[     np.pi, 0.],      np.pi],
     [[ 1.5*np.pi, 0.],  1.5*np.pi],
-    [[ 2.0*np.pi, 0.],  0.       ],
-    [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    [[-0.5*np.pi, 0.5],  5.669000457875207 ],
+    [[ 2.0*np.pi, 0.],  2.0*np.pi],
+    [[ 2.5*np.pi, 0.],  2.5*np.pi],
+    [[-0.5*np.pi, 0.5], -0.6141848493043787],
     [[ 0.       , 0.5],  0.                ],
     [[ 0.5*np.pi, 0.5],  0.6141848493043787],
     [[     np.pi, 0.5],      np.pi         ],
     [[ 1.5*np.pi, 0.5],  5.669000457875207 ],
-    [[ 2.0*np.pi, 0.5],  0.                ],
-    [[ 2.5*np.pi, 0.5],  0.6141848493043778],
-]
-
-eccentric_anomaly_from_true_anomaly = [
-    # [[        mu,   e],      theta]
-    [[-0.5*np.pi, 0.],  1.5*np.pi],
-    [[ 0.       , 0.],  0.       ],
-    [[ 0.5*np.pi, 0.],  0.5*np.pi],
-    [[     np.pi, 0.],      np.pi],
-    [[ 1.5*np.pi, 0.],  1.5*np.pi],
-    [[ 2.0*np.pi, 0.],  0.       ],
-    [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    [[-0.5*np.pi, 0.5], 5.235987755982988 ],
-    [[ 0.       , 0.5], 0.                ],
-    [[ 0.5*np.pi, 0.5], 1.0471975511965983],
-    [[     np.pi, 0.5], np.pi             ],
-    [[ 1.5*np.pi, 0.5], 5.235987755982988 ],
-    [[ 2.0*np.pi, 0.5], 0.                ],
-    [[ 2.5*np.pi, 0.5], 1.0471975511965974],
+    [[ 2.0*np.pi, 0.5],  2.0*np.pi         ],
+    [[ 2.5*np.pi, 0.5],  6.897370156483965 ],
 ]
 
 eccentric_anomaly_from_mean_anomaly = [
     # [[        mu,   e],      theta]
-    [[-0.5*np.pi, 0.],  1.5*np.pi],    
+    [[-0.5*np.pi, 0.], -0.5*np.pi],    
     [[ 0.       , 0.],  0.       ],
     [[ 0.5*np.pi, 0.],  0.5*np.pi],
     [[     np.pi, 0.],      np.pi],
     [[ 1.5*np.pi, 0.],  1.5*np.pi],
-    [[ 2.0*np.pi, 0.],  0.       ],
-    [[ 2.5*np.pi, 0.],  0.5*np.pi],
-    [[-0.5*np.pi, 0.5],  4.262205369089816],
+    [[ 2.0*np.pi, 0.],  2.0*np.pi],
+    [[ 2.5*np.pi, 0.],  2.5*np.pi],
+    [[-0.5*np.pi, 0.5], -2.02097993808977 ],
     [[ 0.       , 0.5],  0.               ],
     [[ 0.5*np.pi, 0.5],  2.02097993808977 ],
     [[     np.pi, 0.5],      np.pi        ],
     [[ 1.5*np.pi, 0.5],  4.262205369089816],
-    [[ 2.0*np.pi, 0.5],  0.               ],
-    [[ 2.5*np.pi, 0.5],  2.02097993808977 ],
+    [[ 2.0*np.pi, 0.5],  2.0*np.pi        ],
+    [[ 2.5*np.pi, 0.5],  8.304165245269356],
+]
+
+true_anomaly_from_mean_anomaly = [
+    # [[        mu,   e],      theta]
+    [[-0.5*np.pi, 0.], -0.5*np.pi],
+    [[ 0.       , 0.],  0.       ],
+    [[ 0.5*np.pi, 0.],  0.5*np.pi],
+    [[     np.pi, 0.],      np.pi],
+    [[ 1.5*np.pi, 0.],  1.5*np.pi],
+    [[ 2.0*np.pi, 0.],  2.0*np.pi],
+    [[ 2.5*np.pi, 0.],  2.5*np.pi],
+    [[-0.5*np.pi, 0.5], -2.446560877968672 ],
+    [[ 0.       , 0.5],  0.                ],
+    [[ 0.5*np.pi, 0.5],  2.446560877968672 ],
+    [[     np.pi, 0.5],      np.pi         ],
+    [[ 1.5*np.pi, 0.5],  3.8366244292109135],
+    [[ 2.0*np.pi, 0.5],  2.0*np.pi         ],
+    [[ 2.5*np.pi, 0.5],  8.729746185148258 ],
+]
+
+primary_semimajor_axis_from_semimajor_axis = [
+    # [[a, q], a_1]
+    [[0.95128107, 0.2189373], 0.1708626924509661],
+]
+
+secondary_semimajor_axis_from_semimajor_axis = [
+    # [[a, q], a_1]
+    [[0.62427728, 0.16652542], 0.5351596024371248],
+]
+
+primary_semimajor_axis_from_secondary_semimajor_axis = [
+    # [[a, q], a_1]
+    [[0.11757373, 0.0908097], 0.010676835149181],
+]
+
+secondary_semimajor_axis_from_primary_semimajor_axis = [
+    # [[a, q], a_1]
+    [[0.99802898, 0.64952906], 1.5365424604712836],
 ]
 
 initialization = [
