@@ -1,8 +1,8 @@
 *~
 __pycache__
-.dyad.egg-info/
-.pytest_cache/
-.build/
+/dyad.egg-info/
+/pytest_cache/
+/build/
 .python-version
 dev
 env
