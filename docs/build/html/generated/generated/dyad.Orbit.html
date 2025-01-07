@@ -46,6 +46,7 @@
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/generated/dyad.Orbit';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -508,7 +509,7 @@ potential.</p>
 <td><p>Get the body's specific kinetic energy</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_anomaly</span></code>(theta)</p></td>
-<td><p>Get the body's mean anomaly</p></td>
+<td><p>Return the mean anomaly modulo <span class="math notranslate nohighlight">\(2\pi\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">potential</span></code>(theta)</p></td>
 <td><p>Get the gravitational potential at the body's position</p></td>
@@ -547,7 +548,7 @@ potential.</p>
 <td><p>Get the orbit's eccentricity</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">energy</span></code></p></td>
-<td><p>Get the total energy of the body</p></td>
+<td><p>Get the body's specific total energy</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">inclination</span></code></p></td>
 <td><p>Get the inclination of the orbit</p></td>

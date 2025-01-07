@@ -382,8 +382,6 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;Orbit&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;TwoBody&quot;</span><span class="p">,</span>
     <span class="s2">&quot;semimajor_axis_from_period&quot;</span><span class="p">,</span>
     <span class="s2">&quot;period_from_semimajor_axis&quot;</span><span class="p">,</span>
     <span class="s2">&quot;true_anomaly_from_mean_anomaly&quot;</span><span class="p">,</span>
@@ -396,6 +394,8 @@
     <span class="s2">&quot;secondary_semimajor_axis_from_semimajor_axis&quot;</span><span class="p">,</span>
     <span class="s2">&quot;primary_semimajor_axis_from_secondary_semimajor_axis&quot;</span><span class="p">,</span>
     <span class="s2">&quot;secondary_semimajor_axis_from_primary_semimajor_axis&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Orbit&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TwoBody&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -403,7 +403,7 @@
 <span class="kn">import</span> <span class="nn">dyad.constants</span> <span class="k">as</span> <span class="nn">constants</span>
 
 <span class="k">def</span> <span class="nf">_check_mass</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;m must be scalar.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">m</span> <span class="o">&lt;=</span> <span class="mf">0.</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;m must be positive.&quot;</span><span class="p">)</span>
@@ -414,7 +414,7 @@
 <span class="k">def</span> <span class="nf">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
     <span class="c1"># The the number 0.9999999999999999 &lt; 1.</span>
     <span class="c1"># But the number 0.99999999999999999 == 1.</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">e</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">e</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;e must be scalar.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">((</span><span class="n">e</span> <span class="o">&lt;</span> <span class="mf">0.</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">e</span> <span class="o">&gt;=</span> <span class="mf">1.</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;e must be nonnegative and less than one.&quot;</span><span class="p">)</span>
@@ -423,7 +423,7 @@
     <span class="k">return</span> <span class="n">res</span>
 
 <span class="k">def</span> <span class="nf">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;a must be scalar.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mf">0.</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;a must be positive.&quot;</span><span class="p">)</span>
@@ -431,8 +431,15 @@
 
     <span class="k">return</span> <span class="n">res</span>
 
+<span class="k">def</span> <span class="nf">_check_angle</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Omega, i, and omega must be scalar.&quot;</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">return</span> <span class="n">res</span>
+
 <span class="k">def</span> <span class="nf">_check_period</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">p</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">p</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;p must be scalar.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">p</span> <span class="o">&lt;=</span> <span class="mf">0.</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;p must be positive.&quot;</span><span class="p">)</span>
@@ -473,9 +480,6 @@
 <span class="sd">    Warns</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 
@@ -486,13 +490,10 @@
     <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="n">m_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m_1</span><span class="p">)</span>
     <span class="n">m_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m_2</span><span class="p">)</span>
-    <span class="c1"># p = _check_period(p)</span>
-    <span class="c1"># m_1 = _check_mass(m_1)</span>
-    <span class="c1"># m_2 = _check_mass(m_2)</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cbrt</span><span class="p">(</span>
-        <span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="p">(</span><span class="n">m_1</span> <span class="o">+</span> <span class="n">m_2</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="mf">2.</span>
-        <span class="o">/</span><span class="p">(</span><span class="mf">4.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span>
-    <span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">_check_period</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">m_1</span> <span class="o">=</span> <span class="n">_check_mass</span><span class="p">(</span><span class="n">m_1</span><span class="p">)</span>
+    <span class="n">m_2</span> <span class="o">=</span> <span class="n">_check_mass</span><span class="p">(</span><span class="n">m_2</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cbrt</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="p">(</span><span class="n">m_1</span> <span class="o">+</span> <span class="n">m_2</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="mf">2.</span><span class="o">/</span><span class="p">(</span><span class="mf">4.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mf">2.</span><span class="p">))</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">[()]</span>
 
     <span class="k">return</span> <span class="n">res</span></div>
@@ -531,9 +532,6 @@
 <span class="sd">    Warns</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 
@@ -544,119 +542,10 @@
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">m_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m_1</span><span class="p">)</span>
     <span class="n">m_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m_2</span><span class="p">)</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
-        <span class="mf">4.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mf">2.</span><span class="o">*</span><span class="n">a</span><span class="o">**</span><span class="mf">3.</span>
-        <span class="o">/</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="p">(</span><span class="n">m_1</span> <span class="o">+</span> <span class="n">m_2</span><span class="p">))</span>
-    <span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">4.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mf">2.</span><span class="o">*</span><span class="n">a</span><span class="o">**</span><span class="mf">3.</span><span class="o">/</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="p">(</span><span class="n">m_1</span> <span class="o">+</span> <span class="n">m_2</span><span class="p">)))</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">[()]</span>
     
     <span class="k">return</span> <span class="n">res</span></div>
-
-
-<div class="viewcode-block" id="true_anomaly_from_mean_anomaly">
-<a class="viewcode-back" href="../../generated/generated/dyad.true_anomaly_from_mean_anomaly.html#dyad.true_anomaly_from_mean_anomaly">[docs]</a>
-<span class="k">def</span> <span class="nf">true_anomaly_from_mean_anomaly</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the true anomaly modulo :math:`2\pi`</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-
-<span class="sd">    mu : (d, 2) array-like</span>
-
-<span class="sd">        Mean anomaly.</span>
-
-<span class="sd">    e : </span>
-
-<span class="sd">        Eccentricity.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-
-<span class="sd">    res : (n, d) ndarray</span>
-
-<span class="sd">        True anomaly.</span>
-
-<span class="sd">    Raises</span>
-<span class="sd">    ------</span>
-
-<span class="sd">    Warns</span>
-<span class="sd">    -----</span>
-
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-    <span class="c1"># e = _check_eccentricity(e)</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
-        <span class="n">theta</span> <span class="o">=</span> <span class="n">mu</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">theta</span>
-    <span class="n">eta</span> <span class="o">=</span> <span class="n">eccentric_anomaly_from_mean_anomaly</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="n">true_anomaly_from_eccentric_anomaly</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">theta</span></div>
-
-
-<div class="viewcode-block" id="true_anomaly_from_eccentric_anomaly">
-<a class="viewcode-back" href="../../generated/generated/dyad.true_anomaly_from_eccentric_anomaly.html#dyad.true_anomaly_from_eccentric_anomaly">[docs]</a>
-<span class="k">def</span> <span class="nf">true_anomaly_from_eccentric_anomaly</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the true anomaly modulo :math:`2\pi`</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-
-<span class="sd">    eta : (d, 2) array-like</span>
-
-<span class="sd">        Eccentric anomaly.</span>
-
-<span class="sd">    e : </span>
-<span class="sd">    </span>
-<span class="sd">        Eccentricity.</span>
-<span class="sd">    </span>
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-
-<span class="sd">    res : (n, d) ndarray</span>
-
-<span class="sd">        True anomaly.</span>
-
-<span class="sd">    Raises</span>
-<span class="sd">    ------</span>
-
-<span class="sd">    Warns</span>
-<span class="sd">    -----</span>
-
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># e = _check_eccentricity(e)</span>
-    <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
-        <span class="n">theta</span> <span class="o">=</span> <span class="n">eta</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">theta</span>
-
-    <span class="n">theta</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">e</span><span class="p">))</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="p">(</span><span class="n">theta</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">theta</span></div>
 
 
 <div class="viewcode-block" id="mean_anomaly_from_eccentric_anomaly">
@@ -688,9 +577,6 @@
 <span class="sd">    Warns</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 
@@ -698,69 +584,11 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># e = _check_eccentricity(e)</span>
     <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
-        <span class="n">mu</span> <span class="o">=</span> <span class="n">eta</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">mu</span>
-
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
     <span class="n">mu</span> <span class="o">=</span> <span class="n">eta</span> <span class="o">-</span> <span class="n">e</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">mu</span></div>
-
-
-<div class="viewcode-block" id="mean_anomaly_from_true_anomaly">
-<a class="viewcode-back" href="../../generated/generated/dyad.mean_anomaly_from_true_anomaly.html#dyad.mean_anomaly_from_true_anomaly">[docs]</a>
-<span class="k">def</span> <span class="nf">mean_anomaly_from_true_anomaly</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the mean anomaly modulo :math:`2\pi`</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-
-<span class="sd">    theta : (d, 2) array-like</span>
-
-<span class="sd">        True anomaly.</span>
-
-<span class="sd">    e : </span>
-<span class="sd">    </span>
-<span class="sd">        Eccentricity.</span>
-<span class="sd">    </span>
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-
-<span class="sd">    res : (n, d) ndarray</span>
-
-<span class="sd">        Mean anomaly.</span>
-
-<span class="sd">    Raises</span>
-<span class="sd">    ------</span>
-
-<span class="sd">    Warns</span>
-<span class="sd">    -----</span>
-
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># e = _check_eccentricity(e)</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
-        <span class="n">mu</span> <span class="o">=</span> <span class="n">theta</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">mu</span>
-
-    <span class="n">eta</span> <span class="o">=</span> <span class="n">eccentric_anomaly_from_true_anomaly</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">mean_anomaly_from_eccentric_anomaly</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span><span class="p">[()]</span>
 
     <span class="k">return</span> <span class="n">mu</span></div>
 
@@ -798,9 +626,6 @@
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
 
-<span class="sd">    Warns</span>
-<span class="sd">    -----</span>
-
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
 
@@ -811,18 +636,117 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># e = _check_eccentricity(e)</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
-        <span class="n">eta</span> <span class="o">=</span> <span class="n">theta</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">eta</span>
-
-    <span class="n">eta</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">e</span><span class="p">))</span>
-    <span class="n">eta</span> <span class="o">=</span> <span class="p">(</span><span class="n">eta</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="c1"># The function np.arctan2 returns the principal angle,</span>
+    <span class="c1"># :math:`\eta \mod 2\pi`. So we work with the principal angle</span>
+    <span class="c1"># :math:`\theta \mod 2\pi`.</span>
+    <span class="n">theta_principal</span> <span class="o">=</span> <span class="n">theta</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">e</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">e</span><span class="p">),</span> <span class="mf">1.</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta_principal</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">eta</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">theta</span><span class="o">//</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">eta</span><span class="p">[()]</span>
+    
     <span class="k">return</span> <span class="n">eta</span></div>
+
+
+<div class="viewcode-block" id="true_anomaly_from_eccentric_anomaly">
+<a class="viewcode-back" href="../../generated/generated/dyad.true_anomaly_from_eccentric_anomaly.html#dyad.true_anomaly_from_eccentric_anomaly">[docs]</a>
+<span class="k">def</span> <span class="nf">true_anomaly_from_eccentric_anomaly</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the true anomaly modulo :math:`2\pi`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    eta : (d, 2) array-like</span>
+
+<span class="sd">        Eccentric anomaly.</span>
+
+<span class="sd">    e : </span>
+<span class="sd">    </span>
+<span class="sd">        Eccentricity.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    res : (n, d) ndarray</span>
+
+<span class="sd">        True anomaly.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+
+<span class="sd">    Warns</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="c1"># The function np.arctan2 returns the principal angle,</span>
+    <span class="c1"># :math:`\theta \mod 2\pi`. So we work with the principal angle</span>
+    <span class="c1"># :math:`\eta \mod 2\pi`.</span>
+    <span class="n">eta_principal</span> <span class="o">=</span> <span class="n">eta</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">e</span><span class="p">),</span> <span class="mf">1.</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">eta_principal</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">eta</span><span class="o">//</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[()]</span>
+
+    <span class="k">return</span> <span class="n">theta</span></div>
+
+
+<div class="viewcode-block" id="mean_anomaly_from_true_anomaly">
+<a class="viewcode-back" href="../../generated/generated/dyad.mean_anomaly_from_true_anomaly.html#dyad.mean_anomaly_from_true_anomaly">[docs]</a>
+<span class="k">def</span> <span class="nf">mean_anomaly_from_true_anomaly</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the mean anomaly modulo :math:`2\pi`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    theta : (d, 2) array-like</span>
+
+<span class="sd">        True anomaly.</span>
+
+<span class="sd">    e : </span>
+<span class="sd">    </span>
+<span class="sd">        Eccentricity.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    res : (n, d) ndarray</span>
+
+<span class="sd">        Mean anomaly.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+
+<span class="sd">    Warns</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">eccentric_anomaly_from_true_anomaly</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">mean_anomaly_from_eccentric_anomaly</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">mu</span></div>
 
 
 <div class="viewcode-block" id="eccentric_anomaly_from_mean_anomaly">
@@ -854,9 +778,6 @@
 <span class="sd">    Warns</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 
@@ -872,8 +793,6 @@
 
     <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
         <span class="c1"># Keyword factor=1. required to avoid numerical instability for big e</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
         <span class="n">res</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">f_gradient</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
         <span class="c1"># Fake it: ensure that the function returns np.float64:</span>
         <span class="c1"># 1. res.item() extracts a float;</span>
@@ -885,18 +804,60 @@
 
         <span class="k">return</span> <span class="n">res</span>
 
-    <span class="c1"># e = _check_eccentricity(e)</span>
     <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
-        <span class="n">eta</span> <span class="o">=</span> <span class="n">mu</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">eta</span>
-
-    <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">solve</span><span class="p">)(</span><span class="n">mu</span><span class="p">)</span>
-    <span class="c1"># eta = solve(mu)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">mu_principal</span> <span class="o">=</span> <span class="n">mu</span><span class="o">%</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">solve</span><span class="p">)(</span><span class="n">mu_principal</span><span class="p">)</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">eta</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">mu</span><span class="o">//</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">eta</span><span class="p">[()]</span>
 
     <span class="k">return</span> <span class="n">eta</span></div>
+
+
+<div class="viewcode-block" id="true_anomaly_from_mean_anomaly">
+<a class="viewcode-back" href="../../generated/generated/dyad.true_anomaly_from_mean_anomaly.html#dyad.true_anomaly_from_mean_anomaly">[docs]</a>
+<span class="k">def</span> <span class="nf">true_anomaly_from_mean_anomaly</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the true anomaly modulo :math:`2\pi`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    mu : (d, 2) array-like</span>
+
+<span class="sd">        Mean anomaly.</span>
+
+<span class="sd">    e : </span>
+
+<span class="sd">        Eccentricity.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    res : (n, d) ndarray</span>
+
+<span class="sd">        True anomaly.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+
+<span class="sd">    Warns</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">eccentric_anomaly_from_mean_anomaly</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">true_anomaly_from_eccentric_anomaly</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">theta</span></div>
 
 
 <span class="k">def</span> <span class="nf">primary_semimajor_axis_from_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
@@ -926,9 +887,6 @@
 <span class="sd">    Warns</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 
@@ -936,10 +894,10 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># a = _check_semimajor_axis(a)</span>
-    <span class="c1"># q = _check_semimajor_axis(q)</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">q</span><span class="o">*</span><span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">q</span><span class="p">)</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">[()]</span>
 
@@ -972,9 +930,6 @@
 <span class="sd">    Warns</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 
@@ -982,10 +937,10 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># a = _check_semimajor_axis(a)</span>
-    <span class="c1"># q = _check_semimajor_axis(q)</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">q</span><span class="p">)</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">[()]</span>
 
@@ -1018,9 +973,6 @@
 <span class="sd">    Warns</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 
@@ -1028,10 +980,10 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># a = _check_semimajor_axis(a)</span>
-    <span class="c1"># q = _check_semimajor_axis(q)</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">q</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">[()]</span>
 
@@ -1064,9 +1016,6 @@
 <span class="sd">    Warns</span>
 <span class="sd">    -----</span>
 
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 
@@ -1074,14 +1023,15 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># a = _check_semimajor_axis(a)</span>
-    <span class="c1"># q = _check_semimajor_axis(q)</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="n">q</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">[()]</span>
 
     <span class="k">return</span> <span class="n">res</span>
+
 
 <div class="viewcode-block" id="Orbit">
 <a class="viewcode-back" href="../../generated/generated/dyad.Orbit.html#dyad.Orbit">[docs]</a>
@@ -1140,10 +1090,16 @@
         <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m</span><span class="p">)[()]</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)[()]</span>
         <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)[()]</span>
-        <span class="c1"># m = _check_mass(m)</span>
-        <span class="c1"># a = _check_semimajor_axis(a)</span>
-        <span class="c1"># e = _check_eccentricity(e)</span>
-        
+        <span class="n">Omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Omega</span><span class="p">)[()]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">i</span><span class="p">)[()]</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">omega</span><span class="p">)[()]</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">_check_mass</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="n">Omega</span> <span class="o">=</span> <span class="n">_check_angle</span><span class="p">(</span><span class="n">Omega</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">_check_angle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">_check_angle</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_mass</span> <span class="o">=</span> <span class="n">m</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_semimajor_axis</span> <span class="o">=</span> <span class="n">a</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_eccentricity</span> <span class="o">=</span> <span class="n">e</span>
@@ -1182,18 +1138,6 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the orbit&#39;s argument of pericentre&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_argument_of_pericentre</span>
 
-    <span class="c1"># @property</span>
-    <span class="c1"># def orbital_elements(self):</span>
-    <span class="c1">#     &quot;&quot;&quot;Get the orbital elements as a dictionary&quot;&quot;&quot;</span>
-    <span class="c1">#     return dict(</span>
-    <span class="c1">#         semimajor_axis=self.semimajor_axis,</span>
-    <span class="c1">#         eccentricity=self.eccentricity,</span>
-    <span class="c1">#         true_anomaly=self.true_anomaly,</span>
-    <span class="c1">#         longitude_of_ascending_node=self.longitude_of_ascending_node,</span>
-    <span class="c1">#         inclination=self.inclination,</span>
-    <span class="c1">#         argument_of_pericentre=self.argument_of_pericentre</span>
-    <span class="c1">#     )</span>
-
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">semiminor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the orbit&#39;s semiminor axis&quot;&quot;&quot;</span>
@@ -1222,14 +1166,23 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s specific total energy&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span><span class="p">(</span><span class="mf">0.</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinetic_energy</span><span class="p">(</span><span class="mf">0.</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">res</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">angular_momentum_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the magnitude of the body&#39;s specific angular momentum&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
-            <span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mass</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">semilatus_rectum</span>
-        <span class="p">)</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">AU</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">KPS</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span>
+            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mass</span>
+            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span>
+            <span class="o">*</span><span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># res = res*constants.AUU*constants.KPS</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">KPS</span>
+        
+        <span class="k">return</span> <span class="n">res</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">angular_momentum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1241,39 +1194,9 @@
             <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">longitude_of_ascending_node</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inclination</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">h_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_momentum_magnitude</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inclination</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([[</span><span class="n">h_x</span><span class="p">,</span> <span class="n">h_y</span><span class="p">,</span> <span class="n">h_z</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">AU</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">KPS</span>
-
-    <span class="c1"># @property</span>
-    <span class="c1"># def laplace_runge_lenz_magnitude(self):</span>
-    <span class="c1">#     return self.eccentricity</span>
-
-    <span class="c1"># @property</span>
-    <span class="c1"># def laplace_runge_lenz(self):</span>
-    <span class="c1">#     lrl_magnitude = self.laplace_runge_lenz_magnitude</span>
-    <span class="c1">#     lrl_x = lrl_magnitude*(</span>
-    <span class="c1">#         np.cos(self.longitude_of_ascending_node)</span>
-    <span class="c1">#         *np.cos(self.argument_of_pericentre)</span>
-    <span class="c1">#         - (</span>
-    <span class="c1">#             np.sin(self.longitude_of_ascending_node)</span>
-    <span class="c1">#             *np.cos(self.inclination)</span>
-    <span class="c1">#             *np.sin(self.argument_of_pericentre)</span>
-    <span class="c1">#         )</span>
-    <span class="c1">#     )</span>
-    <span class="c1">#     lrl_y = lrl_magnitude*(</span>
-    <span class="c1">#         np.sin(self.longitude_of_ascending_node)</span>
-    <span class="c1">#         *np.cos(self.argument_of_pericentre)</span>
-    <span class="c1">#         + (</span>
-    <span class="c1">#             np.cos(self.longitude_of_ascending_node)</span>
-    <span class="c1">#             *np.cos(self.inclination)</span>
-    <span class="c1">#             *np.sin(self.argument_of_pericentre)</span>
-    <span class="c1">#         )</span>
-    <span class="c1">#     )</span>
-    <span class="c1">#     lrl_z = lrl_magnitude*(</span>
-    <span class="c1">#         np.sin(self.inclination)*np.sin(self.argument_of_pericentre)</span>
-    <span class="c1">#     )</span>
-
-    <span class="c1">#     return np.hstack([lrl_x, lrl_y, lrl_z])</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([[</span><span class="n">h_x</span><span class="p">,</span> <span class="n">h_y</span><span class="p">,</span> <span class="n">h_z</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+        
+        <span class="k">return</span> <span class="n">res</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1285,26 +1208,55 @@
             <span class="p">)</span>
         <span class="p">)</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the total energy of the body&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
     <span class="k">def</span> <span class="nf">mean_anomaly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s mean anomaly&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s mean anomaly</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        theta : array-like</span>
+
+<span class="sd">            True anomaly.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        res : ndarray</span>
+
+<span class="sd">            Mean anomaly.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+
+<span class="sd">        Warns</span>
+<span class="sd">        -----</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">mean_anomaly_from_true_anomaly</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="p">)</span>
 
+    <span class="n">mean_anomaly</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">mean_anomaly_from_true_anomaly</span><span class="o">.</span><span class="vm">__doc__</span>
+    
     <span class="k">def</span> <span class="nf">eccentric_anomaly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s eccentric anomaly&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">eccentric_anomaly_from_true_anomaly</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the orbital state vector in Cartesian coordinates&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_position</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_velocity</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
-
     <span class="k">def</span> <span class="nf">radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s radius&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">semilatus_rectum</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s speed&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span>
+            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mass</span>
+            <span class="o">*</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">KPS</span>
 
     <span class="k">def</span> <span class="nf">_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s position&quot;&quot;&quot;</span>
@@ -1339,26 +1291,6 @@
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
-    
-    <span class="k">def</span> <span class="nf">potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the gravitational potential at the body&#39;s position&quot;&quot;&quot;</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mass</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">res</span>            
-    
-    <span class="k">def</span> <span class="nf">kinetic_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s specific kinetic energy&quot;&quot;&quot;</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">**</span><span class="mf">2.</span>
-
-        <span class="k">return</span> <span class="n">res</span>
-    
-    <span class="k">def</span> <span class="nf">speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s speed&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
-            <span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span>
-            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mass</span>
-            <span class="o">*</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="p">)</span>
-        <span class="p">)</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">KPS</span>
 
     <span class="k">def</span> <span class="nf">_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s velocity&quot;&quot;&quot;</span>
@@ -1407,7 +1339,24 @@
             <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">argument_of_pericentre</span><span class="p">)</span>
         <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([[</span><span class="n">v_x</span><span class="p">,</span> <span class="n">v_y</span><span class="p">,</span> <span class="n">v_z</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">KPS</span></div>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([[</span><span class="n">v_x</span><span class="p">,</span> <span class="n">v_y</span><span class="p">,</span> <span class="n">v_z</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">KPS</span>
+    
+    <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the orbital state vector in Cartesian coordinates&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_position</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_velocity</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
+
+    <span class="k">def</span> <span class="nf">potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the gravitational potential at the body&#39;s position&quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="n">constants</span><span class="o">.</span><span class="n">GRAV_CONST</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mass</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">res</span>            
+    
+    <span class="k">def</span> <span class="nf">kinetic_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the body&#39;s specific kinetic energy&quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">**</span><span class="mf">2.</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">KPS</span><span class="o">**</span><span class="mf">2.</span>
+
+        <span class="k">return</span> <span class="n">res</span></div>
 
 
 
@@ -1470,18 +1419,20 @@
 <div class="viewcode-block" id="TwoBody.__init__">
 <a class="viewcode-back" href="../../generated/generated/dyad.TwoBody.html#dyad.TwoBody.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">Omega</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
-        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-        <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-
-        <span class="c1"># m = _check_mass(m)</span>
-        <span class="c1"># q = _check_mass(q)</span>
-        <span class="c1"># a = _check_semimajoraxis(a)</span>
-        <span class="c1"># e = _check_eccentricity(e)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">m</span><span class="p">)[()]</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)[()]</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)[()]</span>
+        <span class="n">Omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Omega</span><span class="p">)[()]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">i</span><span class="p">)[()]</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">omega</span><span class="p">)[()]</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">_check_mass</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">_check_semimajor_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">_check_eccentricity</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="n">Omega</span> <span class="o">=</span> <span class="n">_check_angle</span><span class="p">(</span><span class="n">Omega</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">_check_angle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">_check_angle</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_mass</span> <span class="o">=</span> <span class="n">m</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_mass_ratio</span> <span class="o">=</span> <span class="n">q</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_semimajor_axis</span> <span class="o">=</span> <span class="n">a</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_eccentricity</span> <span class="o">=</span> <span class="n">e</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_longitude_of_ascending_node</span> <span class="o">=</span> <span class="n">Omega</span>

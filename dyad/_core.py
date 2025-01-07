@@ -77,39 +77,38 @@ def semimajor_axis_from_period(p, m_1, m_2):
     Parameters
     ----------
 
-    p : (d, 2) array-like
+    p : array-like
 
         Period
 
-    m_1 : 
+    m_1 : array-like
 
         Mass of the more-massive body, :math:`m_{1}`.
 
-    m_2 : 
+    m_2 : array-like
 
         Mass of the less-massive body, :math:`m_{2}`.
 
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Semimajor axis.
 
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
     Examples
     --------
+
+    Scalar parameters.
+
+    >>> semimajor_axis_from_period(365.25, 1., 3.00362e-6)
+    np.float64(0.9999884101100887)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> p, m_1, m_2 = [365.25, 365.25], [1., 1.], [3.00362e-6, 3.00362e-6]
+    >>> semimajor_axis_from_period(p, m_1, m_2)
+    array([0.99998841, 0.99998841])
 
     """
     p = np.asarray(p)
@@ -129,39 +128,38 @@ def period_from_semimajor_axis(a, m_1, m_2):
     Parameters
     ----------
 
-    a : (d, 2) array-like
+    a : array-like
 
         Total semimajor axis, :math:`a = a_{1} + a_{2}`.
 
-    m_1 : 
+    m_1 : array-like
 
         Mass of the more-massive body, :math:`m_{1}`.
 
-    m_2 : 
+    m_2 : array-like
 
         Mass of the less-massive body, :math:`m_{2}`.
 
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Semimajor axis.
 
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
     Examples
     --------
+
+    Scalar parameters.
+
+    >>> period_from_semimajor_axis(1., 1., 3.00362e-6)
+    np.float64(365.25634990292843)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> a, m_1, m_2 = [1., 1.], [1., 1.], [3.00362e-6, 3.00362e-6]
+    >>> period_from_semimajor_axis(a, m_1, m_2)
+    array([365.2563499, 365.2563499])
 
     """
     a = np.asarray(a)
@@ -173,40 +171,39 @@ def period_from_semimajor_axis(a, m_1, m_2):
     return res
 
 def mean_anomaly_from_eccentric_anomaly(eta, e):
-    """Return the mean anomaly modulo :math:`2\pi`
+    """Return the mean anomaly
 
     Parameters
     ----------
 
-    eta : (d, 2) array-like
+    eta : array-like
 
         Eccentric anomaly.
 
-    e : 
+    e : array-like
     
         Eccentricity.
     
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Mean anomaly.
 
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
     Examples
     --------
+
+    Scalar parameters.
+
+    >>> mean_anomaly_from_eccentric_anomaly(1., 0.5)
+    np.float64(0.5792645075960517)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> eta, e = [1., 1.], [0.5, 0.5]
+    >>> mean_anomaly_from_eccentric_anomaly(eta, e)
+    array([0.57926451, 0.57926451])
 
     """
     eta = np.asarray(eta)
@@ -218,47 +215,46 @@ def mean_anomaly_from_eccentric_anomaly(eta, e):
     return mu
 
 def eccentric_anomaly_from_true_anomaly(theta, e):
-    """Return the eccentric anomaly modulo :math:`2\pi`
+    """Return the eccentric anomaly
 
     Parameters
     ----------
 
-    theta : (d, 2) array-like
+    theta : array-like
 
         True anomaly.
 
-    e : 
+    e : array-like
     
         Eccentricity.
     
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Eccentric anomaly.
 
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Semimajor axis.
 
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
     Examples
     --------
+
+    Scalar parameters.
+
+    >>> eccentric_anomaly_from_true_anomaly(1., 0.5)
+    np.float64(0.611063702733245)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> theta, e = [1., 1.], [0.5, 0.5]
+    >>> eccentric_anomaly_from_true_anomaly(theta, e)
+    array([0.6110637, 0.6110637])
 
     """
     theta = np.asarray(theta)
@@ -277,40 +273,39 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
     return eta
 
 def true_anomaly_from_eccentric_anomaly(eta, e):
-    """Return the true anomaly modulo :math:`2\pi`
+    """Return the true anomaly
 
     Parameters
     ----------
 
-    eta : (d, 2) array-like
+    eta : array-like
 
         Eccentric anomaly.
 
-    e : 
+    e : array-like
     
         Eccentricity.
     
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         True anomaly.
 
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
     Examples
     --------
+
+    Scalar parameters.
+
+    >>> true_anomaly_from_eccentric_anomaly(1., 0.5)
+    np.float64(1.5155481528799728)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> eta, e = [1., 1.], [0.5, 0.5]
+    >>> true_anomaly_from_eccentric_anomaly(theta, e)
+    array([1.51554815, 1.51554815])    
 
     """
     eta = np.asarray(eta)
@@ -329,40 +324,39 @@ def true_anomaly_from_eccentric_anomaly(eta, e):
     return theta
 
 def mean_anomaly_from_true_anomaly(theta, e):
-    """Return the mean anomaly modulo :math:`2\pi`
+    """Return the mean anomaly
 
     Parameters
     ----------
 
-    theta : (d, 2) array-like
+    theta : array-like
 
         True anomaly.
 
-    e : 
+    e : array-like
     
         Eccentricity.
     
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Mean anomaly.
 
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
     Examples
     --------
+
+    Scalar parameters.
+
+    >>> mean_anomaly_from_true_anomaly(1., 0.5)
+    np.float64(0.3241942038914112)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> theta, e = [1., 1.], [0.5, 0.5]
+    >>> mean_anomaly_from_true_anomaly(theta, e)
+    array([0.3241942, 0.3241942])
 
     """
     theta = np.asarray(theta)
@@ -374,51 +368,50 @@ def mean_anomaly_from_true_anomaly(theta, e):
     return mu
 
 def eccentric_anomaly_from_mean_anomaly(mu, e):
-    """Return the eccentric anomaly modulo :math:`2\pi`
+    """Return the eccentric anomaly
 
     Parameters
     ----------
 
-    mu : (d, 2) array-like
+    mu : array-like
 
         Mean anomaly.
 
-    e : 
+    e : array-like
     
         Eccentricity.
     
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Eccentric anomaly.
-
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
 
     Examples
     --------
 
+    Scalar parameters.
+
+    >>> eccentric_anomaly_from_mean_anomaly(1., 0.5)
+    np.float64(1.4987011335178482)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> mu, e = [1., 1.], [0.5, 0.5]
+    >>> eccentric_anomaly_from_mean_anomaly(mu, e)
+    array([1.49870113, 1.49870113])
+
     """
-    def f(eta, t):
+    def f(eta, t, e):
         return mean_anomaly_from_eccentric_anomaly(eta, e) - t
 
-    def f_gradient(eta, t):
+    def f_gradient(eta, t, e):
         return 1. - e*np.cos(eta)
 
-    def solve(x):
+    def solve(x, e):
         # Keyword factor=1. required to avoid numerical instability for big e
-        res = sp.optimize.fsolve(f, x, x, f_gradient, factor=1.)
+        res = sp.optimize.fsolve(f, x, (x, e), f_gradient, factor=1.)
         # Fake it: ensure that the function returns np.float64:
         # 1. res.item() extracts a float;
         # 2. np.asarray(res.item()) casts this as a (1,) np.ndarray;
@@ -433,47 +426,45 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
     e = np.asarray(e)
     e = _check_eccentricity(e)
     mu_principal = mu%(2.*np.pi)
-    eta = np.vectorize(solve)(mu_principal)
+    eta = np.vectorize(solve)(mu_principal, e)
     eta = eta + 2.*np.pi*(mu//(2.*np.pi))
-    eta = eta[()]
 
     return eta
 
 def true_anomaly_from_mean_anomaly(mu, e):
-    """Return the true anomaly modulo :math:`2\pi`
+    """Return the true anomaly
 
     Parameters
     ----------
 
-    mu : (d, 2) array-like
+    mu : array-like
 
         Mean anomaly.
 
-    e : 
+    e : array-like
 
         Eccentricity.
 
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         True anomaly.
 
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
     Examples
     --------
+
+    Scalar parameters.
+
+    >>> true_anomaly_from_mean_anomaly(1., 0.5)
+    np.float64(2.030806214849156)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> mu, e = [1., 1.], [0.5, 0.5]
+    >>> true_anomaly_from_mean_anomaly(mu, e)
+    array([2.03080621, 2.03080621])
 
     """
     mu = np.asarray(mu)
@@ -490,35 +481,34 @@ def primary_semimajor_axis_from_semimajor_axis(a, q):
     Parameters
     ----------
 
-    a : (d, 2) array-like
+    a : array-like
 
         Total semimajor axis, :math:`a = a_{1} + a_{2}`.
 
-    q : 
+    q : array-like
 
         Mass ratio, :math:`q = m_{2}/m_{1}`.
 
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Semimajor axis of the more-massive body, :math:`a_{1}`.
 
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
     Examples
     --------
+
+    Scalar parameters.
+
+    >>> primary_semimajor_axis_from_semimajor_axis(1., 0.5)
+    np.float64(0.3333333333333333)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> a, q = [1., 1.], [0.5, 0.5]
+    >>> primary_semimajor_axis_from_semimajor_axis(a, q)
+    array([0.33333333, 0.33333333])
 
     """
     a = np.asarray(a)
@@ -536,32 +526,20 @@ def secondary_semimajor_axis_from_semimajor_axis(a, q):
     Parameters
     ----------
 
-    a : (d, 2) array-like
+    a : array-like
 
         Total semimajor axis, :math:`a = a_{1} + a_{2}`.
 
-    q : 
+    q : array-like
 
         Mass ratio, :math:`q = m_{2}/m_{1}`.
 
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Semimajor axis of the less-massive body, :math:`a_{2}`.
-
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
 
     Examples
     --------
@@ -582,35 +560,34 @@ def primary_semimajor_axis_from_secondary_semimajor_axis(a, q):
     Parameters
     ----------
 
-    a : (d, 2) array-like
+    a : array-like
 
         Semimajor axis of the less-massive body, :math:`a_{2}`.
 
-    q : 
+    q : array-like
 
-        Mass ratio, :math:`q = m_{2}/m_{1}`.
+        Mass ratio, :math:`q := m_{2}/m_{1}`.
 
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Semimajor axis of the more-massive body, :math:`a_{1}`.
 
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
     Examples
     --------
+
+    Scalar parameters.
+
+    >>> primary_semimajor_axis_from_secondary_semimajor_axis(1., 0.5)
+    np.float64(0.5)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> a, q = [1., 1.], [0.5, 0.5]
+    >>> primary_semimajor_axis_from_secondary_semimajor_axis(a, q)
+    array([0.5, 0.5])
 
     """
     a = np.asarray(a)
@@ -628,35 +605,34 @@ def secondary_semimajor_axis_from_primary_semimajor_axis(a, q):
     Parameters
     ----------
 
-    a : (d, 2) array-like
+    a : array-like
 
         Semimajor axis of the more-massive body, :math:`a_{1}`.
 
-    q : 
+    q : array-like
 
         Mass ratio, :math:`q = m_{2}/m_{1}`.
 
     Returns
     -------
 
-    res : (n, d) ndarray
+    res : ndarray
 
         Semimajor axis of the less-massive body, :math:`a_{1}`.
 
-    Raises
-    ------
-
-    Warns
-    -----
-
-    See also
-    --------
-
-    Notes
-    -----
-
     Examples
     --------
+
+    Scalar parameters.
+
+    >>> secondary_semimajor_axis_from_primary_semimajor_axis(1., 0.5)
+    np.float64(2.0)
+    
+    Array-like parameters defining multiple orbits.
+
+    >>> a, q = [1., 1.], [0.5, 0.5]
+    >>> secondary_semimajor_axis_from_primary_semimajor_axis(a, q)
+    array([2., 2.])
 
     """
     a = np.asarray(a)
@@ -677,27 +653,27 @@ class Orbit:
 
     Parameters
     ----------
-    m: (n,) array-like
+    m: array-like
 
         The mass of the body generating the central potential
 
-    a: (n,) array-like
+    a: array-like
 
         Semimajor axis.
 
-    e: (n,) array-like
-    
+    e: array-like
+
         Eccentricity.
 
-    Omega: (n,) array-like
+    Omega: array-like
 
         Longitude of ascending node.
 
-    i: (n,) array-like
+    i: array-like
 
         Inclination.
 
-    omega: (n,) array-like
+    omega: array-like
 
         Argument of pericentre.
 
@@ -706,11 +682,11 @@ class Orbit:
 
     Scalar parameters defining a single orbit in the perifocal plane.
 
-    >>> dyad.Orbit(1., 1., 0., 0.)
+    >>> dyad.Orbit(1., 1., 0.)
 
     Scalar parameters defining a single orbit in the observer's frame.
 
-    >>> dyad.Orbit(1., 1., 0., 0., 1., 1., 1.)
+    >>> dyad.Orbit(1., 1., 0., 1., 1., 1.)
 
     Array-like parameters defining multiple orbits.
 
@@ -763,7 +739,7 @@ class Orbit:
     def inclination(self):
         """Get the inclination of the orbit"""
         return self._inclination
-        
+
     @property
     def argument_of_pericentre(self):
         """Get the orbit's argument of pericentre"""
@@ -810,9 +786,8 @@ class Orbit:
             *self.semimajor_axis
             *(1. - self.eccentricity**2.)
         )
-        # res = res*constants.AUU*constants.KPS
         res = res*constants.KPS
-        
+
         return res
 
     @property
@@ -826,7 +801,7 @@ class Orbit:
         )
         h_z = self.angular_momentum_magnitude*np.cos(self.inclination)
         res = np.hstack([[h_x, h_y, h_z]]).T
-        
+
         return res
 
     @property
@@ -840,19 +815,115 @@ class Orbit:
         )
 
     def mean_anomaly(self, theta):
-        """Get the body's mean anomaly"""
+        """Return the body's mean anomaly
+
+        Parameters
+        ----------
+
+        theta : array-like
+
+            True anomaly
+
+        Returns
+        -------
+
+        res : ndarray
+
+            Mean anomaly
+
+        Examples
+        --------
+
+        >>> import dyad
+        >>> orbit = dyad.Orbit(1., 1., 0.5)
+        >>> orbit.mean_anomaly([0., 1.])
+        array([0.       , 0.3241942])
+        
+        """
         return mean_anomaly_from_true_anomaly(theta, self.eccentricity)
 
     def eccentric_anomaly(self, theta):
-        """Get the body's eccentric anomaly"""
+        """Return the body's eccentric anomaly
+
+        Parameters
+        ----------
+
+        theta : array-like
+
+            True anomaly
+
+        Returns
+        -------
+
+        res : ndarray
+
+            Eccentric anomaly
+
+        Examples
+        --------
+
+        >>> import dyad
+        >>> orbit = dyad.Orbit(1., 1., 0.5)
+        >>> orbit.eccentric_anomaly([0., 1.])
+        array([0.       , 0.6110637])
+        
+        """
         return eccentric_anomaly_from_true_anomaly(theta, self.eccentricity)
 
     def radius(self, theta):
-        """Get the body's radius"""
+        """Return the body's radius
+
+        Parameters
+        ----------
+
+        theta : array-like
+
+            True anomaly
+
+        Returns
+        -------
+
+        res : ndarray
+
+            Radius
+
+        Examples
+        --------
+
+        >>> import dyad
+        >>> orbit = dyad.Orbit(1., 1., 0.5)
+        >>> orbit.radius([0., 1.])
+        array([0.5      , 0.5904809])
+
+        """
         return self.semilatus_rectum/(1. + self.eccentricity*np.cos(theta))
-    
+
     def speed(self, theta):
-        """Get the body's speed"""
+        """Return the body's speed
+
+        Parameters
+        ----------
+
+        theta : array-like
+
+            True anomaly
+
+        Returns
+        -------
+
+        res : ndarray
+
+            Speed
+
+        Examples
+        --------
+
+        >>> import dyad
+        >>> orbit = dyad.Orbit(1., 1., 0.5)
+        >>> orbit.speed([0., 1.])
+        array([51.58859953, 46.01778013])
+
+        """
         return np.sqrt(
             constants.GRAV_CONST
             *self.mass
@@ -860,7 +931,6 @@ class Orbit:
         )*constants.KPS
 
     def _position(self, theta):
-        """Get the body's position"""
         r = self.radius(theta)
         x = r*(
             np.cos(self.longitude_of_ascending_node)
@@ -894,7 +964,6 @@ class Orbit:
         return np.hstack([[x, y, z]]).T
 
     def _velocity(self, theta):
-        """Get the body's velocity"""
         A = (
             2.*np.pi*self.semimajor_axis
             /(self.period*np.sqrt(1. - self.eccentricity**2.))
@@ -941,19 +1010,94 @@ class Orbit:
         )
 
         return np.hstack([[v_x, v_y, v_z]]).T*constants.KPS
-    
+
     def state(self, theta):
-        """Get the orbital state vector in Cartesian coordinates"""
+        """Return the orbital state vector in Cartesian coordinates
+
+        Parameters
+        ----------
+
+        theta : array-like
+
+            True anomaly
+
+        Returns
+        -------
+
+        res : ndarray
+
+            Orbital state in form :math:`x, y, z, v_{x}, v_{y}, v_{z}`.
+
+        Examples
+        --------
+
+        >>> import dyad
+        >>> orbit = dyad.Orbit(1., 1., 0.5)
+        >>> orbit.state([0., 1.])
+        array([[  0.5       ,   0.        ,   0.        ,  -0.        ,
+                 51.58859953,   0.        ],
+               [  0.31903819,   0.49687255,   0.        , -28.94020643,
+                 35.7784927 ,   0.        ]])
+
+        """
         return np.hstack([self._position(theta), self._velocity(theta)])
 
     def potential(self, theta):
-        """Get the gravitational potential at the body's position"""
+        """Return the gravitational potential at the body's position
+
+        Parameters
+        ----------
+
+        theta : array-like
+
+            True anomaly
+
+        Returns
+        -------
+
+        res : ndarray
+
+            Potential
+
+        Examples
+        --------
+
+        >>> import dyad
+        >>> orbit = dyad.Orbit(1., 1., 0.5)
+        >>> orbit.potential([0., 1.])
+        array([-0.00059182, -0.00050114])
+        
+        """
         res = -constants.GRAV_CONST*self.mass/self.radius(theta)
 
-        return res            
-    
+        return res
+
     def kinetic_energy(self, theta):
-        """Get the body's specific kinetic energy"""
+        """Return the body's specific kinetic energy
+
+        Parameters
+        ----------
+
+        theta : array-like
+
+            True anomaly
+
+        Returns
+        -------
+
+        res : ndarray
+
+            Kinetic energy
+
+        Examples
+        --------
+
+        >>> import dyad
+        >>> orbit = dyad.Orbit(1., 1., 0.5)
+        >>> orbit.kinetic_energy([0., 1.])
+        array([3.98933787e+09, 3.17427591e+09])
+        
+        """
         res = 0.5*self.speed(theta)**2.
         res = res*constants.KPS**2.
 
@@ -978,40 +1122,53 @@ class TwoBody:
 
     Parameters
     ----------
-    m: (n,) array-like
+    m: array-like
 
         Mass of the more-massive body, :math:`m_{1}`.
 
-    q: (n,) array-like
+    q: array-like
     
         Ratio of the less-massive star to the more-massive star,
         :math:`q := m_{2}/m_{1}`.
 
-    a: (n,) array-like
+    a: array-like
 
         Semimajor axis of the more-massive body's orbit,
         :math:`a_{1}`.
 
-    e: (n,) array-like
+    e: array-like
     
         Eccentricity of the more-massive body's orbit, :math:`e_{1}`.
 
-    Omega: (n,) array-like
+    Omega: array-like
 
         Longitude of the ascending node of the more-massive body's
         orbit, :math:`\Omega_{1}`.
 
-    i: (n,) array-like
+    i: array-like
 
         Inclination of the more-massive body's orbit, :math:`i_{1}`.
 
-    omega: (n,) array-like
+    omega: array-like
 
         Argument of pericentre of the more-massive body's orbit,
         :math:`\omega_{1}`.
 
     Example
     -------
+
+    Scalar parameters defining a single binary system in the perifocal plane.
+
+    >>> dyad.TwoBody(1., 1., 1., 0.)
+
+    Scalar parameters defining a single orbit in the observer's frame.
+
+    >>> dyad.TwoBody(1., 1., 1., 0., 1., 1., 1.)
+
+    Array-like parameters defining multiple orbits.
+
+    >>> m, q, a, e = [1., 1.], [1., 1.], [1., 1.], [0., 0.]
+    >>> orb.TwoBody(m, q, a, e)
 
     """
     def __init__(self, m, q, a, e, Omega=0., i=0., omega=0.):
@@ -1074,5 +1231,4 @@ class TwoBody:
     # def total_mass(self):
     #     """Get the total energy of the orbit"""
     #     return (1. + q)*self._mass
-
     
