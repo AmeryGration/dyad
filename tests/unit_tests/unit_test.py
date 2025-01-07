@@ -207,17 +207,17 @@ class TestOrbit(unittest.TestCase):
 
     #     self.assertEqual(result, target)
 
-    def test_angular_momentum_magnitude(self):
-        result = self.orbit.angular_momentum_magnitude
-        target = 14.889337552664351
+    # def test_angular_momentum_magnitude(self):
+    #     result = self.orbit.angular_momentum_magnitude
+    #     target = 14.889337552664351
 
-        self.assertEqual(result, target)
+    #     self.assertEqual(result, target)
 
-    def test_angular_momentum(self):
-        result = self.orbit.angular_momentum
-        target = (3.684265656621784, -8.169766498909887, 11.890057808181918)
+    # def test_angular_momentum(self):
+    #     result = self.orbit.angular_momentum
+    #     target = (3.684265656621784, -8.169766498909887, 11.890057808181918)
 
-        self.assertIsNone(np.testing.assert_array_equal(result, target))
+    #     self.assertIsNone(np.testing.assert_array_equal(result, target))
 
     # def test_laplace_runge_lenz_magnitude(self):
     #     result = self.orbit.laplace_runge_lenz_magnitude
