@@ -1,0 +1,25 @@
+Python 3.10.12 (main, Nov  6 2024, 20:22:13) [GCC 11.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+>>> m = 0.5488135039273248;
+a = 0.7151893663724195;
+e = 0.6027633760716439;
+Omega = 0.4236547993389047;
+i = 0.6458941130666561;
+omega = 0.4375872112626925;
+orbit = dyad.Orbit(m, a, e, Omega, i, omega)
+
+>>> >>> >>> >>> >>> >>> Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'dyad' is not defined
+>>> >>> m = 0.5488135039273248;
+a = 0.7151893663724195;
+e = 0.6027633760716439;
+Omega = 0.4236547993389047;
+i = 0.6458941130666561;
+omega = 0.4375872112626925;
+orbit = Orbit(m, a, e, Omega, i, omega)
+
+>>> >>> >>> >>> >>> >>> >>> >>> orbit.energy
+np.float64(1373.3458311223064)
+>>> 

@@ -55,6 +55,13 @@ def _check_semimajor_axis(a):
 
     return res
 
+def _check_angle(x):
+    if not np.all(np.isreal(x)):
+        raise TypeError("Omega, i, and omega must be scalar.")
+    res = x
+
+    return res
+
 def _check_period(p):
     if not np.all(np.isreal(p)):
         raise TypeError("p must be scalar.")
@@ -111,10 +118,7 @@ def semimajor_axis_from_period(p, m_1, m_2):
     p = _check_period(p)
     m_1 = _check_mass(m_1)
     m_2 = _check_mass(m_2)
-    res = np.cbrt(
-        constants.GRAV_CONST*(m_1 + m_2)*p**2.
-        /(4.*np.pi**2.)
-    )
+    res = np.cbrt(constants.GRAV_CONST*(m_1 + m_2)*p**2./(4.*np.pi**2.))
     res = res[()]
 
     return res
@@ -163,10 +167,7 @@ def period_from_semimajor_axis(a, m_1, m_2):
     a = np.asarray(a)
     m_1 = np.asarray(m_1)
     m_2 = np.asarray(m_2)
-    res = np.sqrt(
-        4.*np.pi**2.*a**3.
-        /(constants.GRAV_CONST*(m_1 + m_2))
-    )
+    res = np.sqrt(4.*np.pi**2.*a**3./(constants.GRAV_CONST*(m_1 + m_2)))
     res = res[()]
     
     return res
@@ -268,8 +269,7 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
     # :math:`\theta \mod 2\pi`.
     theta_principal = theta%(2.*np.pi)
     eta = 2.*np.arctan2(
-        np.sqrt(1. - e)/np.sqrt(1. + e),
-        1./np.tan(theta_principal/2.)
+        np.sqrt(1. - e)/np.sqrt(1. + e), 1./np.tan(theta_principal/2.)
     )
     eta = eta + 2.*np.pi*(theta//(2.*np.pi))
     eta = eta[()]
@@ -321,8 +321,7 @@ def true_anomaly_from_eccentric_anomaly(eta, e):
     # :math:`\eta \mod 2\pi`.
     eta_principal = eta%(2.*np.pi)
     theta = 2.*np.arctan2(
-        np.sqrt(1. + e)/np.sqrt(1. - e),
-        1./np.tan(eta_principal/2.)
+        np.sqrt(1. + e)/np.sqrt(1. - e), 1./np.tan(eta_principal/2.)
     )
     theta = theta + 2.*np.pi*(eta//(2.*np.pi))
     theta = theta[()]
@@ -371,7 +370,6 @@ def mean_anomaly_from_true_anomaly(theta, e):
     e = _check_eccentricity(e)
     eta = eccentric_anomaly_from_true_anomaly(theta, e)
     mu = mean_anomaly_from_eccentric_anomaly(eta, e)
-    mu = mu[()]
 
     return mu
 
@@ -724,10 +722,16 @@ class Orbit:
         m = np.asarray(m)[()]
         a = np.asarray(a)[()]
         e = np.asarray(e)[()]
+        Omega = np.asarray(Omega)[()]
+        i = np.asarray(i)[()]
+        omega = np.asarray(omega)[()]
         m = _check_mass(m)
         a = _check_semimajor_axis(a)
         e = _check_eccentricity(e)
-        
+        Omega = _check_angle(Omega)
+        i = _check_angle(i)
+        omega = _check_angle(omega)
+
         self._mass = m
         self._semimajor_axis = a
         self._eccentricity = e
@@ -793,14 +797,23 @@ class Orbit:
     @property
     def energy(self):
         """Get the body's specific total energy"""
-        raise NotImplementedError
+        res = self.potential(0.) + self.kinetic_energy(0.)
+
+        return res
 
     @property
     def angular_momentum_magnitude(self):
         """Get the magnitude of the body's specific angular momentum"""
-        return np.sqrt(
-            constants.GRAV_CONST*self.mass*self.semilatus_rectum
-        )*constants.AU*constants.KPS
+        res = np.sqrt(
+            constants.GRAV_CONST
+            *self.mass
+            *self.semimajor_axis
+            *(1. - self.eccentricity**2.)
+        )
+        # res = res*constants.AUU*constants.KPS
+        res = res*constants.KPS
+        
+        return res
 
     @property
     def angular_momentum(self):
@@ -812,39 +825,9 @@ class Orbit:
             np.cos(self.longitude_of_ascending_node)*np.sin(self.inclination)
         )
         h_z = self.angular_momentum_magnitude*np.cos(self.inclination)
-
-        return np.hstack([[h_x, h_y, h_z]]).T*constants.AU*constants.KPS
-
-    # @property
-    # def laplace_runge_lenz_magnitude(self):
-    #     return self.eccentricity
-
-    # @property
-    # def laplace_runge_lenz(self):
-    #     lrl_magnitude = self.laplace_runge_lenz_magnitude
-    #     lrl_x = lrl_magnitude*(
-    #         np.cos(self.longitude_of_ascending_node)
-    #         *np.cos(self.argument_of_pericentre)
-    #         - (
-    #             np.sin(self.longitude_of_ascending_node)
-    #             *np.cos(self.inclination)
-    #             *np.sin(self.argument_of_pericentre)
-    #         )
-    #     )
-    #     lrl_y = lrl_magnitude*(
-    #         np.sin(self.longitude_of_ascending_node)
-    #         *np.cos(self.argument_of_pericentre)
-    #         + (
-    #             np.cos(self.longitude_of_ascending_node)
-    #             *np.cos(self.inclination)
-    #             *np.sin(self.argument_of_pericentre)
-    #         )
-    #     )
-    #     lrl_z = lrl_magnitude*(
-    #         np.sin(self.inclination)*np.sin(self.argument_of_pericentre)
-    #     )
-
-    #     return np.hstack([lrl_x, lrl_y, lrl_z])
+        res = np.hstack([[h_x, h_y, h_z]]).T
+        
+        return res
 
     @property
     def period(self):
@@ -856,11 +839,6 @@ class Orbit:
             )
         )
 
-    @property
-    def energy(self):
-        """Get the total energy of the body"""
-        raise NotImplementedError
-
     def mean_anomaly(self, theta):
         """Get the body's mean anomaly"""
         return mean_anomaly_from_true_anomaly(theta, self.eccentricity)
@@ -869,13 +847,17 @@ class Orbit:
         """Get the body's eccentric anomaly"""
         return eccentric_anomaly_from_true_anomaly(theta, self.eccentricity)
 
-    def state(self, theta):
-        """Get the orbital state vector in Cartesian coordinates"""
-        return np.hstack([self._position(theta), self._velocity(theta)])
-
     def radius(self, theta):
         """Get the body's radius"""
         return self.semilatus_rectum/(1. + self.eccentricity*np.cos(theta))
+    
+    def speed(self, theta):
+        """Get the body's speed"""
+        return np.sqrt(
+            constants.GRAV_CONST
+            *self.mass
+            *(2./self.radius(theta) - 1./self.semimajor_axis)
+        )*constants.KPS
 
     def _position(self, theta):
         """Get the body's position"""
@@ -910,26 +892,6 @@ class Orbit:
         )
 
         return np.hstack([[x, y, z]]).T
-    
-    def potential(self, theta):
-        """Get the gravitational potential at the body's position"""
-        res = -constants.GRAV_CONST*self.mass/self.radius(theta)
-
-        return res            
-    
-    def kinetic_energy(self, theta):
-        """Get the body's specific kinetic energy"""
-        res = 0.5*self.speed(theta)**2.
-
-        return res
-    
-    def speed(self, theta):
-        """Get the body's speed"""
-        return np.sqrt(
-            constants.GRAV_CONST
-            *self.mass
-            *(2./self.radius(theta) - 1./self.semimajor_axis)
-        )*constants.KPS
 
     def _velocity(self, theta):
         """Get the body's velocity"""
@@ -979,6 +941,23 @@ class Orbit:
         )
 
         return np.hstack([[v_x, v_y, v_z]]).T*constants.KPS
+    
+    def state(self, theta):
+        """Get the orbital state vector in Cartesian coordinates"""
+        return np.hstack([self._position(theta), self._velocity(theta)])
+
+    def potential(self, theta):
+        """Get the gravitational potential at the body's position"""
+        res = -constants.GRAV_CONST*self.mass/self.radius(theta)
+
+        return res            
+    
+    def kinetic_energy(self, theta):
+        """Get the body's specific kinetic energy"""
+        res = 0.5*self.speed(theta)**2.
+        res = res*constants.KPS**2.
+
+        return res
 
 
 class TwoBody:
@@ -1036,18 +1015,20 @@ class TwoBody:
 
     """
     def __init__(self, m, q, a, e, Omega=0., i=0., omega=0.):
-        m = np.asarray(m)
-        q = np.asarray(q)
-        a = np.asarray(a)
-        e = np.asarray(e)
-
-        # m = _check_mass(m)
-        # q = _check_mass(q)
-        # a = _check_semimajoraxis(a)
-        # e = _check_eccentricity(e)
+        m = np.asarray(m)[()]
+        a = np.asarray(a)[()]
+        e = np.asarray(e)[()]
+        Omega = np.asarray(Omega)[()]
+        i = np.asarray(i)[()]
+        omega = np.asarray(omega)[()]
+        m = _check_mass(m)
+        a = _check_semimajor_axis(a)
+        e = _check_eccentricity(e)
+        Omega = _check_angle(Omega)
+        i = _check_angle(i)
+        omega = _check_angle(omega)
 
         self._mass = m
-        self._mass_ratio = q
         self._semimajor_axis = a
         self._eccentricity = e
         self._longitude_of_ascending_node = Omega

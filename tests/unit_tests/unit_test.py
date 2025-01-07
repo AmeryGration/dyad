@@ -203,55 +203,73 @@ class TestOrbit(unittest.TestCase):
 
     # def test_energy(self):
     #     result = self.orbit.energy
-    #     target = -2.5608224489140006e-11
+    #     target = 1373.3458311223064
 
     #     self.assertEqual(result, target)
 
-    # def test_angular_momentum_magnitude(self):
-    #     result = self.orbit.angular_momentum_magnitude
+    def test_angular_momentum_magnitude(self):
+        result = self.orbit.angular_momentum_magnitude
+        target = 14.889337552664351
+
+        self.assertEqual(result, target)
+
+    def test_angular_momentum(self):
+        result = self.orbit.angular_momentum
+        target = (3.684265656621784, -8.169766498909887, 11.890057808181918)
+
+        self.assertIsNone(np.testing.assert_array_equal(result, target))
+
+    # def test_laplace_runge_lenz_magnitude(self):
+    #     result = self.orbit.laplace_runge_lenz_magnitude
     #     target = 0.
 
-    #     self.assertEqual(result, target)
-
-    # def test_angular_momentum(self):
-    #     result = self.orbit.angular_momentum
-    #     target = (0., 0., 0.)
+    # def test_laplace_runge_lenz(self):
+    #     result = self.orbit.laplace_runge_lenz
+    #     target = 0., 0., 0.
 
     #     self.assertEqual(result, target)
 
-    # # def test_laplace_runge_lenz_magnitude(self):
-    # #     result = self.orbit.laplace_runge_lenz_magnitude
-    # #     target = 0.
+    def test_period(self):
+        result = self.orbit.period
+        target = 298.20684329677647
 
-    # # def test_laplace_runge_lenz(self):
-    # #     result = self.orbit.laplace_runge_lenz
-    # #     target = 0., 0., 0.
+        self.assertEqual(result, target)
 
-    # #     self.assertEqual(result, target)
+    @parameterized.expand(data_test.radius)
+    def test_radius(self, x, target):
+        result = self.orbit.radius(x)
+        self.assertAlmostEqual(result, target)
 
-    # def test_period(self):
-    #     result = self.orbit.period
-    #     target = 0.
+    @parameterized.expand(data_test.speed)
+    def test_speed(self, x, target):
+        result = self.orbit.speed(x)
+        self.assertAlmostEqual(result, target)
 
-    #     self.assertEqual(result, target)
+    @parameterized.expand(data_test.position)
+    def test_position(self, x, target):
+        result = self.orbit._position(x)
+        print(result)
+        self.assertIsNone(np.testing.assert_array_almost_equal(result, target))
 
-    # def test_state(self):
-    #     result = self.orbit.state
-    #     target = 0., 0., 0., 0., 0., 0.
+    @parameterized.expand(data_test.velocity)
+    def test_velocity(self, x, target):
+        result = self.orbit._velocity(x)
+        self.assertIsNone(np.testing.assert_array_almost_equal(result, target))
 
-    #     self.assertEqual(result, target)
+    @parameterized.expand(data_test.state)
+    def test_state(self, x, target):
+        result = self.orbit.state(x)
+        self.assertIsNone(np.testing.assert_array_almost_equal(result, target))
 
-    # def test_radius(self):
-    #     result = self.orbit.radius
-    #     target = 0.
+    # @parameterized.expand(data_test.potential)
+    # def test_potential(self, x, target):
+    #     result = self.orbit.potential(x)
+    #     self.assertAlmostEqual(result, target)
 
-    #     self.assertEqual(result, target)
-
-    # def test_speed(self):
-    #     result = self.orbit.speed
-    #     target = 0.
-
-    #     self.assertEqual(result, target)
+    # @parameterized.expand(data_test.kinetic_energy)
+    # def test_kinetic_energy(self, x, target):
+    #     result = self.orbit.kinetic_energy(x)
+    #     self.assertAlmostEqual(result, target)
 
 
 if __name__ == "__main__":
