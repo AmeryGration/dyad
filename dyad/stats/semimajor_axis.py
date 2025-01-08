@@ -18,11 +18,13 @@ Probability distributions
 """
 
 __all__ = [
-    "opik1924"
+    # "opik1924"
 ]
 
 import numpy as np
 import scipy as sp
+
+from . import _distn_infrastructure
 
 class opik1924_gen(sp.stats._continuous_distns.reciprocal_gen):
     r"""The semimajor-axis random variable of Öpik (1924)
@@ -56,4 +58,4 @@ class opik1924_gen(sp.stats._continuous_distns.reciprocal_gen):
     def __init__(self, *args, **kwargs):
         super().__init__(args, kwargs)
 
-opik1924 = opik1924_gen(name="opik1924")
+# opik1924 = opik1924_gen(name="semimajorg_axis.opik1924")

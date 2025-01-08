@@ -34,11 +34,12 @@ from importlib.resources import files
 from scipy.interpolate import RegularGridInterpolator
 from scipy.interpolate import LinearNDInterpolator
 from dyad.stats import mass_ratio
+from . import _distn_infrastructure
 
 _truncnorm = sp.stats.truncnorm
 
 
-class duquennoy1991_gen(sp.stats.rv_continuous):
+class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
     r"""The log-period random variable of Duquennoy and Mayor (1991)
 
     %(before_notes)s
@@ -99,10 +100,12 @@ _duquennoy1991 = _truncnorm(
     a=_duquennoy1991_a, b=_duquennoy1991_b, loc=_duquennoy1991_loc,
     scale=_duquennoy1991_scale
 )
-duquennoy1991 = duquennoy1991_gen(a=-2.3, b=12., name="duquennoy1991")
+duquennoy1991 = duquennoy1991_gen(
+    a=-2.3, b=12., name="log_period.duquennoy1991"
+)
 
 
-class moe2017_gen(sp.stats.rv_continuous):
+class moe2017_gen(_distn_infrastructure.rv_continuous):
     r"""The log-period random variable of Moe and Stefano (2017)
 
     %(before_notes)s
@@ -132,7 +135,7 @@ class moe2017_gen(sp.stats.rv_continuous):
     that
 
     .. math::
-       \int_{0.2}^{8}f_{X|m_{1}}(x|m_{1})\diff{}X = 1
+       \int_{0.2}^{8}f_{X|m_{1}}(x|m_{1})\mathrm{d}\,X = 1
 
     where $F_{Q|P, m_{1}}$ is the cumulative distribution function for
     the mass ratio (:func:`dyad.stats.mass_ratio.moe2017`) and where
@@ -254,4 +257,4 @@ _moe2017_values = np.tile(
 )
 _moe2017_ppf_interp = LinearNDInterpolator(_moe2017_points.T, _moe2017_values)
 
-moe2017 = moe2017_gen(a=0.2, b=8., name="moe2017")
+moe2017 = moe2017_gen(a=0.2, b=8., name="log_period.moe2017")

@@ -2,6 +2,6 @@ dyad.constants package
 ======================
 
 .. automodule:: dyad.constants
-   :no-members:
-   :no-inherited-members:
-   :no-special-members:
+   :members:
+   :undoc-members:
+   :show-inheritance:

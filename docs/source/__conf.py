@@ -42,7 +42,7 @@ extensions = [
     "sphinx_design",
     # "scipyoptdoc",
     # "doi_role",
-    "matplotlib.sphinxext.plot_directive",
+    # "matplotlib.sphinxext.plot_directive",
     # "myst_nb",
     # "jupyterlite_sphinx",
 ]
@@ -185,7 +185,7 @@ pygments_style = "sphinx"
 # # HTML output
 # ########################################################################
 
-# html_theme = "pydata_sphinx_theme"
+html_theme = "pydata_sphinx_theme"
 
 # # html_logo = "_static/logo.svg"
 # # html_favicon = "_static/favicon.ico"

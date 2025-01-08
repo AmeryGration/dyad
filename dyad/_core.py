@@ -103,7 +103,7 @@ def semimajor_axis_from_period(p, m_1, m_2):
 
     >>> semimajor_axis_from_period(365.25, 1., 3.00362e-6)
     np.float64(0.9999884101100887)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> p, m_1, m_2 = [365.25, 365.25], [1., 1.], [3.00362e-6, 3.00362e-6]
@@ -154,7 +154,7 @@ def period_from_semimajor_axis(a, m_1, m_2):
 
     >>> period_from_semimajor_axis(1., 1., 3.00362e-6)
     np.float64(365.25634990292843)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> a, m_1, m_2 = [1., 1.], [1., 1.], [3.00362e-6, 3.00362e-6]
@@ -167,7 +167,7 @@ def period_from_semimajor_axis(a, m_1, m_2):
     m_2 = np.asarray(m_2)
     res = np.sqrt(4.*np.pi**2.*a**3./(constants.GRAV_CONST*(m_1 + m_2)))
     res = res[()]
-    
+
     return res
 
 def mean_anomaly_from_eccentric_anomaly(eta, e):
@@ -181,9 +181,9 @@ def mean_anomaly_from_eccentric_anomaly(eta, e):
         Eccentric anomaly.
 
     e : array-like
-    
+
         Eccentricity.
-    
+
     Returns
     -------
 
@@ -198,7 +198,7 @@ def mean_anomaly_from_eccentric_anomaly(eta, e):
 
     >>> mean_anomaly_from_eccentric_anomaly(1., 0.5)
     np.float64(0.5792645075960517)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> eta, e = [1., 1.], [0.5, 0.5]
@@ -225,9 +225,9 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
         True anomaly.
 
     e : array-like
-    
+
         Eccentricity.
-    
+
     Returns
     -------
 
@@ -249,7 +249,7 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
 
     >>> eccentric_anomaly_from_true_anomaly(1., 0.5)
     np.float64(0.611063702733245)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> theta, e = [1., 1.], [0.5, 0.5]
@@ -269,7 +269,7 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
     )
     eta = eta + 2.*np.pi*(theta//(2.*np.pi))
     eta = eta[()]
-    
+
     return eta
 
 def true_anomaly_from_eccentric_anomaly(eta, e):
@@ -283,9 +283,9 @@ def true_anomaly_from_eccentric_anomaly(eta, e):
         Eccentric anomaly.
 
     e : array-like
-    
+
         Eccentricity.
-    
+
     Returns
     -------
 
@@ -300,12 +300,12 @@ def true_anomaly_from_eccentric_anomaly(eta, e):
 
     >>> true_anomaly_from_eccentric_anomaly(1., 0.5)
     np.float64(1.5155481528799728)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> eta, e = [1., 1.], [0.5, 0.5]
     >>> true_anomaly_from_eccentric_anomaly(theta, e)
-    array([1.51554815, 1.51554815])    
+    array([1.51554815, 1.51554815])
 
     """
     eta = np.asarray(eta)
@@ -334,9 +334,9 @@ def mean_anomaly_from_true_anomaly(theta, e):
         True anomaly.
 
     e : array-like
-    
+
         Eccentricity.
-    
+
     Returns
     -------
 
@@ -351,7 +351,7 @@ def mean_anomaly_from_true_anomaly(theta, e):
 
     >>> mean_anomaly_from_true_anomaly(1., 0.5)
     np.float64(0.3241942038914112)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> theta, e = [1., 1.], [0.5, 0.5]
@@ -378,9 +378,9 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
         Mean anomaly.
 
     e : array-like
-    
+
         Eccentricity.
-    
+
     Returns
     -------
 
@@ -395,7 +395,7 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
 
     >>> eccentric_anomaly_from_mean_anomaly(1., 0.5)
     np.float64(1.4987011335178482)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> mu, e = [1., 1.], [0.5, 0.5]
@@ -459,7 +459,7 @@ def true_anomaly_from_mean_anomaly(mu, e):
 
     >>> true_anomaly_from_mean_anomaly(1., 0.5)
     np.float64(2.030806214849156)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> mu, e = [1., 1.], [0.5, 0.5]
@@ -503,7 +503,7 @@ def primary_semimajor_axis_from_semimajor_axis(a, q):
 
     >>> primary_semimajor_axis_from_semimajor_axis(1., 0.5)
     np.float64(0.3333333333333333)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> a, q = [1., 1.], [0.5, 0.5]
@@ -582,7 +582,7 @@ def primary_semimajor_axis_from_secondary_semimajor_axis(a, q):
 
     >>> primary_semimajor_axis_from_secondary_semimajor_axis(1., 0.5)
     np.float64(0.5)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> a, q = [1., 1.], [0.5, 0.5]
@@ -627,7 +627,7 @@ def secondary_semimajor_axis_from_primary_semimajor_axis(a, q):
 
     >>> secondary_semimajor_axis_from_primary_semimajor_axis(1., 0.5)
     np.float64(2.0)
-    
+
     Array-like parameters defining multiple orbits.
 
     >>> a, q = [1., 1.], [0.5, 0.5]
@@ -677,8 +677,8 @@ class Orbit:
 
         Argument of pericentre.
 
-    Example
-    -------
+    Examples
+    --------
 
     Scalar parameters defining a single orbit in the perifocal plane.
 
@@ -1122,6 +1122,7 @@ class TwoBody:
 
     Parameters
     ----------
+
     m: array-like
 
         Mass of the more-massive body, :math:`m_{1}`.
@@ -1154,8 +1155,8 @@ class TwoBody:
         Argument of pericentre of the more-massive body's orbit,
         :math:`\omega_{1}`.
 
-    Example
-    -------
+    Examples
+    --------
 
     Scalar parameters defining a single binary system in the perifocal plane.
 
@@ -1231,4 +1232,4 @@ class TwoBody:
     # def total_mass(self):
     #     """Get the total energy of the orbit"""
     #     return (1. + q)*self._mass
-    
+

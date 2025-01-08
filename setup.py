@@ -33,7 +33,7 @@ setup(
         # https://packaging.python.org/en/latest/specifications/
         # core-metadata/#core-metadata-keywords
         "binary", "star", "astrophysics", "stellar", "population",
-        "synthesis", "orbit", "kepler", "dynamics", "astrodynamics",
+        "synthesis", "orbit", "keplerian", "dynamics", "astrodynamics",
         "celestial", "mechanics"
     ],
     classifiers=[

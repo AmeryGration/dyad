@@ -31,8 +31,9 @@ __all__ = [
 import numpy as np
 import scipy as sp
 
+from . import _distn_infrastructure
 
-class splitpowerlaw_gen(sp.stats.rv_continuous):
+class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
     r"""The two-piece split-power-law initial-stellar-mass random variable
 
     %(before_notes)s
@@ -107,10 +108,10 @@ class splitpowerlaw_gen(sp.stats.rv_continuous):
         return np.where(q < self._cdf(s, s, a, b, c, d), f1(q), f2(q))
 
 
-splitpowerlaw = splitpowerlaw_gen(name="splitpowerlaw")
+splitpowerlaw = splitpowerlaw_gen(name="mass.splitpowerlaw")
 
 
-class kroupa2002_gen(sp.stats.rv_continuous):
+class kroupa2002_gen(_distn_infrastructure.rv_continuous):
     r"""The initial-stellar-mass random variable of Kroupa (2002)
 
     %(before_notes)s
@@ -158,10 +159,10 @@ class kroupa2002_gen(sp.stats.rv_continuous):
 
 
 _kroupa2002 = splitpowerlaw(s=0.5, a=0.1, b=60., c=-1.3, d=-2.3)
-kroupa2002 = kroupa2002_gen(a=0.1, b=60., name="kroupa2002")
+kroupa2002 = kroupa2002_gen(a=0.1, b=60., name="mass.kroupa2002")
 
 
-class salpeter1955_gen(sp.stats.rv_continuous):
+class salpeter1955_gen(_distn_infrastructure.rv_continuous):
     r"""The initial-stellar-mass random variable Salpeter (1955)
 
     %(before_notes)s
@@ -207,11 +208,11 @@ _salpeter1955 = sp.stats.truncpareto(
     _salpeter1955_b, _salpeter1955_c, scale=_salpeter1955_scale
 )
 salpeter1955 = salpeter1955_gen(
-    a=_salpeter1955_lb, b=_salpeter1955_ub, name="salpeter1955"
+    a=_salpeter1955_lb, b=_salpeter1955_ub, name="mass.salpeter1955"
 )
 
 
-# class _millerscalo1979_gen(sp.stats.rv_continuous):
+# class _millerscalo1979_gen(_distn_infrastructure.rv_continuous):
 #     r"""The Miller--Scalo (1979) initial-stellar-mass random variable
 
 #     """
@@ -232,10 +233,10 @@ salpeter1955 = salpeter1955_gen(
 # loc = 0.
 # scale = np.exp(mu)
 # _millerscalo1979 = sp.stats.lognorm(s=s, loc=loc, scale=scale)
-# millerscalo1979 = _millerscalo1979_gen(a=0., b=np.inf, name="millerscalo1979")
+# millerscalo1979 = _millerscalo1979_gen(a=0., b=np.inf, name="mass.millerscalo1979")
 
 
-# class _chabrier2003_gen(sp.stats.rv_continuous):
+# class _chabrier2003_gen(_distn_infrastructure.rv_continuous):
 #     r"""The Chabrier (2003) initial-stellar-mass random variable
 
 #     """
@@ -251,10 +252,10 @@ salpeter1955 = salpeter1955_gen(
 
 
 # _chabrier2003 = xxx
-# chabrier2003 = _chabrier2003_gen(a=0.4, b=10., name="chabrier2003")
+# chabrier2003 = _chabrier2003_gen(a=0.4, b=10., name="mass.chabrier2003")
 
 
-# class _maschberger2013_gen(sp.stats.rv_continuous):
+# class _maschberger2013_gen(_distn_infrastructure.rv_continuous):
 #     r"""The Maschberger (2013) initial-stellar-mass random variable
 
 #     """
@@ -269,4 +270,4 @@ salpeter1955 = salpeter1955_gen(
 
 
 # _maschberger2013 = xxx
-# maschberger2013 = _maschberger2013_gen(a=0.4, b=10., name="maschberger2013")
+# maschberger2013 = _maschberger2013_gen(a=0.4, b=10., name="mass.maschberger2013")

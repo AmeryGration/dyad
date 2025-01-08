@@ -65,6 +65,7 @@ __all__ = [
 import numpy as np
 import scipy as sp
 
+from . import _distn_infrastructure
 from . import eccentricity
 from . import mass
 from . import mass_ratio
@@ -72,7 +73,8 @@ from . import period
 from . import log_period
 from . import semimajor_axis
 
-class _true_anomaly_gen(sp.stats.rv_continuous):
+
+class _true_anomaly_gen(_distn_infrastructure.rv_continuous):
     r"""The random variable for true anomaly
 
     %(before_notes)s
@@ -82,15 +84,15 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
     The probability density function for ``true_anomaly`` is:
 
     .. math::
-        f_{\Theta}(theta, e) = \dfrac{1}{2\pi}
-        \left(1 - e\cos(\eta(theta))\right)
-        \dfrac{a(e)\sec^{2}(theta/2)}{a(e)^{2}\tan^{2}(theta/2) + 1}
+        f_{\Theta}(\theta, e) = \dfrac{1}{2\pi}
+        \left(1 - e\cos(\eta(\theta))\right)
+        \dfrac{a(e)\sec^{2}(\theta/2)}{a(e)^{2}\tan^{2}(\theta/2) + 1}
 
     where
 
     .. math::
-        \eta(theta) =
-        2\arctan\left(a(e)\tan\left(\dfrac{theta}{2}\right)\right).
+        \eta(\theta) =
+        2\arctan\left(a(e)\tan\left(\dfrac{\theta}{2}\right)\right).
 
     and
 
@@ -98,8 +100,8 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
 
         a(e) = \sqrt{\dfrac{1 - e}{1 + e}}.
 
-    for :math:`theta \in [0, 2\pi)` and :math:`e \in [0, 1)`.
-
+    for :math:`\theta \in [0, 2\pi)` and :math:`e \in [0, 1)`.
+    
     The probability density function ``true_anomaly`` takes ``e`` as a
     shape parameter for :math:`e`.
 
@@ -118,7 +120,9 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
     def _pdf(self, x, e):
         A = 2.*np.pi
         eta = 2*np.arctan(np.sqrt(1. - e)*np.tan(x/2.)/np.sqrt(1. + e))
-        # eta = 2*np.arctan2(np.sqrt(1. + e), np.sqrt(1. - e)*np.tan(x/2.))
+        # eta = 2*np.arctan2(
+        #     np.sqrt(1. - e)/np.sqrt(1. + e), 1./np.tan(x/2.)
+        # )
         Y = (
             (np.sqrt(1. - e)/(np.sqrt(1. + e)*np.cos(x/2.)**2.))
             /((1. - e)*np.tan(x/2.)**2./(1. + e) + 1.)
@@ -130,6 +134,9 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
     def _cdf(self, x, e):
         A = 2.*np.pi
         eta = 2.*np.arctan(np.sqrt(1. - e)*np.tan(x/2.)/np.sqrt(1. + e))
+        # eta = 2.*np.arctan2(
+        #     np.sqrt(1. - e)/np.sqrt(1. + e), 1./np.tan(x/2.)
+        # )
         eta = eta%(2.*np.pi)
         res = (eta - e*np.sin(eta))/A
         
@@ -151,13 +158,15 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
         
         def fsolve(x, e):
             # True anomaly must be computed numerically
-            eta = sp.optimize.fsolve(f, x, (x, e))#, fprime)
+            eta = sp.optimize.fsolve(f, x, (x, e), fprime)
             eta = np.array(eta).squeeze()
-            # eta = eta%(2.*np.pi)
             res = 2.*np.arctan(
                 np.sqrt((1. + e)/(1. - e))
                 *np.tan(eta/2.)
             )
+            # res = 2.*np.arctan(
+            #     np.sqrt((1. + e)/(1. - e)), 1./np.tan(eta/2.)
+            # )
 
             return res%(2.*np.pi)
 
@@ -169,7 +178,7 @@ class _true_anomaly_gen(sp.stats.rv_continuous):
         return res
 
     
-class _rv_uniform_gen(sp.stats.rv_continuous):
+class _rv_uniform_gen(_distn_infrastructure.rv_continuous):
     r"""A uniform continuous random variable
 
     The distribution is uniform on ``[0, 2\pi)``. Using the parameters
@@ -226,7 +235,7 @@ class _longitude_of_ascending_node_gen(_rv_uniform_gen):
         super().__init__(*args, **kwargs)
 
 
-class _inclination_gen(sp.stats.rv_continuous):
+class _inclination_gen(_distn_infrastructure.rv_continuous):
     r"""The random variabe for inclination
 
     %(before_notes)s

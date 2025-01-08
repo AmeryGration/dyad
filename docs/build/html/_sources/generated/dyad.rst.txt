@@ -2,9 +2,9 @@ dyad package
 ============
 
 .. automodule:: dyad
-   :no-members:
-   :no-inherited-members:
-   :no-special-members:
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Subpackages
 -----------

@@ -28,11 +28,12 @@ import scipy as sp
 
 from scipy._lib._util import _lazyselect
 from scipy._lib._util import _lazywhere
+from . import _distn_infrastructure
 
 _truncnorm = sp.stats.truncnorm
 
 
-class duquennoy1991_gen(sp.stats.rv_continuous):
+class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
     r"""The mass-ratio random variable of Duquennoy and Mayor (1991)
 
     %(before_notes)s
@@ -88,10 +89,12 @@ _duquennoy1991 = _truncnorm(
     a=_duquennoy1991_a, b=_duquennoy1991_b, loc=_duquennoy1991_loc,
     scale=_duquennoy1991_scale
 )
-duquennoy1991 = duquennoy1991_gen(a=0., b=np.inf, name="duquennoy1991")
+duquennoy1991 = duquennoy1991_gen(
+    a=0., b=np.inf, name="mass_ratio.duquennoy1991"
+)
 
 
-class moe2017_gen(sp.stats.rv_continuous):
+class moe2017_gen(_distn_infrastructure.rv_continuous):
     r"""The mass-ratio random variable of Moe and Stefano (2017)
 
     %(before_notes)s
@@ -160,9 +163,9 @@ class moe2017_gen(sp.stats.rv_continuous):
     .. math::
        F_{\text{twin}}(p, m_{1})
        = 
-       \dfrac{\int_{0.95}^{1}c_{\text{twin}}(p, m_{1})\diff{}q}
-       {\int_{0.3}^{1}q^{\delta(p, m_{1})}\diff{}q
-       + \int_{0.95}^{1}c_{\text{twin}}(p, m_{1})\diff{}q},
+       \dfrac{\int_{0.95}^{1}c_{\text{twin}}(p, m_{1})\mathrm{d}\,q}
+       {\int_{0.3}^{1}q^{\delta(p, m_{1})}\mathrm{d}\,q
+       + \int_{0.95}^{1}c_{\text{twin}}(p, m_{1})\mathrm{d}\,q},
 
     and is piecewise linear in :math:`\log_{10}(p)` and given by
 
@@ -1119,4 +1122,4 @@ def _moe2017_delta(log10_period, primary_mass):
 
     return delta
 
-moe2017 = moe2017_gen(a=0.1, b=1., name="moe2017")
+moe2017 = moe2017_gen(a=0.1, b=1., name="mass_ratio.moe2017")

@@ -36,6 +36,7 @@ from scipy._lib._util import _lazywhere
 from scipy.interpolate import RegularGridInterpolator
 from scipy.interpolate import LinearNDInterpolator
 from dyad.stats import mass_ratio
+from . import _distn_infrastructure
 
 def _lognorm_logpdf(x, s):
     # Replica of ~scipy.stats._continuous_distns.cd._lognorm_logpdf~,
@@ -48,7 +49,7 @@ def _lognorm_logpdf(x, s):
     )
 
 
-class trunclognorm_gen(sp.stats.rv_continuous):
+class trunclognorm_gen(_distn_infrastructure.rv_continuous):
     r"""A truncated lognormal random variable
 
     %(before_notes)s
@@ -138,10 +139,10 @@ class trunclognorm_gen(sp.stats.rv_continuous):
         )
 
 
-trunclognorm = trunclognorm_gen(name="trunclognorm")
+trunclognorm = trunclognorm_gen(name="period.trunclognorm")
 
 
-class duquennoy1991_gen(sp.stats.rv_continuous):
+class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
     r"""The period random variable of Duquennoy and Mayor (1991)
 
     %(before_notes)s
@@ -201,11 +202,11 @@ _duquennoy1991 = trunclognorm(
     scale=_duquennoy1991_scale
 )
 duquennoy1991 = duquennoy1991_gen(
-    a=10.**-2.3, b=10.**12., name="duquennoy1991"
+    a=10.**-2.3, b=10.**12., name="period.duquennoy1991"
 )
 
 
-class moe2017_gen(sp.stats.rv_continuous):
+class moe2017_gen(_distn_infrastructure.rv_continuous):
     r"""The period random variable of Moe and Stefano (1991)
 
     %(before_notes)s
@@ -316,4 +317,4 @@ _moe2017_values = np.tile(
 )
 _moe2017_ppf_interp = LinearNDInterpolator(_moe2017_points.T, _moe2017_values)
 
-moe2017 = moe2017_gen(a=10.**0.2, b=1.e8, name="moe2017")
+moe2017 = moe2017_gen(a=10.**0.2, b=1.e8, name="period.moe2017")

@@ -22,24 +22,29 @@ Probability distributions
 """
 
 __all__ = [
-    "uniform",
-    "powerlaw",
+    # "uniform",
+    # "powerlaw",
     "thermal",
     "duquennoy1991",
     "moe2017",
 ]
 
 import numpy as np
-import scipy.stats as stats
+import scipy as sp
 
 from scipy.stats._distn_infrastructure import _ShapeInfo
+from . import _distn_infrastructure
 
-uniform = stats._continuous_distns.uniform_gen(a=0., b=1., name="uniform")
+# uniform = sp.stats._continuous_distns.uniform_gen(
+#     a=0., b=1., name="eccentricity.uniform"
+# )
 
-powerlaw = stats._continuous_distns.powerlaw_gen(a=0., b=1., name="powerlaw")
+# powerlaw = sp.stats._continuous_distns.powerlaw_gen(
+#     a=0., b=1., name="eccentricity.powerlaw"
+# )
 
 
-class duquennoy1991_gen(stats.rv_continuous):
+class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
     r"""The eccentricity random variable of Duquennoy and Mayor (1991)
 
     %(before_notes)s
@@ -119,17 +124,19 @@ _duquennoy1991_loc = 0.27
 _duquennoy1991_scale = 0.13
 _duquennoy1991_a = (0. - _duquennoy1991_loc)/_duquennoy1991_scale
 _duquennoy1991_b = (np.inf - _duquennoy1991_loc)/_duquennoy1991_scale
-_duquennoy1991_f1 = stats.truncnorm(
+_duquennoy1991_f1 = sp.stats.truncnorm(
     a=_duquennoy1991_a, b=_duquennoy1991_b, loc=_duquennoy1991_loc,
     scale=_duquennoy1991_scale
 )
 # Duquennoy and Mayor (1991) wide binaries: thermal 
-_duquennoy1991_f2 = stats.powerlaw(2.)
+_duquennoy1991_f2 = sp.stats.powerlaw(2.)
 # Duquennoy and Mayor (1991) all binaries: conditional
-duquennoy1991 = duquennoy1991_gen(a=0., b=1., name="duquennoy1991")
+duquennoy1991 = duquennoy1991_gen(
+    a=0., b=1., name="eccentricity.duquennoy1991"
+)
 
 
-class _thermal_gen(stats.rv_continuous):
+class _thermal_gen(_distn_infrastructure.rv_continuous):
     r"""The thermal eccentricity random variable
 
     %(before_notes)s
@@ -167,11 +174,11 @@ class _thermal_gen(stats.rv_continuous):
         return _thermal.ppf(q)
 
 
-_thermal = stats.powerlaw(2.)
-thermal = _thermal_gen(a=0., b=1., name="thermal")
+_thermal = sp.stats.powerlaw(2.)
+thermal = _thermal_gen(a=0., b=1., name="eccentricity.thermal")
 
 
-class moe2017_gen(stats.rv_continuous):
+class moe2017_gen(_distn_infrastructure.rv_continuous):
     r"""The eccentricity random variable of Moe and Stefano (2017)
 
     %(before_notes)s
@@ -361,4 +368,4 @@ def _moe2017_eta(log10_period, primary_mass):
 
     return res
 
-moe2017 = moe2017_gen(a=0., b=1., name="moe2017")
+moe2017 = moe2017_gen(a=0., b=1., name="eccentricity.moe2017")
