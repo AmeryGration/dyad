@@ -4,6 +4,8 @@
 Binary-star statistics
 **********************
 
+UNDER DEVELOPMENT.
+
 Checking the validity of shape parameters
 =========================================
 

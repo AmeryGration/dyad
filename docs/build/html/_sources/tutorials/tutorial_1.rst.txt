@@ -12,9 +12,9 @@ To a good approximation the Earth--Sun system is Keplerian. The Earth moves on a
    >>> m, a, e = 1., 1., 0.0167
    >>> orbit = dyad.Orbit(m, a, e)
 
-This instance of the class :class:`dyad.Orbit` has a number of attributes
-that we may interrogate. They include the periapsis, apoapsis, and
-energy. A full list is available in the API documentation.
+This instance of the class :class:`dyad.Orbit` has a number of
+attributes that we may interrogate. They include the periapsis and
+apoapsis. A full list is available in the API documentation.
 
 .. sourcecode:: python
 
@@ -22,21 +22,16 @@ energy. A full list is available in the API documentation.
    np.float64(0.9833)
    >>> orbit.apoapsis
    np.float64(1.0167)
-   >>> orbit.energy
-   ...
 
 The state of the body is specified by its true anomaly,
 :math:`\theta`. Suppose that :math:`\theta = 1`. Then we may compute
-gvarious properties of this state using the methods of
-:class:`dyad.Orbit`. These include the potential, radius, speed, and
-dynamical state. Again, a full list is available in the API
-documentation.
+various properties of this state using the methods of
+:class:`dyad.Orbit`. These include the radius, speed, and dynamical
+state. Again, a full list is available in the API documentation.
 
 .. sourcecode:: python
 
    >>> theta = 1.
-   >>> orbit.potential(theta)
-   np.float64(-0.0002986655331264171)
    >>> orbit.radius(theta)
    np.float64(0.9907812427855317)
    >>> orbit.speed(theta)
@@ -76,10 +71,18 @@ Plot this.
    >>> import matplotlib.pyplot as plt
    >>> fig, ax = plt.subplots()
    >>> ax.plot(theta, r)
+   >>> ax.set_xticks([0., np.pi, 2.*np.pi], [r"$0$", r"$\pi$", r"$2\pi$"])
    >>> ax.set_xlabel(r"$\theta$")
    >>> ax.set_ylabel(r"$r/\mathrm{au}$")
    >>> plt.show()
 
+.. _radius:
+.. figure:: ../figures/evolution_of_radius.jpg
+   :figwidth: 75%
+   :align: center
+
+   The evolution of the Earth's radius over the course of a year.
+   
 .. _binary_system:
 
 ****************************
@@ -131,5 +134,5 @@ Equivalently, we might compute these values as follows.
    >>> binary.secondary.radius(0.)
    np.float64(6.043308020882773)
 
-Note that all properties of the primary and secondary orbits computed
-in the observer's frame, with origin at the primary focus.
+Note that all properties of the primary and secondary orbits are
+computed in the observer's frame, with origin at the primary focus.

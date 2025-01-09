@@ -4,7 +4,15 @@
 Synthesizing a population of binary stars
 *****************************************
 
-Dyad has a subpackage, :mod:`dyad.stats`, that contains probability distributions for the masses, mass ratios, and orbital elements of a population of binary stars. These probability distribitions are implemented in the same way as Scipy's continous random variables (see here and, for an example, here). As a result, they come equiped with a large number of useful methods, in particular ``pdf``, which computes the probability density function (PDF), and ``rvs``, which generates a sample.
+Dyad has a subpackage, :mod:`dyad.stats`, that contains probability
+distributions for the masses, mass ratios, and orbital elements of a
+population of binary stars. These probability distribitions are
+implemented in the same way as Scipy's continous random variables (see
+:class:`scipy.stats.rv_continuous` and, for an example,
+:class:`scipy.stats.loguniform`). As a result, they come equipped with
+a large number of useful methods, in particular ``pdf``, which
+computes the probability density function (PDF), and ``rvs``, which
+generates random variates (i.e. which generates a sample).
 
 For example, consider the random variable for inclination, :math:`I`, where :math:`\sin(I) \sim U(0, \pi)`. This is implemented by Dyad using the class :class:`dyad.stats.inclination`. Instantiate this class as follows.
 
@@ -34,12 +42,18 @@ Now plot our results.
    >>> import matplot.pyplot as plt
    >>> fig, ax = plt.subplots()
    >>> ax.hist(sample, bins=25, density=True, histtype="step")
+   >>> ax.set_xticks([0., 0.5*np.pi, np.pi], [r"$0$", r"$\pi/2$", r"$\pi$"])
    >>> ax.set_xlabel(r"$i$")
-   >>> ax.set_xlabel(r"$f_{I}$")
+   >>> ax.set_ylabel(r"$f_{I}$")
    >>> ax.plot(x, pdf)
    >>> plt.show()
 
-.. image
+.. _inclination:
+.. figure:: ../figures/pdf_inclination.jpg
+   :figwidth: 75%
+   :align: center
+
+   The probability density function for inclination.
 
 Some of Dyad's random variables are conditional on other random variables. We must use their shape parameters to fully specify them. For example, the true anomaly of a body moving on an elliptical orbit in a gravitational central potentia depends on that orbit's eccentricity, and so is a conditional random variable, :math:`\Theta|E = e`. Again, we may synthesize a sample and compute the PDF. Suppose that :math:`e = 0.5`.
 
@@ -57,9 +71,17 @@ Plot the results.
    >>> fig, ax = plt.subplots()
    >>> ax.hist(sample, bins=25, density=True, histtype="step")
    >>> ax.plot(x, pdf)
+   >>> ax.set_xticks([0., np.pi, 2.*np.pi], [r"$0$", r"$\pi$", r"$2\pi$"])
    >>> ax.set_xlabel(r"$\theta$")
    >>> ax.set_ylabel(r"$f_{\Theta}$")
    >>> plt.show()
+
+.. _inclincation:
+.. figure:: ../figures/pdf_true_anomaly.jpg
+   :figwidth: 75%
+   :align: center
+
+   The probability density function for true anomaly.
 
 In some cases there is a choice of distribution. These are kept in the
 submodules :mod:`dyad.stats.eccentricity`, :mod:`dyad.stats.period`,
@@ -127,19 +149,23 @@ The class :class:`dyad.TwoBody` can serve as a container for these values. First
 .. sourcecode:: python
 
    >>> a = dyad.semimajor_axis_from_period(p, m_1, m_1*q)
-   >>> a_1 = dyad.primary_semimajor_axis_from_semimajor_axis(a)
+   >>> a_1 = dyad.primary_semimajor_axis_from_semimajor_axis(a, q)
 
 Then instantiate a :class:`dyad.TwoBody` object.
 
 .. sourcecode:: python
 
-   >>> binary = dyad.TwoBody(m_1, q, a_1, e, theta, Omega, i, omega)
+   >>> binary = dyad.TwoBody(m_1, q, a_1, e, Omega, i, omega)
 
-Inspect the phase state of the 42nd element, which is given in Cartesian coordinates as :math:`(x, y, z, v_{x}, v_{y}, v_{z})`.
+Consider the 42nd star and inspect its phase state for true anomaly
+:math:`\theta = 1`. This is given in Cartesian coordinates as
+:math:`(x, y, z, v_{x}, v_{y}, v_{z})`.
 
 .. sourcecode:: python
 
-   >>> binary.primary.state[42]
+   >>> binary.primary.state(1.)[42]
+   array([-0.24327922,  2.96687082, -0.08942692,  1.37647978,  0.8311047 ,
+        0.33483558])
 
 References
 ==========
