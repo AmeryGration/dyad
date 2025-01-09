@@ -26,16 +26,6 @@ Get to know Dyad with the following tutorials.
    tutorials/tutorial_1
    tutorials/tutorial_2
 
-User guide
-==========
-
-Get to know Dyad properly with the following tutorials.
-
-.. toctree::
-   :maxdepth: 1
-
-   user_guide/binary_star_statistics
-
 API reference
 =============
 

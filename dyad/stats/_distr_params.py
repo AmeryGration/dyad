@@ -7,6 +7,7 @@ import numpy as np
 
 distcont = [
     ["true_anomaly", (0.5,)],
+    # ["eccentricity.powerlaw", (0.659,)],
     ["eccentricity.duquennoy1991", (365.,)],
     ["eccentricity.moe2017", ((2.56, 1.),)],
     ["log_period.moe2017", (1.,)],
