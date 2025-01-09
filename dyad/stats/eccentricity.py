@@ -36,7 +36,7 @@ from scipy.stats._distn_infrastructure import _ShapeInfo
 from . import _distn_infrastructure
 
 uniform = sp.stats._continuous_distns.uniform_gen(
-    a=0., b=1., name="eccentricity.uniform"
+    a=0., b=1., name="uniform"
 )
 
 powerlaw = sp.stats._continuous_distns.powerlaw_gen(

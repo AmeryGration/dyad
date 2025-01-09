@@ -16,7 +16,7 @@ dyad.stats.eccentricity module
    :members:
    :undoc-members:
    :show-inheritance:
-
+      
 dyad.stats.log\_period module
 -----------------------------
 
@@ -24,7 +24,7 @@ dyad.stats.log\_period module
    :members:
    :undoc-members:
    :show-inheritance:
-
+      
 dyad.stats.mass module
 ----------------------
 
@@ -32,7 +32,7 @@ dyad.stats.mass module
    :members:
    :undoc-members:
    :show-inheritance:
-
+      
 dyad.stats.mass\_ratio module
 -----------------------------
 
@@ -40,7 +40,7 @@ dyad.stats.mass\_ratio module
    :members:
    :undoc-members:
    :show-inheritance:
-
+      
 dyad.stats.period module
 ------------------------
 
@@ -48,7 +48,7 @@ dyad.stats.period module
    :members:
    :undoc-members:
    :show-inheritance:
-
+      
 dyad.stats.semimajor\_axis module
 ---------------------------------
 

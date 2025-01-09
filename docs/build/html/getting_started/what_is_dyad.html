@@ -30,8 +30,10 @@
   <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
@@ -39,13 +41,12 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=7026087e"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/what_is_dyad';</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -54,7 +55,7 @@
     <link rel="prev" title="Installation" href="installation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="0.0.0" />
   </head>
   
   
@@ -392,8 +393,8 @@ consistent with a given mass function and pairing function. It does so
 by implementing the method of Gration, Izzard, and Das <a class="reference internal" href="#gid25" id="id7"><span>[GID25]</span></a>.</p>
 <section id="the-basics">
 <h2>The basics<a class="headerlink" href="#the-basics" title="Link to this heading">#</a></h2>
-<p>The geometry of an orbit is shown in Figures <code class="xref std std-numref docutils literal notranslate"><span class="pre">orbit</span></code> and
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">orientation</span></code>. That orbit is an ellipse with <em>semimajor axis</em>,
+<p>The geometry of an orbit is shown in Figures <a class="reference internal" href="#orbit"><span class="std std-numref">Fig. 1</span></a> and
+<a class="reference internal" href="#orientation"><span class="std std-numref">Fig. 2</span></a>. That orbit is an ellipse with <em>semimajor axis</em>,
 <span class="math notranslate nohighlight">\(a\)</span> and <em>eccentricity</em>, <span class="math notranslate nohighlight">\(e\)</span>. The body’s phase is described
 by its <em>true anomaly</em>, <span class="math notranslate nohighlight">\(\\theta\)</span>, which is the angle subtended
 by the body and the primary vertex (i.e. the point of perigee) at the
@@ -411,7 +412,7 @@ and <span class="math notranslate nohighlight">\(\omega\)</span> (being the <em>
 <figure class="align-center" id="id8" style="width: 75%">
 <span id="orbit"></span><img alt="../_images/elliptical_orbit.jpg" src="../_images/elliptical_orbit.jpg" />
 <figcaption>
-<p><span class="caption-text">The orbit of a bound body in a gravitational central potential. The
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">The orbit of a bound body in a gravitational central potential. The
 pericentral frame has coordinates <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> while the
 perifocal frame has coordinates <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>.</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
 </figcaption>
@@ -419,7 +420,7 @@ perifocal frame has coordinates <span class="math notranslate nohighlight">\(p\)
 <figure class="align-center" id="id9" style="width: 75%">
 <span id="orientation"></span><img alt="../_images/orbital_euler_angles.jpg" src="../_images/orbital_euler_angles.jpg" />
 <figcaption>
-<p><span class="caption-text">The orientation of the perifocal coordinates system with respect to
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">The orientation of the perifocal coordinates system with respect to
 the coordinate system of the observer is described by the Euler
 angles <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(\omega\)</span>. The unit
 vector <span class="math notranslate nohighlight">\(\mathbf{e}_{N}\)</span> is parallel with the <em>line of nodes</em>
@@ -429,7 +430,7 @@ observer’s plane of reference intersect).</span><a class="headerlink" href="#i
 </figcaption>
 </figure>
 <p>The geometry of a binary system’s component orbits is shown in Figure
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">twobodysystem</span></code>. Both bodies move on elliptical orbits with
+<a class="reference internal" href="#twobodysystem"><span class="std std-numref">Fig. 3</span></a>. Both bodies move on elliptical orbits with
 primary foci coincident with the system’s centre of mass (COM)
 frame. The more-massive (resp. less-massive) body moves as if in a
 central potential generated by a mass of <span class="math notranslate nohighlight">\(m_{2}^{3}/(m_{1} +
@@ -448,7 +449,7 @@ that <span class="math notranslate nohighlight">\(a_{2} = a_{1}/q\)</span>, <spa
 <figure class="align-center" id="id10" style="width: 75%">
 <span id="twobodysystem"></span><img alt="../_images/twobody_system.jpg" src="../_images/twobody_system.jpg" />
 <figcaption>
-<p><span class="caption-text">The orbits of the components of a two-body system.</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">The orbits of the components of a two-body system.</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>

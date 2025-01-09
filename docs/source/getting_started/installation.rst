@@ -10,7 +10,7 @@ You may install Dyad from the command line using PIP.
 
    $ pip install dyad
 
-It requires Python version 3.6 or greater.
+It requires Python version 3.10 or greater.
 
 You may also install Dyad from the source distribution, available at
 the Dyad repository

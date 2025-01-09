@@ -1,4 +1,4 @@
-dyad.stats.mass.splitpowerlaw
+﻿dyad.stats.mass.splitpowerlaw
 =============================
 
 .. currentmodule:: dyad.stats.mass

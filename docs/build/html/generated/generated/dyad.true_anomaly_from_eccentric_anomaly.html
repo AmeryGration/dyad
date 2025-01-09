@@ -30,8 +30,10 @@
   <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
@@ -39,19 +41,18 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../_static/documentation_options.js?v=7026087e"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/generated/dyad.true_anomaly_from_eccentric_anomaly';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="0.0.0" />
   </head>
   
   
@@ -354,9 +355,7 @@
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="dyad.stats.period.html">dyad.stats.period</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/dyad.stats.period.trunclognorm.html">dyad.stats.period.trunclognorm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dyad.stats.period.duquennoy1991.html">dyad.stats.period.duquennoy1991</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dyad.stats.period.moe2017.html">dyad.stats.period.moe2017</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="dyad.stats.log_period.html">dyad.stats.log_period</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -384,9 +383,7 @@
 <li class="toctree-l2"><a class="reference internal" href="dyad.stats.mass.salpeter1955.html">dyad.stats.mass.salpeter1955</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dyad.stats.mass_ratio.duquennoy1991.html">dyad.stats.mass_ratio.duquennoy1991</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dyad.stats.mass_ratio.moe2017.html">dyad.stats.mass_ratio.moe2017</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dyad.stats.period.trunclognorm.html">dyad.stats.period.trunclognorm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dyad.stats.period.duquennoy1991.html">dyad.stats.period.duquennoy1991</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dyad.stats.period.moe2017.html">dyad.stats.period.moe2017</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dyad.stats.semimajor_axis.opik1924.html">dyad.stats.semimajor_axis.opik1924</a></li>
 </ul>
 </details></li>
@@ -446,20 +443,22 @@
 <h1>dyad.true_anomaly_from_eccentric_anomaly<a class="headerlink" href="#dyad-true-anomaly-from-eccentric-anomaly" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="dyad.true_anomaly_from_eccentric_anomaly">
-<span class="sig-prename descclassname"><span class="pre">dyad.</span></span><span class="sig-name descname"><span class="pre">true_anomaly_from_eccentric_anomaly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dyad/_core.html#true_anomaly_from_eccentric_anomaly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dyad.true_anomaly_from_eccentric_anomaly" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">dyad.</span></span><span class="sig-name descname"><span class="pre">true_anomaly_from_eccentric_anomaly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.true_anomaly_from_eccentric_anomaly" title="Link to this definition">#</a></dt>
 <dd><p>Return the true anomaly</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>eta</strong> (<em>array-like</em>) – Eccentric anomaly.</p></li>
-<li><p><strong>e</strong> (<em>array-like</em>) – Eccentricity.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>eta</strong><span class="classifier">array-like</span></dt><dd><p>Eccentric anomaly.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">array-like</span></dt><dd><p>Eccentricity.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>res</strong> – True anomaly.</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>res</strong><span class="classifier">ndarray</span></dt><dd><p>True anomaly.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray</p>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -507,7 +506,7 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.true_anomaly_from_eccentric_anomaly"><code class="docutils literal notranslate"><span class="pre">true_anomaly_from_eccentric_anomaly()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.true_anomaly_from_eccentric_anomaly"><code class="docutils literal notranslate"><span class="pre">true_anomaly_from_eccentric_anomaly</span></code></a></li>
 </ul>
   </nav></div>
 

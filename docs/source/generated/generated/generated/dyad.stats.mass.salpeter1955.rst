@@ -1,4 +1,4 @@
-dyad.stats.mass.salpeter1955
+﻿dyad.stats.mass.salpeter1955
 ============================
 
 .. currentmodule:: dyad.stats.mass

@@ -1,4 +1,4 @@
-dyad.stats.period.moe2017
+﻿dyad.stats.period.moe2017
 =========================
 
 .. currentmodule:: dyad.stats.period

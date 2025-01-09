@@ -1,4 +1,4 @@
-dyad.stats.period.duquennoy1991
+﻿dyad.stats.period.duquennoy1991
 ===============================
 
 .. currentmodule:: dyad.stats.period

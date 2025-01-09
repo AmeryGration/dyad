@@ -30,8 +30,10 @@
   <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
@@ -39,13 +41,12 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../../_static/documentation_options.js?v=7026087e"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_reference/generated/generated/dyad.stats.mass.salpeter1955';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -54,7 +55,7 @@
     <link rel="prev" title="dyad.stats.mass.kroupa2002" href="dyad.stats.mass.kroupa2002.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="0.0.0" />
   </head>
   
   
@@ -347,9 +348,7 @@
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../dyad.stats.period.html">dyad.stats.period</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="dyad.stats.period.trunclognorm.html">dyad.stats.period.trunclognorm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dyad.stats.period.duquennoy1991.html">dyad.stats.period.duquennoy1991</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dyad.stats.period.moe2017.html">dyad.stats.period.moe2017</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../dyad.stats.log_period.html">dyad.stats.log_period</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -434,127 +433,74 @@
 <dt class="sig sig-object py" id="dyad.stats.mass.salpeter1955">
 <span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">salpeter1955</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dyad.stats.mass.salpeter1955_gen</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dyad.stats.mass.salpeter1955" title="Link to this definition">#</a></dt>
 <dd><p>The initial-stellar-mass random variable Salpeter (1955)</p>
-<p>As an instance of the <cite>rv_continuous</cite> class, <cite>dyad.stats.mass.salpeter1955</cite> object inherits from it
+<p>As an instance of the <em class="xref py py-obj">rv_continuous</em> class, <a class="reference internal" href="../../../generated/generated/generated/dyad.stats.mass.salpeter1955.html#dyad.stats.mass.salpeter1955" title="dyad.stats.mass.salpeter1955"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dyad.stats.mass.salpeter1955</span></code></a> object inherits from it
 a collection of generic methods (see below for the full list),
 and completes them with details specific for this particular distribution.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.rvs">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">rvs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.rvs" title="Link to this definition">#</a></dt>
-<dd><p>Random variates.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.pdf">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.pdf" title="Link to this definition">#</a></dt>
-<dd><p>Probability density function.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.logpdf">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">logpdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.logpdf" title="Link to this definition">#</a></dt>
-<dd><p>Log of the probability density function.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.cdf">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.cdf" title="Link to this definition">#</a></dt>
-<dd><p>Cumulative distribution function.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.logcdf">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">logcdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.logcdf" title="Link to this definition">#</a></dt>
-<dd><p>Log of the cumulative distribution function.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.sf">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">sf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.sf" title="Link to this definition">#</a></dt>
-<dd><p>Survival function  (also defined as <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">cdf</span></code>, but <cite>sf</cite> is sometimes more accurate).</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.logsf">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">logsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.logsf" title="Link to this definition">#</a></dt>
-<dd><p>Log of the survival function.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.ppf">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">ppf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.ppf" title="Link to this definition">#</a></dt>
-<dd><p>Percent point function (inverse of <code class="docutils literal notranslate"><span class="pre">cdf</span></code> — percentiles).</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.isf">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">isf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.isf" title="Link to this definition">#</a></dt>
-<dd><p>Inverse survival function (inverse of <code class="docutils literal notranslate"><span class="pre">sf</span></code>).</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.moment">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">moment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.moment" title="Link to this definition">#</a></dt>
-<dd><p>Non-central moment of the specified order.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.stats">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">moments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.stats" title="Link to this definition">#</a></dt>
-<dd><p>Mean(‘m’), variance(‘v’), skew(‘s’), and/or kurtosis(‘k’).</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.entropy">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.entropy" title="Link to this definition">#</a></dt>
-<dd><p>(Differential) entropy of the RV.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.fit">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.fit" title="Link to this definition">#</a></dt>
-<dd><p>Parameter estimates for generic data.
-See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rv_continuous.fit.html#scipy.stats.rv_continuous.fit">scipy.stats.rv_continuous.fit</a> for detailed documentation of the
-keyword arguments.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.expect">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">expect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args=()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lb=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ub=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conditional=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.expect" title="Link to this definition">#</a></dt>
-<dd><p>Expected value of a function (of one argument) with respect to the distribution.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.median">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">median</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.median" title="Link to this definition">#</a></dt>
-<dd><p>Median of the distribution.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.mean">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.mean" title="Link to this definition">#</a></dt>
-<dd><p>Mean of the distribution.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.var">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.var" title="Link to this definition">#</a></dt>
-<dd><p>Variance of the distribution.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.std">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.std" title="Link to this definition">#</a></dt>
-<dd><p>Standard deviation of the distribution.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dyad.stats.mass.interval">
-<span class="sig-prename descclassname"><span class="pre">dyad.stats.mass.</span></span><span class="sig-name descname"><span class="pre">interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">confidence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dyad.stats.mass.interval" title="Link to this definition">#</a></dt>
-<dd><p>Confidence interval with equal areas around the median.</p>
-</dd></dl>
-
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>rvs(loc=0, scale=1, size=1, random_state=None)</strong></p></td>
+<td><p>Random variates.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>pdf(x, loc=0, scale=1)</strong></p></td>
+<td><p>Probability density function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>logpdf(x, loc=0, scale=1)</strong></p></td>
+<td><p>Log of the probability density function.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>cdf(x, loc=0, scale=1)</strong></p></td>
+<td><p>Cumulative distribution function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>logcdf(x, loc=0, scale=1)</strong></p></td>
+<td><p>Log of the cumulative distribution function.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>sf(x, loc=0, scale=1)</strong></p></td>
+<td><p>Survival function  (also defined as <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">cdf</span></code>, but <em class="xref py py-obj">sf</em> is sometimes more accurate).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>logsf(x, loc=0, scale=1)</strong></p></td>
+<td><p>Log of the survival function.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>ppf(q, loc=0, scale=1)</strong></p></td>
+<td><p>Percent point function (inverse of <code class="docutils literal notranslate"><span class="pre">cdf</span></code> — percentiles).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>isf(q, loc=0, scale=1)</strong></p></td>
+<td><p>Inverse survival function (inverse of <code class="docutils literal notranslate"><span class="pre">sf</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>moment(order, loc=0, scale=1)</strong></p></td>
+<td><p>Non-central moment of the specified order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>stats(loc=0, scale=1, moments=’mv’)</strong></p></td>
+<td><p>Mean(‘m’), variance(‘v’), skew(‘s’), and/or kurtosis(‘k’).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>entropy(loc=0, scale=1)</strong></p></td>
+<td><p>(Differential) entropy of the RV.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>fit(data)</strong></p></td>
+<td><p>Parameter estimates for generic data. See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rv_continuous.fit.html#scipy.stats.rv_continuous.fit">scipy.stats.rv_continuous.fit</a> for detailed documentation of the keyword arguments.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>expect(func, args=(), loc=0, scale=1, lb=None, ub=None, conditional=False, **kwds)</strong></p></td>
+<td><p>Expected value of a function (of one argument) with respect to the distribution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>median(loc=0, scale=1)</strong></p></td>
+<td><p>Median of the distribution.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>mean(loc=0, scale=1)</strong></p></td>
+<td><p>Mean of the distribution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>var(loc=0, scale=1)</strong></p></td>
+<td><p>Variance of the distribution.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>std(loc=0, scale=1)</strong></p></td>
+<td><p>Standard deviation of the distribution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>interval(confidence, loc=0, scale=1)</strong></p></td>
+<td><p>Confidence interval with equal areas around the median.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p class="rubric">Notes</p>
-<p>The probability density function for <cite>salpeter1955</cite> is:</p>
+<p>The probability density function for <a class="reference internal" href="../../../generated/generated/generated/dyad.stats.mass.salpeter1955.html#dyad.stats.mass.salpeter1955" title="dyad.stats.mass.salpeter1955"><code class="xref py py-obj docutils literal notranslate"><span class="pre">salpeter1955</span></code></a> is:</p>
 <div class="math notranslate nohighlight">
 \[f_{M}(m) = \dfrac{c - 1}{a^{1 - c} - b^{1 - c}}\dfrac{1}{m^{c}}\]</div>
 <p>for <span class="math notranslate nohighlight">\(m \in [a, b]\)</span>, <span class="math notranslate nohighlight">\(a = 0.4\)</span>, <span class="math notranslate nohighlight">\(b = 10\)</span>, and
@@ -612,6 +558,9 @@ RV object holding the given parameters fixed.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+<figure class="align-default">
+<img alt="../../../_images/dyad-stats-mass-salpeter1955-1.png" class="plot-directive" src="../../../_images/dyad-stats-mass-salpeter1955-1.png" />
+</figure>
 </dd></dl>
 
 </section>
@@ -663,28 +612,7 @@ RV object holding the given parameters fixed.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.salpeter1955"><code class="docutils literal notranslate"><span class="pre">salpeter1955</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.rvs"><code class="docutils literal notranslate"><span class="pre">rvs()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.pdf"><code class="docutils literal notranslate"><span class="pre">pdf()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.logpdf"><code class="docutils literal notranslate"><span class="pre">logpdf()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.cdf"><code class="docutils literal notranslate"><span class="pre">cdf()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.logcdf"><code class="docutils literal notranslate"><span class="pre">logcdf()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.sf"><code class="docutils literal notranslate"><span class="pre">sf()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.logsf"><code class="docutils literal notranslate"><span class="pre">logsf()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.ppf"><code class="docutils literal notranslate"><span class="pre">ppf()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.isf"><code class="docutils literal notranslate"><span class="pre">isf()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.moment"><code class="docutils literal notranslate"><span class="pre">moment()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.stats"><code class="docutils literal notranslate"><span class="pre">stats()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.entropy"><code class="docutils literal notranslate"><span class="pre">entropy()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.fit"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.expect"><code class="docutils literal notranslate"><span class="pre">expect()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.median"><code class="docutils literal notranslate"><span class="pre">median()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.mean"><code class="docutils literal notranslate"><span class="pre">mean()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.var"><code class="docutils literal notranslate"><span class="pre">var()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.std"><code class="docutils literal notranslate"><span class="pre">std()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.interval"><code class="docutils literal notranslate"><span class="pre">interval()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dyad.stats.mass.salpeter1955"><code class="docutils literal notranslate"><span class="pre">salpeter1955</span></code></a></li>
 </ul>
   </nav></div>
 

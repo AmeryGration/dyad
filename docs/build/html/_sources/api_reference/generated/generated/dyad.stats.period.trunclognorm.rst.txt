@@ -1,4 +1,4 @@
-dyad.stats.period.trunclognorm
+﻿dyad.stats.period.trunclognorm
 ==============================
 
 .. currentmodule:: dyad.stats.period

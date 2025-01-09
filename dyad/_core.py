@@ -235,13 +235,6 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
 
         Eccentric anomaly.
 
-    Returns
-    -------
-
-    res : ndarray
-
-        Semimajor axis.
-
     Examples
     --------
 

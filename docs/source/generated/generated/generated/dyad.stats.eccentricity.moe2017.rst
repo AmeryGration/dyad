@@ -1,4 +1,4 @@
-dyad.stats.eccentricity.moe2017
+﻿dyad.stats.eccentricity.moe2017
 ===============================
 
 .. currentmodule:: dyad.stats.eccentricity

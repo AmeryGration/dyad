@@ -1,4 +1,4 @@
-﻿dyad.stats.eccentricity.powerlaw
+dyad.stats.eccentricity.powerlaw
 ================================
 
 .. currentmodule:: dyad.stats.eccentricity

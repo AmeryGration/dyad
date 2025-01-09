@@ -1,4 +1,4 @@
-dyad.stats.mass.kroupa2002
+﻿dyad.stats.mass.kroupa2002
 ==========================
 
 .. currentmodule:: dyad.stats.mass
