@@ -104,13 +104,6 @@ axis of the primary star's orbit is :math:`a_{A} =
    >>> m_A, q, a_A, e = 1.079, 0.8428, 10.60, 0.5195
    >>> binary = dyad.TwoBody(m_A, q, a_A, e)
 
-The total energy and total orbital angular momentum are properties of the system and are accessible as instance attributes.
-
-.. sourcecode:: python
-
-   >>> binary.energy
-   >>> binary.angular_momentum
-
 The properties of the primary and secondary orbits are available using
 the instance attributes `primary` and `secondary`, which are each
 instances of the class :class:`dyad.Orbit`. All attributes of these

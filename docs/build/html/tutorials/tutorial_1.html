@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
@@ -453,11 +453,6 @@ axis of the primary star’s orbit is <span class="math notranslate nohighlight"
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">dyad</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m_A</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">a_A</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="mf">1.079</span><span class="p">,</span> <span class="mf">0.8428</span><span class="p">,</span> <span class="mf">10.60</span><span class="p">,</span> <span class="mf">0.5195</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">binary</span> <span class="o">=</span> <span class="n">dyad</span><span class="o">.</span><span class="n">TwoBody</span><span class="p">(</span><span class="n">m_A</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">a_A</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The total energy and total orbital angular momentum are properties of the system and are accessible as instance attributes.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">binary</span><span class="o">.</span><span class="n">energy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">binary</span><span class="o">.</span><span class="n">angular_momentum</span>
 </pre></div>
 </div>
 <p>The properties of the primary and secondary orbits are available using

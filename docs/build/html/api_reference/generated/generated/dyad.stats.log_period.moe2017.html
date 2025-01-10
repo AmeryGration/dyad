@@ -348,7 +348,9 @@
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../dyad.stats.period.html">dyad.stats.period</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="dyad.stats.period.trunclognorm.html">dyad.stats.period.trunclognorm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dyad.stats.period.duquennoy1991.html">dyad.stats.period.duquennoy1991</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dyad.stats.period.moe2017.html">dyad.stats.period.moe2017</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../dyad.stats.log_period.html">dyad.stats.log_period</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -502,7 +504,7 @@ and completes them with details specific for this particular distribution.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">dyad.stats.period.moe2017</span></code></dt><dd></dd>
+<dt><a class="reference internal" href="../../../generated/generated/generated/dyad.stats.period.moe2017.html#dyad.stats.period.moe2017" title="dyad.stats.period.moe2017"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dyad.stats.period.moe2017</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>
@@ -522,13 +524,14 @@ c_{6}(m_{1})x + c_{7}(m_{1})
 c_{8}(m_{1})\exp(-0.3x)
 &amp;\text{if $x \in (5.5, 8]$}
 \end{cases}\end{split}\]</div>
-<p>for log-period $x in [0.2, 8]$ and primary mass $m_{1} in (0,
-infty)$ where the normalization constant, $A_{X}(m_{1})$, is such
-that</p>
+<p>for log-period <span class="math notranslate nohighlight">\(x \in [0.2, 8]\)</span> and primary mass
+<span class="math notranslate nohighlight">\(m_{1} \in (0, \infty)\)</span> where the normalization constant,
+<span class="math notranslate nohighlight">\(A_{X}(m_{1})\)</span>, is such that</p>
 <div class="math notranslate nohighlight">
 \[\int_{0.2}^{8}f_{X|m_{1}}(x|m_{1})\mathrm{d}\,X = 1\]</div>
-<p>where $F_{Q|P, m_{1}}$ is the cumulative distribution function for
-the mass ratio (<a class="reference internal" href="../../../generated/generated/generated/dyad.stats.mass_ratio.moe2017.html#dyad.stats.mass_ratio.moe2017" title="dyad.stats.mass_ratio.moe2017"><code class="xref py py-func docutils literal notranslate"><span class="pre">dyad.stats.mass_ratio.moe2017</span></code></a>) and where</p>
+<p>where <span class="math notranslate nohighlight">\(F_{Q|P, m_{1}}\)</span> is the cumulative distribution
+function for the mass ratio
+(<a class="reference internal" href="../../../generated/generated/generated/dyad.stats.mass_ratio.moe2017.html#dyad.stats.mass_ratio.moe2017" title="dyad.stats.mass_ratio.moe2017"><code class="xref py py-func docutils literal notranslate"><span class="pre">dyad.stats.mass_ratio.moe2017</span></code></a>) and where</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}c_{1}(m_{1})
 &amp;= 0.07\log_{10}(m_{1})^{2} + 0.04\log_{10}(m_{1}) + 0.02,\\
@@ -605,6 +608,9 @@ RV object holding the given parameters fixed.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+<figure class="align-default">
+<img alt="../../../_images/dyad-stats-log_period-moe2017-1.png" class="plot-directive" src="../../../_images/dyad-stats-log_period-moe2017-1.png" />
+</figure>
 </dd></dl>
 
 </section>
