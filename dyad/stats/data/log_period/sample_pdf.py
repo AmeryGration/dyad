@@ -3,14 +3,14 @@
 r"""Sample of the log-period distribution given by Moe and Stefano (2017)
 
 Neither the probability density function (PDF) nor cumulative
-distribution function (CDF) for the log-period random variables
+distribution function (CDF) for the log-period random variable
 defined by Moe and Stefano (2017) have closed-form expression. Dyad
 evaluates these functions by interpolating between values pre-computed
 on a regular lattice of arguments. The CDF is computed by integrating
 the PDF using the trapezium rule with nodes placed on the points of
 this lattice. Moe and Stefano give the observed frequency of
 log-period rather than its PDF. To compute the latter we must
-normalize the former. This script performs the reqired sampling,
+normalize the former. This script performs the required sampling,
 integration, and normalization, saving the results to file. Those
 files are read by `dyad/stats/log_period.py`, which implements the
 random variable `dyad.stats.log_period.moe2017` by performing the

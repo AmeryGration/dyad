@@ -130,15 +130,16 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
        &\text{if $x \in (5.5, 8]$}
        \end{cases}
 
-    for log-period $x \in [0.2, 8]$ and primary mass $m_{1} \in (0,
-    \infty)$ where the normalization constant, $A_{X}(m_{1})$, is such
-    that
+    for log-period :math:`x \in [0.2, 8]` and primary mass
+    :math:`m_{1} \in (0, \infty)` where the normalization constant,
+    :math:`A_{X}(m_{1})`, is such that
 
     .. math::
        \int_{0.2}^{8}f_{X|m_{1}}(x|m_{1})\mathrm{d}\,X = 1
 
-    where $F_{Q|P, m_{1}}$ is the cumulative distribution function for
-    the mass ratio (:func:`dyad.stats.mass_ratio.moe2017`) and where
+    where :math:`F_{Q|P, m_{1}}` is the cumulative distribution
+    function for the mass ratio
+    (:func:`dyad.stats.mass_ratio.moe2017`) and where
 
     .. math::
        c_{1}(m_{1})
@@ -185,25 +186,22 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 
     def _pdf(self, x, primary_mass):
         x = np.asarray(x)
-
-        # res = _moe2017_pdf_interp((x, primary_mass))
-        res = _moe2017_pdf_interp(x, primary_mass)
+        primary_mass = np.asarray(primary_mass)
+        res = _moe2017_pdf_interp((x, primary_mass))
         
         return res
 
     def _cdf(self, x, primary_mass):
         x = np.asarray(x)
-
-        # res = _moe2017_cdf_interp((x, primary_mass))
-        res = _moe2017_cdf_interp(x, primary_mass)
+        primary_mass = np.asarray(primary_mass)
+        res = _moe2017_cdf_interp((x, primary_mass))
         
         return res
 
     def _ppf(self, q, primary_mass):
         q = np.asarray(q)
-        
-        # res = _moe2017_ppf_interp((q, primary_mass))
-        res = _moe2017_ppf_interp(q, primary_mass)
+        primary_mass = np.asarray(primary_mass)        
+        res = _moe2017_ppf_interp((q, primary_mass))
         
         return res
 
