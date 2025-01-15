@@ -122,60 +122,60 @@ cdf_sample = cdf_sample/cdf_sample[:,-1:]
 # Save data
 #############################################################################
 np.savetxt("./primary_mass_sample.dat", primary_mass_sample)
-np.savetxt("./mass_ratio_sample.dat", log10_period_sample)
-np.savetxt("./pdf_sample.dat", pdf_sample)
-np.savetxt("./cdf_sample.dat", cdf_sample)
+np.savetxt("./mass_ratio_sample.dat", mass_ratio_sample)
+np.savetxt("./frequency_sample.dat", pdf_sample)
+np.savetxt("./cumulative_frequency_sample.dat", cdf_sample)
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
-fig, ax = plt.subplots()
-ax.pcolormesh(mass_ratio_sample, primary_mass_sample, np.log10(pdf_sample))
-ax.vlines(mass_ratio_boundary, 0.8, 60.)
-ax.hlines(primary_mass_boundary, 0.1, 1.)
-ax.set_xlim(0.1, 1.)
-ax.set_ylim(0.8, 60.)
-ax.set_yscale("log")
-plt.show()
+# fig, ax = plt.subplots()
+# ax.pcolormesh(mass_ratio_sample, primary_mass_sample, np.log10(pdf_sample))
+# ax.vlines(mass_ratio_boundary, 0.8, 60.)
+# ax.hlines(primary_mass_boundary, 0.1, 1.)
+# ax.set_xlim(0.1, 1.)
+# ax.set_ylim(0.8, 60.)
+# ax.set_yscale("log")
+# plt.show()
 
-fig, ax = plt.subplots()
-ax.pcolormesh(mass_ratio_sample, primary_mass_sample, np.log10(cdf_sample))
-ax.vlines(mass_ratio_boundary, 0.8, 60.)
-ax.hlines(primary_mass_boundary, 0.1, 1.)
-ax.set_yscale("log")
-plt.show()
+# fig, ax = plt.subplots()
+# ax.pcolormesh(mass_ratio_sample, primary_mass_sample, np.log10(cdf_sample))
+# ax.vlines(mass_ratio_boundary, 0.8, 60.)
+# ax.hlines(primary_mass_boundary, 0.1, 1.)
+# ax.set_yscale("log")
+# plt.show()
 
-########################################################################
-# Interpolate the pairing function: PDF and CDF
-########################################################################
-pdf_interp = RegularGridInterpolator(
-    (mass_ratio_sample, primary_mass_sample),
-    pdf_sample.T,
-    bounds_error=False,
-    fill_value=0.
-)
-cdf_interp = RegularGridInterpolator(
-    (mass_ratio_sample, primary_mass_sample),
-    cdf_sample.T,
-    bounds_error=False,
-    # fill_value=1.
-)
+# ########################################################################
+# # Interpolate the pairing function: PDF and CDF
+# ########################################################################
+# pdf_interp = RegularGridInterpolator(
+#     (mass_ratio_sample, primary_mass_sample),
+#     pdf_sample.T,
+#     bounds_error=False,
+#     fill_value=0.
+# )
+# cdf_interp = RegularGridInterpolator(
+#     (mass_ratio_sample, primary_mass_sample),
+#     cdf_sample.T,
+#     bounds_error=False,
+#     # fill_value=1.
+# )
 
-m = np.logspace(np.log10(0.8), np.log10(60), 2**9)
-m1m1, m2m2 = np.meshgrid(m, m)
-z = pdf_interp((m2m2/m1m1, m1m1))
+# m = np.logspace(np.log10(0.8), np.log10(60), 2**9)
+# m1m1, m2m2 = np.meshgrid(m, m)
+# z = pdf_interp((m2m2/m1m1, m1m1))
 
-fig, ax = plt.subplots()
-ax.pcolormesh(m, m, np.log10(z), cmap="Greys")
-ax.contour(m, m, np.log10(z), colors="k")
-ax.plot(m, 0.1*m, color="k", ls="solid")
-# ax.plot(m, 0.3*m, ls="dashed")
-# ax.plot(m, 0.95*m, ls="dashed")
-ax.plot(m, m, color="k", ls="solid")
-# ax.vlines(primary_mass_boundary, 0.8, 60.)
-ax.set_xlim(0.8, 60.)
-ax.set_ylim(0.8, 60.)
-ax.set_xscale("log")
-ax.set_yscale("log")
-ax.set_xlabel(r"$m_{1}$")
-ax.set_ylabel(r"$m_{2}$")
-plt.show()
+# fig, ax = plt.subplots()
+# ax.pcolormesh(m, m, np.log10(z), cmap="Greys")
+# ax.contour(m, m, np.log10(z), colors="k")
+# ax.plot(m, 0.1*m, color="k", ls="solid")
+# # ax.plot(m, 0.3*m, ls="dashed")
+# # ax.plot(m, 0.95*m, ls="dashed")
+# ax.plot(m, m, color="k", ls="solid")
+# # ax.vlines(primary_mass_boundary, 0.8, 60.)
+# ax.set_xlim(0.8, 60.)
+# ax.set_ylim(0.8, 60.)
+# ax.set_xscale("log")
+# ax.set_yscale("log")
+# ax.set_xlabel(r"$m_{1}$")
+# ax.set_ylabel(r"$m_{2}$")
+# plt.show()

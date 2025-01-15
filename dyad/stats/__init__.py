@@ -73,6 +73,7 @@ from . import mass_ratio
 from . import period
 from . import log_period
 from . import semimajor_axis
+from . import secondary_mass
 
 
 class _true_anomaly_gen(_distn_infrastructure.rv_continuous):
