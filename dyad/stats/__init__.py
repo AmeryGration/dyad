@@ -37,12 +37,13 @@ of the condition.
 .. autosummary::
    :toctree: generated
 
+   eccentricity
+   log_period
    mass
    mass_ratio
-   semimajor_axis
    period
-   log_period
-   eccentricity
+   secondary_mass
+   semimajor_axis
 
 Warnings/errors used in :mod:`dyad.stats`
 -----------------------------------------

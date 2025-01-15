@@ -58,7 +58,7 @@ def f(p, q, m):
     res = (
         mass_ratio.moe2017(np.log10(p), m).pdf(q)
         *period.moe2017(m).pdf(p)
-        # /m
+        /m
     )
 
     return res
@@ -72,7 +72,7 @@ log10_period_boundary = (
     0.2, 1., 1.3, 2., 2.5, 3.4, 3.5, 4., 4.5, 5.5, 6., 6.5, 8.
 )
 
-n = 5
+n = 50
 primary_mass_sample = np.hstack([
     np.linspace(0.8, 1.2, n),
     np.linspace(1.2, 3.5, n)[1:],
@@ -112,11 +112,11 @@ cdf_sample = cumulative_trapezoid(
     pdf_sample, mass_ratio_sample, axis=1, initial=0.
 )
 
-# #############################################################################
-# # Compute equivalent sample of the PDF and CDF
-# #############################################################################
-# pdf_sample = pdf_sample/cdf_sample[:,-1:]
-# cdf_sample = cdf_sample/cdf_sample[:,-1:]
+#############################################################################
+# Compute equivalent sample of the PDF and CDF
+#############################################################################
+pdf_sample = pdf_sample/cdf_sample[:,-1:]
+cdf_sample = cdf_sample/cdf_sample[:,-1:]
 
 #############################################################################
 # Save data
@@ -144,37 +144,38 @@ ax.hlines(primary_mass_boundary, 0.1, 1.)
 ax.set_yscale("log")
 plt.show()
 
-# ########################################################################
-# # Interpolate the pairing function: PDF and CDF
-# ########################################################################
-# pdf_interp = RegularGridInterpolator(
-#     (mass_ratio_sample, primary_mass_sample),
-#     pdf_sample.T,
-#     bounds_error=False,
-#     fill_value=0.
-# )
-# cdf_interp = RegularGridInterpolator(
-#     (mass_ratio_sample, primary_mass_sample),
-#     cdf_sample.T,
-#     bounds_error=False,
-#     # fill_value=1.
-# )
+########################################################################
+# Interpolate the pairing function: PDF and CDF
+########################################################################
+pdf_interp = RegularGridInterpolator(
+    (mass_ratio_sample, primary_mass_sample),
+    pdf_sample.T,
+    bounds_error=False,
+    fill_value=0.
+)
+cdf_interp = RegularGridInterpolator(
+    (mass_ratio_sample, primary_mass_sample),
+    cdf_sample.T,
+    bounds_error=False,
+    # fill_value=1.
+)
 
-# m = np.logspace(np.log10(0.8), np.log10(60), 2**9)
-# m1m1, m2m2 = np.meshgrid(m, m)
-# z = pdf_interp((m2m2/m1m1, m1m1))
+m = np.logspace(np.log10(0.8), np.log10(60), 2**9)
+m1m1, m2m2 = np.meshgrid(m, m)
+z = pdf_interp((m2m2/m1m1, m1m1))
 
-# fig, ax = plt.subplots()
-# ax.pcolormesh(m, m, np.log10(z), cmap="Greys")
-# ax.contour(m, m, np.log10(z), colors="k")
-# ax.plot(m, 0.1*m, ls="solid")
+fig, ax = plt.subplots()
+ax.pcolormesh(m, m, np.log10(z), cmap="Greys")
+ax.contour(m, m, np.log10(z), colors="k")
+ax.plot(m, 0.1*m, color="k", ls="solid")
 # ax.plot(m, 0.3*m, ls="dashed")
 # ax.plot(m, 0.95*m, ls="dashed")
-# ax.plot(m, m, ls="solid")
-# ax.set_xlim(0.8, 60.)
-# ax.set_ylim(0.8, 60.)
-# ax.set_xscale("log")
-# ax.set_yscale("log")
-# ax.set_xlabel(r"$m_{1}$")
-# ax.set_ylabel(r"$m_{2}$")
-# plt.show()
+ax.plot(m, m, color="k", ls="solid")
+# ax.vlines(primary_mass_boundary, 0.8, 60.)
+ax.set_xlim(0.8, 60.)
+ax.set_ylim(0.8, 60.)
+ax.set_xscale("log")
+ax.set_yscale("log")
+ax.set_xlabel(r"$m_{1}$")
+ax.set_ylabel(r"$m_{2}$")
+plt.show()
