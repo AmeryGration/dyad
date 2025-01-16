@@ -37,12 +37,38 @@ from . import _distn_infrastructure
 
 
 class moe2017_gen(_distn_infrastructure.rv_continuous):
-    r"""The primary-mass random variable
+    r"""The secondary-star mass random variable of Moe and Stefano (2017)
 
     %(before_notes)s
 
     Notes
     -----
+    The probability density function for `moe2017` is:
+
+    .. math::
+       f_{M_{\secondary}|M_{\primary} = m_{\primary}}(m_{\secondary}|m_{\primary}) = \dfrac{1}{m_{\primary}}f_{Q}(m_{\secondary}/m_{\primary}).
+
+    where
+
+    .. math::
+       f_{Q|M_{\primary} = m_{\primary}}(q|m_{\primary}) = \int_{p_{\min}}^{p_{\max}}f_{(Q, P)|M_{\primary} = m_{\primary}}(q, p|m_{\primary})\diff{}p
+
+    and, by the chain rule for probability,
+
+    .. math::
+       f_{(Q, P)|M_{\primary} = m_{\primary}}(q, p|m_{\primary}) = f_{Q|(P, M_{\primary}) = (p, m_{\primary})}(q|p, m_{\primary})f_{P|M_{\primary} = m_{\primary}}(p|m_{\primary}).
+
+    for secondary-star mass :math:`m_{2} \in (0.1m_{1}, 60)`,
+    primary-star mass :math:`m_{1} \in (0.1m_{1}, 60)`, mass ratio
+    :math:`q \in [0, 1]`, and period :math:`p \in [0.2, 8]`. The
+    functions :math:`f_{Q|(P, M_{\primary}) = (p, m_{\primary})}` and
+    :math:`f_{P|M_{\primary} = m_{\primary}}` are the probability
+    density functions for random variables
+    :class:`dyad.stats.mass_ratio.moe2017` and
+    :class:`dyad.stats.period.moe2017`.
+
+    ``moe2017`` takes ``primary_mass`` as a shape parameter for
+    :math:`m_{1}`, the primary mass.
 
     %(after_notes)s
 
@@ -59,8 +85,8 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     %(example)s
 
     """
-    # def _shape_info(self):
-    #     return [_ShapeInfo("primary_mass", False, (0, np.inf), (False, False))]
+    def _shape_info(self):
+        return [_ShapeInfo("primary_mass", False, (0, np.inf), (False, False))]
 
     def _argcheck(self, primary_mass):
         return (0.8 <= primary_mass) & (primary_mass <= 60.)

@@ -17,6 +17,7 @@ distcont = [
     ["period.duquennoy1991", (1.,)],
     ["period.moe2017", (1.,)],
     # ["semimajor_axis.opik1924", ((15., 10.),)],
+    # ["secondary_mass.moe2017", (60.)]
 ]
 
 distdiscrete = []
