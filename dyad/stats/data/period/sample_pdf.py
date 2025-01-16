@@ -41,7 +41,7 @@ with files(path).joinpath("frequency_sample.dat") as f_name:
 with files(path).joinpath("cumulative_frequency_sample.dat") as f_name:
     cumulative_frequency_sample = np.loadtxt(f_name)
 
-_moe2017_period_sample = 10.**log10_period_sample
+period_sample = 10.**log10_period_sample
 
 #############################################################################
 # Sample the frequency function using a rectilinear lattice 
@@ -52,7 +52,7 @@ frequency_sample = frequency_sample/period_sample
 # Sample the cumulative frequency function using a rectilinear lattice 
 #############################################################################
 cumulative_frequency_sample = cumulative_trapezoid(
-    frequency_sample, log10_period_sample, initial=0.
+    frequency_sample, period_sample, initial=0.
 )
 
 #############################################################################
@@ -79,13 +79,13 @@ np.savetxt(
     "./cumulative_frequency_sample.dat", cumulative_frequency_sample
 )
 
-_moe2017_pdf_interp = RegularGridInterpolator(
-    (_moe2017_period_sample, _moe2017_primary_mass_sample),
-    _moe2017_frequency_sample.T
-)
-_moe2017_cdf_interp = RegularGridInterpolator(
-    (_moe2017_period_sample, _moe2017_primary_mass_sample),
-    _moe2017_cumulative_frequency_sample.T
-)
+# _moe2017_pdf_interp = RegularGridInterpolator(
+#     (period_sample, primary_mass_sample),
+#     frequency_sample.T
+# )
+# _moe2017_cdf_interp = RegularGridInterpolator(
+#     (period_sample, primary_mass_sample),
+#     cumulative_frequency_sample.T
+# )
 
 

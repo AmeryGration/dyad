@@ -200,7 +200,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 
     def _ppf(self, q, primary_mass):
         q = np.asarray(q)
-        primary_mass = np.asarray(primary_mass)        
+        primary_mass = np.asarray(primary_mass)
         res = _moe2017_ppf_interp((q, primary_mass))
         
         return res
