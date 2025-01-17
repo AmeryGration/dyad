@@ -194,10 +194,10 @@ class random_gen(_distn_infrastructure.rv_continuous):
     %(example)s
 
     """
-    def _shape_info(self):
-        return [
-            _ShapeInfo("primary_mass", False, (0.8, 60.), (False, False))
-        ]
+    # def _shape_info(self):
+    #     return [
+    #         _ShapeInfo("primary_mass", False, (0.1, 60.), (False, False))
+    #     ]
 
     def _argcheck(self, primary_mass):
         return (0.1 <= primary_mass) & (primary_mass <= 60.)
@@ -229,5 +229,4 @@ class random_gen(_distn_infrastructure.rv_continuous):
 
 _kroupa2002 = mass.kroupa2002
 
-random = random_gen(name="secondary.mass.random")
-random._support = (0.1, 60.)
+random = random_gen(a=0.1, b=60., name="secondary.mass.random")
