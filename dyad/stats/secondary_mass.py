@@ -47,25 +47,24 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     The probability density function for `moe2017` is:
 
     .. math::
-       f_{M_{\secondary}|M_{\primary} = m_{\primary}}(m_{\secondary}|m_{\primary}) = \dfrac{1}{m_{\primary}}f_{Q}(m_{\secondary}/m_{\primary}).
+       f_{M_{2}|M_{1} = m_{1}}(m_{2}|m_{1}) = \dfrac{1}{m_{1}}f_{Q}(m_{2}/m_{1}).
 
     where
 
     .. math::
-       f_{Q|M_{\primary} = m_{\primary}}(q|m_{\primary}) = \int_{p_{\min}}^{p_{\max}}f_{(Q, P)|M_{\primary} = m_{\primary}}(q, p|m_{\primary})\diff{}p
+       f_{Q|M_{1} = m_{1}}(q|m_{1}) = \int_{p_{\min}}^{p_{\max}}f_{(Q, P)|M_{1} = m_{1}}(q, p|m_{1})\mathrm{d}\,p
 
     and, by the chain rule for probability,
 
     .. math::
-       f_{(Q, P)|M_{\primary} = m_{\primary}}(q, p|m_{\primary}) = f_{Q|(P, M_{\primary}) = (p, m_{\primary})}(q|p, m_{\primary})f_{P|M_{\primary} = m_{\primary}}(p|m_{\primary}).
+       f_{(Q, P)|M_{1} = m_{1}}(q, p|m_{1}) = f_{Q|(P, M_{1}) = (p, m_{1})}(q|p, m_{1})f_{P|M_{1} = m_{1}}(p|m_{1}).
 
-    for secondary-star mass :math:`m_{2} \in (0.1m_{1}, 60)`,
-    primary-star mass :math:`m_{1} \in (0.1m_{1}, 60)`, mass ratio
-    :math:`q \in [0, 1]`, and period :math:`p \in [0.2, 8]`. The
-    functions :math:`f_{Q|(P, M_{\primary}) = (p, m_{\primary})}` and
-    :math:`f_{P|M_{\primary} = m_{\primary}}` are the probability
-    density functions for random variables
-    :class:`dyad.stats.mass_ratio.moe2017` and
+    for primary-star mass :math:`m_{1} \in (m_{1}, 60)`,
+    secondary-star mass :math:`m_{2} \in (0.1m_{1}, 60)`, mass ratio
+    :math:`q \in [0.1, 1]`, and period :math:`p \in [10^{0.2}, 10^{8}]`. The
+    functions :math:`f_{Q|(P, M_{1}) = (p, m_{1})}` and
+    :math:`f_{P|M_{1} = m_{1}}` are the probability density functions
+    for random variables :class:`dyad.stats.mass_ratio.moe2017` and
     :class:`dyad.stats.period.moe2017`.
 
     ``moe2017`` takes ``primary_mass`` as a shape parameter for
@@ -96,21 +95,22 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     def _pdf(self, x, primary_mass):
         x = np.asarray(x)
         primary_mass = np.asarray(primary_mass)
-        res = _moe2017_pdf_interp((x/primary_mass, primary_mass))
+        res = _moe2017_pdf_interp((x/primary_mass, primary_mass))/primary_mass
         
         return res
 
     def _cdf(self, x, primary_mass):
         x = np.asarray(x)
         primary_mass = np.asarray(primary_mass)
-        res = _moe2017_cdf_interp((x/primary_mass, primary_mass))
+        res = _moe2017_cdf_interp((x/primary_mass, primary_mass))/primary_mass
         
         return res
 
     def _ppf(self, q, primary_mass):
         q = np.asarray(q)
-        primary_mass = np.asarray(primary_mass)        
-        res = _moe2017_ppf_interp((q, primary_mass))
+        primary_mass = np.asarray(primary_mass)
+
+        res = _moe2017_ppf_interp((q, primary_mass))*primary_mass
         
         return res
 
