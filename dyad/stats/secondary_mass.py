@@ -23,7 +23,7 @@ Probability distributions
 """
 
 __all__ = [
-    # "random", # Malkov and Zinnecker (2001)
+    "random",
     "moe2017",
 ]
 
@@ -35,6 +35,7 @@ from importlib.resources import files
 from scipy.interpolate import RegularGridInterpolator
 from scipy.interpolate import LinearNDInterpolator
 from . import _distn_infrastructure
+from . import mass
 
 
 class moe2017_gen(_distn_infrastructure.rv_continuous):
@@ -169,3 +170,64 @@ _moe2017_values = np.tile(
 _moe2017_ppf_interp = LinearNDInterpolator(_moe2017_points.T, _moe2017_values)
 
 moe2017 = moe2017_gen(a=0.8, b=60., name="secondary_mass.moe2017")
+
+
+class random_gen(_distn_infrastructure.rv_continuous):
+    r"""The secondary-star mass random variable for random pairing
+
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `random` is:
+
+    .. math::
+
+    %(after_notes)s
+
+    See also
+    --------
+
+    References
+    ----------
+
+    %(example)s
+
+    """
+    def _shape_info(self):
+        return [
+            _ShapeInfo("primary_mass", False, (0.8, 60.), (False, False))
+        ]
+
+    def _argcheck(self, primary_mass):
+        return (0.1 <= primary_mass) & (primary_mass <= 60.)
+
+    def _get_support(self, primary_mass):
+        return (0.1, primary_mass)
+    
+    def _pdf(self, x, primary_mass):
+        x = np.asarray(x)
+        primary_mass = np.asarray(primary_mass)
+        res = _kroupa2002.pdf(x)/_kroupa2002.cdf(primary_mass)
+        
+        return res
+
+    def _cdf(self, x, primary_mass):
+        x = np.asarray(x)
+        primary_mass = np.asarray(primary_mass)
+        res = _kroupa2002.cdf(x)/_kroupa2002.cdf(primary_mass)
+                
+        return res
+
+    def _ppf(self, q, primary_mass):
+        q = np.asarray(q)
+        primary_mass = np.asarray(primary_mass)
+        res = _kroupa2002.ppf(q*_kroupa2002.cdf(primary_mass))
+        
+        return res
+    
+
+_kroupa2002 = mass.kroupa2002
+
+random = random_gen(name="secondary.mass.random")
+random._support = (0.1, 60.)
