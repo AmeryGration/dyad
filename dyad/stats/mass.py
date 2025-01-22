@@ -61,7 +61,7 @@ class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
     .. math::
        B = b^{\beta - \alpha}.
 
-    and :math:`m \in [0.08, 60]`.
+    and :math:`m \in [a, c]`.
     
     %(after_notes)s
 
