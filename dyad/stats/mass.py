@@ -37,12 +37,33 @@ class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
     r"""The two-piece split-power-law initial-stellar-mass random variable
 
     %(before_notes)s
-    
-    %(after_notes)s
 
     Notes
     -----
-    The probability density function for `splitpowerlaw` is:
+    The probability density function for `splitpower` is:
+
+    .. math::
+       f_{M}(m)
+       =
+       A
+       \begin{cases}
+       m^{-\alpha}&\text{ if $m \in [a, b)$,}\\
+       Bm^{-\beta}&\text{ if $m \in [b, c]$}
+       \end{cases}
+
+    for
+
+    .. math::
+       A = \dfrac{1}{1 - \alpha}(b^{1 - \alpha} - a^{1 - \alpha}) + \dfrac{B}{1 - \beta}(c^{1 - \beta} - b^{1 - \beta}),
+
+    and
+
+    .. math::
+       B = b^{\beta - \alpha}.
+
+    and :math:`m \in [0.08, 60]`.
+    
+    %(after_notes)s
 
     %(example)s
 
