@@ -63,29 +63,27 @@ cumulative_frequency_sample = (
     cumulative_frequency_sample/cumulative_frequency_sample[:,-1:]
 )
 
-#############################################################################
-# Save data
-#############################################################################
-np.savetxt(
-    "./primary_mass_sample.dat", primary_mass_sample
-)
-np.savetxt(
-    "./period_sample.dat", period_sample
-)
-np.savetxt(
-    "./frequency_sample.dat", frequency_sample
-)
-np.savetxt(
-    "./cumulative_frequency_sample.dat", cumulative_frequency_sample
-)
-
-# _moe2017_pdf_interp = RegularGridInterpolator(
-#     (period_sample, primary_mass_sample),
-#     frequency_sample.T
+# #############################################################################
+# # Save data
+# #############################################################################
+# np.savetxt(
+#     "./primary_mass_sample.dat", primary_mass_sample
 # )
-# _moe2017_cdf_interp = RegularGridInterpolator(
-#     (period_sample, primary_mass_sample),
-#     cumulative_frequency_sample.T
+# np.savetxt(
+#     "./period_sample.dat", period_sample
+# )
+# np.savetxt(
+#     "./frequency_sample.dat", frequency_sample
+# )
+# np.savetxt(
+#     "./cumulative_frequency_sample.dat", cumulative_frequency_sample
 # )
 
-
+# # _moe2017_pdf_interp = RegularGridInterpolator(
+# #     (period_sample, primary_mass_sample),
+# #     frequency_sample.T
+# # )
+# # _moe2017_cdf_interp = RegularGridInterpolator(
+# #     (period_sample, primary_mass_sample),
+# #     cumulative_frequency_sample.T
+# # )
