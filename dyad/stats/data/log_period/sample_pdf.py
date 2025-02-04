@@ -221,15 +221,15 @@ cumulative_frequency_sample = (
 #############################################################################
 # Save data
 #############################################################################
-np.savetxt(
-    "./primary_mass_sample.dat", primary_mass_sample
-)
-np.savetxt(
-    "./log10_period_sample.dat", log10_period_sample
-)
-np.savetxt(
-    "./frequency_sample.dat", frequency_sample
-)
-np.savetxt(
-    "./cumulative_frequency_sample.dat", cumulative_frequency_sample
-)
+# np.savetxt(
+#     "./primary_mass_sample.dat", primary_mass_sample
+# )
+# np.savetxt(
+#     "./log10_period_sample.dat", log10_period_sample
+# )
+# np.savetxt(
+#     "./frequency_sample.dat", frequency_sample
+# )
+# np.savetxt(
+#     "./cumulative_frequency_sample.dat", cumulative_frequency_sample
+# )

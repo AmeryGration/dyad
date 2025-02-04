@@ -305,7 +305,7 @@ def _moe2017_eta_1(log10_period, primary_mass):
         return res
 
     condition = [
-        (0.5 <= log10_period) & (log10_period <= 6.),
+        (0.5 < log10_period) & (log10_period <= 6.),
         (6. < log10_period) & (log10_period <= 8.),
     ]
     value = [

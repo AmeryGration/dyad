@@ -220,11 +220,15 @@ with files(path).joinpath("cumulative_frequency_sample.dat") as f_name:
     
 _moe2017_pdf_interp = RegularGridInterpolator(
     (_moe2017_log10_period_sample, _moe2017_primary_mass_sample),
-    _moe2017_frequency_sample.T
+    _moe2017_frequency_sample.T,
+    bounds_error=False,
+    fill_value=0.
 )
 _moe2017_cdf_interp = RegularGridInterpolator(
     (_moe2017_log10_period_sample, _moe2017_primary_mass_sample),
-    _moe2017_cumulative_frequency_sample.T
+    _moe2017_cumulative_frequency_sample.T,
+    bounds_error=False,
+    fill_value=0.
 )
 
 # Suppose that we have an invertible function, :math:`f`, of some
