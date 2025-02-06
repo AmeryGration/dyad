@@ -654,6 +654,8 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 
         return res
 
+m_min = 0.08
+m_max = 60.
 
 def _moe2017_norm(gamma, delta, log10_period, primary_mass):
     """Return the normalization constant"""
@@ -957,11 +959,11 @@ def _moe2017_gamma(log10_period, primary_mass):
     primary_mass = np.asarray(primary_mass)
 
     condition = (
-        (0.8 <= primary_mass) & (primary_mass <= 1.2),
+        (m_min <= primary_mass) & (primary_mass <= 1.2),
         (1.2 < primary_mass) & (primary_mass < 3.5),
         primary_mass == 3.5,
         (3.5 < primary_mass) & (primary_mass <= 6.),
-        (6. < primary_mass) & (primary_mass < np.inf)
+        (6. < primary_mass) & (primary_mass < m_max)
     )
     choice = (
         gamma_1,
@@ -1105,11 +1107,11 @@ def _moe2017_delta(log10_period, primary_mass):
     primary_mass = np.asarray(primary_mass)
 
     condition = (
-        (0.8 <= primary_mass) & (primary_mass <= 1.2),
+        (m_min <= primary_mass) & (primary_mass <= 1.2),
         (1.2 < primary_mass) & (primary_mass < 3.5),
         primary_mass == 3.5,
         (3.5 < primary_mass) & (primary_mass <= 6.),
-        (6. < primary_mass) & (primary_mass < np.inf)
+        (6. < primary_mass) & (primary_mass < m_max)
     )
     choice = (
         delta_1,
