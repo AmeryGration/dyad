@@ -16,6 +16,10 @@ primary_mass_sample = np.loadtxt("primary_mass_sample.dat")
 pdf_sample = np.loadtxt("frequency_sample.dat")
 cdf_sample = np.loadtxt("cumulative_frequency_sample.dat")
 
+m_min = 0.08
+m_max = 60.
+primary_mass_boundary = (m_min, 1.2, 3.5, 6., m_max)
+
 ########################################################################
 # Interpolate the pairing function: PDF and CDF
 ########################################################################
@@ -39,7 +43,7 @@ Z = cdf_interp((m2m2/m1m1, m1m1))
 
 fig, ax = plt.subplots()
 ax.pcolormesh(m, m, np.log10(z), cmap="Greys", rasterized=True)
-ax.contour(m, m, np.log10(z), colors="k")
+ax.contour(m, m, np.log10(z), colors="k", levels=25)
 ax.plot(m, 0.1*m, color="k", ls="solid")
 ax.plot(m, 0.3*m, color="k", ls="dashed")
 ax.plot(m, m, color="k", ls="solid")
@@ -56,7 +60,7 @@ plt.show()
 
 fig, ax = plt.subplots()
 ax.pcolormesh(m, m, np.log10(Z), cmap="Greys", rasterized=True)
-# ax.contour(m, m, np.log10(Z), colors="k")
+ax.contour(m, m, np.log10(Z), colors="k", levels=25)
 ax.plot(m, 0.1*m, color="k", ls="solid")
 ax.plot(m, 0.3*m, color="k", ls="dashed")
 ax.plot(m, m, color="k", ls="solid")

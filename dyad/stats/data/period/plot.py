@@ -17,6 +17,6 @@ ax.set_xscale("log")
 ax.set_yscale("log")
 ax.set_xlabel(r"$p$")
 ax.set_ylabel(r"$m_{1}$")
-plt.savefig("test.pdf")
+plt.savefig("pdf_period.pdf")
 plt.show()
 

@@ -19,6 +19,7 @@ Probability distributions
    :toctree: generated/
 
    moe2017
+   random
 
 """
 
