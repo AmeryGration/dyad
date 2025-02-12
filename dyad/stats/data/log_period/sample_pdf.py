@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-r"""Sample of the log-period distribution given by Moe and Stefano (2017)
+"""Sample of the log-period distribution given by Moe and Stefano (2017)
 
 Neither the probability density function (PDF) nor cumulative
 distribution function (CDF) for the log-period random variable
@@ -137,10 +137,10 @@ def pdf(x, primary_mass):
     x = np.asarray(x)
     primary_mass = np.asarray(primary_mass)
     log10_primary_mass = np.log10(primary_mass)
-
-    rv_mass_ratio = mass_ratio.moe2017(x, 10.**log10_primary_mass)
+    
+    rv_mass_ratio = mass_ratio.moe2017(x, primary_mass)
     correction_factor = 1./(1. - rv_mass_ratio.cdf(0.3))
-
+    
     condition = [
         (0.2 <= x) & (x <= 1.),
         (1. < x) & (x <= 2.),

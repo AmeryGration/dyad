@@ -179,8 +179,8 @@ class kroupa2002_gen(_distn_infrastructure.rv_continuous):
         return _kroupa2002.ppf(q)
 
 
-_kroupa2002 = splitpowerlaw(s=0.5, a=0.1, b=60., c=-1.3, d=-2.3)
-kroupa2002 = kroupa2002_gen(a=0.1, b=60., name="mass.kroupa2002")
+_kroupa2002 = splitpowerlaw(s=0.5, a=0.08, b=60., c=-1.3, d=-2.3)
+kroupa2002 = kroupa2002_gen(a=0.08, b=60., name="mass.kroupa2002")
 
 
 class salpeter1955_gen(_distn_infrastructure.rv_continuous):

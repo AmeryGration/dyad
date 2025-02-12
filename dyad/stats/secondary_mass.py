@@ -91,7 +91,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
         return [_ShapeInfo("primary_mass", False, (0, np.inf), (False, False))]
 
     def _argcheck(self, primary_mass):
-        return (0.8 <= primary_mass) & (primary_mass <= 60.)
+        return (0.08 <= primary_mass) & (primary_mass <= 60.)
         # return (0. <= primary_mass) & (primary_mass < np.inf)
     
     def _pdf(self, x, primary_mass):
@@ -170,7 +170,7 @@ _moe2017_values = np.tile(
 )
 _moe2017_ppf_interp = LinearNDInterpolator(_moe2017_points.T, _moe2017_values)
 
-moe2017 = moe2017_gen(a=0.8, b=60., name="secondary_mass.moe2017")
+moe2017 = moe2017_gen(a=0.08, b=60., name="secondary_mass.moe2017")
 
 
 class random_gen(_distn_infrastructure.rv_continuous):
@@ -201,10 +201,10 @@ class random_gen(_distn_infrastructure.rv_continuous):
     #     ]
 
     def _argcheck(self, primary_mass):
-        return (0.1 <= primary_mass) & (primary_mass <= 60.)
+        return (0.08 <= primary_mass) & (primary_mass <= 60.)
 
     def _get_support(self, primary_mass):
-        return (0.1, primary_mass)
+        return (0.08, primary_mass)
     
     def _pdf(self, x, primary_mass):
         x = np.asarray(x)
@@ -230,4 +230,4 @@ class random_gen(_distn_infrastructure.rv_continuous):
 
 _kroupa2002 = mass.kroupa2002
 
-random = random_gen(a=0.1, b=60., name="secondary.mass.random")
+random = random_gen(a=0.08, b=60., name="secondary.mass.random")
