@@ -49,6 +49,7 @@ def f(p, q, m):
     """Return the joint probability density for given mass ratio and period"""
     res = mass_ratio.moe2017(np.log10(p), m).pdf(q)*period.moe2017(m).pdf(p)#/m
 
+    
     return res
 
 #############################################################################
