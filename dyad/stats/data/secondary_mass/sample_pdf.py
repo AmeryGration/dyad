@@ -111,10 +111,10 @@ cdf_sample = cdf_sample/cdf_sample[:,-1:]
 #############################################################################
 # Save data
 #############################################################################
-np.savetxt("./primary_mass_sample.dat", primary_mass_sample)
-np.savetxt("./mass_ratio_sample.dat", mass_ratio_sample.T)
-np.savetxt("./frequency_sample.dat", pdf_sample)
-np.savetxt("./cumulative_frequency_sample.dat", cdf_sample)
+# np.savetxt("./primary_mass_sample.dat", primary_mass_sample)
+# np.savetxt("./mass_ratio_sample.dat", mass_ratio_sample.T)
+# np.savetxt("./frequency_sample.dat", pdf_sample)
+# np.savetxt("./cumulative_frequency_sample.dat", cdf_sample)
 
 # Check integrability
 # The function $f_{M_{2}}|M_{1} = m_{1}}(\cdot|m_{1}) should integrate to one
