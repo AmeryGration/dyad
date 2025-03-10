@@ -169,7 +169,7 @@ _moe2017_values = np.tile(
 )
 _moe2017_ppf_interp = LinearNDInterpolator(_moe2017_points.T, _moe2017_values)
 
-moe2017 = moe2017_gen(a=0.8, b=60., name="secondary_mass.moe2017")
+moe2017 = moe2017_gen(a=0.1, b=60., name="secondary_mass.moe2017")
 
 
 class random_gen(_distn_infrastructure.rv_continuous):
