@@ -71,6 +71,7 @@ def moe2017_c_6(log10_primary_mass):
         0.03*log10_primary_mass**2./2.1
         - 0.12*log10_primary_mass/2.1
         + 0.0264/2.1
+        # - 0.0264/2.1 # MINUS!!!        
     )
 
     return res
