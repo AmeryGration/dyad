@@ -8,3 +8,4 @@ __pycache__
 dev
 env
 *.pdf
+/docs/build/
