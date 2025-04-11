@@ -2,7 +2,6 @@
 __pycache__
 /dyad.egg-info/
 /pytest_cache/
-/build/
 /dyad/_properties/
 .python-version
 dev
@@ -10,3 +9,6 @@ env
 *.pdf
 /docs/build/
 *#
+/dyad/stats/data/log_period/Figures/
+/dyad/stats/data/period/Figures/
+/dyad/stats/data/secondary_mass/Figures/
