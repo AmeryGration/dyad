@@ -9,4 +9,4 @@ It provides:
 
 **Website:** https://github.com/AmeryGration/dyad
 
-**Documentation:** https://github.com/AmeryGration/dyad
+**Documentation:** https://dyad-a-two-body-dynamics-and-binary-star-statistics-package.readthedocs.io/en/latest/
