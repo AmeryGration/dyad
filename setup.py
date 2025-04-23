@@ -52,6 +52,7 @@ setup(
         "matplotlib",
         "numpydoc",
         "intersphinx_registry",
+        "sphinx_copybutton",
         "parameterized",
     ],
     include_package_data=True,
