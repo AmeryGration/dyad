@@ -49,6 +49,8 @@ setup(
     install_requires=[
         "numpy",
         "scipy",
+        "scipy.integrate",
+        "scipy.stats",
         "parameterized",
     ],
     include_package_data=True,
