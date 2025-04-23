@@ -51,6 +51,7 @@ setup(
         "scipy",
         "matplotlib",
         "numpydoc",
+        "intersphinx_registry",
         "parameterized",
     ],
     include_package_data=True,
