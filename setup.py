@@ -53,6 +53,7 @@ setup(
         "numpydoc",
         "intersphinx_registry",
         "sphinx_copybutton",
+        "sphinx_design",
         "parameterized",
     ],
     include_package_data=True,
