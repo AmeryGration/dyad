@@ -17,8 +17,8 @@ F_1 = cumulative_trapezoid(f_1, primary_mass_sample, initial=0.)
 # )
 # F_2 = cumulative_trapezoid(f_2, primary_mass_sample, initial=0.)
 
-a = 0.08
-b = 60.
+a = 0.8
+b = 40.
 primary_mass_boundary = (a, 0.5, 1.2, 3.5, 6., b)
 
 f_M = pdf_mass(primary_mass_sample)

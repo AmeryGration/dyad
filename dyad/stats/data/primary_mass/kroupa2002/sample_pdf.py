@@ -28,13 +28,12 @@ def k(x, y):
 
     return res
 
-pdf_mass = mass.kroupa2002().pdf
+rv_mass = mass.salpeter1955
+pdf_mass = rv_mass.pdf
 
-a = 0.08
-b = 60.
-c = -1.
-
-primary_mass_sample, frequency_sample = vie.solve(f, k, a, b, c, (), 2**12)
+primary_mass_sample, frequency_sample = vie.solve(
+    f, k, rv_mass.a, rv_mass.b, -1., (), 2**12
+)
 cumulative_frequency_sample = cumulative_trapezoid(
     frequency_sample, primary_mass_sample, initial=0.
 )
