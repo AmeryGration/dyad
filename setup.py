@@ -49,6 +49,7 @@ setup(
     install_requires=[
         "numpy",
         "scipy",
+        "matplotlib",
         "parameterized",
     ],
     include_package_data=True,
