@@ -54,6 +54,7 @@ setup(
         "intersphinx_registry",
         "sphinx_copybutton",
         "sphinx_design",
+        "pydata_sphinx_theme",
         "parameterized",
     ],
     include_package_data=True,
