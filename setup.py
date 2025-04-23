@@ -50,6 +50,7 @@ setup(
         "numpy",
         "scipy",
         "matplotlib",
+        "numpydoc",
         "parameterized",
     ],
     include_package_data=True,
