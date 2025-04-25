@@ -62,3 +62,14 @@ Indices and tables
 * :ref:`search`
 
 .. _my paper: xxx
+
+.. Hidden TOCs
+
+.. toctree::
+   :caption: Getting started
+   :maxdepth: 2
+   :hidden:
+
+   installing
+   what_is_dyad
+
