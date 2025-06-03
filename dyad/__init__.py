@@ -16,7 +16,7 @@ Distances, times, speeds, and masses are given in units of
 The geometry of an orbit is shown in Figures :numref:`orbit` and
 :numref:`orientation`. That orbit is an ellipse with *semimajor axis*,
 :math:`a` and *eccentricity*, :math:`e`. The body's phase is described
-by its *true anomaly*, :math:`\\theta`, which is the angle subtended
+by its *true anomaly*, :math:`\theta`, which is the angle subtended
 by the body and the primary vertex (i.e. the point of perigee) at the
 primary focus, :math:`F_{1}`. The *perifocal coordinate system* has
 origin :math:`F_{1}` and orthogonal basis :math:`(\mathbf{e}_{p},
@@ -65,10 +65,10 @@ its ascending node, :math:`\Omega_{1}` (resp. :math:`\Omega_{2}`),
 inclination, :math:`i_{1}` (resp. :math:`i_{2}`), and argument of
 pericentre, :math:`\omega_{1}` (resp. :math:`\omega_{2}`). The phase
 of the more-massive (resp. less-massive) body is described by its true
-anomaly, :math:`\\theta_{1}` (resp. :math:`\\theta_{2})`. It is the case
+anomaly, :math:`\theta_{1}` (resp. :math:`\theta_{2})`. It is the case
 that :math:`a_{2} = a_{1}/q`, :math:`e_{2} = e_{1}`. :math:`\Omega_{2}
 = \Omega_{1}`, :math:`i_{2} = i_{1}`, :math:`\omega_{2} = \omega_{1} +
-\pi` and :math:`\\theta_{1} = \\theta_{2}`.
+\pi` and :math:`\theta_{1} = \theta_{2}`.
 
 .. _twobodysystem:
 .. figure:: ../figures/twobody_system.jpg

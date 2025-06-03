@@ -305,7 +305,7 @@ def _moe2017_eta_1(log10_period, primary_mass):
         return res
 
     condition = [
-        (0.5 < log10_period) & (log10_period <= 6.),
+        (0.5 <= log10_period) & (log10_period <= 6.),
         (6. < log10_period) & (log10_period <= 8.),
     ]
     value = [
@@ -342,7 +342,7 @@ def _moe2017_eta_3(log10_period, primary_mass):
         return res
 
     condition = [
-        (0.5/0.9 <= log10_period) & (log10_period <= 5.),        
+        (0.5 <= log10_period) & (log10_period <= 5.),        
         (5. < log10_period) & (log10_period <= 8.),
     ]
     value = [
@@ -356,8 +356,8 @@ def _moe2017_eta_3(log10_period, primary_mass):
 def _moe2017_eta(log10_period, primary_mass):
     condition = [
         (0.8 <= primary_mass) & (primary_mass <= 3.),
-        (3. <= primary_mass) & (primary_mass <= 7.),
-        (7. <= primary_mass) & (primary_mass < np.inf),
+        (3. < primary_mass) & (primary_mass <= 7.),
+        (7. < primary_mass) & (primary_mass < np.inf),
     ]
     value = [
         _moe2017_eta_1(log10_period, primary_mass),
