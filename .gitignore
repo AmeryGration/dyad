@@ -4,7 +4,7 @@ __pycache__
 /pytest_cache/
 /dyad/_properties/
 .python-version
-.requirement.txt
+requirements.txt
 .gitignore
 dev
 env
