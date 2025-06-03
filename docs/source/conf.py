@@ -47,6 +47,8 @@ extensions = [
     # "jupyterlite_sphinx",
 ]
 
+html_logo = "dyad_logo_white.png"
+
 # Do some matplotlib config in case users have a matplotlibrc that will break
 # things
 matplotlib.use("agg")
