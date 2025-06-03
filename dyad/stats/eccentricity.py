@@ -300,7 +300,8 @@ def _moe2017_eta_1(log10_period, primary_mass):
 
     def f_2(log10_period, primary_mass):
         """Provisionally the same as f_1"""
-        res = 0.6 - 0.7/(log10_period - 0.5)
+        # res = 0.6 - 0.7/(log10_period - 0.5)
+        res = f_1(log10_period, primary_mass)
 
         return res
 
@@ -337,8 +338,9 @@ def _moe2017_eta_3(log10_period, primary_mass):
 
     def f_2(log10_period, primary_mass):
         """Provisionally the same as f_1"""
-        res = 0.9 - 0.2/(log10_period - 0.5)
-
+        # res = 0.9 - 0.2/(log10_period - 0.5)
+        res = f_1(log10_period, primary_mass)
+        
         return res
 
     condition = [
