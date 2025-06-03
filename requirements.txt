@@ -1,2 +1,0 @@
-# See https://stackoverflow.com/questions/6947988/when-to-use-pip-requirements-file-versus-install-requires-in-setup-py
-# See https://packaging.python.org/en/latest/discussions/install-requires-vs-requirements/
