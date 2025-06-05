@@ -313,7 +313,7 @@ def _moe2017_eta_1(log10_period, primary_mass):
         f_1(log10_period, primary_mass),
         f_2(log10_period, primary_mass),
     ]
-    res = np.select(condition, value)
+    res = np.select(condition, value, default=np.nan)
 
     return res
 
@@ -351,7 +351,7 @@ def _moe2017_eta_3(log10_period, primary_mass):
         f_1(log10_period, primary_mass),
         f_2(log10_period, primary_mass),
     ]
-    res = np.select(condition, value)
+    res = np.select(condition, value, default=np.nan)
 
     return res
 

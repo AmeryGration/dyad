@@ -1,0 +1,1238 @@
+(dyad_test) clws00198-ag0082@clws00198:~/Documents/Work/Software/dyad/dyad/docs$ local:docs>make html
+Running Sphinx v8.1.3
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+Converting `source_suffix = '.rst'` to `source_suffix = {'.rst': 'restructuredtext'}`.
+loading pickled environment... The configuration has changed (3 options: 'html_permalinks_icon', 'html_static_path', 'jquery_use_sri')
+done
+[autosummary] generating autosummary for: api_reference/constants.rst, api_reference/generated/dyad.stats.argument_of_pericentre.rst, api_reference/generated/dyad.stats.eccentricity.rst, api_reference/generated/dyad.stats.inclination.rst, api_reference/generated/dyad.stats.log_period.rst, api_reference/generated/dyad.stats.longitude_of_ascending_node.rst, api_reference/generated/dyad.stats.mass.rst, api_reference/generated/dyad.stats.mass_ratio.rst, api_reference/generated/dyad.stats.period.rst, api_reference/generated/dyad.stats.secondary_mass.rst, ..., generated/generated/generated/dyad.stats.period.moe2017.rst, generated/generated/generated/dyad.stats.period.trunclognorm.rst, generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst, generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst, generated/modules.rst, getting_started/installation.rst, getting_started/what_is_dyad.rst, index.rst, tutorials/tutorial_1.rst, tutorials/tutorial_2.rst
+loading intersphinx inventory 'asv' from https://asv.readthedocs.io/en/stable/objects.inv ...
+loading intersphinx inventory 'matplotlib' from https://matplotlib.org/stable/objects.inv ...
+loading intersphinx inventory 'mpmath' from https://mpmath.org/doc/current/objects.inv ...
+loading intersphinx inventory 'neps' from https://numpy.org/neps/objects.inv ...
+loading intersphinx inventory 'numpy' from https://numpy.org/doc/stable/objects.inv ...
+loading intersphinx inventory 'python' from https://docs.python.org/3/objects.inv ...
+loading intersphinx inventory 'scipy' from https://docs.scipy.org/doc/scipy/objects.inv ...
+loading intersphinx inventory 'statsmodels' from https://www.statsmodels.org/stable/objects.inv ...
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 0 source files that are out of date
+updating environment: 0 added, 20 changed, 0 removed
+reading sources... [  5%] api_reference/generated/dyad.stats.eccentricity
+reading sources... [ 10%] api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991
+reading sources... [ 15%] api_reference/generated/generated/dyad.stats.eccentricity.moe2017
+reading sources... [ 20%] api_reference/generated/generated/dyad.stats.eccentricity.powerlaw
+reading sources... [ 25%] api_reference/generated/generated/dyad.stats.eccentricity.thermal
+reading sources... [ 30%] api_reference/generated/generated/dyad.stats.eccentricity.uniform
+reading sources... [ 35%] generated/dyad
+reading sources... [ 40%] generated/dyad.stats
+reading sources... [ 45%] generated/generated/dyad.stats.eccentricity
+reading sources... [ 50%] generated/generated/dyad.stats.eccentricity.duquennoy1991
+reading sources... [ 55%] generated/generated/dyad.stats.eccentricity.moe2017
+reading sources... [ 60%] generated/generated/dyad.stats.eccentricity.powerlaw
+reading sources... [ 65%] generated/generated/dyad.stats.eccentricity.thermal
+reading sources... [ 70%] generated/generated/dyad.stats.eccentricity.uniform
+reading sources... [ 75%] generated/generated/generated/dyad.stats.eccentricity.duquennoy1991
+reading sources... [ 80%] generated/generated/generated/dyad.stats.eccentricity.moe2017
+reading sources... [ 85%] generated/generated/generated/dyad.stats.eccentricity.powerlaw
+reading sources... [ 90%] generated/generated/generated/dyad.stats.eccentricity.thermal
+reading sources... [ 95%] generated/generated/generated/dyad.stats.eccentricity.uniform
+reading sources... [100%] getting_started/what_is_dyad
+
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity:1: WARNING: duplicate object description of dyad.stats.eccentricity, other instance in generated/generated/dyad.stats.eccentricity, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.duquennoy1991:1: WARNING: duplicate object description of dyad.stats.eccentricity.duquennoy1991, other instance in generated/generated/generated/dyad.stats.eccentricity.duquennoy1991, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.moe2017:1: WARNING: duplicate object description of dyad.stats.eccentricity.moe2017, other instance in generated/generated/generated/dyad.stats.eccentricity.moe2017, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.powerlaw:1: WARNING: duplicate object description of dyad.stats.eccentricity.powerlaw, other instance in generated/generated/generated/dyad.stats.eccentricity.powerlaw, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.thermal:1: WARNING: duplicate object description of dyad.stats.eccentricity.thermal, other instance in generated/generated/generated/dyad.stats.eccentricity.thermal, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.uniform:1: WARNING: duplicate object description of dyad.stats.eccentricity.uniform, other instance in generated/generated/generated/dyad.stats.eccentricity.uniform, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/__init__.py:docstring of dyad:34: WARNING: duplicate label orbit, other instance in /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/getting_started/what_is_dyad.rst
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/__init__.py:docstring of dyad:43: WARNING: duplicate label orientation, other instance in /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/getting_started/what_is_dyad.rst
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/__init__.py:docstring of dyad:74: WARNING: duplicate label twobodysystem, other instance in /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/getting_started/what_is_dyad.rst
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity:1: WARNING: duplicate object description of dyad.stats.eccentricity, other instance in api_reference/generated/dyad.stats.eccentricity, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/log_period.py:docstring of dyad.stats.log_period:1: WARNING: duplicate object description of dyad.stats.log_period, other instance in generated/generated/dyad.stats.log_period, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/mass.py:docstring of dyad.stats.mass:1: WARNING: duplicate object description of dyad.stats.mass, other instance in generated/generated/dyad.stats.mass, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/mass_ratio.py:docstring of dyad.stats.mass_ratio:1: WARNING: duplicate object description of dyad.stats.mass_ratio, other instance in generated/generated/dyad.stats.mass_ratio, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/period.py:docstring of dyad.stats.period:1: WARNING: duplicate object description of dyad.stats.period, other instance in generated/generated/dyad.stats.period, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/semimajor_axis.py:docstring of dyad.stats.semimajor_axis:1: WARNING: duplicate object description of dyad.stats.semimajor_axis, other instance in generated/generated/dyad.stats.semimajor_axis, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity:1: WARNING: duplicate object description of dyad.stats.eccentricity, other instance in generated/dyad.stats, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.duquennoy1991:1: WARNING: duplicate object description of dyad.stats.eccentricity.duquennoy1991, other instance in api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.moe2017:1: WARNING: duplicate object description of dyad.stats.eccentricity.moe2017, other instance in api_reference/generated/generated/dyad.stats.eccentricity.moe2017, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.powerlaw:1: WARNING: duplicate object description of dyad.stats.eccentricity.powerlaw, other instance in api_reference/generated/generated/dyad.stats.eccentricity.powerlaw, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.thermal:1: WARNING: duplicate object description of dyad.stats.eccentricity.thermal, other instance in api_reference/generated/generated/dyad.stats.eccentricity.thermal, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.uniform:1: WARNING: duplicate object description of dyad.stats.eccentricity.uniform, other instance in api_reference/generated/generated/dyad.stats.eccentricity.uniform, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.duquennoy1991:1: WARNING: duplicate object description of dyad.stats.eccentricity.duquennoy1991, other instance in generated/generated/dyad.stats.eccentricity.duquennoy1991, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.moe2017:1: WARNING: duplicate object description of dyad.stats.eccentricity.moe2017, other instance in generated/generated/dyad.stats.eccentricity.moe2017, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.powerlaw:1: WARNING: duplicate object description of dyad.stats.eccentricity.powerlaw, other instance in generated/generated/dyad.stats.eccentricity.powerlaw, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.thermal:1: WARNING: duplicate object description of dyad.stats.eccentricity.thermal, other instance in generated/generated/dyad.stats.eccentricity.thermal, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.uniform:1: WARNING: duplicate object description of dyad.stats.eccentricity.uniform, other instance in generated/generated/dyad.stats.eccentricity.uniform, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/getting_started/what_is_dyad.rst:36: WARNING: duplicate citation DM91, other instance in /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/tutorials/tutorial_2.rst [ref.citation]
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/__init__.py:21: WARNING: duplicate label orbit, other instance in /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/generated/dyad.rst
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/__init__.py:30: WARNING: duplicate label orientation, other instance in /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/generated/dyad.rst
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/__init__.py:61: WARNING: duplicate label twobodysystem, other instance in /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/generated/dyad.rst
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/generated/modules.rst: WARNING: document isn't included in any toctree
+done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/documentation_options.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/basic.css
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/language_data.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/js/versions.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/copybutton.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [  4%] api_reference/generated/dyad.stats.eccentricity
+writing output... [  9%] api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 13%] api_reference/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 17%] api_reference/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 22%] api_reference/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 26%] api_reference/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 30%] api_reference/stats
+writing output... [ 35%] generated/dyad
+writing output... [ 39%] generated/dyad.stats
+writing output... [ 43%] generated/generated/dyad.stats.eccentricity
+writing output... [ 48%] generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 52%] generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 57%] generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 61%] generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 65%] generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 70%] generated/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 74%] generated/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 78%] generated/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 83%] generated/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 87%] generated/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 91%] generated/modules
+writing output... [ 96%] getting_started/what_is_dyad
+writing output... [100%] index
+
+generating indices... genindex py-modindex done
+writing additional pages... search done
+copying images... [  6%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 11%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 17%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 22%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 28%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 33%] figures/elliptical_orbit.jpg
+copying images... [ 39%] figures/orbital_euler_angles.jpg
+copying images... [ 44%] figures/twobody_system.jpg
+copying images... [ 50%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 56%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 61%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 67%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 72%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 78%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 83%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 89%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 94%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [100%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-uniform-1.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded, 31 warnings.
+
+The HTML pages are in build/html.
+local:docs>make html
+Running Sphinx v8.1.3
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+Converting `source_suffix = '.rst'` to `source_suffix = {'.rst': 'restructuredtext'}`.
+loading pickled environment... The configuration has changed (3 options: 'html_permalinks_icon', 'html_static_path', 'jquery_use_sri')
+done
+[autosummary] generating autosummary for: api_reference/constants.rst, api_reference/generated/dyad.stats.argument_of_pericentre.rst, api_reference/generated/dyad.stats.eccentricity.rst, api_reference/generated/dyad.stats.inclination.rst, api_reference/generated/dyad.stats.log_period.rst, api_reference/generated/dyad.stats.longitude_of_ascending_node.rst, api_reference/generated/dyad.stats.mass.rst, api_reference/generated/dyad.stats.mass_ratio.rst, api_reference/generated/dyad.stats.period.rst, api_reference/generated/dyad.stats.secondary_mass.rst, ..., generated/generated/generated/dyad.stats.period.moe2017.rst, generated/generated/generated/dyad.stats.period.trunclognorm.rst, generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst, generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst, generated/modules.rst, getting_started/installation.rst, getting_started/what_is_dyad.rst, index.rst, tutorials/tutorial_1.rst, tutorials/tutorial_2.rst
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 0 source files that are out of date
+updating environment: 0 added, 0 changed, 0 removed
+reading sources... 
+looking for now-outdated files... none found
+no targets are out of date.
+build succeeded.
+
+The HTML pages are in build/html.
+local:docs>firefox build/html/index.html 
+Gtk-Message: 19:28:17.623: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+local:docs>cd ../
+local:dyad>ld
+ld: no input files
+local:dyad>ls
+COPYING  docs  dyad  MANIFEST.in  README.md  requirements.txt  setup.py  tests
+local:dyad>git add .
+local:dyad>git commit -m "Typographical corrections to documentation"
+[master 82b1e74] Typographical corrections to documentation
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+local:dyad>git push origin master 
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 618 bytes | 618.00 KiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.        
+To https://github.com/AmeryGration/dyad.git
+   e4392fb..82b1e74  master -> master
+local:dyad>git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+nothing to commit, working tree clean
+local:dyad>ls
+ COPYING   docs   dyad  '#*local*#'  '*local*'   MANIFEST.in   README.md   requirements.txt   setup.py   tests
+local:dyad>cd docs/
+local:docs>ls
+build  make.bat  Makefile  source
+local:docsmak
+Command 'mak' not found, did you mean:
+  command 'kak' from snap kakoune (v2023.08.05)
+  command 'kak' from deb kakoune (2020.09.01-3)
+  command 'mag' from deb texlive-binaries (2021.20210626.59705-1ubuntu0.2)
+  command 'mawk' from deb mawk (1.3.4.20200120-3)
+  command 'mark' from deb mailutils-mh (1:3.14-1)
+  command 'mark' from deb mmh (0.4-4)
+  command 'mark' from deb nmh (1.7.1-11)
+  command 'sak' from deb seqan-apps (2.4.0+dfsg-14ubuntu1)
+  command 'make' from deb make (4.3-4.1build1)
+  command 'make' from deb make-guile (4.3-4.1build1)
+  command 'mad' from deb mmv (1.01b-19build1)
+  command 'maq' from deb maq (0.7.1-9)
+  command 'mako' from deb mako-notifier (1.6-2)
+  command 'man' from deb man-db (2.10.2-1)
+See 'snap info <snapname>' for additional versions.
+local:docs>make html
+Running Sphinx v8.1.3
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+Converting `source_suffix = '.rst'` to `source_suffix = {'.rst': 'restructuredtext'}`.
+loading pickled environment... The configuration has changed (4 options: 'html_logo', 'html_permalinks_icon', 'html_static_path', 'jquery_use_sri')
+done
+[autosummary] generating autosummary for: api_reference/constants.rst, api_reference/generated/dyad.stats.argument_of_pericentre.rst, api_reference/generated/dyad.stats.eccentricity.rst, api_reference/generated/dyad.stats.inclination.rst, api_reference/generated/dyad.stats.log_period.rst, api_reference/generated/dyad.stats.longitude_of_ascending_node.rst, api_reference/generated/dyad.stats.mass.rst, api_reference/generated/dyad.stats.mass_ratio.rst, api_reference/generated/dyad.stats.period.rst, api_reference/generated/dyad.stats.secondary_mass.rst, ..., generated/generated/generated/dyad.stats.period.moe2017.rst, generated/generated/generated/dyad.stats.period.trunclognorm.rst, generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst, generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst, generated/modules.rst, getting_started/installation.rst, getting_started/what_is_dyad.rst, index.rst, tutorials/tutorial_1.rst, tutorials/tutorial_2.rst
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: build_info mismatch, copying .buildinfo to .buildinfo.bak
+building [html]: targets for 95 source files that are out of date
+updating environment: 0 added, 0 changed, 0 removed
+reading sources... 
+looking for now-outdated files... none found
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/documentation_options.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/basic.css
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/language_data.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/js/versions.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/copybutton.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [  1%] api_reference/constants
+writing output... [  2%] api_reference/generated/dyad.stats.argument_of_pericentre
+writing output... [  3%] api_reference/generated/dyad.stats.eccentricity
+writing output... [  4%] api_reference/generated/dyad.stats.inclination
+writing output... [  5%] api_reference/generated/dyad.stats.log_period
+writing output... [  6%] api_reference/generated/dyad.stats.longitude_of_ascending_node
+writing output... [  7%] api_reference/generated/dyad.stats.mass
+writing output... [  8%] api_reference/generated/dyad.stats.mass_ratio
+writing output... [  9%] api_reference/generated/dyad.stats.period
+writing output... [ 11%] api_reference/generated/dyad.stats.secondary_mass
+writing output... [ 12%] api_reference/generated/dyad.stats.semimajor_axis
+writing output... [ 13%] api_reference/generated/dyad.stats.true_anomaly
+writing output... [ 14%] api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 15%] api_reference/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 16%] api_reference/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 17%] api_reference/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 18%] api_reference/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 19%] api_reference/generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 20%] api_reference/generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 21%] api_reference/generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 22%] api_reference/generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 23%] api_reference/generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 24%] api_reference/generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 25%] api_reference/generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 26%] api_reference/generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 27%] api_reference/generated/generated/dyad.stats.period.moe2017
+writing output... [ 28%] api_reference/generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 29%] api_reference/generated/generated/dyad.stats.secondary_mass.moe2017
+writing output... [ 31%] api_reference/generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 32%] api_reference/index
+writing output... [ 33%] api_reference/stats
+writing output... [ 34%] community_guidelines/index
+writing output... [ 35%] generated/dyad
+writing output... [ 36%] generated/dyad.constants
+writing output... [ 37%] generated/dyad.stats
+writing output... [ 38%] generated/generated/dyad.Orbit
+writing output... [ 39%] generated/generated/dyad.TwoBody
+writing output... [ 40%] generated/generated/dyad.eccentric_anomaly_from_mean_anomaly
+writing output... [ 41%] generated/generated/dyad.eccentric_anomaly_from_true_anomaly
+writing output... [ 42%] generated/generated/dyad.mean_anomaly_from_eccentric_anomaly
+writing output... [ 43%] generated/generated/dyad.mean_anomaly_from_true_anomaly
+writing output... [ 44%] generated/generated/dyad.period_from_semimajor_axis
+writing output... [ 45%] generated/generated/dyad.semimajor_axis_from_period
+writing output... [ 46%] generated/generated/dyad.stats.argument_of_pericentre
+writing output... [ 47%] generated/generated/dyad.stats.eccentricity
+writing output... [ 48%] generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 49%] generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 51%] generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 52%] generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 53%] generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 54%] generated/generated/dyad.stats.inclination
+writing output... [ 55%] generated/generated/dyad.stats.log_period
+writing output... [ 56%] generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 57%] generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 58%] generated/generated/dyad.stats.longitude_of_ascending_node
+writing output... [ 59%] generated/generated/dyad.stats.mass
+writing output... [ 60%] generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 61%] generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 62%] generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 63%] generated/generated/dyad.stats.mass_ratio
+writing output... [ 64%] generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 65%] generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 66%] generated/generated/dyad.stats.period
+writing output... [ 67%] generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 68%] generated/generated/dyad.stats.period.moe2017
+writing output... [ 69%] generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 71%] generated/generated/dyad.stats.secondary_mass
+writing output... [ 72%] generated/generated/dyad.stats.semimajor_axis
+writing output... [ 73%] generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 74%] generated/generated/dyad.stats.true_anomaly
+writing output... [ 75%] generated/generated/dyad.true_anomaly_from_eccentric_anomaly
+writing output... [ 76%] generated/generated/dyad.true_anomaly_from_mean_anomaly
+writing output... [ 77%] generated/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 78%] generated/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 79%] generated/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 80%] generated/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 81%] generated/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 82%] generated/generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 83%] generated/generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 84%] generated/generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 85%] generated/generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 86%] generated/generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 87%] generated/generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 88%] generated/generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 89%] generated/generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 91%] generated/generated/generated/dyad.stats.period.moe2017
+writing output... [ 92%] generated/generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 93%] generated/generated/generated/dyad.stats.secondary_mass.moe2017
+writing output... [ 94%] generated/generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 95%] generated/modules
+writing output... [ 96%] getting_started/installation
+writing output... [ 97%] getting_started/what_is_dyad
+writing output... [ 98%] index
+writing output... [ 99%] tutorials/tutorial_1
+writing output... [100%] tutorials/tutorial_2
+
+generating indices... genindex py-modindex done
+writing additional pages... search done
+copying images... [  2%] ../build/plot_directive/api_reference/generated/dyad-stats-argument_of_pericentre-1.png
+copying images... [  3%] ../build/plot_directive/api_reference/generated/dyad-stats-inclination-1.png
+copying images... [  5%] ../build/plot_directive/api_reference/generated/dyad-stats-longitude_of_ascending_node-1.png
+copying images... [  7%] ../build/plot_directive/api_reference/generated/dyad-stats-true_anomaly-1.png
+copying images... [  8%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 10%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 11%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 13%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 15%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 16%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 18%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 20%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 21%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 23%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 25%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 26%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 28%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 30%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 31%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-secondary_mass-moe2017-1.png
+copying images... [ 33%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 34%] figures/elliptical_orbit.jpg
+copying images... [ 36%] figures/orbital_euler_angles.jpg
+copying images... [ 38%] figures/twobody_system.jpg
+copying images... [ 39%] ../build/plot_directive/generated/generated/dyad-stats-argument_of_pericentre-1.png
+copying images... [ 41%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 43%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 44%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 46%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 48%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 49%] ../build/plot_directive/generated/generated/dyad-stats-inclination-1.png
+copying images... [ 51%] ../build/plot_directive/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 52%] ../build/plot_directive/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 54%] ../build/plot_directive/generated/generated/dyad-stats-longitude_of_ascending_node-1.png
+copying images... [ 56%] ../build/plot_directive/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 57%] ../build/plot_directive/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 59%] ../build/plot_directive/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 61%] ../build/plot_directive/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 62%] ../build/plot_directive/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 64%] ../build/plot_directive/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 66%] ../build/plot_directive/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 67%] ../build/plot_directive/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 69%] ../build/plot_directive/generated/generated/dyad-stats-true_anomaly-1.png
+copying images... [ 70%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 72%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 74%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 75%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 77%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 79%] ../build/plot_directive/generated/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 80%] ../build/plot_directive/generated/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 82%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 84%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 85%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 87%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 89%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 90%] ../build/plot_directive/generated/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 92%] ../build/plot_directive/generated/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 93%] ../build/plot_directive/generated/generated/generated/dyad-stats-secondary_mass-moe2017-1.png
+copying images... [ 95%] ../build/plot_directive/generated/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 97%] figures/evolution_of_radius.jpg
+copying images... [ 98%] figures/pdf_inclination.jpg
+copying images... [100%] figures/pdf_true_anomaly.jpg
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in build/html.
+local:docs>firefox build/html/index.html &
+[1] 62082
+local:docs>Gtk-Message: 19:43:47.383: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+  C-c C-c
+[1]+  Done                    firefox build/html/index.html
+local:docs>make html
+Running Sphinx v8.1.3
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+WARNING: logo file 'dyad_logo_white.svg' does not exist
+Converting `source_suffix = '.rst'` to `source_suffix = {'.rst': 'restructuredtext'}`.
+loading pickled environment... The configuration has changed (3 options: 'html_permalinks_icon', 'html_static_path', 'jquery_use_sri')
+done
+[autosummary] generating autosummary for: api_reference/constants.rst, api_reference/generated/dyad.stats.argument_of_pericentre.rst, api_reference/generated/dyad.stats.eccentricity.rst, api_reference/generated/dyad.stats.inclination.rst, api_reference/generated/dyad.stats.log_period.rst, api_reference/generated/dyad.stats.longitude_of_ascending_node.rst, api_reference/generated/dyad.stats.mass.rst, api_reference/generated/dyad.stats.mass_ratio.rst, api_reference/generated/dyad.stats.period.rst, api_reference/generated/dyad.stats.secondary_mass.rst, ..., generated/generated/generated/dyad.stats.period.moe2017.rst, generated/generated/generated/dyad.stats.period.trunclognorm.rst, generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst, generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst, generated/modules.rst, getting_started/installation.rst, getting_started/what_is_dyad.rst, index.rst, tutorials/tutorial_1.rst, tutorials/tutorial_2.rst
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: build_info mismatch, copying .buildinfo to .buildinfo.bak
+building [html]: targets for 95 source files that are out of date
+updating environment: 0 added, 0 changed, 0 removed
+reading sources... 
+looking for now-outdated files... none found
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/documentation_options.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/basic.css
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/language_data.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/js/versions.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/copybutton.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [  1%] api_reference/constants
+writing output... [  2%] api_reference/generated/dyad.stats.argument_of_pericentre
+writing output... [  3%] api_reference/generated/dyad.stats.eccentricity
+writing output... [  4%] api_reference/generated/dyad.stats.inclination
+writing output... [  5%] api_reference/generated/dyad.stats.log_period
+writing output... [  6%] api_reference/generated/dyad.stats.longitude_of_ascending_node
+writing output... [  7%] api_reference/generated/dyad.stats.mass
+writing output... [  8%] api_reference/generated/dyad.stats.mass_ratio
+writing output... [  9%] api_reference/generated/dyad.stats.period
+writing output... [ 11%] api_reference/generated/dyad.stats.secondary_mass
+writing output... [ 12%] api_reference/generated/dyad.stats.semimajor_axis
+writing output... [ 13%] api_reference/generated/dyad.stats.true_anomaly
+writing output... [ 14%] api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 15%] api_reference/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 16%] api_reference/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 17%] api_reference/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 18%] api_reference/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 19%] api_reference/generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 20%] api_reference/generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 21%] api_reference/generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 22%] api_reference/generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 23%] api_reference/generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 24%] api_reference/generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 25%] api_reference/generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 26%] api_reference/generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 27%] api_reference/generated/generated/dyad.stats.period.moe2017
+writing output... [ 28%] api_reference/generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 29%] api_reference/generated/generated/dyad.stats.secondary_mass.moe2017
+writing output... [ 31%] api_reference/generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 32%] api_reference/index
+writing output... [ 33%] api_reference/stats
+writing output... [ 34%] community_guidelines/index
+writing output... [ 35%] generated/dyad
+writing output... [ 36%] generated/dyad.constants
+writing output... [ 37%] generated/dyad.stats
+writing output... [ 38%] generated/generated/dyad.Orbit
+writing output... [ 39%] generated/generated/dyad.TwoBody
+writing output... [ 40%] generated/generated/dyad.eccentric_anomaly_from_mean_anomaly
+writing output... [ 41%] generated/generated/dyad.eccentric_anomaly_from_true_anomaly
+writing output... [ 42%] generated/generated/dyad.mean_anomaly_from_eccentric_anomaly
+writing output... [ 43%] generated/generated/dyad.mean_anomaly_from_true_anomaly
+writing output... [ 44%] generated/generated/dyad.period_from_semimajor_axis
+writing output... [ 45%] generated/generated/dyad.semimajor_axis_from_period
+writing output... [ 46%] generated/generated/dyad.stats.argument_of_pericentre
+writing output... [ 47%] generated/generated/dyad.stats.eccentricity
+writing output... [ 48%] generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 49%] generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 51%] generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 52%] generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 53%] generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 54%] generated/generated/dyad.stats.inclination
+writing output... [ 55%] generated/generated/dyad.stats.log_period
+writing output... [ 56%] generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 57%] generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 58%] generated/generated/dyad.stats.longitude_of_ascending_node
+writing output... [ 59%] generated/generated/dyad.stats.mass
+writing output... [ 60%] generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 61%] generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 62%] generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 63%] generated/generated/dyad.stats.mass_ratio
+writing output... [ 64%] generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 65%] generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 66%] generated/generated/dyad.stats.period
+writing output... [ 67%] generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 68%] generated/generated/dyad.stats.period.moe2017
+writing output... [ 69%] generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 71%] generated/generated/dyad.stats.secondary_mass
+writing output... [ 72%] generated/generated/dyad.stats.semimajor_axis
+writing output... [ 73%] generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 74%] generated/generated/dyad.stats.true_anomaly
+writing output... [ 75%] generated/generated/dyad.true_anomaly_from_eccentric_anomaly
+writing output... [ 76%] generated/generated/dyad.true_anomaly_from_mean_anomaly
+writing output... [ 77%] generated/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 78%] generated/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 79%] generated/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 80%] generated/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 81%] generated/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 82%] generated/generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 83%] generated/generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 84%] generated/generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 85%] generated/generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 86%] generated/generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 87%] generated/generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 88%] generated/generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 89%] generated/generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 91%] generated/generated/generated/dyad.stats.period.moe2017
+writing output... [ 92%] generated/generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 93%] generated/generated/generated/dyad.stats.secondary_mass.moe2017
+writing output... [ 94%] generated/generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 95%] generated/modules
+writing output... [ 96%] getting_started/installation
+writing output... [ 97%] getting_started/what_is_dyad
+writing output... [ 98%] index
+writing output... [ 99%] tutorials/tutorial_1
+writing output... [100%] tutorials/tutorial_2
+
+generating indices... genindex py-modindex done
+writing additional pages... search done
+copying images... [  2%] ../build/plot_directive/api_reference/generated/dyad-stats-argument_of_pericentre-1.png
+copying images... [  3%] ../build/plot_directive/api_reference/generated/dyad-stats-inclination-1.png
+copying images... [  5%] ../build/plot_directive/api_reference/generated/dyad-stats-longitude_of_ascending_node-1.png
+copying images... [  7%] ../build/plot_directive/api_reference/generated/dyad-stats-true_anomaly-1.png
+copying images... [  8%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 10%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 11%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 13%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 15%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 16%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 18%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 20%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 21%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 23%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 25%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 26%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 28%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 30%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 31%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-secondary_mass-moe2017-1.png
+copying images... [ 33%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 34%] figures/elliptical_orbit.jpg
+copying images... [ 36%] figures/orbital_euler_angles.jpg
+copying images... [ 38%] figures/twobody_system.jpg
+copying images... [ 39%] ../build/plot_directive/generated/generated/dyad-stats-argument_of_pericentre-1.png
+copying images... [ 41%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 43%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 44%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 46%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 48%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 49%] ../build/plot_directive/generated/generated/dyad-stats-inclination-1.png
+copying images... [ 51%] ../build/plot_directive/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 52%] ../build/plot_directive/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 54%] ../build/plot_directive/generated/generated/dyad-stats-longitude_of_ascending_node-1.png
+copying images... [ 56%] ../build/plot_directive/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 57%] ../build/plot_directive/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 59%] ../build/plot_directive/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 61%] ../build/plot_directive/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 62%] ../build/plot_directive/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 64%] ../build/plot_directive/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 66%] ../build/plot_directive/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 67%] ../build/plot_directive/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 69%] ../build/plot_directive/generated/generated/dyad-stats-true_anomaly-1.png
+copying images... [ 70%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 72%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 74%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 75%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 77%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 79%] ../build/plot_directive/generated/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 80%] ../build/plot_directive/generated/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 82%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 84%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 85%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 87%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 89%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 90%] ../build/plot_directive/generated/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 92%] ../build/plot_directive/generated/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 93%] ../build/plot_directive/generated/generated/generated/dyad-stats-secondary_mass-moe2017-1.png
+copying images... [ 95%] ../build/plot_directive/generated/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 97%] figures/evolution_of_radius.jpg
+copying images... [ 98%] figures/pdf_inclination.jpg
+copying images... [100%] figures/pdf_true_anomaly.jpg
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded, 1 warning.
+
+The HTML pages are in build/html.
+local:docs>firefox build/html/index.html &
+[1] 63997
+local:docs>Gtk-Message: 19:52:03.753: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+
+[1]+  Done                    firefox build/html/index.html
+local:docs>make html
+Running Sphinx v8.1.3
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+WARNING: logo file 'dyad_logo_white.svg' does not exist
+Converting `source_suffix = '.rst'` to `source_suffix = {'.rst': 'restructuredtext'}`.
+loading pickled environment... The configuration has changed (3 options: 'html_permalinks_icon', 'html_static_path', 'jquery_use_sri')
+done
+[autosummary] generating autosummary for: api_reference/constants.rst, api_reference/generated/dyad.stats.argument_of_pericentre.rst, api_reference/generated/dyad.stats.eccentricity.rst, api_reference/generated/dyad.stats.inclination.rst, api_reference/generated/dyad.stats.log_period.rst, api_reference/generated/dyad.stats.longitude_of_ascending_node.rst, api_reference/generated/dyad.stats.mass.rst, api_reference/generated/dyad.stats.mass_ratio.rst, api_reference/generated/dyad.stats.period.rst, api_reference/generated/dyad.stats.secondary_mass.rst, ..., generated/generated/generated/dyad.stats.period.moe2017.rst, generated/generated/generated/dyad.stats.period.trunclognorm.rst, generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst, generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst, generated/modules.rst, getting_started/installation.rst, getting_started/what_is_dyad.rst, index.rst, tutorials/tutorial_1.rst, tutorials/tutorial_2.rst
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 0 source files that are out of date
+updating environment: 0 added, 0 changed, 0 removed
+reading sources... 
+looking for now-outdated files... none found
+no targets are out of date.
+build succeeded, 1 warning.
+
+The HTML pages are in build/html.
+local:docs>firefox build/html/index.html &
+[1] 64424
+local:docs>Gtk-Message: 19:52:24.337: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+make html
+Running Sphinx v8.1.3
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+WARNING: logo file 'dyad_logo_white.png' does not exist
+Converting `source_suffix = '.rst'` to `source_suffix = {'.rst': 'restructuredtext'}`.
+loading pickled environment... The configuration has changed (3 options: 'html_permalinks_icon', 'html_static_path', 'jquery_use_sri')
+done
+[autosummary] generating autosummary for: api_reference/constants.rst, api_reference/generated/dyad.stats.argument_of_pericentre.rst, api_reference/generated/dyad.stats.eccentricity.rst, api_reference/generated/dyad.stats.inclination.rst, api_reference/generated/dyad.stats.log_period.rst, api_reference/generated/dyad.stats.longitude_of_ascending_node.rst, api_reference/generated/dyad.stats.mass.rst, api_reference/generated/dyad.stats.mass_ratio.rst, api_reference/generated/dyad.stats.period.rst, api_reference/generated/dyad.stats.secondary_mass.rst, ..., generated/generated/generated/dyad.stats.period.moe2017.rst, generated/generated/generated/dyad.stats.period.trunclognorm.rst, generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst, generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst, generated/modules.rst, getting_started/installation.rst, getting_started/what_is_dyad.rst, index.rst, tutorials/tutorial_1.rst, tutorials/tutorial_2.rst
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 0 source files that are out of date
+updating environment: 0 added, 0 changed, 0 removed
+reading sources... 
+looking for now-outdated files... none found
+no targets are out of date.
+build succeeded, 1 warning.
+
+The HTML pages are in build/html.
+[1]+  Done                    firefox build/html/index.html
+local:docs>firefox build/html/index.html &
+[1] 64806
+local:docs>Gtk-Message: 19:52:40.893: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+make html
+Running Sphinx v8.1.3
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+Converting `source_suffix = '.rst'` to `source_suffix = {'.rst': 'restructuredtext'}`.
+loading pickled environment... The configuration has changed (4 options: 'html_logo', 'html_permalinks_icon', 'html_static_path', 'jquery_use_sri')
+done
+[autosummary] generating autosummary for: api_reference/constants.rst, api_reference/generated/dyad.stats.argument_of_pericentre.rst, api_reference/generated/dyad.stats.eccentricity.rst, api_reference/generated/dyad.stats.inclination.rst, api_reference/generated/dyad.stats.log_period.rst, api_reference/generated/dyad.stats.longitude_of_ascending_node.rst, api_reference/generated/dyad.stats.mass.rst, api_reference/generated/dyad.stats.mass_ratio.rst, api_reference/generated/dyad.stats.period.rst, api_reference/generated/dyad.stats.secondary_mass.rst, ..., generated/generated/generated/dyad.stats.period.moe2017.rst, generated/generated/generated/dyad.stats.period.trunclognorm.rst, generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst, generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst, generated/modules.rst, getting_started/installation.rst, getting_started/what_is_dyad.rst, index.rst, tutorials/tutorial_1.rst, tutorials/tutorial_2.rst
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: build_info mismatch, copying .buildinfo to .buildinfo.bak
+building [html]: targets for 95 source files that are out of date
+updating environment: 0 added, 0 changed, 0 removed
+reading sources... 
+looking for now-outdated files... none found
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/documentation_options.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/basic.css
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/language_data.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/js/versions.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/copybutton.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [  1%] api_reference/constants
+writing output... [  2%] api_reference/generated/dyad.stats.argument_of_pericentre
+writing output... [  3%] api_reference/generated/dyad.stats.eccentricity
+writing output... [  4%] api_reference/generated/dyad.stats.inclination
+writing output... [  5%] api_reference/generated/dyad.stats.log_period
+writing output... [  6%] api_reference/generated/dyad.stats.longitude_of_ascending_node
+writing output... [  7%] api_reference/generated/dyad.stats.mass
+writing output... [  8%] api_reference/generated/dyad.stats.mass_ratio
+writing output... [  9%] api_reference/generated/dyad.stats.period
+writing output... [ 11%] api_reference/generated/dyad.stats.secondary_mass
+writing output... [ 12%] api_reference/generated/dyad.stats.semimajor_axis
+writing output... [ 13%] api_reference/generated/dyad.stats.true_anomaly
+writing output... [ 14%] api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 15%] api_reference/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 16%] api_reference/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 17%] api_reference/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 18%] api_reference/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 19%] api_reference/generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 20%] api_reference/generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 21%] api_reference/generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 22%] api_reference/generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 23%] api_reference/generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 24%] api_reference/generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 25%] api_reference/generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 26%] api_reference/generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 27%] api_reference/generated/generated/dyad.stats.period.moe2017
+writing output... [ 28%] api_reference/generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 29%] api_reference/generated/generated/dyad.stats.secondary_mass.moe2017
+writing output... [ 31%] api_reference/generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 32%] api_reference/index
+writing output... [ 33%] api_reference/stats
+writing output... [ 34%] community_guidelines/index
+writing output... [ 35%] generated/dyad
+writing output... [ 36%] generated/dyad.constants
+writing output... [ 37%] generated/dyad.stats
+writing output... [ 38%] generated/generated/dyad.Orbit
+writing output... [ 39%] generated/generated/dyad.TwoBody
+writing output... [ 40%] generated/generated/dyad.eccentric_anomaly_from_mean_anomaly
+writing output... [ 41%] generated/generated/dyad.eccentric_anomaly_from_true_anomaly
+writing output... [ 42%] generated/generated/dyad.mean_anomaly_from_eccentric_anomaly
+writing output... [ 43%] generated/generated/dyad.mean_anomaly_from_true_anomaly
+writing output... [ 44%] generated/generated/dyad.period_from_semimajor_axis
+writing output... [ 45%] generated/generated/dyad.semimajor_axis_from_period
+writing output... [ 46%] generated/generated/dyad.stats.argument_of_pericentre
+writing output... [ 47%] generated/generated/dyad.stats.eccentricity
+writing output... [ 48%] generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 49%] generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 51%] generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 52%] generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 53%] generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 54%] generated/generated/dyad.stats.inclination
+writing output... [ 55%] generated/generated/dyad.stats.log_period
+writing output... [ 56%] generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 57%] generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 58%] generated/generated/dyad.stats.longitude_of_ascending_node
+writing output... [ 59%] generated/generated/dyad.stats.mass
+writing output... [ 60%] generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 61%] generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 62%] generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 63%] generated/generated/dyad.stats.mass_ratio
+writing output... [ 64%] generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 65%] generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 66%] generated/generated/dyad.stats.period
+writing output... [ 67%] generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 68%] generated/generated/dyad.stats.period.moe2017
+writing output... [ 69%] generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 71%] generated/generated/dyad.stats.secondary_mass
+writing output... [ 72%] generated/generated/dyad.stats.semimajor_axis
+writing output... [ 73%] generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 74%] generated/generated/dyad.stats.true_anomaly
+writing output... [ 75%] generated/generated/dyad.true_anomaly_from_eccentric_anomaly
+writing output... [ 76%] generated/generated/dyad.true_anomaly_from_mean_anomaly
+writing output... [ 77%] generated/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 78%] generated/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 79%] generated/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 80%] generated/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 81%] generated/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 82%] generated/generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 83%] generated/generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 84%] generated/generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 85%] generated/generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 86%] generated/generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 87%] generated/generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 88%] generated/generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 89%] generated/generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 91%] generated/generated/generated/dyad.stats.period.moe2017
+writing output... [ 92%] generated/generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 93%] generated/generated/generated/dyad.stats.secondary_mass.moe2017
+writing output... [ 94%] generated/generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 95%] generated/modules
+writing output... [ 96%] getting_started/installation
+writing output... [ 97%] getting_started/what_is_dyad
+writing output... [ 98%] index
+writing output... [ 99%] tutorials/tutorial_1
+writing output... [100%] tutorials/tutorial_2
+
+generating indices... genindex py-modindex done
+writing additional pages... search done
+copying images... [  2%] ../build/plot_directive/api_reference/generated/dyad-stats-argument_of_pericentre-1.png
+copying images... [  3%] ../build/plot_directive/api_reference/generated/dyad-stats-inclination-1.png
+copying images... [  5%] ../build/plot_directive/api_reference/generated/dyad-stats-longitude_of_ascending_node-1.png
+copying images... [  7%] ../build/plot_directive/api_reference/generated/dyad-stats-true_anomaly-1.png
+copying images... [  8%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 10%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 11%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 13%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 15%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 16%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 18%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 20%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 21%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 23%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 25%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 26%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 28%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 30%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 31%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-secondary_mass-moe2017-1.png
+copying images... [ 33%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 34%] figures/elliptical_orbit.jpg
+copying images... [ 36%] figures/orbital_euler_angles.jpg
+copying images... [ 38%] figures/twobody_system.jpg
+copying images... [ 39%] ../build/plot_directive/generated/generated/dyad-stats-argument_of_pericentre-1.png
+copying images... [ 41%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 43%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 44%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 46%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 48%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 49%] ../build/plot_directive/generated/generated/dyad-stats-inclination-1.png
+copying images... [ 51%] ../build/plot_directive/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 52%] ../build/plot_directive/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 54%] ../build/plot_directive/generated/generated/dyad-stats-longitude_of_ascending_node-1.png
+copying images... [ 56%] ../build/plot_directive/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 57%] ../build/plot_directive/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 59%] ../build/plot_directive/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 61%] ../build/plot_directive/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 62%] ../build/plot_directive/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 64%] ../build/plot_directive/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 66%] ../build/plot_directive/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 67%] ../build/plot_directive/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 69%] ../build/plot_directive/generated/generated/dyad-stats-true_anomaly-1.png
+copying images... [ 70%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 72%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 74%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 75%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 77%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 79%] ../build/plot_directive/generated/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 80%] ../build/plot_directive/generated/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 82%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 84%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 85%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 87%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 89%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 90%] ../build/plot_directive/generated/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 92%] ../build/plot_directive/generated/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 93%] ../build/plot_directive/generated/generated/generated/dyad-stats-secondary_mass-moe2017-1.png
+copying images... [ 95%] ../build/plot_directive/generated/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 97%] figures/evolution_of_radius.jpg
+copying images... [ 98%] figures/pdf_inclination.jpg
+copying images... [100%] figures/pdf_true_anomaly.jpg
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in build/html.
+[1]+  Done                    firefox build/html/index.html
+local:docs>firefox build/html/index.html &
+[1] 65312
+local:docs>Gtk-Message: 19:55:13.767: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+
+[1]+  Done                    firefox build/html/index.html
+local:docs>
+local:docs>ls
+build  make.bat  Makefile  source
+local:docs>cd ../
+local:dyad>ls
+ COPYING   docs   dyad  '#*local*#'  '*local*'   MANIFEST.in   README.md   requirements.txt   setup.py   tests
+local:dyad>git add . 
+local:dyad>git commit -m "Logo added to documentation"
+[master e947f53] Logo added to documentation
+ 3 files changed, 32 insertions(+)
+ create mode 100644 docs/source/dyad_logo.svg
+ create mode 100644 docs/source/dyad_logo_white.png
+local:dyad>git push origin master
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 43.64 KiB | 43.64 MiB/s, done.
+Total 7 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.        
+To https://github.com/AmeryGration/dyad.git
+   82b1e74..e947f53  master -> master
+local:dyad>git add .
+local:dyad>git commit -m "Superfluous files removed"
+[master 708d440] Superfluous files removed
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+local:dyad>git push origin master 
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 332 bytes | 332.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.        
+To https://github.com/AmeryGration/dyad.git
+   e947f53..708d440  master -> master
+local:dyad>git rm --cached .
+fatal: not removing '.' recursively without -r
+local:dyad>git rm -r --cached .
+rm '.gitignore'
+rm '.readthedocs.yaml'
+rm 'COPYING'
+rm 'MANIFEST.in'
+rm 'README.md'
+rm 'docs/Makefile'
+rm 'docs/make.bat'
+rm 'docs/source/_conf.py'
+rm 'docs/source/api_reference/constants.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.argument_of_pericentre.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.eccentricity.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.inclination.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.log_period.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.longitude_of_ascending_node.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.mass.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.mass_ratio.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.period.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.secondary_mass.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.semimajor_axis.rst'
+rm 'docs/source/api_reference/generated/dyad.stats.true_anomaly.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.eccentricity.moe2017.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.eccentricity.powerlaw.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.eccentricity.thermal.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.eccentricity.uniform.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.log_period.duquennoy1991.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.log_period.moe2017.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.mass.kroupa2002.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.mass.salpeter1955.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.mass.splitpowerlaw.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.mass_ratio.duquennoy1991.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.mass_ratio.moe2017.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.period.duquennoy1991.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.period.moe2017.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.period.trunclognorm.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.secondary_mass.moe2017.rst'
+rm 'docs/source/api_reference/generated/generated/dyad.stats.semimajor_axis.opik1924.rst'
+rm 'docs/source/api_reference/index.rst'
+rm 'docs/source/api_reference/stats.rst'
+rm 'docs/source/community_guidelines/index.rst'
+rm 'docs/source/conf.py'
+rm 'docs/source/dyad_logo.svg'
+rm 'docs/source/dyad_logo_white.png'
+rm 'docs/source/figures/elliptical_orbit.jpg'
+rm 'docs/source/figures/evolution_of_radius.jpg'
+rm 'docs/source/figures/orbital_euler_angles.jpg'
+rm 'docs/source/figures/pdf_inclination.jpg'
+rm 'docs/source/figures/pdf_true_anomaly.jpg'
+rm 'docs/source/figures/plots.py'
+rm 'docs/source/figures/twobody_system.jpg'
+rm 'docs/source/generated/dyad.constants.rst'
+rm 'docs/source/generated/dyad.rst'
+rm 'docs/source/generated/dyad.stats.rst'
+rm 'docs/source/generated/generated/dyad.Orbit.rst'
+rm 'docs/source/generated/generated/dyad.TwoBody.rst'
+rm 'docs/source/generated/generated/dyad.eccentric_anomaly_from_mean_anomaly.rst'
+rm 'docs/source/generated/generated/dyad.eccentric_anomaly_from_true_anomaly.rst'
+rm 'docs/source/generated/generated/dyad.mean_anomaly_from_eccentric_anomaly.rst'
+rm 'docs/source/generated/generated/dyad.mean_anomaly_from_true_anomaly.rst'
+rm 'docs/source/generated/generated/dyad.period_from_semimajor_axis.rst'
+rm 'docs/source/generated/generated/dyad.semimajor_axis_from_period.rst'
+rm 'docs/source/generated/generated/dyad.stats.argument_of_pericentre.rst'
+rm 'docs/source/generated/generated/dyad.stats.eccentricity.duquennoy1991.rst'
+rm 'docs/source/generated/generated/dyad.stats.eccentricity.moe2017.rst'
+rm 'docs/source/generated/generated/dyad.stats.eccentricity.powerlaw.rst'
+rm 'docs/source/generated/generated/dyad.stats.eccentricity.rst'
+rm 'docs/source/generated/generated/dyad.stats.eccentricity.thermal.rst'
+rm 'docs/source/generated/generated/dyad.stats.eccentricity.uniform.rst'
+rm 'docs/source/generated/generated/dyad.stats.inclination.rst'
+rm 'docs/source/generated/generated/dyad.stats.log_period.duquennoy1991.rst'
+rm 'docs/source/generated/generated/dyad.stats.log_period.moe2017.rst'
+rm 'docs/source/generated/generated/dyad.stats.log_period.rst'
+rm 'docs/source/generated/generated/dyad.stats.longitude_of_ascending_node.rst'
+rm 'docs/source/generated/generated/dyad.stats.mass.kroupa2002.rst'
+rm 'docs/source/generated/generated/dyad.stats.mass.rst'
+rm 'docs/source/generated/generated/dyad.stats.mass.salpeter1955.rst'
+rm 'docs/source/generated/generated/dyad.stats.mass.splitpowerlaw.rst'
+rm 'docs/source/generated/generated/dyad.stats.mass_ratio.duquennoy1991.rst'
+rm 'docs/source/generated/generated/dyad.stats.mass_ratio.moe2017.rst'
+rm 'docs/source/generated/generated/dyad.stats.mass_ratio.rst'
+rm 'docs/source/generated/generated/dyad.stats.period.duquennoy1991.rst'
+rm 'docs/source/generated/generated/dyad.stats.period.moe2017.rst'
+rm 'docs/source/generated/generated/dyad.stats.period.rst'
+rm 'docs/source/generated/generated/dyad.stats.period.trunclognorm.rst'
+rm 'docs/source/generated/generated/dyad.stats.secondary_mass.rst'
+rm 'docs/source/generated/generated/dyad.stats.semimajor_axis.opik1924.rst'
+rm 'docs/source/generated/generated/dyad.stats.semimajor_axis.rst'
+rm 'docs/source/generated/generated/dyad.stats.true_anomaly.rst'
+rm 'docs/source/generated/generated/dyad.true_anomaly_from_eccentric_anomaly.rst'
+rm 'docs/source/generated/generated/dyad.true_anomaly_from_mean_anomaly.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.eccentricity.duquennoy1991.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.eccentricity.moe2017.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.eccentricity.powerlaw.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.eccentricity.thermal.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.eccentricity.uniform.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.log_period.duquennoy1991.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.log_period.moe2017.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.mass.kroupa2002.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.mass.salpeter1955.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.mass.splitpowerlaw.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.mass_ratio.duquennoy1991.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.mass_ratio.moe2017.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.period.duquennoy1991.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.period.moe2017.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.period.trunclognorm.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst'
+rm 'docs/source/generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst'
+rm 'docs/source/generated/modules.rst'
+rm 'docs/source/getting_started/installation.rst'
+rm 'docs/source/getting_started/what_is_dyad.rst'
+rm 'docs/source/index.rst'
+rm 'docs/source/tutorials/tutorial_1.rst'
+rm 'docs/source/tutorials/tutorial_2.rst'
+rm 'dyad/__init__.py'
+rm 'dyad/_core.py'
+rm 'dyad/constants/__init__.py'
+rm 'dyad/stats/__init__.py'
+rm 'dyad/stats/_distn_infrastructure.py'
+rm 'dyad/stats/_distr_params.py'
+rm 'dyad/stats/_tests/Figures/moe2017_gamma_delta.jpg'
+rm 'dyad/stats/_tests/Figures/moe2017_mass_ratio_pdf.jpg'
+rm 'dyad/stats/_tests/Figures/moe2017_mass_ratio_pdf_excess.jpg'
+rm 'dyad/stats/_tests/Figures/moe2017_mass_ratio_ppf.jpg'
+rm 'dyad/stats/_tests/Figures/moe2017_mass_ratio_ppf_excess.jpg'
+rm 'dyad/stats/_tests/Figures/moe2017_mass_ratio_rvs.jpg'
+rm 'dyad/stats/_tests/Figures/moe2017_mass_ratio_rvs_excess.jpg'
+rm 'dyad/stats/_tests/Figures/moe2017_twin_excess.jpg'
+rm 'dyad/stats/_tests/Figures/moe2017_twin_excess_period.jpg'
+rm 'dyad/stats/_tests/Figures/norm.jpg'
+rm 'dyad/stats/_tests/_eccentricity_test.py'
+rm 'dyad/stats/_tests/_log_period_moe2017_sample.py'
+rm 'dyad/stats/_tests/_log_period_test.py'
+rm 'dyad/stats/_tests/_mass_ratio_test.py'
+rm 'dyad/stats/_tests/_mass_test.py'
+rm 'dyad/stats/_tests/_period_test.py'
+rm 'dyad/stats/_tests/_semimajor_axis_test.py'
+rm 'dyad/stats/_tests/_test.py'
+rm 'dyad/stats/data/README.md'
+rm 'dyad/stats/data/log_period/cumulative_frequency_sample.dat'
+rm 'dyad/stats/data/log_period/frequency_sample.dat'
+rm 'dyad/stats/data/log_period/log10_period_sample.dat'
+rm 'dyad/stats/data/log_period/primary_mass_sample.dat'
+rm 'dyad/stats/data/log_period/sample_pdf.py'
+rm 'dyad/stats/data/period/cumulative_frequency_sample.dat'
+rm 'dyad/stats/data/period/frequency_sample.dat'
+rm 'dyad/stats/data/period/period_sample.dat'
+rm 'dyad/stats/data/period/primary_mass_sample.dat'
+rm 'dyad/stats/data/period/sample_pdf.py'
+rm 'dyad/stats/data/primary_mass/kroupa2002/Figures/F_QgivenM1_moe2017_pairing.jpg'
+rm 'dyad/stats/data/primary_mass/kroupa2002/Figures/F_QgivenM1_moe2017_pairing_2d.jpg'
+rm 'dyad/stats/data/primary_mass/kroupa2002/Figures/f_M_moe2017_pairing.jpg'
+rm 'dyad/stats/data/primary_mass/kroupa2002/Figures/f_QgivenM1_moe2017_pairing_2d.jpg'
+rm 'dyad/stats/data/secondary_mass/cumulative_frequency_sample.dat'
+rm 'dyad/stats/data/secondary_mass/frequency_sample.dat'
+rm 'dyad/stats/data/secondary_mass/mass_ratio_sample.dat'
+rm 'dyad/stats/data/secondary_mass/primary_mass_sample.dat'
+rm 'dyad/stats/data/secondary_mass/sample_pdf.py'
+rm 'dyad/stats/eccentricity.py'
+rm 'dyad/stats/log_period.py'
+rm 'dyad/stats/mass.py'
+rm 'dyad/stats/mass_ratio.py'
+rm 'dyad/stats/period.py'
+rm 'dyad/stats/secondary_mass.py'
+rm 'dyad/stats/semimajor_axis.py'
+rm 'requirements.txt'
+rm 'setup.py'
+rm 'tests/.coverage'
+rm 'tests/unit_tests/data_test_core.py'
+rm 'tests/unit_tests/test_core.py'
+local:dyad>git add .
+local:dyad>git commit -m "Superfluous files removed"
+[master fd9c679] Superfluous files removed
+ 2 files changed, 18 deletions(-)
+ delete mode 100644 .gitignore
+ delete mode 100644 requirements.txt
+local:dyad>git push origin master 
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 239 bytes | 239.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.        
+To https://github.com/AmeryGration/dyad.git
+   708d440..fd9c679  master -> master
+local:dyad>git add .
+local:dyad>git commit -m "Correction to formula for power-law index in stats.eccentricity.moe2017"
+[master 982f299] Correction to formula for power-law index in stats.eccentricity.moe2017
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+local:dyad>git push origin master 
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 505 bytes | 505.00 KiB/s, done.
+Total 5 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.        
+To https://github.com/AmeryGration/dyad.git
+   fd9c679..982f299  master -> master
+local:dyad>cd docs/
+local:docs>make html
+Running Sphinx v8.1.3
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+Converting `source_suffix = '.rst'` to `source_suffix = {'.rst': 'restructuredtext'}`.
+loading pickled environment... The configuration has changed (4 options: 'html_logo', 'html_permalinks_icon', 'html_static_path', 'jquery_use_sri')
+done
+[autosummary] generating autosummary for: api_reference/constants.rst, api_reference/generated/dyad.stats.argument_of_pericentre.rst, api_reference/generated/dyad.stats.eccentricity.rst, api_reference/generated/dyad.stats.inclination.rst, api_reference/generated/dyad.stats.log_period.rst, api_reference/generated/dyad.stats.longitude_of_ascending_node.rst, api_reference/generated/dyad.stats.mass.rst, api_reference/generated/dyad.stats.mass_ratio.rst, api_reference/generated/dyad.stats.period.rst, api_reference/generated/dyad.stats.secondary_mass.rst, ..., generated/generated/generated/dyad.stats.period.moe2017.rst, generated/generated/generated/dyad.stats.period.trunclognorm.rst, generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst, generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst, generated/modules.rst, getting_started/installation.rst, getting_started/what_is_dyad.rst, index.rst, tutorials/tutorial_1.rst, tutorials/tutorial_2.rst
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: 0 added, 19 changed, 0 removed
+reading sources... [  5%] api_reference/generated/dyad.stats.eccentricity
+reading sources... [ 11%] api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991
+reading sources... [ 16%] api_reference/generated/generated/dyad.stats.eccentricity.moe2017
+reading sources... [ 21%] api_reference/generated/generated/dyad.stats.eccentricity.powerlaw
+reading sources... [ 26%] api_reference/generated/generated/dyad.stats.eccentricity.thermal
+reading sources... [ 32%] api_reference/generated/generated/dyad.stats.eccentricity.uniform
+reading sources... [ 37%] generated/dyad.stats
+reading sources... [ 42%] generated/generated/dyad.stats.eccentricity
+reading sources... [ 47%] generated/generated/dyad.stats.eccentricity.duquennoy1991
+reading sources... [ 53%] generated/generated/dyad.stats.eccentricity.moe2017
+reading sources... [ 58%] generated/generated/dyad.stats.eccentricity.powerlaw
+reading sources... [ 63%] generated/generated/dyad.stats.eccentricity.thermal
+reading sources... [ 68%] generated/generated/dyad.stats.eccentricity.uniform
+reading sources... [ 74%] generated/generated/generated/dyad.stats.eccentricity.duquennoy1991
+reading sources... [ 79%] generated/generated/generated/dyad.stats.eccentricity.moe2017
+reading sources... [ 84%] generated/generated/generated/dyad.stats.eccentricity.powerlaw
+reading sources... [ 89%] generated/generated/generated/dyad.stats.eccentricity.thermal
+reading sources... [ 95%] generated/generated/generated/dyad.stats.eccentricity.uniform
+reading sources... [100%] getting_started/installation
+
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity:1: WARNING: duplicate object description of dyad.stats.eccentricity, other instance in generated/generated/dyad.stats.eccentricity, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.duquennoy1991:1: WARNING: duplicate object description of dyad.stats.eccentricity.duquennoy1991, other instance in generated/generated/generated/dyad.stats.eccentricity.duquennoy1991, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.moe2017:1: WARNING: duplicate object description of dyad.stats.eccentricity.moe2017, other instance in generated/generated/generated/dyad.stats.eccentricity.moe2017, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.powerlaw:1: WARNING: duplicate object description of dyad.stats.eccentricity.powerlaw, other instance in generated/generated/generated/dyad.stats.eccentricity.powerlaw, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.thermal:1: WARNING: duplicate object description of dyad.stats.eccentricity.thermal, other instance in generated/generated/generated/dyad.stats.eccentricity.thermal, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.uniform:1: WARNING: duplicate object description of dyad.stats.eccentricity.uniform, other instance in generated/generated/generated/dyad.stats.eccentricity.uniform, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity:1: WARNING: duplicate object description of dyad.stats.eccentricity, other instance in api_reference/generated/dyad.stats.eccentricity, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity:1: WARNING: duplicate object description of dyad.stats.eccentricity, other instance in generated/dyad.stats, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.duquennoy1991:1: WARNING: duplicate object description of dyad.stats.eccentricity.duquennoy1991, other instance in api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.moe2017:1: WARNING: duplicate object description of dyad.stats.eccentricity.moe2017, other instance in api_reference/generated/generated/dyad.stats.eccentricity.moe2017, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.powerlaw:1: WARNING: duplicate object description of dyad.stats.eccentricity.powerlaw, other instance in api_reference/generated/generated/dyad.stats.eccentricity.powerlaw, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.thermal:1: WARNING: duplicate object description of dyad.stats.eccentricity.thermal, other instance in api_reference/generated/generated/dyad.stats.eccentricity.thermal, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.uniform:1: WARNING: duplicate object description of dyad.stats.eccentricity.uniform, other instance in api_reference/generated/generated/dyad.stats.eccentricity.uniform, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.duquennoy1991:1: WARNING: duplicate object description of dyad.stats.eccentricity.duquennoy1991, other instance in generated/generated/dyad.stats.eccentricity.duquennoy1991, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.moe2017:1: WARNING: duplicate object description of dyad.stats.eccentricity.moe2017, other instance in generated/generated/dyad.stats.eccentricity.moe2017, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.powerlaw:1: WARNING: duplicate object description of dyad.stats.eccentricity.powerlaw, other instance in generated/generated/dyad.stats.eccentricity.powerlaw, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.thermal:1: WARNING: duplicate object description of dyad.stats.eccentricity.thermal, other instance in generated/generated/dyad.stats.eccentricity.thermal, use :no-index: for one of them
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/stats/eccentricity.py:docstring of dyad.stats.eccentricity.uniform:1: WARNING: duplicate object description of dyad.stats.eccentricity.uniform, other instance in generated/generated/dyad.stats.eccentricity.uniform, use :no-index: for one of them
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/generated/modules.rst: WARNING: document isn't included in any toctree
+done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/documentation_options.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/basic.css
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/language_data.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/js/versions.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/copybutton.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [  5%] api_reference/generated/dyad.stats.eccentricity
+writing output... [  9%] api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 14%] api_reference/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 18%] api_reference/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 23%] api_reference/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 27%] api_reference/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 32%] api_reference/stats
+writing output... [ 36%] generated/dyad
+writing output... [ 41%] generated/dyad.stats
+writing output... [ 45%] generated/generated/dyad.stats.eccentricity
+writing output... [ 50%] generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 55%] generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 59%] generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 64%] generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 68%] generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 73%] generated/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 77%] generated/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 82%] generated/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 86%] generated/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 91%] generated/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 95%] getting_started/installation
+writing output... [100%] index
+
+generating indices... genindex py-modindex done
+writing additional pages... search done
+copying images... [  6%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 11%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 17%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 22%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 28%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 33%] figures/elliptical_orbit.jpg
+copying images... [ 39%] figures/orbital_euler_angles.jpg
+copying images... [ 44%] figures/twobody_system.jpg
+copying images... [ 50%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 56%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 61%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 67%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 72%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 78%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 83%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 89%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 94%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [100%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-uniform-1.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded, 19 warnings.
+
+The HTML pages are in build/html.
+local:docs>firefox build/html/index.html 
+Gtk-Message: 20:19:32.955: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+local:docs>make html
+Running Sphinx v8.1.3
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+Converting `source_suffix = '.rst'` to `source_suffix = {'.rst': 'restructuredtext'}`.
+loading pickled environment... The configuration has changed (3 options: 'html_permalinks_icon', 'html_static_path', 'jquery_use_sri')
+done
+[autosummary] generating autosummary for: api_reference/constants.rst, api_reference/generated/dyad.stats.argument_of_pericentre.rst, api_reference/generated/dyad.stats.eccentricity.rst, api_reference/generated/dyad.stats.inclination.rst, api_reference/generated/dyad.stats.log_period.rst, api_reference/generated/dyad.stats.longitude_of_ascending_node.rst, api_reference/generated/dyad.stats.mass.rst, api_reference/generated/dyad.stats.mass_ratio.rst, api_reference/generated/dyad.stats.period.rst, api_reference/generated/dyad.stats.secondary_mass.rst, ..., generated/generated/generated/dyad.stats.period.moe2017.rst, generated/generated/generated/dyad.stats.period.trunclognorm.rst, generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst, generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst, generated/modules.rst, getting_started/installation.rst, getting_started/what_is_dyad.rst, index.rst, tutorials/tutorial_1.rst, tutorials/tutorial_2.rst
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: 0 added, 1 changed, 0 removed
+reading sources... [100%] getting_started/installation
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/generated/modules.rst: WARNING: document isn't included in any toctree
+done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/documentation_options.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/basic.css
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/language_data.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/js/versions.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/copybutton.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [ 50%] getting_started/installation
+writing output... [100%] index
+
+generating indices... genindex py-modindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded, 1 warning.
+
+The HTML pages are in build/html.
+local:docs>

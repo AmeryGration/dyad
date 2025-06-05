@@ -32,6 +32,7 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 ########################################################################
 
 extensions = [
+    "sphinx.ext.viewcode",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.coverage",
@@ -386,7 +387,7 @@ plot_rcparams = {
     "text.usetex": False,
 }
 
-# ########################################################################
+########################################################################
 # # Source code links
 # ########################################################################
 
