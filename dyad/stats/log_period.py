@@ -26,7 +26,6 @@ __all__ = [
     "moe2017",
 ]
 
-import os
 import numpy as np
 import scipy as sp
 
