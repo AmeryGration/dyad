@@ -19,7 +19,6 @@ Probability distributions
    :toctree: generated/
 
    moe2017
-   random
 
 """
 
@@ -90,9 +89,9 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     def _shape_info(self):
         return [_ShapeInfo("primary_mass", False, (0, np.inf), (False, False))]
 
-    # def _argcheck(self, primary_mass):
-    #     return (0.8 <= primary_mass) & (primary_mass <= 60.)
-    #     # return (0. <= primary_mass) & (primary_mass < np.inf)
+    def _argcheck(self, primary_mass):
+        return (0.8 <= primary_mass) & (primary_mass <= 60.)
+        # return (0. <= primary_mass) & (primary_mass < np.inf)
     
     def _pdf(self, x, primary_mass):
         x = np.asarray(x)
@@ -170,8 +169,7 @@ _moe2017_values = np.tile(
 )
 _moe2017_ppf_interp = LinearNDInterpolator(_moe2017_points.T, _moe2017_values)
 
-# moe2017 = moe2017_gen(a=0.1, b=60., name="secondary_mass.moe2017")
-moe2017 = moe2017_gen(name="secondary_mass.moe2017")
+moe2017 = moe2017_gen(a=0.1, b=60., name="secondary_mass.moe2017")
 
 
 class random_gen(_distn_infrastructure.rv_continuous):
@@ -198,11 +196,11 @@ class random_gen(_distn_infrastructure.rv_continuous):
     """
     # def _shape_info(self):
     #     return [
-    #         _ShapeInfo("primary_mass", False, (0.1, 100.), (False, False))
+    #         _ShapeInfo("primary_mass", False, (0.1, 60.), (False, False))
     #     ]
 
     def _argcheck(self, primary_mass):
-        return (0.1 <= primary_mass) & (primary_mass <= 100.)
+        return (0.1 <= primary_mass) & (primary_mass <= 60.)
 
     def _get_support(self, primary_mass):
         return (0.1, primary_mass)
@@ -210,30 +208,25 @@ class random_gen(_distn_infrastructure.rv_continuous):
     def _pdf(self, x, primary_mass):
         x = np.asarray(x)
         primary_mass = np.asarray(primary_mass)
-        # res = _rv_mass.pdf(x)/_rv_mass.cdf(primary_mass)
-        res = np.where(
-            x <= primary_mass,
-            _rv_mass.pdf(x)/_rv_mass.cdf(primary_mass),
-            0.
-        )
+        res = _kroupa2002.pdf(x)/_kroupa2002.cdf(primary_mass)
         
         return res
 
     def _cdf(self, x, primary_mass):
         x = np.asarray(x)
         primary_mass = np.asarray(primary_mass)
-        res = _rv_mass.cdf(x)/_rv_mass.cdf(primary_mass)
+        res = _kroupa2002.cdf(x)/_kroupa2002.cdf(primary_mass)
                 
         return res
 
     def _ppf(self, q, primary_mass):
         q = np.asarray(q)
         primary_mass = np.asarray(primary_mass)
-        res = _rv_mass.ppf(q*_rv_mass.cdf(primary_mass))
+        res = _kroupa2002.ppf(q*_kroupa2002.cdf(primary_mass))
         
         return res
     
 
-# _rv_mass = mass.kroupa2002
-_rv_mass = sp.stats.truncpareto(1.3, (100. - 0.)/0.1, scale=0.1)
-random = random_gen(name="secondary.mass.random")
+_kroupa2002 = mass.kroupa2002
+
+random = random_gen(a=0.1, b=60., name="secondary.mass.random")
