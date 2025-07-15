@@ -54,31 +54,37 @@ from dyad.stats import period as period
 # Define the integrand
 ########################################################################
 def f(p, q, m):
-    """Return the joint probability density for given mass ratio and period"""
+    """Return joint probability density given mass ratio and period"""
     res = (
         mass_ratio.moe2017(np.log10(p), m).pdf(q)
         *period.moe2017(m).pdf(p)
     )
+    res = np.where((0.8 <= q*m) & (q*m <= 40.), res, 0.)
 
     return res
 
 ########################################################################
 # Create regular lattice of sample points
-
 ########################################################################
 primary_mass_boundary = (0.8, 1.2, 3.5, 6., 40.)
 mass_ratio_boundary = (0.1, 0.3, 0.95, 1.)
 log10_period_boundary = (
     0.2, 1., 1.3, 2., 2.5, 3.4, 3.5, 4., 4.5, 5.5, 6., 6.5, 8.
 )
-
 n = 50
+# primary_mass_sample = np.hstack([
+#     np.logspace(np.log10(0.8), np.log10(1.2), n),
+#     np.logspace(np.log10(1.2), np.log10(3.5), n)[1:],
+#     np.logspace(np.log10(3.5), np.log10(6.), n)[1:],
+#     np.logspace(np.log10(6.), np.log10(40.), n)[1:],
+# ])
 primary_mass_sample = np.hstack([
     np.linspace(0.8, 1.2, n),
     np.linspace(1.2, 3.5, n)[1:],
     np.linspace(3.5, 6., n)[1:],
     np.linspace(6., 40., n)[1:],
 ])
+n = 50
 mass_ratio_sample = np.hstack([
     np.linspace(0.1, 0.3, n),
     np.linspace(0.3, 0.95, n)[1:],
@@ -112,18 +118,20 @@ pdf_sample = trapezoid(f_sample, period_sample, axis=1).T
 cdf_sample = cumulative_trapezoid(
     pdf_sample, mass_ratio_sample, axis=1, initial=0.
 )
+
 # Check normalization
 I = trapezoid(pdf_sample, mass_ratio_sample)
 print(I)
 
-# ########################################################################
-# # Fine-tune the normalization of the PDF and CDF
-# ########################################################################
-# pdf_sample = pdf_sample/cdf_sample[:,-1:]
-# cdf_sample = cdf_sample/cdf_sample[:,-1:]
-# # Check normalization
-# I = trapezoid(pdf_sample, mass_ratio_sample)
-# print(I)
+########################################################################
+# Fine-tune the normalization of the PDF and CDF
+########################################################################
+pdf_sample = pdf_sample/cdf_sample[:,-1:]
+cdf_sample = cdf_sample/cdf_sample[:,-1:]
+
+# Check normalization
+I = trapezoid(pdf_sample, mass_ratio_sample)
+print(I)
 
 # ########################################################################
 # # Save data
@@ -134,147 +142,43 @@ print(I)
 # np.savetxt("./cumulative_frequency_sample.dat", cdf_sample)
 
 ########################################################################
-# Plots
+# Plot PDF and CDF
 ########################################################################
-import matplotlib as mpl
+import plot
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 
 mpl.style.use("sm")
 
-fig, ax = plt.subplots()
-ax.pcolormesh(mass_ratio_sample, primary_mass_sample, np.log10(pdf_sample),
-              rasterized=True)
-ax.vlines(mass_ratio_boundary, 0.8, 40.)
-ax.hlines(primary_mass_boundary, 0.1, 1.)
+fig, ax, cbar = plot.plot_with_colorbar()
+im = ax.pcolormesh(mass_ratio_sample, primary_mass_sample,
+                   np.log10(pdf_sample), rasterized=True)
+# ax.vlines(mass_ratio_boundary, 0.8, 40., ls="dashed")
+# ax.hlines(primary_mass_boundary, 0.1, 1., ls="dashed")
+ax.plot(mass_ratio_sample, 0.8/mass_ratio_sample)
+ax.text(0.3, 1.25, r"$qm_{1} < m_{\min}$", ha="center")
+ax.text(0.7, 10., r"$qm_{1} > m_{\min}$", ha="center")
 ax.set_xlim(0.1, 1.)
 ax.set_ylim(0.8, 40.)
 ax.set_xlabel(r"$q$")
 ax.set_ylabel(r"$M_{1}/\mathrm{M}_{\odot}$")
 ax.set_yscale("log")
-ax.set_title(r"$f_{Q|M_{1}}$")
+fig.colorbar(im, cax=cbar, label=r"$f_{Q|M_{1}}$")
+fig.savefig("f_QgivenM2_moe2017_pairing.pdf", dpi=300)
 plt.show()
 
-fig, ax = plt.subplots()
-ax.pcolormesh(mass_ratio_sample, primary_mass_sample, np.log10(cdf_sample),
-              rasterized=True)
-ax.vlines(mass_ratio_boundary, 0.8, 40.)
-ax.hlines(primary_mass_boundary, 0.1, 1.)
+fig, ax, cbar = plot.plot_with_colorbar()
+im = ax.pcolormesh(mass_ratio_sample, primary_mass_sample,
+                   np.log10(cdf_sample), rasterized=True)
+# ax.vlines(mass_ratio_boundary, 0.8, 40., ls="dashed")
+# ax.hlines(primary_mass_boundary, 0.1, 1., ls="dashed")
+ax.plot(mass_ratio_sample, 0.8/mass_ratio_sample)
+ax.text(0.3, 1.25, r"$qm_{1} < m_{\min}$", ha="center")
+ax.text(0.7, 10., r"$qm_{1} > m_{\min}$", ha="center")
+ax.set_xlim(0.1, 1.)
 ax.set_xlabel(r"$q$")
 ax.set_ylabel(r"$M_{1}/\mathrm{M}_{\odot}$")
 ax.set_yscale("log")
-ax.set_title(r"$F_{Q|M_{1}}$")
+fig.colorbar(im, cax=cbar, label=r"$F_{Q|M_{1}}$")
+fig.savefig("F_QgivenM2_moe2017_pairing.pdf", dpi=300)
 plt.show()
-
-########################################################################
-# Interpolate the pairing function: PDF and CDF
-########################################################################
-# z = pdf_sample.T/primary_mass_sample
-# Z = cumulative_trapezoid(z, primary_mass_sample, axis=1, initial=0.)
-# z/=Z[:,-1:]
-# Z/=Z[:,-1:]
-
-# fig, ax = plt.subplots()
-# ax.plot(trapezoid(z, primary_mass_sample, axis=1),
-#         color="green")
-# plt.show()
-
-# pdf_interp = RegularGridInterpolator(
-#     (mass_ratio_sample, primary_mass_sample),
-#     # pdf_sample.T/primary_mass_sample,
-#     z,
-#     bounds_error=False,
-#     fill_value=0.
-# )
-# cdf_interp = RegularGridInterpolator(
-#     (mass_ratio_sample, primary_mass_sample),
-#     # cdf_sample.T/primary_mass_sample,
-#     Z,
-
-# bounds_error=False,
-#     fill_value=0.
-# )
-pdf_interp = RegularGridInterpolator(
-    (mass_ratio_sample, primary_mass_sample),
-    pdf_sample.T,
-    bounds_error=False,
-    fill_value=0.
-)
-cdf_interp = RegularGridInterpolator(
-    (mass_ratio_sample, primary_mass_sample),
-    cdf_sample.T,
-    bounds_error=False,
-    fill_value=0.
-)
-
-m = np.logspace(np.log10(0.8), np.log10(40), 2**9)
-m1m1, m2m2 = np.meshgrid(m, m)
-z = pdf_interp((m2m2/m1m1, m1m1))/m1m1
-Z = cdf_interp((m2m2/m1m1, m1m1))/m1m1
-
-I = trapezoid(z, m)
-
-fig, ax = plt.subplots()
-# ax.pcolormesh(m, m, np.log10(z), cmap="Greys", rasterized=True)
-ax.pcolormesh(m, m, np.log10(Z), cmap="Greys", rasterized=True)
-ax.contour(m, m, np.log10(z), colors="k")
-ax.plot(m, 0.1*m, color="k", ls="solid")
-ax.plot(m, 0.3*m, color="k", ls="dashed")
-ax.plot(m, m, color="k", ls="solid")
-
-# ax.plot(m, 10.*trapezoid(z, m, axis=0) + 1., color="green")
-# # ax.plot(m, 10.*trapezoid(z, m, axis=0) + 1., color="red")
-
-ax.vlines(primary_mass_boundary, 0.8, 40., ls="dashed")
-ax.set_xlim(0.8, 40.)
-ax.set_ylim(0.8, 40.)
-ax.set_xscale("log")
-ax.set_yscale("log")
-ax.set_xlabel(r"$m_{1}$")
-ax.set_ylabel(r"$m_{2}$")
-fig.savefig("f_M2givenM2_moe2017_pairing.pdf", dpi=300)
-fig.savefig("f_M2givenM2_moe2017_pairing.jpg", dpi=300)
-plt.show()
-
-# fig, ax = plt.subplots()
-# ax.pcolormesh(m, m, np.log10(Z), cmap="Greys", rasterized=True)
-# # ax.contour(m, m, np.log10(Z), colors="k")
-# ax.plot(m, 0.1*m, color="k", ls="solid")
-# ax.plot(m, 0.3*m, color="k", ls="dashed")
-# ax.plot(m, m, color="k", ls="solid")
-# ax.vlines(primary_mass_boundary, 0.8, 40., ls="dashed")
-
-# ax.set_xlim(0.8, 40.)
-# ax.set_ylim(0.8, 40.)
-# ax.set_xscale("log")
-# ax.set_yscale("log")
-# ax.set_xlabel(r"$m_{1}$")
-# ax.set_ylabel(r"$m_{2}$")
-# fig.savefig("F_M2givenM2_moe2017_pairing.pdf", dpi=300)
-# fig.savefig("F_M2givenM2_moe2017_pairing.jpg", dpi=300)
-# plt.show()
-
-# m1 = np.linspace(0.8, 40., 5_000)
-# m2 = 1.
-# za = pdf_interp((m2/m1, m1))
-# m2 = 2.
-# zb = pdf_interp((m2/m1, m1))
-# m2 = 4.
-# zc = pdf_interp((m2/m1, m1))
-# m2 = 8.
-# zd = pdf_interp((m2/m1, m1))
-# m2 = 16.
-# ze = pdf_interp((m2/m1, m1))
-
-# fig, ax = plt.subplots()
-# ax.plot(m1, za, ls="solid")
-# ax.plot(m1, zb, ls="solid")
-# ax.plot(m1, zc, ls="solid")
-# ax.plot(m1, zd, ls="solid")
-# ax.plot(m1, ze, ls="solid")
-# ax.set_xlim(0.8, 40.)
-# ax.set_ylim(0.1, 10.)
-# ax.set_xscale("log")
-# ax.set_yscale("log")
-# ax.set_xlabel(r"$m_{1}$")
-# # ax.set_ylabel(r"$m_{2}$")
-# plt.show()
