@@ -34,7 +34,7 @@ import scipy as sp
 from . import _distn_infrastructure
 
 class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
-    r"""The two-piece split-power-law initial-stellar-mass random variable
+    r"""The two-piece split-power-law mass random variable
 
     %(before_notes)s
 
@@ -133,7 +133,7 @@ splitpowerlaw = splitpowerlaw_gen(name="mass.splitpowerlaw")
 
 
 class kroupa2002_gen(_distn_infrastructure.rv_continuous):
-    r"""The initial-stellar-mass random variable of Kroupa (2002)
+    r"""The mass random variable of Kroupa (2002)
 
     %(before_notes)s
 
@@ -184,7 +184,7 @@ kroupa2002 = kroupa2002_gen(a=0.1, b=60., name="mass.kroupa2002")
 
 
 class salpeter1955_gen(_distn_infrastructure.rv_continuous):
-    r"""The initial-stellar-mass random variable Salpeter (1955)
+    r"""The mass random variable Salpeter (1955)
 
     %(before_notes)s
 
@@ -234,7 +234,7 @@ salpeter1955 = salpeter1955_gen(
 
 
 # class _millerscalo1979_gen(_distn_infrastructure.rv_continuous):
-#     r"""The Miller--Scalo (1979) initial-stellar-mass random variable
+#     r"""The Miller--Scalo (1979) mass random variable
 
 #     """
 #     # Check 0 < a < b.
@@ -258,7 +258,7 @@ salpeter1955 = salpeter1955_gen(
 
 
 # class _chabrier2003_gen(_distn_infrastructure.rv_continuous):
-#     r"""The Chabrier (2003) initial-stellar-mass random variable
+#     r"""The Chabrier (2003) mass random variable
 
 #     """
 #     # Check 0 < a < b.
@@ -277,7 +277,7 @@ salpeter1955 = salpeter1955_gen(
 
 
 # class _maschberger2013_gen(_distn_infrastructure.rv_continuous):
-#     r"""The Maschberger (2013) initial-stellar-mass random variable
+#     r"""The Maschberger (2013) mass random variable
 
 #     """
 #     def _pdf(self, x):
