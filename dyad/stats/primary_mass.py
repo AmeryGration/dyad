@@ -35,6 +35,7 @@ from scipy.interpolate import LinearNDInterpolator
 from . import _distn_infrastructure
 from . import mass
 
+
 class random_gen(_distn_infrastructure.rv_continuous):
     r"""The primary-star mass random variable for random pairing
 
