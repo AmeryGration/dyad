@@ -147,16 +147,16 @@ class kroupa2002_gen(_distn_infrastructure.rv_continuous):
        A_{M}
        \begin{cases}
        m^{-1.3} &\text{ if $m \in [0.08, 0.5)$}\\
-       0.5m^{-2.3} &\text{ if $m \in [0.5, 60]$}\\
+       0.5m^{-2.3} &\text{ if $m \in [0.5, 150]$}\\
        \end{cases}
 
     for
 
     .. math::
-       A_{M} := \dfrac{0.5(0.5^{-1.3} - 60.^{-1.3})}{1.3} +
+       A_{M} := \dfrac{0.5(0.5^{-1.3} - 150.^{-1.3})}{1.3} +
        \dfrac{0.08^{-0.3} - 0.5^{-0.3}}{0.3}
 
-    and :math:`m \in [0.08, 60]`.
+    and :math:`m \in [0.08, 150]`.
     
     %(after_notes)s
 
@@ -179,8 +179,8 @@ class kroupa2002_gen(_distn_infrastructure.rv_continuous):
         return _kroupa2002.ppf(q)
 
 
-_kroupa2002 = splitpowerlaw(s=0.5, a=0.1, b=60., c=-1.3, d=-2.3)
-kroupa2002 = kroupa2002_gen(a=0.1, b=60., name="mass.kroupa2002")
+_kroupa2002 = splitpowerlaw(s=0.5, a=0.08, b=150., c=-1.3, d=-2.3)
+kroupa2002 = kroupa2002_gen(a=0.08, b=150., name="mass.kroupa2002")
 
 
 class salpeter1955_gen(_distn_infrastructure.rv_continuous):
