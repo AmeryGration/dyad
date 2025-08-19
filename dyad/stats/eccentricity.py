@@ -204,7 +204,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
         \eta_{2}(x)
         &\text{if $m_{1} \in (3, 7]$}\\
         \eta_{3}(x)
-        &\text{if $m_{1} \in (7, \infty)$}
+        &\text{if $m_{1} \in (7, 40)$}
         \end{cases}\\
         \eta_{1}(x, m_{1})
         &=
@@ -359,7 +359,7 @@ def _moe2017_eta(log10_period, primary_mass):
     condition = [
         (0.8 <= primary_mass) & (primary_mass <= 3.),
         (3. < primary_mass) & (primary_mass <= 7.),
-        (7. < primary_mass) & (primary_mass < np.inf),
+        (7. < primary_mass) & (primary_mass < 40.),
     ]
     value = [
         _moe2017_eta_1(log10_period, primary_mass),

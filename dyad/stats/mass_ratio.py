@@ -117,7 +117,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
        \end{cases}
 
     for mass ratio :math:`q \in [0, 1]`, period :math:`p \in [0.2,
-    8]`, and primary mass :math:`m_{1} \in [0.8, \infty)`, where the
+    8]`, and primary mass :math:`m_{1} \in [0.8, 40)`, where the
     normalization constant, :math:`A_{Q}(p, m_{1})`, is such that
 
     .. math::
@@ -200,9 +200,9 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
        =
        \begin{cases}
        8 - m_{1}
-       &\text{if $m_{1} \in (0, 6.5]$}\\
+       &\text{if $m_{1} \in (0.8, 6.5]$}\\
        1.5
-       &\text{if $m_{1} \in (6.5, \infty)$}.
+       &\text{if $m_{1} \in (6.5, 40)$}.
        \end{cases}
 
     The functions :math:`\gamma` and :math:`\delta` are piecewise
@@ -217,7 +217,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
        \gamma_{2}(p, m_{1}) &\text{if $m_{1} \in (1.2, 3.5)$}\\
        \gamma_{3}(p, m_{1}) &\text{if $m_{1} = 3.5 $}\\
        \gamma_{4}(p, m_{1}) &\text{if $m_{1} \in (3.5, 6]$}\\
-       \gamma_{5}(p, m_{1}) &\text{if $m_{1} \in (6, \infty)$}
+       \gamma_{5}(p, m_{1}) &\text{if $m_{1} \in (6, 40)$}
        \end{cases}
 
     and
@@ -230,7 +230,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
        \delta_{2}(p, m_{1}) &\text{if $m_{1} \in (1.2, 3.5)$}\\
        \delta_{3}(p, m_{1}) &\text{if $m_{1} = 3.5 $}\\
        \delta_{4}(p, m_{1}) &\text{if $m_{1} \in (3.5, 6]$}\\
-       \delta_{5}(p, m_{1}) &\text{if $m_{1} \in (6, \infty)$}
+       \delta_{5}(p, m_{1}) &\text{if $m_{1} \in (6, 40)$}
        \end{cases}
 
     where
@@ -326,13 +326,13 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     """
     def _shape_info(self):
         ia = _ShapeInfo("log10_period", False, (0.2, 8.), (False, False))
-        ib = _ShapeInfo("primary_mass", False, (0, np.inf), (False, False))
+        ib = _ShapeInfo("primary_mass", False, (0.8, 40.), (False, False))
         return [ia, ib]
     
     def _argcheck(self, log10_period, primary_mass):
         res = (
             (0.2 <= log10_period) & (log10_period <= 8.)
-            & (0. <= primary_mass) & (primary_mass < np.inf)
+            & (0.8 <= primary_mass) & (primary_mass < 40.)
         )
 
         return res
@@ -961,7 +961,7 @@ def _moe2017_gamma(log10_period, primary_mass):
         (1.2 < primary_mass) & (primary_mass < 3.5),
         primary_mass == 3.5,
         (3.5 < primary_mass) & (primary_mass <= 6.),
-        (6. < primary_mass) & (primary_mass < np.inf)
+        (6. < primary_mass) & (primary_mass < 40.)
     )
     choice = (
         gamma_1,
@@ -1109,7 +1109,7 @@ def _moe2017_delta(log10_period, primary_mass):
         (1.2 < primary_mass) & (primary_mass < 3.5),
         primary_mass == 3.5,
         (3.5 < primary_mass) & (primary_mass <= 6.),
-        (6. < primary_mass) & (primary_mass < np.inf)
+        (6. < primary_mass) & (primary_mass < 40.)
     )
     choice = (
         delta_1,
