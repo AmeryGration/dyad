@@ -66,7 +66,7 @@ def f(p, q, m):
 #############################################################################
 # Create regular lattice of sample points
 #############################################################################
-primary_mass_boundary = (0.8, 1.2, 3.5, 6., 40.)
+primary_mass_boundary = (0.08, 1.2, 3.5, 6., 150.)
 mass_ratio_boundary = (0.1, 0.3, 0.95, 1.)
 log10_period_boundary = (
     0.2, 1., 1.3, 2., 2.5, 3.4, 3.5, 4., 4.5, 5.5, 6., 6.5, 8.
@@ -74,10 +74,10 @@ log10_period_boundary = (
 
 n = 50
 primary_mass_sample = np.hstack([
-    np.linspace(0.8, 1.2, n),
+    np.linspace(0.08, 1.2, n),
     np.linspace(1.2, 3.5, n)[1:],
     np.linspace(3.5, 6., n)[1:],
-    np.linspace(6., 40., n)[1:],
+    np.linspace(6., 150., n)[1:],
 ])
 mass_ratio_sample = np.hstack([
     np.linspace(0.1, 0.3, n),
@@ -103,8 +103,12 @@ period_sample = 10.**log10_period_sample
 #############################################################################
 # Sample the PDF and CDF
 #############################################################################
+primary_mass_sample_tmp = primary_mass_sample
+primary_mass_sample_tmp[primary_mass_sample_tmp<0.8] = 0.8
+primary_mass_sample_tmp[primary_mass_sample_tmp>=40.] = 40. - 1.e-9
+
 pp, qq, m1m1 = np.meshgrid(
-    period_sample, mass_ratio_sample, primary_mass_sample
+    period_sample, mass_ratio_sample, primary_mass_sample_tmp
 )
 f_sample = f(pp, qq, m1m1)
 pdf_sample = trapezoid(f_sample, period_sample, axis=1).T
