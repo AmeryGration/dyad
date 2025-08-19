@@ -25,9 +25,10 @@ ax.pcolormesh(
 ax.contour(
     mass_ratio_sample, primary_mass_sample, pdf_sample, colors="k", norm="log"
 )
+ax.plot(mass_ratio_sample, 0.08/mass_ratio_sample)
 ax.vlines(mass_ratio_boundary, 0.08, 150.)
 ax.hlines(primary_mass_boundary, 0.1, 1.)
-ax.set_xlim(0.1, 1.)
+ax.set_xlim(0., 1.)
 ax.set_ylim(0.08, 150.)
 ax.set_yscale("log")
 ax.set_xlabel(r"$q$")
@@ -44,8 +45,11 @@ ax.pcolormesh(
 ax.contour(
     mass_ratio_sample, primary_mass_sample, cdf_sample, colors="k", norm="log"
 )
+ax.plot(mass_ratio_sample, 0.08/mass_ratio_sample)
 ax.vlines(mass_ratio_boundary, 0.08, 150.)
 ax.hlines(primary_mass_boundary, 0.1, 1.)
+ax.set_xlim(0., 1.)
+ax.set_ylim(0.08, 150.)
 ax.set_yscale("log")
 ax.set_xlabel(r"$q$")
 ax.set_ylabel(r"$m_{1}/\mathrm{M}_{\odot}$")
