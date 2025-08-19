@@ -238,10 +238,10 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 
     """
     def _shape_info(self):
-        return [_ShapeInfo("p", False, (0.8, 40.), (True, False))]
+        return [_ShapeInfo("p", False, (0.08, 150.), (True, False))]
 
     def _argcheck(self, primary_mass):
-        return (0.8 <= primary_mass) & (primary_mass < 40.)
+        return (0.08 <= primary_mass) & (primary_mass < 150.)
 
     def _pdf(self, x, primary_mass):
         x = np.asarray(x)
