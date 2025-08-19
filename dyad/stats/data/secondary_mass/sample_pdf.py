@@ -103,8 +103,8 @@ period_sample = 10.**log10_period_sample
 #############################################################################
 # Sample the PDF and CDF
 #############################################################################
-primary_mass_sample_tmp = primary_mass_sample
-primary_mass_sample_tmp[primary_mass_sample_tmp<0.8] = 0.8
+primary_mass_sample_tmp = np.copy(primary_mass_sample)
+primary_mass_sample_tmp[primary_mass_sample_tmp<0.8] = 0.8 + 1.e-9
 primary_mass_sample_tmp[primary_mass_sample_tmp>=40.] = 40. - 1.e-9
 
 pp, qq, m1m1 = np.meshgrid(

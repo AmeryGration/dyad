@@ -165,7 +165,7 @@ def pdf(x, primary_mass):
 #############################################################################
 # Create grid of sample points
 #############################################################################
-primary_mass_boundary = (0.8, 1.2, 3.5, 6., 40.)
+primary_mass_boundary = (0.08, 1.2, 3.5, 6., 150.)
 log10_period_boundary = (
     0.2, 1., 1.3, 2., 2.5, 3.4, 3.5, 4., 4.5, 5.5, 6., 6.5, 8.
 )
@@ -173,10 +173,10 @@ log10_period_boundary = (
 n = 50
 primary_mass_sample = np.hstack(
     [
-        np.linspace(0.8, 1.2, n),
+        np.linspace(0.08 + 1.e-9, 1.2, n),
         np.linspace(1.2, 3.5, n)[1:],
         np.linspace(3.5, 6., n)[1:],
-        np.linspace(6., 40., n)[1:],
+        np.linspace(6., 150. - 1.e-9, n)[1:],
     ]
 )
 log10_period_sample = np.hstack(
