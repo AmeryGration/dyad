@@ -87,7 +87,9 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 
     """
     def _shape_info(self):
-        return [_ShapeInfo("primary_mass", False, (0, np.inf), (False, False))]
+        return [
+            _ShapeInfo("primary_mass", False, (0.08, 150.), (False, False))
+        ]
 
     def _argcheck(self, primary_mass):
         return (0.08 <= primary_mass) & (primary_mass <= 150.)
@@ -127,7 +129,7 @@ with files(path).joinpath("frequency_sample.dat") as f_name:
     _moe2017_frequency_sample = np.loadtxt(f_name)
 with files(path).joinpath("cumulative_frequency_sample.dat") as f_name:
     _moe2017_cumulative_frequency_sample = np.loadtxt(f_name)
-    
+
 _moe2017_pdf_interp = RegularGridInterpolator(
     (_moe2017_mass_ratio_sample, _moe2017_primary_mass_sample),
     _moe2017_frequency_sample.T,
@@ -140,6 +142,20 @@ _moe2017_cdf_interp = RegularGridInterpolator(
     bounds_error=False,
     fill_value=0.
 )
+# Alternative using LinearNDInterpolator
+# qq, m1m1 = np.meshgrid(
+#     _moe2017_mass_ratio_sample, _moe2017_primary_mass_sample
+# )
+# points = np.column_stack([qq.ravel(), m1m1.ravel()])
+# _moe2017_pdf_interp = LinearNDInterpolator(
+#     points, 
+#     _moe2017_frequency_sample.ravel(),
+# )
+
+# _moe2017_cdf_interp = LinearNDInterpolator(
+#     points,
+#     _moe2017_cumulative_frequency_sample.ravel(),
+# )
 
 # Suppose that we have an invertible function, :math:`f`, of some
 # variable, :math:`t`, represented by arrays `f` and `t`. We can

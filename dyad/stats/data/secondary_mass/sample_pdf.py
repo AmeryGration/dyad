@@ -72,18 +72,26 @@ log10_period_boundary = (
     0.2, 1., 1.3, 2., 2.5, 3.4, 3.5, 4., 4.5, 5.5, 6., 6.5, 8.
 )
 
-n = 50
+n = 150
+# primary_mass_sample = np.hstack([
+#     np.linspace(0.08, 1.2, n),
+#     np.linspace(1.2, 3.5, n)[1:],
+#     np.linspace(3.5, 6., n)[1:],
+#     np.linspace(6., 150., n)[1:],
+# ])
 primary_mass_sample = np.hstack([
-    np.linspace(0.08, 1.2, n),
-    np.linspace(1.2, 3.5, n)[1:],
-    np.linspace(3.5, 6., n)[1:],
-    np.linspace(6., 150., n)[1:],
+    np.logspace(np.log10(0.08) + 1.e-9, np.log10(1.2), n),
+    np.logspace(np.log10(1.2), np.log10(3.5), n)[1:],
+    np.logspace(np.log10(3.5), np.log10(6.), n)[1:],
+    np.logspace(np.log10(6.), np.log10(150.) - 1.e-9, n)[1:],
 ])
+n = 50
 mass_ratio_sample = np.hstack([
     np.linspace(0.1, 0.3, n),
     np.linspace(0.3, 0.95, n)[1:],
     np.linspace(0.95, 1., n)[1:],
 ])
+n = 50
 log10_period_sample = np.hstack([
         np.linspace(0.2, 1., n),
         np.linspace(1., 1.3, n)[1:],
