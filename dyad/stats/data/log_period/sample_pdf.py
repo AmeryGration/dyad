@@ -165,7 +165,7 @@ def pdf(x, primary_mass):
 #############################################################################
 # Create grid of sample points
 #############################################################################
-primary_mass_boundary = (0.8, 1.2, 3.5, 6., 60.)
+primary_mass_boundary = (0.8, 1.2, 3.5, 6., 40.)
 log10_period_boundary = (
     0.2, 1., 1.3, 2., 2.5, 3.4, 3.5, 4., 4.5, 5.5, 6., 6.5, 8.
 )
@@ -176,7 +176,7 @@ primary_mass_sample = np.hstack(
         np.linspace(0.8, 1.2, n),
         np.linspace(1.2, 3.5, n)[1:],
         np.linspace(3.5, 6., n)[1:],
-        np.linspace(6., 60., n)[1:],
+        np.linspace(6., 40., n)[1:],
     ]
 )
 log10_period_sample = np.hstack(
@@ -221,15 +221,15 @@ cumulative_frequency_sample = (
 #############################################################################
 # Save data
 #############################################################################
-# np.savetxt(
-#     "./primary_mass_sample.dat", primary_mass_sample
-# )
-# np.savetxt(
-#     "./log10_period_sample.dat", log10_period_sample
-# )
-# np.savetxt(
-#     "./frequency_sample.dat", frequency_sample
-# )
-# np.savetxt(
-#     "./cumulative_frequency_sample.dat", cumulative_frequency_sample
-# )
+np.savetxt(
+    "./primary_mass_sample.dat", primary_mass_sample
+)
+np.savetxt(
+    "./log10_period_sample.dat", log10_period_sample
+)
+np.savetxt(
+    "./frequency_sample.dat", frequency_sample
+)
+np.savetxt(
+    "./cumulative_frequency_sample.dat", cumulative_frequency_sample
+)
