@@ -357,9 +357,9 @@ def _moe2017_eta_3(log10_period, primary_mass):
 
 def _moe2017_eta(log10_period, primary_mass):
     condition = [
-        (0.08 <= primary_mass) & (primary_mass <= 3.),
+        (0.8 <= primary_mass) & (primary_mass <= 3.),
         (3. < primary_mass) & (primary_mass <= 7.),
-        (7. < primary_mass) & (primary_mass < 150.),
+        (7. < primary_mass) & (primary_mass < 40.),
     ]
     value = [
         _moe2017_eta_1(log10_period, primary_mass),

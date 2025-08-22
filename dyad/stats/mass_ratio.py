@@ -326,13 +326,13 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     """
     def _shape_info(self):
         ia = _ShapeInfo("log10_period", False, (0.2, 8.), (False, False))
-        ib = _ShapeInfo("primary_mass", False, (0.08, 150.), (False, False))
+        ib = _ShapeInfo("primary_mass", False, (0.8, 40.), (False, False))
         return [ia, ib]
     
     def _argcheck(self, log10_period, primary_mass):
         res = (
             (0.2 <= log10_period) & (log10_period <= 8.)
-            & (0.08 <= primary_mass) & (primary_mass < 150.)
+            & (0.8 <= primary_mass) & (primary_mass < 40.)
         )
 
         return res
@@ -957,11 +957,11 @@ def _moe2017_gamma(log10_period, primary_mass):
     primary_mass = np.asarray(primary_mass)
 
     condition = (
-        (0.08 <= primary_mass) & (primary_mass <= 1.2),
+        (0.8 <= primary_mass) & (primary_mass <= 1.2),
         (1.2 < primary_mass) & (primary_mass < 3.5),
         primary_mass == 3.5,
         (3.5 < primary_mass) & (primary_mass <= 6.),
-        (6. < primary_mass) & (primary_mass < 150.)
+        (6. < primary_mass) & (primary_mass < 40.)
     )
     choice = (
         gamma_1,
@@ -1105,11 +1105,11 @@ def _moe2017_delta(log10_period, primary_mass):
     primary_mass = np.asarray(primary_mass)
 
     condition = (
-        (0.08 <= primary_mass) & (primary_mass <= 1.2),
+        (0.8 <= primary_mass) & (primary_mass <= 1.2),
         (1.2 < primary_mass) & (primary_mass < 3.5),
         primary_mass == 3.5,
         (3.5 < primary_mass) & (primary_mass <= 6.),
-        (6. < primary_mass) & (primary_mass < 150.)
+        (6. < primary_mass) & (primary_mass < 40.)
     )
     choice = (
         delta_1,

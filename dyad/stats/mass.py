@@ -33,6 +33,7 @@ import scipy as sp
 
 from . import _distn_infrastructure
 
+
 class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
     r"""The two-piece split-power-law mass random variable
 

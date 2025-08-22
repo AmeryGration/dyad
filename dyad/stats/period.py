@@ -238,10 +238,10 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 
     """
     def _shape_info(self):
-        return [_ShapeInfo("p", False, (0.08, 150.), (True, False))]
+        return [_ShapeInfo("p", False, (0.8, 40.), (True, False))]
 
     def _argcheck(self, primary_mass):
-        return (0.08 <= primary_mass) & (primary_mass < 150.)
+        return (0.8 <= primary_mass) & (primary_mass < 40.)
 
     def _pdf(self, x, primary_mass):
         x = np.asarray(x)
@@ -279,11 +279,15 @@ with files(path).joinpath("cumulative_frequency_sample.dat") as f_name:
     
 _moe2017_pdf_interp = RegularGridInterpolator(
     (_moe2017_period_sample, _moe2017_primary_mass_sample),
-    _moe2017_frequency_sample.T
+    _moe2017_frequency_sample.T,
+    bounds_error=False,
+    fill_value=0.
 )
 _moe2017_cdf_interp = RegularGridInterpolator(
     (_moe2017_period_sample, _moe2017_primary_mass_sample),
-    _moe2017_cumulative_frequency_sample.T
+    _moe2017_cumulative_frequency_sample.T,
+    bounds_error=False,
+    fill_value=0.
 )
 
 # Suppose that we have an invertible function, :math:`f`, of some
