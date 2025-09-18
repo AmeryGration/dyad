@@ -5,7 +5,10 @@ Mass ratio (:mod:`dyad.stats.mass_ratio`)
 
 .. currentmodule:: dyad.stats.mass_ratio
 
-This module contains probability distributions for the mass ratios of the components of a population of binary stars. In its documentation the random variable is denoted :math:`Q` and a realization of that random variable is denoted :math:`q`.
+This module contains probability distributions for the mass ratios of
+the components of a population of binary stars. In its documentation
+the random variable is denoted :math:`Q` and a realization of that
+random variable is denoted :math:`q`.
 
 Probability distributions
 =========================
@@ -365,9 +368,9 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 
             return res
 
-        x = np.asarray(x)
-        log10_period = np.asarray(log10_period)
-        primary_mass = np.asarray(primary_mass)
+        # x = np.asarray(x)
+        # log10_period = np.asarray(log10_period)
+        # primary_mass = np.asarray(primary_mass)
 
         gamma = _moe2017_gamma(log10_period, primary_mass)
         delta = _moe2017_delta(log10_period, primary_mass)
@@ -480,9 +483,9 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 
             return res
 
-        x = np.asarray(x)
-        log10_period = np.asarray(log10_period)
-        primary_mass = np.asarray(primary_mass)
+        # x = np.asarray(x)
+        # log10_period = np.asarray(log10_period)
+        # primary_mass = np.asarray(primary_mass)
         
         gamma = _moe2017_gamma(log10_period, primary_mass)
         delta = _moe2017_delta(log10_period, primary_mass)
@@ -571,15 +574,15 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
             return res
 
         def f_3(q, gamma, delta, norm, log10_period, primary_mass):
-            #################################################################
-            #################################################################
-            #################################################################
+            ############################################################
+            ############################################################
+            ############################################################
             # TO DO
-            # This is very slow. I have vectorized it in the most naive way.
-            # Redo it properly.
-            #################################################################
-            #################################################################
-            #################################################################
+            # This is very slow. I have vectorized it in the most naive
+            # way. Redo it properly.
+            ############################################################
+            ############################################################
+            ############################################################
             def f(x, q, log10_period, primary_mass):
                 gamma = _moe2017_gamma(log10_period, primary_mass)
                 delta = _moe2017_delta(log10_period, primary_mass)

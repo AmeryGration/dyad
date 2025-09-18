@@ -5,7 +5,10 @@ Mass (:mod:`dyad.stats.mass`)
 
 .. currentmodule:: dyad.stats.mass
 
-This module contains probability distributions for the masses of a population of stars. In its documentation the random variable is denoted :math:`M` and a realization of that random variable is denoted :math:`m`.
+This module contains probability distributions for the masses of a
+population of stars. In its documentation the random variable is
+denoted :math:`M` and a realization of that random variable is denoted
+:math:`m`.
 
 Probability distributions
 =========================

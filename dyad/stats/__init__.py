@@ -42,6 +42,7 @@ of the condition.
    mass
    mass_ratio
    period
+   primary_mass
    secondary_mass
    semimajor_axis
 
@@ -68,11 +69,13 @@ import scipy as sp
 
 from . import _distn_infrastructure
 from . import eccentricity
+from . import log_period
 from . import mass
 from . import mass_ratio
-from . import log_period
 from . import period
+from . import primary_mass
 from . import semimajor_axis
+from . import secondary_mass
 
 
 class _true_anomaly_gen(_distn_infrastructure.rv_continuous):
@@ -143,40 +146,40 @@ class _true_anomaly_gen(_distn_infrastructure.rv_continuous):
         
         return res
 
-    def _ppf(self, x, e):
-        #####################################################################
-        #####################################################################
-        #####################################################################
-        # This is wrong. Correct it
-        #####################################################################
-        #####################################################################
-        #####################################################################
-        def f(x, t, e):
-            return x - e*np.sin(x) - t
+    # def _ppf(self, x, e):
+    #     ################################################################
+    #     ################################################################
+    #     ################################################################
+    #     # This is wrong. Correct it
+    #     ################################################################
+    #     ################################################################
+    #     ################################################################
+    #     def f(x, t, e):
+    #         return x - e*np.sin(x) - t
 
-        def fprime(x, t, e):
-            return 1. - e*np.cos(x)
+    #     def fprime(x, t, e):
+    #         return 1. - e*np.cos(x)
         
-        def fsolve(x, e):
-            # True anomaly must be computed numerically
-            eta = sp.optimize.fsolve(f, x, (x, e), fprime)
-            eta = np.array(eta).squeeze()
-            res = 2.*np.arctan(
-                np.sqrt((1. + e)/(1. - e))
-                *np.tan(eta/2.)
-            )
-            # res = 2.*np.arctan(
-            #     np.sqrt((1. + e)/(1. - e)), 1./np.tan(eta/2.)
-            # )
+    #     def fsolve(x, e):
+    #         # True anomaly must be computed numerically
+    #         eta = sp.optimize.fsolve(f, x, (x, e), fprime)
+    #         eta = np.array(eta).squeeze()
+    #         res = 2.*np.arctan(
+    #             np.sqrt((1. + e)/(1. - e))
+    #             *np.tan(eta/2.)
+    #         )
+    #         # res = 2.*np.arctan(
+    #         #     np.sqrt((1. + e)/(1. - e)), 1./np.tan(eta/2.)
+    #         # )
 
-            return res%(2.*np.pi)
+    #         return res%(2.*np.pi)
 
-        x = 2.*np.pi*np.atleast_1d(x)
-        e = np.atleast_1d(e)
+    #     x = 2.*np.pi*np.atleast_1d(x)
+    #     e = np.atleast_1d(e)
 
-        res = np.vectorize(fsolve)(x, e)
+    #     res = np.vectorize(fsolve)(x, e)
 
-        return res
+    #     return res
 
     
 class _rv_uniform_gen(_distn_infrastructure.rv_continuous):

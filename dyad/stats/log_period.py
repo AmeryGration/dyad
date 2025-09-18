@@ -186,22 +186,22 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
         return (0.8 <= primary_mass) & (primary_mass < 40.)
 
     def _pdf(self, x, primary_mass):
-        x = np.asarray(x)
-        primary_mass = np.asarray(primary_mass)
+        # x = np.asarray(x)
+        # primary_mass = np.asarray(primary_mass)
         res = _moe2017_pdf_interp((x, primary_mass))
         
         return res
 
     def _cdf(self, x, primary_mass):
-        x = np.asarray(x)
-        primary_mass = np.asarray(primary_mass)
+        # x = np.asarray(x)
+        # primary_mass = np.asarray(primary_mass)
         res = _moe2017_cdf_interp((x, primary_mass))
         
         return res
 
     def _ppf(self, q, primary_mass):
-        q = np.asarray(q)
-        primary_mass = np.asarray(primary_mass)
+        # q = np.asarray(q)
+        # primary_mass = np.asarray(primary_mass)
         res = _moe2017_ppf_interp((q, primary_mass))
         
         return res
