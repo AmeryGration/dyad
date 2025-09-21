@@ -223,8 +223,10 @@ class salpeter1955_gen(_distn_infrastructure.rv_continuous):
         return _salpeter1955.ppf(q)
 
 
-_salpeter1955_lb = 0.4
-_salpeter1955_ub = 10.
+_salpeter1955_lb = 0.08
+_salpeter1955_ub = 150.
+# _salpeter1955_lb = 0.4
+# _salpeter1955_ub = 10.
 _salpeter1955_loc = 0.
 _salpeter1955_scale = _salpeter1955_lb
 _salpeter1955_b = 1.35

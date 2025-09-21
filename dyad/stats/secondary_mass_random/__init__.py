@@ -62,20 +62,66 @@ class kroupa2002_gen(_distn_infrastructure.rv_continuous):
         return (0.08, primary_mass)
     
     def _pdf(self, x, primary_mass):
-        res = _kroupa2002.pdf(x)/_kroupa2002.cdf(primary_mass)
+        res = mass.kroupa2002.pdf(x)/mass.kroupa2002.cdf(primary_mass)
         
         return res
 
     def _cdf(self, x, primary_mass):
-        res = _kroupa2002.cdf(x)/_kroupa2002.cdf(primary_mass)
+        res = mass.kroupa2002.cdf(x)/mass.kroupa2002.cdf(primary_mass)
                 
         return res
 
     def _ppf(self, q, primary_mass):
-        res = _kroupa2002.ppf(q*_kroupa2002.cdf(primary_mass))
+        res = mass.kroupa2002.ppf(q*mass.kroupa2002.cdf(primary_mass))
         
         return res
     
 
-_kroupa2002 = mass.kroupa2002
 kroupa2002 = kroupa2002_gen(a=0.08, b=150., name="random.kroupa2002")
+
+
+class salpeter1955_gen(_distn_infrastructure.rv_continuous):
+    r"""The secondary-star mass random variable for random pairing
+
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `random` is:
+
+    .. math::
+
+    %(after_notes)s
+
+    See also
+    --------
+
+    References
+    ----------
+
+    %(example)s
+
+    """
+    def _argcheck(self, primary_mass):
+        return (0.08 <= primary_mass) & (primary_mass <= 150.)
+
+    def _get_support(self, primary_mass):
+        return (0.08, primary_mass)
+    
+    def _pdf(self, x, primary_mass):
+        res = mass.salpeter1955.pdf(x)/mass.salpeter1955.cdf(primary_mass)
+        
+        return res
+
+    def _cdf(self, x, primary_mass):
+        res = mass.salpeter1955.cdf(x)/mass.salpeter1955.cdf(primary_mass)
+                
+        return res
+
+    def _ppf(self, q, primary_mass):
+        res = mass.salpeter1955.ppf(q*mass.salpeter1955.cdf(primary_mass))
+        
+        return res
+    
+
+salpeter1955 = kroupa2002_gen(a=0.08, b=150., name="random.salpeter1955")

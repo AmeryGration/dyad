@@ -1,0 +1,42 @@
+Results of doctest builder run on 2025-09-21 15:41:54
+=====================================================
+
+Document: tutorials/tutorial_1
+------------------------------
+**********************************************************************
+File "tutorials/tutorial_1.rst", line 37, in python
+Failed example:
+    orbit.state(theta)
+Expected:
+    array([  0.53532139,   0.83371367,   0.        , -25.0664496 ,
+         16.59245592,   0.        ])
+Got:
+    array([  0.53532139,   0.83371367,   0.        , -25.0664496 ,
+            16.59245592,   0.        ])
+**********************************************************************
+File "tutorials/tutorial_1.rst", line 71, in python
+Failed example:
+    ax.plot(theta, r)
+Expected nothing
+Got:
+    [<matplotlib.lines.Line2D object at 0x7f259c759ae0>]
+**********************************************************************
+File "tutorials/tutorial_1.rst", line 72, in python
+Failed example:
+    ax.set_xticks([0., np.pi, 2.*np.pi], [r"$0$", r"$\pi$", r"$2\pi$"])
+Expected nothing
+Got:
+    [<matplotlib.axis.XTick object at 0x7f259c701ff0>, <matplotlib.axis.XTick object at 0x7f259c701fc0>, <matplotlib.axis.XTick object at 0x7f259c701360>]
+**********************************************************************
+1 items had failures:
+   3 of  29 in python
+29 tests in 1 items.
+26 passed and 3 failed.
+***Test Failed*** 3 failures.
+
+Doctest summary
+===============
+   29 tests
+    3 failures in tests
+    0 failures in setup code
+    0 failures in cleanup code

@@ -33,43 +33,154 @@ from .. import _distn_infrastructure
 from .. import mass
 
 
-class kroupa2002_gen(_distn_infrastructure.rv_continuous):
-    r"""The secondary-star mass random variable for random pairing
+# class kroupa2002_gen(_distn_infrastructure.rv_continuous):
+#     r"""The primary-star mass random variable for random pairing
 
-    %(before_notes)s
+#     %(before_notes)s
 
-    Notes
-    -----
-    The probability density function for `random` is:
+#     Notes
+#     -----
+#     The probability density function for `random.kroupa2002` is:
 
-    .. math::
+#     .. math::
+#        f_{M_{1}}(m_{1}) = 2f_{M}(m_{1})F_{M}(m_{1}),
 
-    %(after_notes)s
+#     where :math:`f_{M}` and :math:`F_{M}` are the probability density
+#     function and cumulative distribution function for the mass random
+#     variable of Kroupa (2002).
+    
+#     %(after_notes)s
 
-    See also
-    --------
+#     See also
+#     --------
+#     dyad.stats.mass.kroupa2002
+    
+#     References
+#     ----------
+#     Kroupa, P. 2002. \'The initial mass function and its variation
+#     (review)\'. *ASP conference series* 285 (January): 86.
 
-    References
-    ----------
+#     Malkov, O., and H. Zinnecker. 2001. \'Binary Stars and the
+#     Fundamental Initial Mass Function\'. *Monthly Notices of the Royal
+#     Astronomical Society* 321 (1): 149--54.
 
-    %(example)s
+#     %(example)s
 
-    """
+#     """
+#     def _pdf(self, x):
+#         res = (
+#             2.*mass.kroupa2002.pdf(x)*mass.kroupa2002.cdf(x)
+#         )
+        
+#         return res
+
+#     def _cdf(self, x):
+#         res = mass.kroupa2002.cdf(x)**2.
+                
+#         return res
+
+#     def _ppf(self, q):
+#         res = mass.kroupa2002.ppf(np.sqrt(q))
+        
+#         return res
+    
+
+# kroupa2002 = kroupa2002_gen(
+#     a=0.08, b=150., name="primary_mass.random.kroupa2002"
+# )
+
+
+# class salpeter1955_gen(_distn_infrastructure.rv_continuous):
+#     r"""The primary-star mass random variable for random pairing
+
+#     %(before_notes)s
+
+#     Notes
+#     -----
+#     The probability density function for `random.kroupa2002` is:
+
+#     .. math::
+#        f_{M_{1}}(m_{1}) = 2f_{M}(m_{1})F_{M}(m_{1}),
+
+#     where :math:`f_{M}` and :math:`F_{M}` are the probability density
+#     function and cumulative distribution function for the mass random
+#     variable of Salpeter (1955).
+    
+#     %(after_notes)s
+
+#     See also
+#     --------
+#     dyad.stats.mass.kroupa2002
+    
+#     References
+#     ----------
+#     Salpeter, Edwin E. 1955. \'The luminosity function and stellar
+#     evolution.\' *The Astrophysical Journal* 121 (January): 161.
+
+#     Malkov, O., and H. Zinnecker. 2001. \'Binary Stars and the
+#     Fundamental Initial Mass Function\'. *Monthly Notices of the Royal
+#     Astronomical Society* 321 (1): 149--54.
+
+#     %(example)s
+
+#     """
+#     def _pdf(self, x):
+#         res = (
+#             2.*mass.salpeter1955.pdf(x)*mass.salpeter1955.cdf(x)
+#         )
+        
+#         return res
+
+#     def _cdf(self, x):
+#         res = mass.salpeter1955.cdf(x)**2.
+                
+#         return res
+
+#     def _ppf(self, q):
+#         res = mass.salpeter1955.ppf(np.sqrt(q))
+        
+#         return res
+    
+
+# salpeter1955 = salpeter1955_gen(
+#     a=0.08, b=150., name="primary_mass.random.salpeter1955"
+# )
+
+
+class primary_mass_gen(_distn_infrastructure.rv_continuous):
+    def __init__(self, momtype=1, a=None, b=None, xtol=1e-14, badvalue=None,
+                 name=None, longname=None, shapes=None, seed=None,
+                 rv_mass=None):
+        super().__init__(
+            momtype=1, a=None, b=None, xtol=1e-14, badvalue=None,
+            name=None, longname=None, shapes=None, seed=None
+        )
+        self._rv_mass = rv_mass
+        
     def _pdf(self, x):
-        res = 2.*_kroupa2002.pdf(x)*_kroupa2002.cdf(x)
+        res = (
+            2.*self._rv_mass.pdf(x)*self._rv_mass.cdf(x)
+        )
         
         return res
 
     def _cdf(self, x):
-        res = _kroupa2002.cdf(x)**2.
+        res = self._rv_mass.cdf(x)**2.
                 
         return res
 
     def _ppf(self, q):
-        res = _kroupa2002.ppf(np.sqrt(q))
+        res = self._rv_mass.ppf(np.sqrt(q))
         
         return res
     
 
-_kroupa2002 = mass.kroupa2002
-kroupa2002 = kroupa2002_gen(a=0.08, b=150., name="random.kroupa2002")
+kroupa2002 = primary_mass_gen(
+    a=0.08, b=150., rv_mass=mass.kroupa2002
+)
+
+salpeter1995 = primary_mass_gen(
+    a=0.08, b=150., rv_mass=mass.salpeter1955
+)
+
+

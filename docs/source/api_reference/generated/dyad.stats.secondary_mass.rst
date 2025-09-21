@@ -9,5 +9,5 @@
    .. autosummary::
    
       moe2017_gen
-      random_gen
+      uniform_gen
    
