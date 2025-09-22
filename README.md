@@ -1,3 +1,5 @@
+# Dyad
+
 Dyad is a two-body dynamics and binary-star statistics package for astrophysicists.
 
 It provides:
