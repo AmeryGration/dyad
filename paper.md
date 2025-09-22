@@ -33,7 +33,7 @@ implementing the method of @gration2025b. Accordingly, Dyad provides a
 library of distributions for stellar mass, mass-ratio, and the orbital
 elements. This library includes (but is not limited to) the
 distributions for (1) the initial stellar mass published by
-@chabrier2003, @kroupa2002a, and @salpeter1955, and (2) the
+@chabrier2003, @kroupa2001, and @salpeter1955, and (2) the
 mass-ratios and orbital elements of binary stars in the Solar
 neighbourhood published by @duquennoy1991 and @moe2017.
 
@@ -48,7 +48,7 @@ implement it. To compute the kinematic properties of binary systems
 researchers new to the subject must write their own software. I hope
 that Dyad fills this gap. Stellar population synthesis (i.e. the
 modelling of the evolution of populations of stellar systems) is also
-an active area of research [@izzard2018]. However, the software is
+an active area of research [@izzard2019]. However, the software is
 better developed. In order to run population synthesis programmes the
 user must provide a description of the initial unevolved
 population. This can be done by sampling the appropriate random
