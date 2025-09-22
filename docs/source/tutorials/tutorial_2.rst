@@ -16,14 +16,14 @@ generates random variates (i.e. which generates a sample).
 
 For example, consider the random variable for inclination, :math:`I`, where :math:`\sin(I) \sim U(0, \pi)`. This is implemented by Dyad using the class :class:`dyad.stats.inclination`. Instantiate this class as follows.
 
-.. sourcecode:: python
+.. doctest:: python
 
-   >>> import dyad.stats as stats
-   >>> rv = stats.inclination
+   >>> import dyad
+   >>> rv = dyad.stats.inclination
 
 Now compute the PDF on the interval :math:`[0, \pi]`.
 
-.. sourcecode:: python
+.. doctest:: python
 
    >>> import numpy as np
    >>> x = np.linspace(0., np.pi)
@@ -31,20 +31,22 @@ Now compute the PDF on the interval :math:`[0, \pi]`.
 
 And synthesize :math:`10~000` realizations.
 
-.. sourcecode:: python
+.. doctest:: python
 
    >>> sample = rv.rvs(size=10_000)
 
 Now plot our results.
 
-.. sourcecode:: python
+.. doctest:: python
 
-   >>> import matplot.pyplot as plt
+   >>> import matplotlib.pyplot as plt
    >>> fig, ax = plt.subplots()
    >>> ax.hist(sample, bins=25, density=True, histtype="step")
    >>> ax.set_xticks([0., 0.5*np.pi, np.pi], [r"$0$", r"$\pi/2$", r"$\pi$"])
    >>> ax.set_xlabel(r"$i$")
+   Text(0.5, 0, '$i$')
    >>> ax.set_ylabel(r"$f_{I}$")
+   Text(0, 0.5, '$f_{I}$')
    >>> ax.plot(x, pdf)
    >>> plt.show()
 
@@ -57,23 +59,25 @@ Now plot our results.
 
 Some of Dyad's random variables are conditional on other random variables. We must use their shape parameters to fully specify them. For example, the true anomaly of a body moving on an elliptical orbit in a gravitational central potentia depends on that orbit's eccentricity, and so is a conditional random variable, :math:`\Theta|E = e`. Again, we may synthesize a sample and compute the PDF. Suppose that :math:`e = 0.5`.
 
-.. sourcecode:: python
+.. doctest:: python
 
-   >>> rv = stats.true_anomaly(e=0.5)
+   >>> rv = dyad.stats.true_anomaly(e=0.5)
    >>> x = np.linspace(0., 2.*np.pi)
    >>> pdf = rv.pdf(x)
    >>> sample = rv.rvs(size=10_000)
 
 Plot the results.
 
-.. sourcecode:: python
+.. doctest:: python
 
    >>> fig, ax = plt.subplots()
    >>> ax.hist(sample, bins=25, density=True, histtype="step")
    >>> ax.plot(x, pdf)
    >>> ax.set_xticks([0., np.pi, 2.*np.pi], [r"$0$", r"$\pi$", r"$2\pi$"])
    >>> ax.set_xlabel(r"$\theta$")
+   Text(0.5, 0, '$\\theta$')
    >>> ax.set_ylabel(r"$f_{\Theta}$")
+   Text(0, 0.5, '$f_{\\Theta}$')
    >>> plt.show()
 
 .. _inclincation:
@@ -90,13 +94,13 @@ submodules :mod:`dyad.stats.eccentricity`, :mod:`dyad.stats.period`,
 example, when considering the eccentricity of an orbit we may wish to
 use a thermal distribution.
 
-.. sourcecode:: python
+.. doctest:: python
 
-   >>> rv = stats.eccentricity.thermal
+   >>> rv = dyad.stats.eccentricity.thermal
 
 Its methods are available in the same way as before.
 
-.. sourcecode:: python
+.. doctest:: python
 
    >>> x = np.linspace(0., 1.)
    >>> rv.pdf(x)
@@ -116,44 +120,44 @@ A complete population
 
 Let us synthesize the complete orbital properties of a population of binary stars: mass, mass ratio, and orbital elements. We will use the distributions of Duquennoy and Mayor [DM91]_. Assume that the primary stars of our populations have masses of :math:`0.8~\mathrm{M}_{\odot}` and sample the mass ratio and the period.
 
-.. sourcecode:: python
+.. doctest:: python
 
    >>> n = 10_000
    >>> m_1 = np.full((n,), 0.8)
-   >>> q = stats.mass_ratio.duquennoy1991.rvs(size=n)
-   >>> p = stats.period.duquennoy1991.rvs(size=n)
+   >>> q = dyad.stats.mass_ratio.duquennoy1991.rvs(size=n)
+   >>> p = dyad.stats.period.duquennoy1991.rvs(size=n)
 
 Now sample the eccentricity, remembering that the circularization period is :math:`11~\mathrm{day}`. 
 
-.. sourcecode:: python
+.. doctest:: python
 		
    >>> e = np.zeros(n)
-   >>> e[p > 11.] = stats.eccentricity.duquennoy1991(p[p > 11.]).rvs()
+   >>> e[p > 11.] = dyad.stats.eccentricity.duquennoy1991(p[p > 11.]).rvs()
 
 Using these eccentricities sample the true anomaly.
 
-.. sourcecode:: python
+.. doctest:: python
 
-   >>> theta = stats.true_anomaly(e).rvs()
+   >>> theta = dyad.stats.true_anomaly(e).rvs()
 
 Note that, since the eccentricities are all different, we do not pass a size argument to the method ``rvs``. Now sample the orientation of the system.
 
-.. sourcecode:: python
+.. doctest:: python
 
-   >>> Omega = stats.longitude_of_ascending_node.rvs(size=n)
-   >>> i = stats.inclination.rvs(size=n)
-   >>> omega = stats.argument_of_pericentre().rvs(size=n)
+   >>> Omega = dyad.stats.longitude_of_ascending_node.rvs(size=n)
+   >>> i = dyad.stats.inclination.rvs(size=n)
+   >>> omega = dyad.stats.argument_of_pericentre().rvs(size=n)
 
 The class :class:`dyad.TwoBody` can serve as a container for these values. First convert the periods to their equivalent primary-star semimajor axes.
 
-.. sourcecode:: python
+.. doctest:: python
 
    >>> a = dyad.semimajor_axis_from_period(p, m_1, m_1*q)
    >>> a_1 = dyad.primary_semimajor_axis_from_semimajor_axis(a, q)
 
 Then instantiate a :class:`dyad.TwoBody` object.
 
-.. sourcecode:: python
+.. doctest:: python
 
    >>> binary = dyad.TwoBody(m_1, q, a_1, e, Omega, i, omega)
 
@@ -161,7 +165,7 @@ Consider the 42nd star and inspect its phase state for true anomaly
 :math:`\theta = 1`. This is given in Cartesian coordinates as
 :math:`(x, y, z, v_{x}, v_{y}, v_{z})`.
 
-.. sourcecode:: python
+.. doctest:: python
 
    >>> binary.primary.state(1.)[42]
    array([-0.24327922,  2.96687082, -0.08942692,  1.37647978,  0.8311047 ,

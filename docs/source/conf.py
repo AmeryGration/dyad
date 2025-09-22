@@ -34,6 +34,7 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.autodoc",
+    "sphinx.ext.doctest",
     "sphinx.ext.autosummary",
     "sphinx.ext.coverage",
     "sphinx.ext.mathjax",
