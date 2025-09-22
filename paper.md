@@ -1,4 +1,3 @@
----
 title: 'Dyad: a binary-star dynamics and statistics package for Python'
 tags:
   - Python
