@@ -1,7 +1,3 @@
-####
-Dyad
-####
-
 .. include:: ../../README.md
 
 Getting started
