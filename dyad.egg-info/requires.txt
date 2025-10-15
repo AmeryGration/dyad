@@ -1,0 +1,9 @@
+numpy
+scipy
+matplotlib
+numpydoc
+intersphinx_registry
+sphinx_copybutton
+sphinx_design
+sphinx-rtd-theme
+parameterized
