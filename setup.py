@@ -47,8 +47,8 @@ setup(
     # platforms="",
     # cmdclass="",
     install_requires=[
-        "numpy",
-        "scipy",
+        "numpy>=1.21.6",
+        "scipy>=1.11",
         "matplotlib",
         "numpydoc",
         "intersphinx_registry",
