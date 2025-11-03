@@ -14,7 +14,7 @@ a large number of useful methods, in particular ``pdf``, which
 computes the probability density function (PDF), and ``rvs``, which
 generates random variates (i.e. which generates a sample).
 
-For example, consider the random variable for inclination, :math:`I`, where :math:`\sin(I) \sim U(0, \pi)`. This is implemented by Dyad using the class :class:`dyad.stats.inclination`. Instantiate this class as follows.
+For example, consider the random variable for inclination, :math:`I`, where :math:`\cos(I) \sim U(-1, 1)`. This is implemented by Dyad using the class :class:`dyad.stats.inclination`. Instantiate this class as follows.
 
 .. doctest:: python
 

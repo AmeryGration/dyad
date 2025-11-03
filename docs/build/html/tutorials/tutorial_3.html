@@ -138,7 +138,7 @@ where <span class="math notranslate nohighlight">\(M_{1}/\mathrm{M}_{\odot} \in 
 Dyad implements the log-period random variable using the class <a class="reference internal" href="../generated/generated/generated/dyad.stats.log_period.moe2017.html#dyad.stats.log_period.moe2017" title="dyad.stats.log_period.moe2017"><code class="xref py py-class docutils literal notranslate"><span class="pre">dyad.stats.log_period.moe2017</span></code></a>, which has shape parameter <code class="docutils literal notranslate"><span class="pre">primary_mass</span></code>.</p>
 <p>To allow for broadcasting we must increase the dimension of <code class="docutils literal notranslate"><span class="pre">m_1</span></code> using the notation <code class="docutils literal notranslate"><span class="pre">m_1[:,None]</span></code> to create a new axis.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">dyad.stats</span> <span class="k">as</span> <span class="nn">stats</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">log_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">log_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">8.</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">log_period</span><span class="o">.</span><span class="n">moe2017</span><span class="p">(</span><span class="n">m_1</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">log_p</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -287,7 +287,7 @@ First, evaluate the PDF for <span class="math notranslate nohighlight">\(\log_{1
 <p>Let us now synthesize a population of binary systems.
 We will use the primary-constrained pairing method to synthesize the primary- and secondary-star masses <a class="reference internal" href="#k09" id="id2"><span>[K09]</span></a>.
 According to this method we synthesize the primary-star star mass assuming that it is distributed according to the initial mass function and then synthesize the secondary-star mass using the conditional distribution of secondary-star mass given primary-star mass.</p>
-<p>First, speciy a sample size.</p>
+<p>First, specify a sample size.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n_binary</span> <span class="o">=</span> <span class="mi">10_000</span>
 </pre></div>
 </div>

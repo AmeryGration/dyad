@@ -47,7 +47,7 @@ To allow for broadcasting we must increase the dimension of ``m_1`` using the no
 .. doctest:: python
 
    >>> import dyad.stats as stats
-   >>> log_p = np.linspace(-1., 9.)
+   >>> log_p = np.linspace(-1., 9., 500)
    >>> f = stats.log_period.moe2017(m_1[:,None]).pdf(log_p)
 
 Now let us plot these values.
@@ -83,7 +83,7 @@ where :math:`M_{1}/\mathrm{M}_{\odot} \in [0.8, 40]`.
 
 .. doctest:: python
 	     
-   >>> p = np.logspace(-1., 9.)
+   >>> p = np.logspace(-1., 9., 500)
    >>> f = stats.period.moe2017(m_1[:,None]).pdf(p)
 
 Mass ratio
@@ -102,7 +102,7 @@ First, the case of :math:`\log_{10}(P/\mathrm{d}) = 0.2`.
 
 .. doctest:: python
 
-   >>> q = np.linspace(0., 1., 500)
+   >>> q = np.linspace(0., 1.1, 500)
    >>> f = stats.mass_ratio.moe2017(0.2, m_1[:,None]).pdf(q)
 
 Which we may plot.
@@ -169,7 +169,7 @@ First, evaluate the PDF for :math:`\log_{10}(P/\mathrm{d}) = 1`.
 
 .. doctest:: python
 
-   >>> e = np.linspace(0., 1., 500)
+   >>> e = e = np.linspace(-0.1, 1.1, 500)
    >>> f = stats.eccentricity.moe2017(1., m_1[:,None]).pdf(e)
 
 And plot it.
@@ -224,7 +224,7 @@ Let us now synthesize a population of binary systems.
 We will use the primary-constrained pairing method to synthesize the primary- and secondary-star masses [K09]_.
 According to this method we synthesize the primary-star star mass assuming that it is distributed according to the initial mass function and then synthesize the secondary-star mass using the conditional distribution of secondary-star mass given primary-star mass.
 
-First, speciy a sample size.
+First, specify a sample size.
 
 .. doctest:: python
 
