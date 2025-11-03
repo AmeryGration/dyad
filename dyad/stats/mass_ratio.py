@@ -117,7 +117,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
        \end{cases}
 
     for mass ratio :math:`q \in [0, 1]`, period :math:`p \in [0.2,
-    8]`, and primary mass :math:`m_{1} \in [0.8, 40)`, where the
+    8]`, and primary mass :math:`m_{1} \in [0.8, 40]`, where the
     normalization constant, :math:`A_{Q}(p, m_{1})`, is such that
 
     .. math::

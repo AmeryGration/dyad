@@ -1,0 +1,412 @@
+.. _tutorial_3:
+
+********************************************
+The distributions of Moe & Di Stefano (2017)
+********************************************
+
+Moe and Di Stefano [MS17]_ reported empirical distributions for the period, :math:`P`, mass-ratio, :math:`Q`, and eccentricity, :math:`E`, of binary stars in the solar neighbourhood. 
+Their catalogue included data for binary systems with primary stars of five spectral types, namely
+
+- solar, with :math:`m_{1} \in [0.8, 1.2)`,
+- A and late-B, with :math:`m_{1} \in [2, 5)`,
+- mid-B, with :math:`m_{1} \in [5, 9)`,
+- early B, with :math:`m_{1} \in [9, 16)`, and
+- O, with :math:`m_{1} \in [16, 40]`,
+  
+where :math:`m_{1}` is the mass of the primary.
+
+Alongside these empirical distributions they gave formulae for the corresponding probability density functions.
+
+The period is dependent on primary mass while the mass ratio and eccentricity are dependent on both period and primary mass.
+These random variables are implemented in Dyad under the names :class:`dyad.stats.log_period.moe2017`,
+:class:`dyad.stats.period.moe2017`,
+:class:`dyad.stats.mass_ratio.moe2017`, and 
+:class:`dyad.stats.eccentricity.moe2017`.
+Since they are dependent on other random variables we must use their shape parameters to fully specify them.
+
+The probability density functions
+=================================
+
+Let us plot the PDFs of each random variable in turn.
+In each case we will consider the average primary mass for each spectral type, namely :math:`m_{1}/\mathrm{M}_{\odot} = 1, 3.5, 7, 12, 28`, which we can specify now.
+
+.. doctest:: python
+
+   >>> m_1 = np.array([1., 3.5, 7., 12, 28.])
+   
+Log-period
+----------
+
+Let us evaluate the conditional PDF of log-period given primary mass, :math:`f_{\log_{10}(P)|M_{1}}`, which is nonzero between :math:`\log_{10}(p/\mathrm{d}) = 0.2` and :math:`\log_{10}(p/\mathrm{d}) = 8`.
+
+The shape parameters :math:`M_{1} \in [0.8, 40]`.
+
+To allow for broadcasting we must increase the dimension of ``m_1`` using the notation ``m_1[:,None]`` to create a new axis.
+
+.. doctest:: python
+	     
+   >>> log_p = np.linspace(-1., 9.)
+   >>> f = stats.log_period.moe2017(m_1[:,None]).pdf(log_p)
+
+Now let us plot these values.
+   
+.. doctest:: python
+
+   >>> import matplotlib.pyplot as plt	    
+   >>> label = [
+   ...     r"$M_{1} = 1\mathrm{M}_{\odot}$",
+   ...     r"$M_{1} = 3.5\mathrm{M}_{\odot}$",
+   ...     r"$M_{1} = 7\mathrm{M}_{\odot}$",
+   ...     r"$M_{1} = 12\mathrm{M}_{\odot}$",
+   ...     r"$M_{1} = 28\mathrm{M}_{\odot}$"
+   ... ]
+   >>> fig, ax = plt.subplots()
+   >>> for (f_i, label_i, color_i) in zip(f_log10p, label, color):
+   >>>     ax.plot(log_p, f_log10p_i, label=label_i, color=color_i)
+   >>> ax.legend(frameon=False)
+   >>> ax.set_xlabel(r"$\log_{10}(p/\mathrm{d})$")
+   >>> ax.set_ylabel(r"$f_{log_{10}(P)}$")
+   >>> plt.show()
+
+.. _logperiod:
+.. figure:: ./Figures/moe2017_pdf_logperiod.jpg
+   :figwidth: 75%
+   :align: center
+
+   The conditional PDF of log-period, :math:`\log_{10}(P)` given primary mass, :math:`M_{1}`.
+
+Mass ratio
+----------
+
+Let us evaluate the conditional PDF of mass ratio given log-period and primary mass, :math:`f_{Q|\log_{10}(P), M_{1}}`, which is nonzero between :math:`q = 0.1` and :math:`q = 1`.
+
+The shape parameters :math:`\log_{10}(P/\mathrm{d}) \in [0.2, 8]` and :math:`M_{1}/\mathrm{M}_{\odot} \in [0.8, 40]`.
+
+This PDF is qualitatively different for short- and long-period binary systems.
+
+For short-period systems it is approximately constant but for an excess of twins, this excess being greater for systems with low-mass primary stars than it is for systems with high-mass primary stars.
+
+For long-period systems it is a decreasing function of :math:`q` for systems with high-mass primary stars, and has a mode at :math:`q = 0.3` for systems with low-mass primary stars.
+
+Let us consider the minimum and maximum allowed log-periods, :math:`0.2` and :math:`8`.
+First, the case of :math:`\log_{10}(P/\mathrm{d}) = 0.2`.
+
+.. doctest:: python
+
+   >>> q = np.linspace(0., 1., 500)
+   >>> f = stats.mass_ratio.moe2017(0.2, m_1[:,None]).pdf(q)
+
+Which we may plot.
+
+.. doctest:: python
+
+   >>> color = ["red", "orange", "green", "blue", "magenta"]
+   >>> fig, ax = plt.subplots()
+   >>> for (f_i, label_i, color_i) in zip(f, label, color):
+   ...     ax.plot(q, f_i, label=label_i, color=color_i)
+   >>> ax.legend(frameon=False)
+   >>> ax.set_xlabel(r"$q$")
+   >>> ax.set_ylabel(r"$f_Q$")
+   >>> plt.show()
+   
+.. _mass_ratio_short_period:
+.. figure:: ./Figures/moe2017_pdf_mass_ratio_short_period.jpg
+   :figwidth: 75%
+   :align: center
+
+   The PDF of mass ratio, :math:`Q`, given log-period, :math:`\log(P/\mathrm{d}) = 0.2` and primary mass :math:`M_{1}`.
+
+Second, the case of :math:`\log_{10}(P/\mathrm{d}) = 8`.
+   
+.. doctest:: python
+
+   >>> f = stats.mass_ratio.moe2017(8., m_1[:,None]).pdf(q)
+
+Which we may again plot.
+   
+.. doctest:: python
+
+   >>> fig, ax = plt.subplots()
+   >>> for (f_i, label_i, color_i) in zip(f, label, color):
+   ...     ax.plot(q, f_i, label=label_i, color=color_i)
+   >>> ax.legend(frameon=False)
+   >>> ax.set_xlabel(r"$q$")
+   >>> ax.set_ylabel(r"$f_Q$")
+   >>> plt.show()
+   
+.. _mass_ratio_long_period:
+.. figure:: ./Figures/moe2017_pdf_mass_ratio_long_period.jpg
+   :figwidth: 75%
+   :align: center
+
+   The conditional PDF of mass ratio, :math:`Q`, given log-period, :math:`\log(P/\mathrm{d}) = 8` and primary mass :math:`M_{1}`.
+ 
+Eccentricity
+------------
+
+Let us evaluate the conditional PDF of mass ratio given log-period and primary mass, :math:`f_{E|\log_{10}(P), M_{1}}`, which is nonzero between :math:`e = 0.` and :math:`e_{\max}`, where :math:`e_{\max}` is itself a function of log-period.
+
+The shape parameters :math:`\log_{10}(P/\mathrm{d}) \in [p_{\text{circ}}, 8]` and :math:`M_{1} \in [0.8, 40]`. domain
+
+The minimum period is the circularization period, which is a function of primary mass.
+
+Dyad's implementation differs slightly from that suggested by Moe and Di Stefano.
+For a full discussion, see the API documentation.
+
+Maximum eccentricity that depends on period, with shorter period systems having smaller maximum eccentricities.
+
+The PDF is qualitatively different for short- and long-period binary systems.
+
+For short-period systems with small primary star masses 
+
+For short-period systems with large primary star masses
+
+For long-period systems 
+
+Let us consider the maximum circularization period, :math:`1` and the maximum period:`8`.
+First, evaluate the PDF for :math:`\log_{10}(P/\mathrm{d}) = 0.9375`.
+
+.. doctest:: python
+
+   >>> e = np.linspace(0., 1., 500)
+   >>> f = stats.eccentricity.moe2017(0.9375, m_1[:,None]).pdf(e)
+
+And plot it.
+
+.. _eccentricity_short_period:
+.. figure:: ./Figures/moe2017_pdf_eccentricity_short_period.jpg
+   :figwidth: 75%
+   :align: center
+
+   The PDF of eccentricity, :math:`E`, given log-period, :math:`\log(P/\mathrm{d}) = 1` and primary mass, :math:`M_{1}`.
+
+.. doctest:: python
+
+   >>> fig, ax = plt.subplots()
+   >>> for (f_i, label_i, color_i) in zip(f, label, color):
+   >>>     ax.plot(e, f_i, label=label_i, color=color_i)
+   >>> ax.legend(frameon=False)
+   >>> ax.set_ylim(0., 5.)
+   >>> ax.set_xlabel(r"$e$")
+   >>> ax.set_ylabel(r"$f_E$")
+   >>> plt.show()
+
+Second, evaluate the PDF for :math:`\log_{10}(P/\mathrm{d}) = 8`.
+
+.. doctest:: python
+
+   >>> f = stats.eccentricity.moe2017(8., m_1[:,None]).pdf(e)
+
+And again plot it.
+
+.. doctest:: python
+
+   >>> fig, ax = plt.subplots()
+   >>> for (f_i, label_i, color_i) in zip(f, label, color):
+   >>>     ax.plot(e, f_i, label=label_i, color=color_i)
+   >>> ax.legend(frameon=False)
+   >>> ax.set_xlabel(r"$e$")
+   >>> ax.set_ylabel(r"$f_E$")
+   >>> plt.show()
+
+.. _eccentricity_long_period:
+.. figure:: ./Figures/moe2017_pdf_eccentricity_long_period.jpg
+   :figwidth: 75%
+   :align: center
+
+   The PDF of eccentricity, :math:`E`, given log-period, :math:`\log(P/\mathrm{d}) = 8` and primary mass, :math:`M_{1}`.
+
+A complete population
+=====================
+
+Use PCP
+
+First, choose a sample size.
+
+.. doctest:: python
+
+   >>> N_BINARY = 10_000
+
+And sample the primary mass using a Salpeter random variable on the interval :math:`0.8, 40`. 
+
+.. doctest:: python
+
+   >>> m_1 = stats.mass.salpeter1955.rvs(size=N_BINARY)
+   >>> m_1 = m_1[(0.8<=m_1) & (m_1<=40.)]
+   >>> N_BINARY = len(m_1)
+
+Next sample the period.
+
+.. doctest:: python
+
+   >>> log_p = stats.log_period.moe2017(m_1).rvs()
+   >>> p = 10.**log_p
+
+And the mass ratio. (This can be time consuming. A sample of size :math:`100\,000` may take several minutes or more to be generated.)
+
+.. doctest:: python
+
+   >>> q = stats.mass_ratio.moe2017(log_p, m_1).rvs()
+
+Now sample the eccentricity.
+
+.. doctest:: python
+
+   >>> idx = np.isfinite(stats.eccentricity.moe2017(log_p, m_1).support()[0])
+   >>> e = np.zeros(N_BINARY)
+   >>> e[idx] = stats.eccentricity.moe2017(log_p[idx], m_1[idx]).rvs()
+
+Finally, sample the longitude of the ascending node, inclination, and argument of periapsis.
+
+.. doctest:: python
+
+   >>> Omega = stats.longitude_of_ascending_node.rvs(size=N_BINARY)
+   >>> i = stats.inclination.rvs(size=N_BINARY)
+   >>> omega = stats.argument_of_pericentre.rvs(size=N_BINARY)
+
+As before, the class :class:`dyad.TwoBody` can serve as a container for these values.
+First convert the periods to their equivalent primary-star semimajor axes.
+
+.. doctest:: python
+
+   >>> a = dyad.semimajor_axis_from_period(p, m_1, m_1*q)
+   >>> a_1 = dyad.primary_semimajor_axis_from_semimajor_axis(a, q)
+
+And instantiate a :class:`dyad.TwoBody` object.
+
+.. doctest:: python
+	     
+   >>> binary = dyad.TwoBody(m_1, q, a_1, e, Omega, i, omega)
+
+Before, we inspected the state of a single member of this population for a given true anomaly.
+This time, let us compute the speeds and radii of all primary and secondary stars and plot their histograms.
+First, sample the true anomaly.
+
+.. doctest:: python
+
+   >>> theta = stats.true_anomaly(e).rvs()
+
+And compute the primary and secondary radii at these true anomalies.
+
+.. doctest:: python
+
+   >>> r_1 = binary.primary.radius(theta)
+   >>> r_2 = binary.secondary.radius(theta)
+
+Now generate the histograms.
+
+.. doctest:: python
+
+   >>> bins = np.logspace(-3., 6., 25)
+   >>> edge_r1, count_r1 = np.histogram(r_1, bins=bins)
+   >>> edge_r2, count_r2 = np.histogram(r_2, bins=bins)
+
+And finally plot them.
+
+.. doctest:: python
+
+   >>> fig, ax = plt.subplots()
+   >>> ax.stairs(edge_r1, count_r1, label="primary")
+   >>> ax.stairs(edge_r2, count_r2, label="primary")
+   >>> ax.legend(frameon=False)
+   >>> ax.set_xscale("log")
+   >>> ax.set_xlabel(r"$r/\mathrm{AU}$")
+   >>> ax.set_ylabel(r"$\nu$")
+   >>> plt.show()
+
+.. _radii:
+.. figure:: ./Figures/moe2017_sample_radius.jpg
+   :figwidth: 75%
+   :align: center
+
+   The histograms of primary and secondary star radii.
+
+Now compute the primary and secondary speeds.
+   
+.. doctest:: python
+
+   >>> v_1 = binary.primary.speed(theta)
+   >>> v_2 = binary.secondary.speed(theta)
+
+Again generate the histograms.
+
+.. doctest:: python
+
+   >>> bins = np.logspace(-3., 6., 25)
+   >>> edge_v1, count_v1 = np.histogram(r_1, bins=bins)
+   >>> edge_v2, count_v2 = np.histogram(r_2, bins=bins)
+   
+And again plot them.
+
+.. doctest:: python
+
+   >>> fig, ax = plt.subplots()
+   >>> ax.stairs(edge_v1, count_v1, label="primary")
+   >>> ax.stairs(edge_v2, count_v2, label="primary")
+   >>> ax.legend(frameon=False)
+   >>> ax.set_xscale("log")
+   >>> ax.set_xlabel(r"$v/\mathrm{km}~\mathrm{s}^{-1}$")
+   >>> ax.set_ylabel(r"$\nu$")
+   >>> plt.show()
+
+.. _speed:
+.. figure:: ./Figures/moe2017_sample_speed.jpg
+   :figwidth: 75%
+   :align: center
+
+   The histograms of primary and secondary star speeds.
+   
+References
+==========
+
+.. [MS17]
+
+   Moe, Maxwell, and Rosanne Di Stefano. 2017. \'Mind your Ps and Qs:
+   the interrelation between period (P) and mass-ratio (Q)
+   distributions of binary stars.\' *The Astrophysical Journal
+   Supplement Series* 230 (2): 15.
+
+Plot log-period, mass ratio, eccentricity.
+
+:math:`P`
+:math:`\log_{10}(P)`
+:math:`Q`
+:math:`E`
+
+:math:`P`
+:math:`\log_{10}(P)` given :math:`M_{1}`
+:math:`Q` given :math:`\log(P)` and :math:`M_{1}`
+:math:`E` given :math:`\log(P)` and :math:`M_{1}`
+
+:math:`f_{\log_{10}(P)|M_{1}}`
+:math:`f_{Q|M_{1}}`
+:math:`f_{E|\log(P), M_{1}}`
+
+
+The conditional random variables are specified using the shape parameters.
+
+
+circularization
+
+
+The random variable
+
+
+
+Scipy's random variables do not have a direct method for checking the
+validity of their shape parameters. This is done behind the scenes
+(using the private method ``scipy.stats.rv_continuous._argcheck``)
+only when an attribute is called. When passing an array-like object of
+shape parameters one invalid element will cause the ``rvs`` attribute
+to return ``ValueError``.
+
+However, in the case that a parameter is invalid the support of the
+random variable will always be ``[nan, nan]``. We can exploit this
+fact to check the validity of a shape parameter.
+
+>>> idx = np.isfinite(stats.eccentricity.moe2017(log_p, m_1).support()[0])
+
+Then 
+
+>>> e = np.zeros(N_BINARY)
+>>> e[idx] = stats.eccentricity.moe2017(log_p[idx], m_1[idx]).rvs()

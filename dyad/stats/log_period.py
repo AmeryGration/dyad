@@ -130,11 +130,11 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
        \end{cases}
 
     for log-period :math:`x \in [0.2, 8]` and primary mass
-    :math:`m_{1} \in (0, \infty)` where the normalization constant,
+    :math:`m_{1} \in [0.8, 40]` where the normalization constant,
     :math:`A_{X}(m_{1})`, is such that
 
     .. math::
-       \int_{0.2}^{8}f_{X|m_{1}}(x|m_{1})\mathrm{d}\,X = 1
+       \int_{0.2}^{8}f_{X|m_{1}}(x|m_{1})\mathrm{d}\,x = 1
 
     where :math:`F_{Q|P, m_{1}}` is the cumulative distribution
     function for the mass ratio

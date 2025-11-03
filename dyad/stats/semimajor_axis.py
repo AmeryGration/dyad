@@ -61,5 +61,5 @@ from . import _distn_infrastructure
 # opik1924 = opik1924_gen(a=0., b=1., name="powerlaw")
 
 opik1924 = sp.stats._continuous_distns.powerlaw_gen(
-    a=0., b=1., name="powerlaw"
+    a=0., b=1., name="opik1924"
 )

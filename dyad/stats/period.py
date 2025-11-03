@@ -207,7 +207,7 @@ duquennoy1991 = duquennoy1991_gen(
 
 
 class moe2017_gen(_distn_infrastructure.rv_continuous):
-    r"""The period random variable of Moe and Stefano (1991)
+    r"""The period random variable of Moe and Stefano (2017)
 
     %(before_notes)s
 

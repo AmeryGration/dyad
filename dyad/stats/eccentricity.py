@@ -216,18 +216,12 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
         0.9 - \dfrac{0.2}{x - 0.5}.
 
     for :math:`e \in [0, e_{\text{max}}(p)]` and where log-period
-    :math:`x` and primary mass :math:`m_{1}` are such that
-    :math:`\eta(x, m_{1}) \in (-1, 0.9)`. If :math:`\eta \in (-\infty,
-    -1]` then the orbit is circular and :math:`e = 0`.
+    :math:`x \in (0.9735, 8]` and primary mass :math:`m_{1} \in [0.8, 40]`.
 
     Note that this function differs from that proposed by Moe and
-    Stefano (2017). Here the support of :math:`\eta` has been modified
-    so that :math:`f_{E|X, M_{1}}` has a convergent integral. This
-    increases the circularization period from :math:`x_{\text{c}} =
-    0.5` to some value between :math:`0.9375` and :math:`0.6053`. Note
-    also that the functions :math:`\eta_{1}` and :math:`\eta_{3}` may
-    not be accurate above :math:`x = 5` and :math:`x = 6`
-    respectively.
+    Stefano (2017) who used a minimum log-period of :math:`0.5`. Here
+    the mimimum log-period is :math:`0.9375` so that :math:`f_{E|X,
+    M_{1}}` always has a convergent integral. 
 
     %(after_notes)s
 
@@ -244,10 +238,18 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     def _shape_info(self):
         ia = _ShapeInfo("log10_period", False, (0, np.inf), (False, False))
         ib = _ShapeInfo("primary_mass", False, (0, np.inf), (False, False))
+        
         return [ia, ib]
     
     def _argcheck(self, log10_period, primary_mass):
-        res = _moe2017_eta(log10_period, primary_mass) > -1.
+        # res = _moe2017_eta(log10_period, primary_mass) > -1.
+
+        # return res
+
+        res = (
+            (0.9375 < log10_period) & (log10_period <= 8.)
+            & (0.8 <= primary_mass) & (primary_mass <= 40.)
+        )
 
         return res
 

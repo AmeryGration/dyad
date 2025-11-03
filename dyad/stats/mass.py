@@ -184,6 +184,58 @@ _kroupa2002 = splitpowerlaw(s=0.5, a=0.08, b=150., c=-1.3, d=-2.3)
 kroupa2002 = kroupa2002_gen(a=0.08, b=150., name="mass.kroupa2002")
 
 
+# class salpeter1955_gen(_distn_infrastructure.rv_continuous):
+#     r"""The mass random variable Salpeter (1955)
+
+#     %(before_notes)s
+
+#     Notes
+#     -----
+#     The probability density function for `salpeter1955` is:
+
+#     .. math::
+#        f_{M}(m) = \dfrac{c - 1}{a^{1 - c} - b^{1 - c}}\dfrac{1}{m^{c}}
+
+#     for :math:`m \in [a, b]`, :math:`a = 0.4`, :math:`b = 10`, and
+#     :math:`c = 2.35`.
+    
+#     %(after_notes)s
+
+#     References
+#     ----------
+#     Salpeter, Edwin E. 1955. \'The luminosity function and stellar
+#     evolution.\' *The Astrophysical Journal* 121 (January): 161.
+
+#     %(example)s
+
+#     """
+#     # Check 0 < a < b.
+#     def _pdf(self, x):
+#         return _salpeter1955.pdf(x)
+
+#     def _cdf(self, x):
+#         return _salpeter1955.cdf(x)
+
+#     def _ppf(self, q):
+#         return _salpeter1955.ppf(q)
+
+
+# _salpeter1955_lb = 0.4
+# _salpeter1955_ub = 10.
+# _salpeter1955_loc = 0.
+# _salpeter1955_scale = _salpeter1955_lb
+# _salpeter1955_b = 1.35
+# _salpeter1955_c = (_salpeter1955_ub - _salpeter1955_loc)/_salpeter1955_scale
+# _salpeter1955 = sp.stats.truncpareto(
+#     _salpeter1955_b, _salpeter1955_c, scale=_salpeter1955_scale
+# )
+# salpeter1955 = salpeter1955_gen(
+#     # a=_salpeter1955_lb,
+#     # b=_salpeter1955_ub,
+#     name="mass.salpeter1955"
+# )
+
+
 class salpeter1955_gen(_distn_infrastructure.rv_continuous):
     r"""The mass random variable Salpeter (1955)
 
@@ -209,29 +261,30 @@ class salpeter1955_gen(_distn_infrastructure.rv_continuous):
     %(example)s
 
     """
-    # Check 0 < a < b.
-    def _pdf(self, x):
-        return _salpeter1955.pdf(x)
+    # def _shape_info(self):
+    #     ib = _ShapeInfo("b", False, (0.0, np.inf), (False, False))
+    #     ic = _ShapeInfo("c", False, (1.0, np.inf), (False, False))
+    #     return [ib, ic]
 
-    def _cdf(self, x):
-        return _salpeter1955.cdf(x)
+    def _argcheck(self, a, b):
+        res = (0. < a) & (0. < b) & (a < b)
 
-    def _ppf(self, q):
-        return _salpeter1955.ppf(q)
+        return res
+
+    def _get_support(self, a, b):
+        res = a, b
+
+        return res
+
+    def _pdf(self, x, a, b):
+        res =  (2.35 - 1.)/(a**(1. - 2.35) - b**(1. - 2.35))/x**2.35
+
+        return res
+
+    # def _cdf(self, x, a, b):
 
 
-_salpeter1955_lb = 0.4
-_salpeter1955_ub = 10.
-_salpeter1955_loc = 0.
-_salpeter1955_scale = _salpeter1955_lb
-_salpeter1955_b = 1.35
-_salpeter1955_c = (_salpeter1955_ub - _salpeter1955_loc)/_salpeter1955_scale
-_salpeter1955 = sp.stats.truncpareto(
-    _salpeter1955_b, _salpeter1955_c, scale=_salpeter1955_scale
-)
-salpeter1955 = salpeter1955_gen(
-    a=_salpeter1955_lb, b=_salpeter1955_ub, name="mass.salpeter1955"
-)
+salpeter1955 = salpeter1955_gen(name="mass.salpeter1955")
 
 
 # class _millerscalo1979_gen(_distn_infrastructure.rv_continuous):
