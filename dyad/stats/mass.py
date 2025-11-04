@@ -72,12 +72,12 @@ class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
     def _argcheck(self, s, a, b, c, d):
         return (0. < a) & (a < b) & (a < s) & (s < b) & (c < 0.) & (d < 0.)
 
-    def _shape_info(self):
-        is_ = _ShapeInfo("s", False, (0, np.inf), (False, False))
-        ia = _ShapeInfo("a", False, (0, np.inf), (False, False))
-        ib = _ShapeInfo("b", False, (0, np.inf), (False, False))
+    # def _shape_info(self):
+    #     is_ = _ShapeInfo("s", False, (0, np.inf), (False, False))
+    #     ia = _ShapeInfo("a", False, (0, np.inf), (False, False))
+    #     ib = _ShapeInfo("b", False, (0, np.inf), (False, False))
 
-        return [is_, ia, ib]
+    #     return [is_, ia, ib]
 
     def _get_support(self, s, a, b, c, d):
         return a, b
@@ -147,17 +147,17 @@ class kroupa2002_gen(_distn_infrastructure.rv_continuous):
        =
        A_{M}
        \begin{cases}
-       m^{-1.3} &\text{ if $m \in [0.08, 0.5)$}\\
-       0.5m^{-2.3} &\text{ if $m \in [0.5, 150]$}\\
+       m^{-1.3} &\text{ if $m \in [a, 0.5)$}\\
+       0.5m^{-2.3} &\text{ if $m \in [0.5, b]$}\\
        \end{cases}
 
     for
 
     .. math::
-       A_{M} := \dfrac{0.5(0.5^{-1.3} - 150.^{-1.3})}{1.3} +
-       \dfrac{0.08^{-0.3} - 0.5^{-0.3}}{0.3}
+       A_{M} := \dfrac{0.5(0.5^{-1.3} - b^{-1.3})}{1.3} +
+       \dfrac{a^{-0.3} - 0.5^{-0.3}}{0.3}
 
-    and :math:`m \in [0.08, 150]`.
+    and :math:`m \in [a, b]` where :math:`a < 0.5` and :math:`b > 0.5`.
     
     %(after_notes)s
 
@@ -170,70 +170,28 @@ class kroupa2002_gen(_distn_infrastructure.rv_continuous):
 
     """
     # Check 0 < a < b.
-    def _pdf(self, x):
-        return _kroupa2002.pdf(x)
+    def _get_support(self, a, b):
+        res = a, b
 
-    def _cdf(self, x):
-        return _kroupa2002.cdf(x)
-
-    def _ppf(self, q):
-        return _kroupa2002.ppf(q)
-
-
-_kroupa2002 = splitpowerlaw(s=0.5, a=0.08, b=150., c=-1.3, d=-2.3)
-kroupa2002 = kroupa2002_gen(a=0.08, b=150., name="mass.kroupa2002")
-
-
-# class salpeter1955_gen(_distn_infrastructure.rv_continuous):
-#     r"""The mass random variable Salpeter (1955)
-
-#     %(before_notes)s
-
-#     Notes
-#     -----
-#     The probability density function for `salpeter1955` is:
-
-#     .. math::
-#        f_{M}(m) = \dfrac{c - 1}{a^{1 - c} - b^{1 - c}}\dfrac{1}{m^{c}}
-
-#     for :math:`m \in [a, b]`, :math:`a = 0.4`, :math:`b = 10`, and
-#     :math:`c = 2.35`.
+        return res
     
-#     %(after_notes)s
+    def _pdf(self, x, a, b):
+        res = splitpowerlaw(0.5, a, b, -1.3, -2.3).pdf(x)
 
-#     References
-#     ----------
-#     Salpeter, Edwin E. 1955. \'The luminosity function and stellar
-#     evolution.\' *The Astrophysical Journal* 121 (January): 161.
+        return res
 
-#     %(example)s
+    def _cdf(self, x, a, b):
+        res = splitpowerlaw(0.5, a, b, -1.3, -2.3).cdf(x)
 
-#     """
-#     # Check 0 < a < b.
-#     def _pdf(self, x):
-#         return _salpeter1955.pdf(x)
+        return res
 
-#     def _cdf(self, x):
-#         return _salpeter1955.cdf(x)
+    def _ppf(self, q, a, b):
+        res = splitpowerlaw(0.5, a, b, -1.3, -2.3).ppf(x)
 
-#     def _ppf(self, q):
-#         return _salpeter1955.ppf(q)
+        return res
 
 
-# _salpeter1955_lb = 0.4
-# _salpeter1955_ub = 10.
-# _salpeter1955_loc = 0.
-# _salpeter1955_scale = _salpeter1955_lb
-# _salpeter1955_b = 1.35
-# _salpeter1955_c = (_salpeter1955_ub - _salpeter1955_loc)/_salpeter1955_scale
-# _salpeter1955 = sp.stats.truncpareto(
-#     _salpeter1955_b, _salpeter1955_c, scale=_salpeter1955_scale
-# )
-# salpeter1955 = salpeter1955_gen(
-#     # a=_salpeter1955_lb,
-#     # b=_salpeter1955_ub,
-#     name="mass.salpeter1955"
-# )
+kroupa2002 = kroupa2002_gen(name="mass.kroupa2002")
 
 
 class salpeter1955_gen(_distn_infrastructure.rv_continuous):
@@ -248,8 +206,7 @@ class salpeter1955_gen(_distn_infrastructure.rv_continuous):
     .. math::
        f_{M}(m) = \dfrac{c - 1}{a^{1 - c} - b^{1 - c}}\dfrac{1}{m^{c}}
 
-    for :math:`m \in [a, b]`, :math:`a = 0.4`, :math:`b = 10`, and
-    :math:`c = 2.35`.
+    for :math:`m \in [a, b]` and :math:`c = 2.35`.
     
     %(after_notes)s
 
