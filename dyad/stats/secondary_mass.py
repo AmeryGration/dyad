@@ -58,8 +58,8 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     .. math::
        f_{(Q, P)|M_{1} = m_{1}}(q, p|m_{1}) = f_{Q|(P, M_{1}) = (p, m_{1})}(q|p, m_{1})f_{P|M_{1} = m_{1}}(p|m_{1}).
 
-    for primary-star mass :math:`m_{1} \in (m_{1}, 60)`,
-    secondary-star mass :math:`m_{2} \in (0.1m_{1}, 60)`, mass ratio
+    for primary-star mass :math:`m_{1} \in (m_{1}, 40)`,
+    secondary-star mass :math:`m_{2} \in (0.1m_{1}, 40)`, mass ratio
     :math:`q \in [0.1, 1]`, and period :math:`p \in [10^{0.2},
     10^{8}]`. The functions :math:`f_{Q|(P, M_{1}) = (p, m_{1})}` and
     :math:`f_{P|M_{1} = m_{1}}` are the probability density functions
@@ -84,14 +84,16 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     %(example)s
 
     """
-    def _shape_info(self):
-        return [
-            _ShapeInfo("primary_mass", False, (0.08, 150.), (False, False))
-        ]
+    # def _shape_info(self):
+    #     return [
+    #         _ShapeInfo("primary_mass", False, (0.8, 40.), (False, False))
+    #     ]
 
     def _argcheck(self, primary_mass):
-        return (0.08 <= primary_mass) & (primary_mass <= 150.)
-        # return (0. <= primary_mass) & (primary_mass < np.inf)
+        return (0.8 <= primary_mass) & (primary_mass <= 40.)
+
+    def _get_support(self, primary_mass):
+        return primary_mass/10., 40.
     
     def _pdf(self, x, primary_mass):
         # x = np.asarray(x)
@@ -183,4 +185,4 @@ _moe2017_values = np.tile(
 )
 _moe2017_ppf_interp = LinearNDInterpolator(_moe2017_points.T, _moe2017_values)
 
-moe2017 = moe2017_gen(a=0.08, b=150., name="secondary_mass.moe2017")
+moe2017 = moe2017_gen(name="secondary_mass.moe2017")
