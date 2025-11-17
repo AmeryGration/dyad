@@ -30,6 +30,7 @@ __all__ = [
 
 import numpy as np
 import scipy as sp
+import dyad
 
 from importlib.resources import files
 from scipy._lib._util import _lazywhere
@@ -188,14 +189,21 @@ class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
     def _ppf(self, q):
         return _duquennoy1991.ppf(q)
 
+    def _rvs(self, size, random_state):
+        res = dyad.stats.log_period.duquennoy1991.rvs(
+            size=size, random_state=random_state
+        )
+
+        return res
+
 
 # Duquennoy and Mayor (1991) period: truncated lognormal
-_duquennoy1991_mu = np.exp(np.log(10.)*4.8)
-_duquennoy1991_sigma = np.log(10.)*2.3
+_duquennoy1991_mu = np.exp(np.log(10.)**4.8)
+_duquennoy1991_sigma = np.log(10.)**2.3
 _duquennoy1991_loc = 0.
 _duquennoy1991_scale = _duquennoy1991_mu
 _duquennoy1991_s = _duquennoy1991_sigma
-_duquennoy1991_a = (10.**-2. - 0.)/_duquennoy1991_scale
+_duquennoy1991_a = (10.**-2.3 - 0.)/_duquennoy1991_scale
 _duquennoy1991_b = (10.**12. - 0.)/_duquennoy1991_scale
 _duquennoy1991 = trunclognorm(
     s=_duquennoy1991_s, a=_duquennoy1991_a, b=_duquennoy1991_b,

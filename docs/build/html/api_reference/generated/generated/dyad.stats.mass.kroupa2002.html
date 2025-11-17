@@ -122,61 +122,61 @@ and completes them with details specific for this particular distribution.</p>
 <p class="rubric">Methods</p>
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><strong>rvs(loc=0, scale=1, size=1, random_state=None)</strong></p></td>
+<tr class="row-odd"><td><p><strong>rvs(a, b, loc=0, scale=1, size=1, random_state=None)</strong></p></td>
 <td><p>Random variates.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>pdf(x, loc=0, scale=1)</strong></p></td>
+<tr class="row-even"><td><p><strong>pdf(x, a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Probability density function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>logpdf(x, loc=0, scale=1)</strong></p></td>
+<tr class="row-odd"><td><p><strong>logpdf(x, a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Log of the probability density function.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>cdf(x, loc=0, scale=1)</strong></p></td>
+<tr class="row-even"><td><p><strong>cdf(x, a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Cumulative distribution function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>logcdf(x, loc=0, scale=1)</strong></p></td>
+<tr class="row-odd"><td><p><strong>logcdf(x, a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Log of the cumulative distribution function.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>sf(x, loc=0, scale=1)</strong></p></td>
+<tr class="row-even"><td><p><strong>sf(x, a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Survival function  (also defined as <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">cdf</span></code>, but <em class="xref py py-obj">sf</em> is sometimes more accurate).</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>logsf(x, loc=0, scale=1)</strong></p></td>
+<tr class="row-odd"><td><p><strong>logsf(x, a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Log of the survival function.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>ppf(q, loc=0, scale=1)</strong></p></td>
+<tr class="row-even"><td><p><strong>ppf(q, a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Percent point function (inverse of <code class="docutils literal notranslate"><span class="pre">cdf</span></code> — percentiles).</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>isf(q, loc=0, scale=1)</strong></p></td>
+<tr class="row-odd"><td><p><strong>isf(q, a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Inverse survival function (inverse of <code class="docutils literal notranslate"><span class="pre">sf</span></code>).</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>moment(order, loc=0, scale=1)</strong></p></td>
+<tr class="row-even"><td><p><strong>moment(order, a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Non-central moment of the specified order.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>stats(loc=0, scale=1, moments=’mv’)</strong></p></td>
+<tr class="row-odd"><td><p><strong>stats(a, b, loc=0, scale=1, moments=’mv’)</strong></p></td>
 <td><p>Mean(‘m’), variance(‘v’), skew(‘s’), and/or kurtosis(‘k’).</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>entropy(loc=0, scale=1)</strong></p></td>
+<tr class="row-even"><td><p><strong>entropy(a, b, loc=0, scale=1)</strong></p></td>
 <td><p>(Differential) entropy of the RV.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>fit(data)</strong></p></td>
 <td><p>Parameter estimates for generic data. See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rv_continuous.fit.html#scipy.stats.rv_continuous.fit">scipy.stats.rv_continuous.fit</a> for detailed documentation of the keyword arguments.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>expect(func, args=(), loc=0, scale=1, lb=None, ub=None, conditional=False, **kwds)</strong></p></td>
+<tr class="row-even"><td><p><strong>expect(func, args=(a, b), loc=0, scale=1, lb=None, ub=None, conditional=False, **kwds)</strong></p></td>
 <td><p>Expected value of a function (of one argument) with respect to the distribution.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>median(loc=0, scale=1)</strong></p></td>
+<tr class="row-odd"><td><p><strong>median(a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Median of the distribution.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>mean(loc=0, scale=1)</strong></p></td>
+<tr class="row-even"><td><p><strong>mean(a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Mean of the distribution.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>var(loc=0, scale=1)</strong></p></td>
+<tr class="row-odd"><td><p><strong>var(a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Variance of the distribution.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>std(loc=0, scale=1)</strong></p></td>
+<tr class="row-even"><td><p><strong>std(a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Standard deviation of the distribution.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>interval(confidence, loc=0, scale=1)</strong></p></td>
+<tr class="row-odd"><td><p><strong>interval(confidence, a, b, loc=0, scale=1)</strong></p></td>
 <td><p>Confidence interval with equal areas around the median.</p></td>
 </tr>
 </tbody>
@@ -188,18 +188,18 @@ and completes them with details specific for this particular distribution.</p>
 =
 A_{M}
 \begin{cases}
-m^{-1.3} &amp;\text{ if $m \in [0.08, 0.5)$}\\
-0.5m^{-2.3} &amp;\text{ if $m \in [0.5, 150]$}\\
+m^{-1.3} &amp;\text{ if $m \in [a, 0.5)$}\\
+0.5m^{-2.3} &amp;\text{ if $m \in [0.5, b]$}\\
 \end{cases}\end{split}\]</div>
 <p>for</p>
 <div class="math notranslate nohighlight">
-\[A_{M} := \dfrac{0.5(0.5^{-1.3} - 150.^{-1.3})}{1.3} +
-\dfrac{0.08^{-0.3} - 0.5^{-0.3}}{0.3}\]</div>
-<p>and <span class="math notranslate nohighlight">\(m \in [0.08, 150]\)</span>.</p>
+\[A_{M} := \dfrac{0.5(0.5^{-1.3} - b^{-1.3})}{1.3} +
+\dfrac{a^{-0.3} - 0.5^{-0.3}}{0.3}\]</div>
+<p>and <span class="math notranslate nohighlight">\(m \in [a, b]\)</span> where <span class="math notranslate nohighlight">\(a &lt; 0.5\)</span> and <span class="math notranslate nohighlight">\(b &gt; 0.5\)</span>.</p>
 <p>The probability density above is defined in the “standardized” form. To shift
 and/or scale the distribution use the <code class="docutils literal notranslate"><span class="pre">loc</span></code> and <code class="docutils literal notranslate"><span class="pre">scale</span></code> parameters.
-Specifically, <code class="docutils literal notranslate"><span class="pre">mass.kroupa2002.pdf(x,</span> <span class="pre">loc,</span> <span class="pre">scale)</span></code> is identically
-equivalent to <code class="docutils literal notranslate"><span class="pre">dyad.stats.mass.kroupa2002.pdf(y)</span> <span class="pre">/</span> <span class="pre">scale</span></code> with
+Specifically, <code class="docutils literal notranslate"><span class="pre">mass.kroupa2002.pdf(x,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">loc,</span> <span class="pre">scale)</span></code> is identically
+equivalent to <code class="docutils literal notranslate"><span class="pre">dyad.stats.mass.kroupa2002.pdf(y,</span> <span class="pre">a,</span> <span class="pre">b)</span> <span class="pre">/</span> <span class="pre">scale</span></code> with
 <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">loc)</span> <span class="pre">/</span> <span class="pre">scale</span></code>. Note that shifting the location of a distribution
 does not make it a “noncentral” distribution; noncentral generalizations of
 some distributions are available in separate classes.</p>
@@ -214,13 +214,14 @@ some distributions are available in separate classes.</p>
 </pre></div>
 </div>
 <p>Calculate the first four moments:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Display the probability density function (<code class="docutils literal notranslate"><span class="pre">pdf</span></code>):</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span>
-<span class="gp">... </span>                <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span>
+<span class="gp">... </span>                <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span>
 <span class="gp">... </span>       <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;dyad.stats.mass.kroupa2002 pdf&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -228,18 +229,18 @@ some distributions are available in separate classes.</p>
 to fix the shape, location and scale parameters. This returns a “frozen”
 RV object holding the given parameters fixed.</p>
 <p>Freeze the distribution and display the frozen <code class="docutils literal notranslate"><span class="pre">pdf</span></code>:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rv</span> <span class="o">=</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rv</span> <span class="o">=</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">rv</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;frozen pdf&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Check accuracy of <code class="docutils literal notranslate"><span class="pre">cdf</span></code> and <code class="docutils literal notranslate"><span class="pre">ppf</span></code>:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vals</span> <span class="o">=</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vals</span> <span class="o">=</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
 <span class="go">True</span>
 </pre></div>
 </div>
 <p>Generate random numbers:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">dyad</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">kroupa2002</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>And compare the histogram:</p>

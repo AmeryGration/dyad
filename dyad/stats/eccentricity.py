@@ -39,6 +39,7 @@ uniform = sp.stats._continuous_distns.uniform_gen(
     a=0., b=1., name="uniform"
 )
 
+# Ensure you can't override `a` with a negative value
 powerlaw = sp.stats._continuous_distns.powerlaw_gen(
     a=0., b=1., name="powerlaw"
 )
@@ -91,29 +92,29 @@ class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
     %(example)s
 
     """
-    def _shape_info(self):
-        return [_ShapeInfo("p", False, (11., 1.e12), (True, False))]
+    # def _shape_info(self):
+    #     return [_ShapeInfo("p", False, (11., 1.e12), (True, False))]
 
     def _argcheck(self, p):
-        return (11. < p) & (p < 1.e12)
+        return (11. <= p) & (p < 1.e12)
 
     def _pdf(self, x, p):
         return np.where(
-            (11. < p) & (p <= 1000.),
+            (11. <= p) & (p <= 1000.),
             _duquennoy1991_f1.pdf(x),
             _duquennoy1991_f2.pdf(x)
         )
 
     def _cdf(self, x, p):
         return np.where(
-            (11. < p) & (p <= 1000.),
+            (11. <= p) & (p <= 1000.),
             _duquennoy1991_f1.cdf(x),
             _duquennoy1991_f2.cdf(x)
         )
 
     def _ppf(self, q, p):
         return np.where(
-            (11. < p) & (p <= 1000.),
+            (11. <= p) & (p <= 1000.),
             _duquennoy1991_f1.ppf(q),
             _duquennoy1991_f2.ppf(q)
         )

@@ -46,7 +46,7 @@ period_sample = 10.**log10_period_sample
 #############################################################################
 # Sample the frequency function using a rectilinear lattice 
 #############################################################################
-frequency_sample = frequency_sample/period_sample
+frequency_sample = frequency_sample#/period_sample
 
 #############################################################################
 # Sample the cumulative frequency function using a rectilinear lattice 
@@ -55,13 +55,13 @@ cumulative_frequency_sample = cumulative_trapezoid(
     frequency_sample, period_sample, initial=0.
 )
 
-#############################################################################
-# Compute equivalent sample of the PDF and CDF
-#############################################################################
-frequency_sample = frequency_sample/cumulative_frequency_sample[:,-1:]
-cumulative_frequency_sample = (
-    cumulative_frequency_sample/cumulative_frequency_sample[:,-1:]
-)
+# #############################################################################
+# # Compute equivalent sample of the PDF and CDF
+# #############################################################################
+# frequency_sample = frequency_sample/cumulative_frequency_sample[:,-1:]
+# cumulative_frequency_sample = (
+#     cumulative_frequency_sample/cumulative_frequency_sample[:,-1:]
+# )
 
 #############################################################################
 # Save data

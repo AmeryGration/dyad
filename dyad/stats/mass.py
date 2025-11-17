@@ -72,12 +72,14 @@ class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
     def _argcheck(self, s, a, b, c, d):
         return (0. < a) & (a < b) & (a < s) & (s < b) & (c < 0.) & (d < 0.)
 
-    # def _shape_info(self):
-    #     is_ = _ShapeInfo("s", False, (0, np.inf), (False, False))
-    #     ia = _ShapeInfo("a", False, (0, np.inf), (False, False))
-    #     ib = _ShapeInfo("b", False, (0, np.inf), (False, False))
+    def _shape_info(self):
+        is_ = _ShapeInfo("s", False, (0., np.inf), (True, False))
+        ia = _ShapeInfo("a", False, (0., np.inf), (True, False))
+        ib = _ShapeInfo("b", False, (0., np.inf), (True, False))
+        ic = _ShapeInfo("c", False, (-np.inf, np.inf), (False, False))
+        id_ = _ShapeInfo("d", False, (-np.inf, np.inf), (False, False))
 
-    #     return [is_, ia, ib]
+        return [is_, ia, ib, ic, id_]
 
     def _get_support(self, s, a, b, c, d):
         return a, b
@@ -186,7 +188,7 @@ class kroupa2002_gen(_distn_infrastructure.rv_continuous):
         return res
 
     def _ppf(self, q, a, b):
-        res = splitpowerlaw(0.5, a, b, -1.3, -2.3).ppf(x)
+        res = splitpowerlaw(0.5, a, b, -1.3, -2.3).ppf(q)
 
         return res
 
@@ -218,10 +220,11 @@ class salpeter1955_gen(_distn_infrastructure.rv_continuous):
     %(example)s
 
     """
-    # def _shape_info(self):
-    #     ib = _ShapeInfo("b", False, (0.0, np.inf), (False, False))
-    #     ic = _ShapeInfo("c", False, (1.0, np.inf), (False, False))
-    #     return [ib, ic]
+    def _shape_info(self):
+        ia = _ShapeInfo("a", False, (0., np.inf), (False, True))
+        ib = _ShapeInfo("b", False, (0., np.inf), (False, True))
+
+        return [ia, ib]
 
     def _argcheck(self, a, b):
         res = (0. < a) & (0. < b) & (a < b)
@@ -238,10 +241,24 @@ class salpeter1955_gen(_distn_infrastructure.rv_continuous):
 
         return res
 
-    # def _cdf(self, x, a, b):
+    def _cdf(self, x, a, b):
+        res = (
+            (x**(1. - 2.35) - a**(1. - 2.35))
+            /(b**(1. - 2.35) - a**(1. - 2.35))
+        )
+
+        return res
+    
+    def _ppf(self, q, a, b):
+        base = (b**(1. - 2.35) - a**(1. - 2.35))*q + a**(1. - 2.35)
+        exp = 1./(1. - 2.35)
+        res = base**exp
+
+        return res
 
 
 salpeter1955 = salpeter1955_gen(name="mass.salpeter1955")
+salpeter1955._support = ("a", "b")
 
 
 # class _millerscalo1979_gen(_distn_infrastructure.rv_continuous):

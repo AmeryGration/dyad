@@ -325,8 +325,9 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 
     """
     def _shape_info(self):
-        ia = _ShapeInfo("log10_period", False, (0.2, 8.), (False, False))
-        ib = _ShapeInfo("primary_mass", False, (0.8, 40.), (False, False))
+        ia = _ShapeInfo("log10_period", False, (0.2, 8.), (True, True))
+        ib = _ShapeInfo("primary_mass", False, (0.8, 40.), (True, True))
+
         return [ia, ib]
     
     def _argcheck(self, log10_period, primary_mass):

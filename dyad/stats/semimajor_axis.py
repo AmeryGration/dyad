@@ -26,40 +26,38 @@ import scipy as sp
 
 from . import _distn_infrastructure
 
-# class opik1924_gen(sp.stats._continuous_distns.reciprocal_gen):
-#     r"""The semimajor-axis random variable of Öpik (1924)
 
-#     %(before_notes)s
+class opik1924_gen(sp.stats._continuous_distns.reciprocal_gen):
+    r"""The semimajor-axis random variable of Öpik (1924)
 
-#     Notes
-#     -----
-#     The probability density function for `opik1924` is:
+    %(before_notes)s
 
-#     .. math::
-#        f_{A}(a; b, c) = \dfrac{1}{a\log_{10}(c/b)}
+    Notes
+    -----
+    The probability density function for `opik1924` is:
 
-#     for :math:`a \in [b, c]`, :math:`b, c \in (0, \infty)`, and
-#     :math:`b < c`. The probability density function `opik1924` is
-#     identical to `scipy.stats.reciprocal`.
+    .. math::
+       f_{A}(a; b, c) = \dfrac{1}{a\log_{10}(c/b)}
 
-#     %(after_notes)s
+    for :math:`a \in [b, c]`, :math:`b, c \in (0, \infty)`, and
+    :math:`b < c`. The probability density function `opik1924` is
+    identical to `scipy.stats.reciprocal`.
 
-#     References
-#     ----------
-#     Öpik, E. 1924. \'Statistical studies of double stars: on the
-#     distribution of relative luminosities and distances of double
-#     stars in the Harvard Revised Photometry North of
-#     Declination---31°\'. *Publications of the Tartu Astrofizica
-#     Observatory* 25 (January):1.
+    %(after_notes)s
+
+    References
+    ----------
+    Öpik, E. 1924. \'Statistical studies of double stars: on the
+    distribution of relative luminosities and distances of double
+    stars in the Harvard Revised Photometry North of
+    Declination---31°\'. *Publications of the Tartu Astrofizica
+    Observatory* 25 (January):1.
     
-#     %(example)s
+    %(example)s
 
-#     """
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(args, kwargs)
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-# opik1924 = opik1924_gen(a=0., b=1., name="powerlaw")
-
-opik1924 = sp.stats._continuous_distns.powerlaw_gen(
-    a=0., b=1., name="opik1924"
-)
+        
+opik1924 = opik1924_gen(name="semimajor_axis.opik1924")
