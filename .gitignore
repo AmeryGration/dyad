@@ -2,7 +2,8 @@
 __pycache__
 /dyad.egg-info/
 /pytest_cache/
-/build/
+/docs/source/
+/docs/make.bat
 /dyad/_properties/
 .python-version
 dev

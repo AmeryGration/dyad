@@ -1,2 +1,0 @@
-.. automodule:: dyad.constants
-   :members:
