@@ -1,6 +1,6 @@
-"""Data to be used when testing Dyad
+"""Data to be used when testing Dyad's _core module
 
-This module is not to be run on its own. It is imported by `unit_test.py`.
+This module is not to be run on its own. It is imported by `test_core.py`.
 
 When checking for value errors each list contains arguments that should cause such an error. If a value error is raised then the test is passed.
 

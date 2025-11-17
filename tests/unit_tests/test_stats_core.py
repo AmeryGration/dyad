@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Test functions of _core module
 
@@ -244,7 +246,7 @@ class TestOrbit(unittest.TestCase):
     @parameterized.expand(data.position)
     def test_position(self, x, target):
         result = self.orbit._position(x)
-        print(result)
+        # print(result)
         self.assertIsNone(np.testing.assert_array_almost_equal(result, target))
 
     @parameterized.expand(data.velocity)

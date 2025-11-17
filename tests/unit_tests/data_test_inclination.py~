@@ -1,0 +1,82 @@
+"""Data to be used when testing Dyad's stats.inclination module
+
+This module is not to be run on its own. It is imported by
+`test_stats_inclination.py`.
+
+When checking for value errors each list contains arguments that
+should cause such an error. If a value error is raised then the test
+is passed.
+
+Each element in a list is itself a list that contains two elements:
+1. the arguments for a function being tested, and
+2. the desired return value of that function for these arguments.
+
+For example to test the function `dyad.func(*args)` we use the
+following data.
+
+.. code-block:: python
+   func = [
+       [args, val],
+       [args, val],
+       ...
+       [args, val],
+   ]
+
+If the function `dyad.stats.module.{attribute,method}(*args)` returns
+the value `val` then the test is passed.
+
+"""
+
+inclination_pdf = [
+    # [x, pdf]
+    # Lower bound
+    [[0.,], 0.],
+    # Upper bound
+    [[np.pi,], 0.],
+    # Random
+    [[0.532442950655741,], 0.2538198],
+    # List
+    [[[0., np.pi/4., np.pi/2., 3.*np.pi/4., np.pi]],
+      [0., 3.5355339e-01, 5.0000000e-01, 3.5355339e-01, 0.]]
+    # Broadcasting
+]
+
+inclination_cdf = [
+    # [x, cdf]
+    # Lower bound
+    [[0.,], 0.],
+    # Upper bound
+    [[np.pi,], 1.],
+    # Random
+    [[0.44101652301775185,], 0.047840890712200046],
+    # List
+    [[[0., np.pi/4., np.pi/2., 3.*np.pi/4., np.pi]],
+     [0., 0.1464466, 0.5, 0.8535534, 1.]]
+    # oBroadcasting
+]
+
+inclination_ppf = [
+    # [x, ppf]
+    # Lower bound
+    [[0.], 0.],
+    # Upper bound
+    [[1.], np.pi],
+    # Random
+    [[0.44101652301775185], 1.452554036419908],
+    # List
+    [[[0., 0.1464466, 0.5, 0.8535534, 1.]],
+     [0., np.pi/4., np.pi/2., 3.*np.pi/4., np.pi]]
+    # Broadcasting
+]
+
+inclination_rvs = [
+    # [[loc, scale, size], rvs]
+    # size=1
+    [[0., 1., 1], 2.1513246],
+    # size=2
+    [[ 0., 1., 2], [1.1547031, 1.9897778]],
+    # size=(2, 3)
+    [[0., 1., (2, 3)],
+     [[0.7889569, 1.3737051, 1.9250283],
+       [1.9555293, 2.6402236, 0.1995883]]]
+]
