@@ -5,6 +5,7 @@ __pycache__
 /docs/source/
 /docs/make.bat
 /dyad/_properties/
+/dyad/stats/_tests/
 .python-version
 dev
 env
