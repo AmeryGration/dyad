@@ -2,7 +2,7 @@
 __pycache__
 /dyad.egg-info/
 /pytest_cache/
-/docs/source/
+/docs/build/
 /docs/make.bat
 /dyad/_properties/
 /dyad/stats/_tests/
