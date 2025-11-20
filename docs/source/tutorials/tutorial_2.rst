@@ -6,7 +6,7 @@ Synthesizing a population of binary stars
 
 Dyad has a subpackage, :mod:`dyad.stats`, that contains probability
 distributions for the masses, mass ratios, and orbital elements of a
-population of binary stars. These probability distribitions are
+population of binary stars. These probability distributions are
 implemented in the same way as Scipy's continous random variables (see
 :class:`scipy.stats.rv_continuous` and, for an example,
 :class:`scipy.stats.loguniform`). As a result, they come equipped with

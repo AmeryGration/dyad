@@ -257,9 +257,10 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
     # :math:`\eta \mod 2\pi`. So we work with the principal angle
     # :math:`\theta \mod 2\pi`.
     theta_principal = theta%(2.*np.pi)
-    eta = 2.*np.arctan2(
-        np.sqrt(1. - e)/np.sqrt(1. + e), 1./np.tan(theta_principal/2.)
-    )
+    with np.errstate(divide="ignore"):
+        eta = 2.*np.arctan2(
+            np.sqrt(1. - e)/np.sqrt(1. + e), 1./np.tan(theta_principal/2.)
+        )
     eta = eta + 2.*np.pi*(theta//(2.*np.pi))
     eta = eta[()]
 
@@ -308,9 +309,10 @@ def true_anomaly_from_eccentric_anomaly(eta, e):
     # :math:`\theta \mod 2\pi`. So we work with the principal angle
     # :math:`\eta \mod 2\pi`.
     eta_principal = eta%(2.*np.pi)
-    theta = 2.*np.arctan2(
-        np.sqrt(1. + e)/np.sqrt(1. - e), 1./np.tan(eta_principal/2.)
-    )
+    with np.errstate(divide="ignore"):
+        theta = 2.*np.arctan2(
+            np.sqrt(1. + e)/np.sqrt(1. - e), 1./np.tan(eta_principal/2.)
+        )
     theta = theta + 2.*np.pi*(eta//(2.*np.pi))
     theta = theta[()]
 
