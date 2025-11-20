@@ -72,7 +72,7 @@ Now let us plot these values.
    >>> plt.show()
 
 .. _logperiod:
-.. figure:: ./Figures/moe2017_pdf_logperiod.jpg
+.. figure:: ../figures/moe2017_pdf_logperiod.jpg
    :figwidth: 75%
    :align: center
 
@@ -118,7 +118,7 @@ Which we may plot.
    >>> plt.show()
    
 .. _mass_ratio_short_period:
-.. figure:: ./Figures/moe2017_pdf_mass_ratio_short_period.jpg
+.. figure:: ../figures/moe2017_pdf_mass_ratio_short_period.jpg
    :figwidth: 75%
    :align: center
 
@@ -143,7 +143,7 @@ Which we may again plot.
    >>> plt.show()
    
 .. _mass_ratio_long_period:
-.. figure:: ./Figures/moe2017_pdf_mass_ratio_long_period.jpg
+.. figure:: ../figures/moe2017_pdf_mass_ratio_long_period.jpg
    :figwidth: 75%
    :align: center
 
@@ -175,7 +175,7 @@ First, evaluate the PDF for :math:`\log_{10}(P/\mathrm{d}) = 1`.
 And plot it.
 
 .. _eccentricity_short_period:
-.. figure:: ./Figures/moe2017_pdf_eccentricity_short_period.jpg
+.. figure:: ../figures/moe2017_pdf_eccentricity_short_period.jpg
    :figwidth: 75%
    :align: center
 
@@ -211,7 +211,7 @@ And again plot it.
    >>> plt.show()
 
 .. _eccentricity_long_period:
-.. figure:: ./Figures/moe2017_pdf_eccentricity_long_period.jpg
+.. figure:: ../figures/moe2017_pdf_eccentricity_long_period.jpg
    :figwidth: 75%
    :align: center
 
@@ -317,7 +317,7 @@ And finally plot them.
    >>> plt.show()
 
 .. _radii:
-.. figure:: ./Figures/moe2017_sample_radius.jpg
+.. figure:: ../figures/moe2017_sample_radius.jpg
    :figwidth: 75%
    :align: center
 
@@ -352,7 +352,7 @@ And again plot them.
    >>> plt.show()
 
 .. _speed:
-.. figure:: ./Figures/moe2017_sample_speed.jpg
+.. figure:: ../figures/moe2017_sample_speed.jpg
    :figwidth: 75%
    :align: center
 

@@ -265,9 +265,11 @@ html_theme = "sphinx_rtd_theme"
 
 # # mathjax_path = "scipy-mathjax/MathJax.js?config=scipy-mathjax"
 
-# # sphinx-copybutton configurations
-# copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.{3,}: | {5,8}: "
-# copybutton_prompt_is_regexp = True
+# sphinx-copybutton configurations
+# copybutton_prompt_text = ">>> "
+copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
+copybutton_prompt_is_regexp = True
+copybutton_only_copy_prompt_lines = True
 
 ########################################################################
 # Intersphinx configuration
