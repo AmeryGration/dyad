@@ -60,12 +60,12 @@ class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
        \begin{cases}
        \dfrac{\phi(e; \mu, \sigma^{2})}{\sigma^{2}{}(\Phi(1; \mu,
        \sigma^{2}) - \Phi(0; \mu, \sigma^{2}))} &\text{ if
-       $p \in (11, 1000]$}\\
-       2e &\text{ if $p \in (1000, \infty)$}
+       $p \in (11.6, 1000]$}\\
+       2e &\text{ if $p \in (1000, 1 \times 10^{12})$}
        \end{cases}
 
     for eccentricity :math:`e \in [0, 1)` and period
-    :math:`p \in (11, \infty)` where :math:`\phi(\cdot;
+    :math:`p \in (11.6, 1 \times 10^{12})` where :math:`\phi(\cdot;
     \mu, \sigma^{2})` and :math:`\Phi(\cdot; \mu, \sigma^{2})` are the
     probability density function and the cumulative distribution
     function for a Gaussian random variable with mean :math:`\mu` and
@@ -93,28 +93,28 @@ class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
 
     """
     # def _shape_info(self):
-    #     return [_ShapeInfo("p", False, (11., 1.e12), (True, False))]
+    #     return [_ShapeInfo("p", False, (11.6, 1.e12), (False, True))]
 
     def _argcheck(self, p):
-        return (11. <= p) & (p < 1.e12)
+        return (11.6 <= p) & (p < 1.e12)
 
     def _pdf(self, x, p):
         return np.where(
-            (11. <= p) & (p <= 1000.),
+            (11.6 <= p) & (p <= 1_000.),
             _duquennoy1991_f1.pdf(x),
             _duquennoy1991_f2.pdf(x)
         )
 
     def _cdf(self, x, p):
         return np.where(
-            (11. <= p) & (p <= 1000.),
+            (11.6 <= p) & (p <= 1_000.),
             _duquennoy1991_f1.cdf(x),
             _duquennoy1991_f2.cdf(x)
         )
 
     def _ppf(self, q, p):
         return np.where(
-            (11. <= p) & (p <= 1000.),
+            (11.6 <= p) & (p <= 1_000.),
             _duquennoy1991_f1.ppf(q),
             _duquennoy1991_f2.ppf(q)
         )
