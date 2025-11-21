@@ -30,4 +30,4 @@ jobs:
     - name: Test with unittest
       run: |
         pip install unittest
-........python -m unittest discover -s ./tests/unittests/
+        python -m unittest discover -s ./tests/unittests/
