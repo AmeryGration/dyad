@@ -303,7 +303,7 @@ Now plot their histograms.
    >>> ax.hist(np.log10(r_1), bins="auto", alpha=0.2)
    >>> ax.hist(np.log10(r_2), bins="auto", alpha=0.2)
    >>> ax.legend(frameon=False)
-   >>> ax.set_xlabel(r"$r/\mathrm{AU}$")
+   >>> ax.set_xlabel(r"\log_{10}($r/\mathrm{AU})$")
    >>> ax.set_ylabel(r"$\nu$")
    >>> plt.show()
 
@@ -329,7 +329,7 @@ And again plot their histograms.
    >>> ax.hist(np.log10(v_1), bins="auto", alpha=0.2)
    >>> ax.hist(np.log10(v_2), bins="auto", alpha=0.2)
    >>> ax.legend(frameon=False)
-   >>> ax.set_xlabel(r"$v/\mathrm{km}~\mathrm{s}^{-1}$")
+   >>> ax.set_xlabel(r"$\log_{10}(v/\mathrm{km}~\mathrm{s}^{-1})$")
    >>> ax.set_ylabel(r"$\nu$")
    >>> plt.show()
 
