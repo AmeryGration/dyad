@@ -133,7 +133,7 @@ Since eccentricity is dependent on period we must use its shape parameter, ``per
 Recall that Dyad uses the day as the unit of time meaning that the unit of period is :math:`\mathrm{d}^{-1}`.
 
 The primary stars in question have primary masses of :math:`M_{1}/\text{M}_{\odot} \in [0.9, 1.2]` but the distributions of Duquennoy and Mayor are frequently assumed to hold for systems with red-giant primary stars, which have masses of :math:`0.8~\mathrm{M}_{\odot}`.
-Let us sample such the mass ratio and the period for such a population.
+Let us sample the mass ratio and the period for such a population.
 
 .. doctest:: python
 
