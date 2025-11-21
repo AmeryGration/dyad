@@ -12,10 +12,12 @@ theta = dyad.true_anomaly_from_mean_anomaly(mu, 0.0167)
 r = orbit.radius(theta)
 
 fig, ax = plt.subplots()
-ax.plot(theta, r)
-ax.set_xticks([0., np.pi, 2.*np.pi], [r"$0$", r"$\pi$", r"$2\pi$"])
-ax.set_xlabel(r"$\theta$")
+ax.plot(mu/(2.*np.pi), r)
+# ax.set_xticks([0., np.pi, 2.*np.pi], [r"$0$", r"$\pi$", r"$2\pi$"])
+ax.set_xlabel(r"$t/\mathrm{yr}$")
 ax.set_ylabel(r"$r/\mathrm{au}$")
 plt.savefig("evolution_of_radius.jpg")
 plt.savefig("evolution_of_radius.pdf")
 plt.show()
+
+

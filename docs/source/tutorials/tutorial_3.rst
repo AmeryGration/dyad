@@ -42,7 +42,7 @@ Let us evaluate the conditional PDF of log-period given primary mass, :math:`f_{
 where :math:`M_{1}/\mathrm{M}_{\odot} \in [0.8, 40]`.
 Dyad implements the log-period random variable using the class :class:`dyad.stats.log_period.moe2017`, which has shape parameter ``primary_mass``.
 
-To allow for broadcasting we must increase the dimension of ``m_1`` using the notation ``m_1[:,None]`` to create a new axis.
+To allow for `broadcasting <https://numpy.org/doc/stable/user/basics.broadcasting.html>`_ we must increase the dimension of ``m_1`` using the notation ``m_1[:,None]`` to create a new axis.
 
 .. doctest:: python
 
@@ -295,23 +295,14 @@ And compute the primary and secondary radii at these true anomalies.
    >>> r_1 = binary.primary.radius(theta)
    >>> r_2 = binary.secondary.radius(theta)
 
-Now generate the histograms.
-
-.. doctest:: python
-
-   >>> bins = np.logspace(-3., 6., 25)
-   >>> edge_r1, count_r1 = np.histogram(r_1, bins=bins)
-   >>> edge_r2, count_r2 = np.histogram(r_2, bins=bins)
-
-And finally plot them.
+Now plot their histograms.
 
 .. doctest:: python
 
    >>> fig, ax = plt.subplots()
-   >>> ax.stairs(edge_r1, count_r1, label="primary")
-   >>> ax.stairs(edge_r2, count_r2, label="primary")
+   >>> ax.hist(np.log10(r_1), bins="auto", alpha=0.2)
+   >>> ax.hist(np.log10(r_2), bins="auto", alpha=0.2)
    >>> ax.legend(frameon=False)
-   >>> ax.set_xscale("log")
    >>> ax.set_xlabel(r"$r/\mathrm{AU}$")
    >>> ax.set_ylabel(r"$\nu$")
    >>> plt.show()
@@ -330,23 +321,14 @@ Now compute the primary and secondary speeds.
    >>> v_1 = binary.primary.speed(theta)
    >>> v_2 = binary.secondary.speed(theta)
 
-Again generate the histograms.
-
-.. doctest:: python
-
-   >>> bins = np.logspace(-3., 6., 25)
-   >>> edge_v1, count_v1 = np.histogram(r_1, bins=bins)
-   >>> edge_v2, count_v2 = np.histogram(r_2, bins=bins)
-   
-And again plot them.
+And again plot their histograms.
 
 .. doctest:: python
 
    >>> fig, ax = plt.subplots()
-   >>> ax.stairs(edge_v1, count_v1, label="primary")
-   >>> ax.stairs(edge_v2, count_v2, label="primary")
+   >>> ax.hist(np.log10(v_1), bins="auto", alpha=0.2)
+   >>> ax.hist(np.log10(v_2), bins="auto", alpha=0.2)
    >>> ax.legend(frameon=False)
-   >>> ax.set_xscale("log")
    >>> ax.set_xlabel(r"$v/\mathrm{km}~\mathrm{s}^{-1}$")
    >>> ax.set_ylabel(r"$\nu$")
    >>> plt.show()

@@ -12,35 +12,50 @@ To a good approximation the Earth--Sun system is Keplerian. The Earth moves on a
    >>> m, a, e = 1., 1., 0.0167
    >>> orbit = dyad.Orbit(m, a, e)
 
-This instance of the class :class:`dyad.Orbit` has a number of
-attributes that we may interrogate. They include the periapsis and
-apoapsis. A full list is available in the API documentation.
+The state (i.e. position and velocity) of the body is specified by its true anomaly, :math:`\theta`, which we can compute using the method :meth:`dyad.Orbit.state`. Suppose that :math:`\theta = 1`.
 
 .. doctest:: python
 
+   >>> theta = 1.
+   >>> orbit.state(theta)
+   array([  0.53532139,   0.83371367,   0.        , -25.0664496 ,
+	   16.59245592,   0.        ])
+
+This is given in the format :math:`(x/\mathrm{AU}, y/\mathrm{AU}, z/\mathrm{AU}, v_{x}/\mathrm{km}\mathrm{s}^{-1}, v_{y}/\mathrm{km}\mathrm{s}^{-1}, v_{z}/\mathrm{km}\mathrm{s}^{-1})`. We can also compute the radius and speed of the body, which are given in units of :math:`\mathrm{AU}` and :math:`\mathrm{km}~\mathrm{s}^{-1}`.
+
+.. doctest:: python
+
+   >>> orbit.radius(theta)
+   np.float64(0.9907812427855317)
+   >>> orbit.speed(theta)
+   np.float64(30.06054704930534)
+
+An instance of the class :class:`dyad.Orbit` also has a number of
+attributes that represent constants of the orbit. These include the arguments with which :class:`dyad.Orbit` was called.
+
+.. doctest:: python
+
+   >>> orbit.mass
+   np.float64(1.0)
+   >>> orbit.semimajor_axis
+   np.float64(1.0)
+   >>> orbit.eccentricity
+   np.float64(0.0167)
+
+They also include more interesting constants, such as the period, periapsis and apoapsis. A full list is available in the API documentation for :class:`dyad.Orbit`.
+
+.. doctest:: python
+
+   >>> orbit.period
+   np.float64(365.25689844815537)
    >>> orbit.periapsis
    np.float64(0.9833)
    >>> orbit.apoapsis
    np.float64(1.0167)
 
-The state of the body is specified by its true anomaly,
-:math:`\theta`. Suppose that :math:`\theta = 1`. Then we may compute
-various properties of this state using the methods of
-:class:`dyad.Orbit`. These include the radius, speed, and dynamical
-state. Again, a full list is available in the API documentation.
+These are given in units of :math:`\mathrm{d}` and :math:`\mathrm{AU}`.
 
-.. doctest:: python
-
-   >>> theta = 1.
-   >>> orbit.radius(theta)
-   np.float64(0.9907812427855317)
-   >>> orbit.speed(theta)
-   np.float64(30.06054704930534)
-   >>> orbit.state(theta)
-   array([  0.53532139,   0.83371367,   0.        , -25.0664496 ,
-	   16.59245592,   0.        ])
-
-If the observer's frame differs from the perifocal frame we may
+If the perifocal frame differs from the observer's frame we may
 specify its orientation using the Euler angles :math:`\Omega`,
 :math:`i`, and :math:`\omega` (longitude of the ascending node,
 inclination, and argument of pericentre). Suppose that :math:`\Omega =
@@ -51,9 +66,24 @@ inclination, and argument of pericentre). Suppose that :math:`\Omega =
    >>> Omega, i, omega = 1., 1., 1.
    >>> orbit = dyad.Orbit(m, a, e, Omega, i, omega)
 
-All attributes and methods are available as before.
+All methods and attributes are available as before.
 
-To plot the evolution in time of any quantity sample the mean anomaly
+We may not always wish to work with true anomaly but instead prefer mean anomaly or eccentric anomaly.
+Dyad allows us to convert between these quantities. 
+
+.. doctest:: python
+
+   >>> mu = dyad.mean_anomaly_from_true_anomaly(theta, e)
+   >>> dyad.true_anomaly_from_mean_anomaly(mu, e)
+   np.float64(0.9999999999999999)   
+   >>> eta = dyad.eccentric_anomaly_from_true_anomaly(theta, e)
+   >>> dyad.true_anomaly_from_eccentric_anomaly(eta, e)
+   np.float64(0.9999999999999999)
+   >>> eta = dyad.eccentric_anomaly_from_mean_anomaly(mu, e)
+   >>> dyad.mean_anomaly_from_eccentric_anomaly(eta, e)
+   np.float64(0.9720848452026835)
+   
+To plot the evolution in time of any quantity first sample the mean anomaly
 uniformly on the interval :math:`[0, 2\pi)` and convert it to true
 anomaly. Consider, for example, the evolution of the orbital radius.
 
@@ -70,11 +100,10 @@ Plot this.
 
    >>> import matplotlib.pyplot as plt
    >>> fig, ax = plt.subplots()
-   >>> ax.plot(theta, r)
-   [<matplotlib.lines.Line2D object at 0x744af577ada0>]
-   >>> ax.set_xticks([0., np.pi, 2.*np.pi], [r"$0$", r"$\pi$", r"$2\pi$"])
-   >>> ax.set_xlabel(r"$\theta$")
-   Text(0.5, 0, '$\\theta$')
+   >>> ax.plot(mu/(2.*np.pi), r)
+   [<matplotlib.lines.Line2D object at 0x77691038bd00>]
+   >>> ax.set_xlabel(r"$t/\mathrm{yr}$")
+   Text(0.5, 0, '$t/\\mathrm{yr}$')
    >>> ax.set_ylabel(r"$r/\mathrm{au}$")
    Text(0, 0.5, '$r/\\mathrm{au}$')
    >>> plt.show()
@@ -95,10 +124,10 @@ Representing a binary system
 To a good approximation the Alpha Centauri A--B system is an isolated
 binary. The two component stars have masses :math:`M_{A} =
 1.0790~\text{M}_{\odot}` and :math:`M_{B} = 0.9092~\text{M}_{\odot}`,
-so that the mass ratio is :math:`q = 0.8428`. Both stars move on
+so that the mass ratio is :math:`q = 0.8428.` Both stars move on
 elliptical orbits with eccentricity :math:`e = 0.5195`. The semimajor
 axis of the primary star's orbit is :math:`a_{A} =
-10.60~\text{au}`. We may represent this system using the class
+10.60~\text{AU}`. We may represent this system using the class
 :class:`dyad.TwoBody`.
 
 .. doctest:: python
@@ -111,17 +140,31 @@ The properties of the primary and secondary orbits are available using
 the instance attributes `primary` and `secondary`, which are each
 instances of the class :class:`dyad.Orbit`. All attributes of these
 instances are available as before (:ref:`keplerian_system`). For
-example, we may wish to know the orbital radii at the periapses of the
-two orbits.
+example, we may wish to know the orbital state for :math:`\theta = 1`.
    
 .. doctest:: python
 
+   >>> binary.primary.state(1.)
+   array([ 3.26507954,  5.0850601 ,  0.        , -3.92917692,
+           4.94865639,  0.        ])
+   >>> binary.secondary.state(1.)
+   array([-3.87408583, -6.0335312 , -0.        ,  4.6620514 ,
+          -5.87168532, -0.        ])
+
+Likewise the attributes. For example, the period and periapsis of the two stars.
+   
+.. doctest:: python
+
+   >>> binary.primary.period
+   np.float64(28902.666768527575)
+   >>> binary.secondary.period
+   np.float64(28902.666768527575)
    >>> binary.primary.periapsis
    np.float64(5.0933)
    >>> binary.secondary.periapsis
    np.float64(6.0433080208827725)
 
-Equivalently, we might compute these values as follows.
+Equivalently, we might compute these last two values as follows.
 
 .. doctest:: python
 
