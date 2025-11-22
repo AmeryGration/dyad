@@ -49,7 +49,7 @@ class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
     for mass ratio :math:`q \in (0, \infty)` where :math:`\phi(\cdot;
     \mu, \sigma^{2})` and :math:`\Phi(\cdot; \mu, \sigma^{2})` are the
     probability density function and the cumulative distribution
-    function for a Gaussian random variable with mean :math:`mu` and
+    function for a Gaussian random variable with mean :math:`\mu` and
     variance :math:`\sigma^{2}` and where :math:`\mu = 0.23` and
     :math:`\sigma = 0.42`.
     
