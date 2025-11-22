@@ -56,7 +56,6 @@ setup(
         "sphinx_design",
         "sphinx-rtd-theme",
         "parameterized",
-        "unittest",
     ],
     include_package_data=True,
     python_requires=">=3.10",

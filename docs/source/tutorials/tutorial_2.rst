@@ -142,7 +142,7 @@ Let us sample the mass ratio and the period for such a population.
    >>> q = dyad.stats.mass_ratio.duquennoy1991.rvs(size=n)
    >>> p = 10.**dyad.stats.log_period.duquennoy1991.rvs(size=n)
 
-Now sample the eccentricity, remembering that the circularization period is :math:`11~\mathrm{day}`. 
+Now sample the eccentricity, remembering that the circularization period is :math:`11.6~\mathrm{day}`. 
 
 .. doctest:: python
 		
