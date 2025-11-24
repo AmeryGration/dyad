@@ -8104,4 +8104,394 @@ Doctest summary
 build succeeded.
 
 Testing of doctests in the sources finished, look at the results in build/doctest/output.txt.
-local:source>
+local:source>    0 failures in tests
+0: command not found
+local:source>cd ..
+local:docs>ls
+build  make.bat  Makefile  source
+local:docs>make ht
+Running Sphinx v8.1.3
+Bad value in file '/home/clws00198-ag0082/.config/matplotlib/matplotlibrc', line 38 ('backend      : qt4agg'): Key backend: 'qt4agg' is not a valid value for backend; supported values are ['gtk3agg', 'gtk3cairo', 'gtk4agg', 'gtk4cairo', 'macosx', 'nbagg', 'notebook', 'qtagg', 'qtcairo', 'qt5agg', 'qt5cairo', 'tkagg', 'tkcairo', 'webagg', 'wx', 'wxagg', 'wxcairo', 'agg', 'cairo', 'pdf', 'pgf', 'ps', 'svg', 'template', 'inline']
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+
+Sphinx error:
+Builder name ht not registered or available through entry point
+make: *** [Makefile:20: ht] Error 2
+local:docs>make html
+Running Sphinx v8.1.3
+Bad value in file '/home/clws00198-ag0082/.config/matplotlib/matplotlibrc', line 38 ('backend      : qt4agg'): Key backend: 'qt4agg' is not a valid value for backend; supported values are ['gtk3agg', 'gtk3cairo', 'gtk4agg', 'gtk4cairo', 'macosx', 'nbagg', 'notebook', 'qtagg', 'qtcairo', 'qt5agg', 'qt5cairo', 'tkagg', 'tkcairo', 'webagg', 'wx', 'wxagg', 'wxcairo', 'agg', 'cairo', 'pdf', 'pgf', 'ps', 'svg', 'template', 'inline']
+Dyad (VERSION 0.0.0)
+loading translations [en]... done
+Converting `source_suffix = '.rst'` to `source_suffix = {'.rst': 'restructuredtext'}`.
+loading pickled environment... The configuration has changed (1 option: 'html_static_path')
+done
+[autosummary] generating autosummary for: api_reference/constants.rst, api_reference/generated/dyad.stats.argument_of_pericentre.rst, api_reference/generated/dyad.stats.eccentricity.rst, api_reference/generated/dyad.stats.inclination.rst, api_reference/generated/dyad.stats.log_period.rst, api_reference/generated/dyad.stats.longitude_of_ascending_node.rst, api_reference/generated/dyad.stats.mass.rst, api_reference/generated/dyad.stats.mass_ratio.rst, api_reference/generated/dyad.stats.period.rst, api_reference/generated/dyad.stats.secondary_mass.rst, ..., generated/generated/generated/dyad.stats.secondary_mass.moe2017.rst, generated/generated/generated/dyad.stats.semimajor_axis.opik1924.rst, generated/modules.rst, getting_started/installation.rst, getting_started/what_is_dyad.rst, index.rst, tutorials/tutorial_1.rst, tutorials/tutorial_2.rst, tutorials/tutorial_2b.rst, tutorials/tutorial_3.rst
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: template versions.html has been changed since the previous build, all docs will be rebuilt
+building [html]: targets for 97 source files that are out of date
+updating environment: 0 added, 3 changed, 0 removed
+reading sources... [ 33%] tutorials/tutorial_1
+reading sources... [ 67%] tutorials/tutorial_2
+reading sources... [100%] tutorials/tutorial_3
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/generated/modules.rst: WARNING: document isn't included in any toctree
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/source/tutorials/tutorial_2b.rst: WARNING: document isn't included in any toctree
+done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/documentation_options.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/basic.css
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/language_data.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/js/versions.js
+Writing evaluated template result to /home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/docs/build/html/_static/copybutton.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [  1%] api_reference/constants
+writing output... [  2%] api_reference/generated/dyad.stats.argument_of_pericentre
+writing output... [  3%] api_reference/generated/dyad.stats.eccentricity
+writing output... [  4%] api_reference/generated/dyad.stats.inclination
+writing output... [  5%] api_reference/generated/dyad.stats.log_period
+writing output... [  6%] api_reference/generated/dyad.stats.longitude_of_ascending_node
+writing output... [  7%] api_reference/generated/dyad.stats.mass
+writing output... [  8%] api_reference/generated/dyad.stats.mass_ratio
+writing output... [  9%] api_reference/generated/dyad.stats.period
+writing output... [ 10%] api_reference/generated/dyad.stats.secondary_mass
+writing output... [ 11%] api_reference/generated/dyad.stats.semimajor_axis
+writing output... [ 12%] api_reference/generated/dyad.stats.true_anomaly
+writing output... [ 13%] api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 14%] api_reference/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 15%] api_reference/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 16%] api_reference/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 18%] api_reference/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 19%] api_reference/generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 20%] api_reference/generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 21%] api_reference/generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 22%] api_reference/generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 23%] api_reference/generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 24%] api_reference/generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 25%] api_reference/generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 26%] api_reference/generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 27%] api_reference/generated/generated/dyad.stats.period.moe2017
+writing output... [ 28%] api_reference/generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 29%] api_reference/generated/generated/dyad.stats.secondary_mass.moe2017
+writing output... [ 30%] api_reference/generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 31%] api_reference/index
+writing output... [ 32%] api_reference/stats
+writing output... [ 33%] community_guidelines/index
+writing output... [ 34%] generated/dyad
+writing output... [ 35%] generated/dyad.constants
+writing output... [ 36%] generated/dyad.stats
+writing output... [ 37%] generated/generated/dyad.Orbit
+writing output... [ 38%] generated/generated/dyad.TwoBody
+writing output... [ 39%] generated/generated/dyad.eccentric_anomaly_from_mean_anomaly
+writing output... [ 40%] generated/generated/dyad.eccentric_anomaly_from_true_anomaly
+writing output... [ 41%] generated/generated/dyad.mean_anomaly_from_eccentric_anomaly
+writing output... [ 42%] generated/generated/dyad.mean_anomaly_from_true_anomaly
+writing output... [ 43%] generated/generated/dyad.period_from_semimajor_axis
+writing output... [ 44%] generated/generated/dyad.semimajor_axis_from_period
+writing output... [ 45%] generated/generated/dyad.stats.argument_of_pericentre
+writing output... [ 46%] generated/generated/dyad.stats.eccentricity
+writing output... [ 47%] generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 48%] generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 49%] generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 51%] generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 52%] generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 53%] generated/generated/dyad.stats.inclination
+writing output... [ 54%] generated/generated/dyad.stats.log_period
+writing output... [ 55%] generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 56%] generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 57%] generated/generated/dyad.stats.longitude_of_ascending_node
+writing output... [ 58%] generated/generated/dyad.stats.mass
+writing output... [ 59%] generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 60%] generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 61%] generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 62%] generated/generated/dyad.stats.mass_ratio
+writing output... [ 63%] generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 64%] generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 65%] generated/generated/dyad.stats.period
+writing output... [ 66%] generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 67%] generated/generated/dyad.stats.period.moe2017
+writing output... [ 68%] generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 69%] generated/generated/dyad.stats.secondary_mass
+writing output... [ 70%] generated/generated/dyad.stats.semimajor_axis
+writing output... [ 71%] generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 72%] generated/generated/dyad.stats.true_anomaly
+writing output... [ 73%] generated/generated/dyad.true_anomaly_from_eccentric_anomaly
+writing output... [ 74%] generated/generated/dyad.true_anomaly_from_mean_anomaly
+writing output... [ 75%] generated/generated/generated/dyad.stats.eccentricity.duquennoy1991
+writing output... [ 76%] generated/generated/generated/dyad.stats.eccentricity.moe2017
+writing output... [ 77%] generated/generated/generated/dyad.stats.eccentricity.powerlaw
+writing output... [ 78%] generated/generated/generated/dyad.stats.eccentricity.thermal
+writing output... [ 79%] generated/generated/generated/dyad.stats.eccentricity.uniform
+writing output... [ 80%] generated/generated/generated/dyad.stats.log_period.duquennoy1991
+writing output... [ 81%] generated/generated/generated/dyad.stats.log_period.moe2017
+writing output... [ 82%] generated/generated/generated/dyad.stats.mass.kroupa2002
+writing output... [ 84%] generated/generated/generated/dyad.stats.mass.salpeter1955
+writing output... [ 85%] generated/generated/generated/dyad.stats.mass.splitpowerlaw
+writing output... [ 86%] generated/generated/generated/dyad.stats.mass_ratio.duquennoy1991
+writing output... [ 87%] generated/generated/generated/dyad.stats.mass_ratio.moe2017
+writing output... [ 88%] generated/generated/generated/dyad.stats.period.duquennoy1991
+writing output... [ 89%] generated/generated/generated/dyad.stats.period.moe2017
+writing output... [ 90%] generated/generated/generated/dyad.stats.period.trunclognorm
+writing output... [ 91%] generated/generated/generated/dyad.stats.secondary_mass.moe2017
+writing output... [ 92%] generated/generated/generated/dyad.stats.semimajor_axis.opik1924
+writing output... [ 93%] generated/modules
+writing output... [ 94%] getting_started/installation
+writing output... [ 95%] getting_started/what_is_dyad
+writing output... [ 96%] index
+writing output... [ 97%] tutorials/tutorial_1
+writing output... [ 98%] tutorials/tutorial_2
+writing output... [ 99%] tutorials/tutorial_2b
+writing output... [100%] tutorials/tutorial_3
+
+/home/clws00198-ag0082/.pyenv/versions/dyad_dev/lib/python3.10/site-packages/dyad/__init__.py:docstring of dyad:16: WARNING: Failed to create a cross reference. Any number is not assigned: orbit
+/home/clws00198-ag0082/.pyenv/versions/dyad_dev/lib/python3.10/site-packages/dyad/__init__.py:docstring of dyad:16: WARNING: Failed to create a cross reference. Any number is not assigned: orientation
+/home/clws00198-ag0082/.pyenv/versions/dyad_dev/lib/python3.10/site-packages/dyad/__init__.py:docstring of dyad:55: WARNING: Failed to create a cross reference. Any number is not assigned: twobodysystem
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/__init__.py:3: WARNING: Failed to create a cross reference. Any number is not assigned: orbit
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/__init__.py:3: WARNING: Failed to create a cross reference. Any number is not assigned: orientation
+/home/clws00198-ag0082/Documents/Work/Software/dyad/dyad/dyad/__init__.py:42: WARNING: Failed to create a cross reference. Any number is not assigned: twobodysystem
+generating indices... genindex py-modindex done
+highlighting module code... [100%] dyad._core
+
+writing additional pages... search done
+copying images... [  1%] ../build/plot_directive/api_reference/generated/dyad-stats-argument_of_pericentre-1.png
+copying images... [  3%] ../build/plot_directive/api_reference/generated/dyad-stats-inclination-1.png
+copying images... [  4%] ../build/plot_directive/api_reference/generated/dyad-stats-longitude_of_ascending_node-1.png
+copying images... [  6%] ../build/plot_directive/api_reference/generated/dyad-stats-true_anomaly-1.png
+copying images... [  7%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [  9%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 10%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 12%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 13%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 15%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 16%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 18%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 19%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 21%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 22%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 24%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 25%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 27%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 28%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-secondary_mass-moe2017-1.png
+copying images... [ 30%] ../build/plot_directive/api_reference/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 31%] figures/elliptical_orbit.jpg
+copying images... [ 33%] figures/orbital_euler_angles.jpg
+copying images... [ 34%] figures/twobody_system.jpg
+copying images... [ 36%] ../build/plot_directive/generated/generated/dyad-stats-argument_of_pericentre-1.png
+copying images... [ 37%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 39%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 40%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 42%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 43%] ../build/plot_directive/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 45%] ../build/plot_directive/generated/generated/dyad-stats-inclination-1.png
+copying images... [ 46%] ../build/plot_directive/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 48%] ../build/plot_directive/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 49%] ../build/plot_directive/generated/generated/dyad-stats-longitude_of_ascending_node-1.png
+copying images... [ 51%] ../build/plot_directive/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 52%] ../build/plot_directive/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 54%] ../build/plot_directive/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 55%] ../build/plot_directive/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 57%] ../build/plot_directive/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 58%] ../build/plot_directive/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 60%] ../build/plot_directive/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 61%] ../build/plot_directive/generated/generated/dyad-stats-semimajor_axis-opik1924-1.png
+copying images... [ 63%] ../build/plot_directive/generated/generated/dyad-stats-true_anomaly-1.png
+copying images... [ 64%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+copying images... [ 66%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+copying images... [ 67%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+copying images... [ 69%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-thermal-1.png
+copying images... [ 70%] ../build/plot_directive/generated/generated/generated/dyad-stats-eccentricity-uniform-1.png
+copying images... [ 72%] ../build/plot_directive/generated/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+copying images... [ 73%] ../build/plot_directive/generated/generated/generated/dyad-stats-log_period-moe2017-1.png
+copying images... [ 75%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-kroupa2002-1.png
+copying images... [ 76%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-salpeter1955-1.png
+copying images... [ 78%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+copying images... [ 79%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+copying images... [ 81%] ../build/plot_directive/generated/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+copying images... [ 82%] ../build/plot_directive/generated/generated/generated/dyad-stats-period-duquennoy1991-1.png
+copying images... [ 84%] ../build/plot_directive/generated/generated/generated/dyad-stats-period-moe2017-1.png
+copying images... [ 85%] ../build/plot_directive/generated/generated/generated/dyad-stats-secondary_mass-moe2017-1.png
+copying images... [ 87%] figures/evolution_of_radius.jpg
+copying images... [ 88%] figures/pdf_inclination.jpg
+copying images... [ 90%] figures/pdf_true_anomaly.jpg
+copying images... [ 91%] figures/moe2017_pdf_logperiod.jpg
+copying images... [ 93%] figures/moe2017_pdf_mass_ratio_short_period.jpg
+copying images... [ 94%] figures/moe2017_pdf_mass_ratio_long_period.jpg
+copying images... [ 96%] figures/moe2017_pdf_eccentricity_short_period.jpg
+copying images... [ 97%] figures/moe2017_pdf_eccentricity_long_period.jpg
+copying images... [ 99%] figures/moe2017_sample_radius.jpg
+copying images... [100%] figures/moe2017_sample_speed.jpg
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded, 8 warnings.
+
+The HTML pages are in build/html.
+local:docs>firefox ./build/html/index.html 
+Gtk-Message: 10:14:10.379: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+local:docs>cd ../
+local:dyad>ls
+COPYING  docs  dyad  dyad.egg-info  environment.yml  MANIFEST.in  README.md  requirements.txt  setup.py  tests  tmp.dat
+local:dyadgit add .
+local:dyad>git commit -m "Tutorial doctests revised and working"
+[master b11bd7f] Tutorial doctests revised and working
+ 156 files changed, 17627 insertions(+), 89 deletions(-)
+ create mode 100644 docs/source/#*local*#
+ create mode 100644 docs/source/*local*
+ create mode 120000 docs/source/.#*local*
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/constants.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.argument_of_pericentre.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.eccentricity.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.inclination.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.log_period.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.longitude_of_ascending_node.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.mass.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.mass_ratio.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.period.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.secondary_mass.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.semimajor_axis.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/dyad.stats.true_anomaly.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.eccentricity.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.eccentricity.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.eccentricity.powerlaw.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.eccentricity.thermal.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.eccentricity.uniform.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.log_period.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.log_period.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.mass.kroupa2002.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.mass.salpeter1955.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.mass.splitpowerlaw.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.mass_ratio.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.mass_ratio.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.period.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.period.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.period.trunclognorm.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.secondary_mass.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/generated/generated/dyad.stats.semimajor_axis.opik1924.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/index.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/api_reference/stats.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/community_guidelines/index.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/environment.pickle
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/dyad.constants.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/dyad.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/dyad.stats.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.Orbit.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.TwoBody.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.eccentric_anomaly_from_mean_anomaly.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.eccentric_anomaly_from_true_anomaly.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.mean_anomaly_from_eccentric_anomaly.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.mean_anomaly_from_true_anomaly.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.period_from_semimajor_axis.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.semimajor_axis_from_period.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.argument_of_pericentre.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.eccentricity.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.eccentricity.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.eccentricity.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.eccentricity.powerlaw.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.eccentricity.thermal.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.eccentricity.uniform.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.inclination.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.log_period.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.log_period.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.log_period.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.longitude_of_ascending_node.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.mass.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.mass.kroupa2002.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.mass.salpeter1955.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.mass.splitpowerlaw.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.mass_ratio.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.mass_ratio.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.mass_ratio.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.period.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.period.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.period.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.period.trunclognorm.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.secondary_mass.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.semimajor_axis.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.semimajor_axis.opik1924.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.stats.true_anomaly.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.true_anomaly_from_eccentric_anomaly.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/dyad.true_anomaly_from_mean_anomaly.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.eccentricity.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.eccentricity.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.eccentricity.powerlaw.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.eccentricity.thermal.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.eccentricity.uniform.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.log_period.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.log_period.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.mass.kroupa2002.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.mass.salpeter1955.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.mass.splitpowerlaw.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.mass_ratio.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.mass_ratio.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.period.duquennoy1991.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.period.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.period.trunclognorm.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.secondary_mass.moe2017.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/generated/generated/dyad.stats.semimajor_axis.opik1924.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/generated/modules.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/getting_started/installation.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/getting_started/what_is_dyad.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/index.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/tutorials/tutorial_1.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/tutorials/tutorial_2.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/tutorials/tutorial_2b.doctree
+ create mode 100644 docs/source/build/doctest/.doctrees/tutorials/tutorial_3.doctree
+ create mode 100644 docs/source/build/doctest/_sphinx_design_static/design-tabs.js
+ create mode 100644 docs/source/build/doctest/_sphinx_design_static/sphinx-design.min.css
+ create mode 100644 docs/source/build/doctest/output.txt
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/dyad-stats-argument_of_pericentre-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/dyad-stats-inclination-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/dyad-stats-longitude_of_ascending_node-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/dyad-stats-true_anomaly-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-thermal-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-eccentricity-uniform-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-log_period-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-period-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/api_reference/generated/generated/dyad-stats-period-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-argument_of_pericentre-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-eccentricity-thermal-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-eccentricity-uniform-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-inclination-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-log_period-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-longitude_of_ascending_node-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-period-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-period-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/dyad-stats-true_anomaly-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-eccentricity-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-eccentricity-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-eccentricity-powerlaw-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-eccentricity-thermal-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-eccentricity-uniform-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-log_period-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-log_period-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-mass-splitpowerlaw-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-mass_ratio-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-mass_ratio-moe2017-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-period-duquennoy1991-1.png
+ create mode 100644 docs/source/build/doctest/plot_directive/generated/generated/generated/dyad-stats-period-moe2017-1.png
+ create mode 100644 dyad/#_core.py#
+ create mode 120000 dyad/.#_core.py
+ create mode 100644 tmp.dat
+local:dyad>git push origin ma
