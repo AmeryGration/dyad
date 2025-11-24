@@ -1,28 +1,19 @@
 .. _tutorial_3:
 
-********************************************
-The distributions of Moe & Di Stefano (2017)
-********************************************
+*************************************
+Zero-age main-sequence binary systems
+*************************************
 
-Moe and Di Stefano [MS17]_ reported empirical distributions for the period, :math:`P`, mass-ratio, :math:`Q`, and eccentricity, :math:`E`, of binary stars in the solar neighbourhood.
-Their catalogue included data for binary systems with primary stars of five spectral types, namely
+Moe and Di Stefano [MS17]_ reported empirical distributions for the period, :math:`P`, mass-ratio, :math:`Q`, and eccentricity, :math:`E`, of binary systems consisting of two zero-age main-sequence (ZAMS) stars with primaries of types O, B, A, F, and G, i.e. with primaries of mass :math:`M_{1}/\text{M}_{\odot} \in [0.8, 40]`. They determined these by commpiling observations of binary systems in nearby open clusters and stellar associations as well as in volume-limited surveys of the solar neighbourhood.
 
-- solar, with :math:`m_{1}/\mathrm{M}_{\odot} \in [0.8, 1.2)`,
-- A and late-B, with :math:`m_{1}/\mathrm{M}_{\odot} \in [2, 5)`,
-- mid-B, with :math:`m_{1}/\mathrm{M}_{\odot} \in [5, 9)`,
-- early B, with :math:`m_{1}/\mathrm{M}_{\odot} \in [9, 16)`, and
-- O, with :math:`m_{1}/\mathrm{M}_{\odot} \in [16, 40]`,
-
-where :math:`m_{1}` is the mass of the primary star.
-
-The period is dependent on primary mass while the mass ratio and eccentricity are dependent on both period and primary mass.
+They found that the period is dependent on primary mass while the mass ratio and eccentricity are dependent on both period and primary mass.
 Alongside the empirical distributions Moe and Di Stefano gave formulae for the corresponding probability density functions, which Dyad uses to implement the random variables
 :class:`dyad.stats.log_period.moe2017`,
 :class:`dyad.stats.period.moe2017`,
 :class:`dyad.stats.mass_ratio.moe2017`, and
 :class:`dyad.stats.eccentricity.moe2017`.
 Since these are dependent on other random variables we must use their shape parameters to fully specify them.
-The unit of period is :math:`\mathrm{d}` and the unit of mass is :math:`\mathrm{M}_{\odot}`.
+Recall that Dyad requires period to be specified in units of :math:`\mathrm{d}` and mass to be specified in units :math:`\mathrm{M}_{\odot}`.
 
 The probability density functions
 =================================
@@ -61,16 +52,16 @@ Now let us plot these values.
 
    >>> import matplotlib.pyplot as plt
    >>> label = [
-   ...    r"$M_{1} = 1\mathrm{M}_{\odot}$",
-   ...    r"$M_{1} = 3.5\mathrm{M}_{\odot}$",
-   ...    r"$M_{1} = 7\mathrm{M}_{\odot}$",
-   ...    r"$M_{1} = 12\mathrm{M}_{\odot}$",
-   ...    r"$M_{1} = 28\mathrm{M}_{\odot}$"
+   ...     r"$M_{1} = 1\mathrm{M}_{\odot}$",
+   ...     r"$M_{1} = 3.5\mathrm{M}_{\odot}$",
+   ...     r"$M_{1} = 7\mathrm{M}_{\odot}$",
+   ...     r"$M_{1} = 12\mathrm{M}_{\odot}$",
+   ...     r"$M_{1} = 28\mathrm{M}_{\odot}$"
    ... ]
    >>> color = ["red", "orange", "green", "blue", "magenta"]
    >>> fig, ax = plt.subplots()
    >>> for (f_i, label_i, color_i) in zip(f, label, color):
-   ...    ax.plot(log_p, f_i, label=label_i, color=color_i)
+   ...     ax.plot(log_p, f_i, label=label_i, color=color_i)
    [<matplotlib.lines.Line2D object at 0x...>]
    [<matplotlib.lines.Line2D object at 0x...>]
    [<matplotlib.lines.Line2D object at 0x...>]
@@ -124,7 +115,7 @@ Which we may plot.
 
    >>> fig, ax = plt.subplots()
    >>> for (f_i, label_i, color_i) in zip(f, label, color):
-   ...    ax.plot(q, f_i, label=label_i, color=color_i)
+   ...     ax.plot(q, f_i, label=label_i, color=color_i)
    [<matplotlib.lines.Line2D object at 0x...>]
    [<matplotlib.lines.Line2D object at 0x...>]
    [<matplotlib.lines.Line2D object at 0x...>]
@@ -157,7 +148,7 @@ Which we may again plot.
 
    >>> fig, ax = plt.subplots()
    >>> for (f_i, label_i, color_i) in zip(f, label, color):
-   ...    ax.plot(q, f_i, label=label_i, color=color_i)
+   ...     ax.plot(q, f_i, label=label_i, color=color_i)
    [<matplotlib.lines.Line2D object at 0x...>]
    [<matplotlib.lines.Line2D object at 0x...>]
    [<matplotlib.lines.Line2D object at 0x...>]
@@ -214,7 +205,7 @@ And plot it.
 
    >>> fig, ax = plt.subplots()
    >>> for (f_i, label_i, color_i) in zip(f, label, color):
-   ...    ax.plot(e, f_i, label=label_i, color=color_i)
+   ...     ax.plot(e, f_i, label=label_i, color=color_i)
    [<matplotlib.lines.Line2D object at 0x...>]
    [<matplotlib.lines.Line2D object at 0x...>]
    [<matplotlib.lines.Line2D object at 0x...>]
@@ -266,7 +257,7 @@ And again plot it.
 A complete population
 =====================
 
-Let us now synthesize a population of binary systems.
+Let us now synthesize a population of ZAMS binary systems using the distributions of Moe and Di Stefano.
 We will use the primary-constrained pairing method to synthesize the primary- and secondary-star masses [K09]_.
 According to this method we synthesize the primary-star star mass assuming that it is distributed according to the initial mass function and then synthesize the secondary-star mass using the conditional distribution of secondary-star mass given primary-star mass.
 
