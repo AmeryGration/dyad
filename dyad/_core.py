@@ -22,6 +22,7 @@ __all__ = [
     "TwoBody",
 ]
 
+import dyad
 import numpy as np
 import scipy as sp
 import dyad.constants as constants
@@ -102,7 +103,7 @@ def semimajor_axis_from_period(p, m_1, m_2):
     Scalar parameters.
 
     >>> semimajor_axis_from_period(365.25, 1., 3.00362e-6)
-    np.float64(0.9999884101100887)
+    0.9999884101100887
 
     Array-like parameters defining multiple orbits.
 
@@ -153,7 +154,7 @@ def period_from_semimajor_axis(a, m_1, m_2):
     Scalar parameters.
 
     >>> period_from_semimajor_axis(1., 1., 3.00362e-6)
-    np.float64(365.25634990292843)
+    365.25634990292843
 
     Array-like parameters defining multiple orbits.
 
@@ -197,7 +198,7 @@ def mean_anomaly_from_eccentric_anomaly(eta, e):
     Scalar parameters.
 
     >>> mean_anomaly_from_eccentric_anomaly(1., 0.5)
-    np.float64(0.5792645075960517)
+    0.5792645075960517
 
     Array-like parameters defining multiple orbits.
 
@@ -241,7 +242,7 @@ def eccentric_anomaly_from_true_anomaly(theta, e):
     Scalar parameters.
 
     >>> eccentric_anomaly_from_true_anomaly(1., 0.5)
-    np.float64(0.611063702733245)
+    0.611063702733245
 
     Array-like parameters defining multiple orbits.
 
@@ -293,12 +294,12 @@ def true_anomaly_from_eccentric_anomaly(eta, e):
     Scalar parameters.
 
     >>> true_anomaly_from_eccentric_anomaly(1., 0.5)
-    np.float64(1.5155481528799728)
+    1.515548152879973
 
     Array-like parameters defining multiple orbits.
 
     >>> eta, e = [1., 1.], [0.5, 0.5]
-    >>> true_anomaly_from_eccentric_anomaly(theta, e)
+    >>> true_anomaly_from_eccentric_anomaly(eta, e)
     array([1.51554815, 1.51554815])
 
     """
@@ -345,7 +346,7 @@ def mean_anomaly_from_true_anomaly(theta, e):
     Scalar parameters.
 
     >>> mean_anomaly_from_true_anomaly(1., 0.5)
-    np.float64(0.3241942038914112)
+    0.3241942038914112
 
     Array-like parameters defining multiple orbits.
 
@@ -389,7 +390,7 @@ def eccentric_anomaly_from_mean_anomaly(mu, e):
     Scalar parameters.
 
     >>> eccentric_anomaly_from_mean_anomaly(1., 0.5)
-    np.float64(1.4987011335178482)
+    1.4987011335178482
 
     Array-like parameters defining multiple orbits.
 
@@ -453,7 +454,7 @@ def true_anomaly_from_mean_anomaly(mu, e):
     Scalar parameters.
 
     >>> true_anomaly_from_mean_anomaly(1., 0.5)
-    np.float64(2.030806214849156)
+    2.0308062148491555
 
     Array-like parameters defining multiple orbits.
 
@@ -497,7 +498,7 @@ def primary_semimajor_axis_from_semimajor_axis(a, q):
     Scalar parameters.
 
     >>> primary_semimajor_axis_from_semimajor_axis(1., 0.5)
-    np.float64(0.3333333333333333)
+    0.3333333333333333
 
     Array-like parameters defining multiple orbits.
 
@@ -576,7 +577,7 @@ def primary_semimajor_axis_from_secondary_semimajor_axis(a, q):
     Scalar parameters.
 
     >>> primary_semimajor_axis_from_secondary_semimajor_axis(1., 0.5)
-    np.float64(0.5)
+    0.5
 
     Array-like parameters defining multiple orbits.
 
@@ -621,7 +622,7 @@ def secondary_semimajor_axis_from_primary_semimajor_axis(a, q):
     Scalar parameters.
 
     >>> secondary_semimajor_axis_from_primary_semimajor_axis(1., 0.5)
-    np.float64(2.0)
+    2.0
 
     Array-like parameters defining multiple orbits.
 
@@ -678,16 +679,19 @@ class Orbit:
     Scalar parameters defining a single orbit in the perifocal plane.
 
     >>> dyad.Orbit(1., 1., 0.)
-
+    <dyad._core.Orbit object at 0x...>
+    
     Scalar parameters defining a single orbit in the observer's frame.
 
     >>> dyad.Orbit(1., 1., 0., 1., 1., 1.)
+    <dyad._core.Orbit object at 0x...>
 
     Array-like parameters defining multiple orbits.
 
     >>> m, a, e = [1., 1.], [1., 1.], [0., 0.]
-    >>> orb.Orbit(m, a, e)
-
+    >>> dyad.Orbit(m, a, e)
+    <dyad._core.Orbit object at 0x...>
+    
     """
     def __init__(self, m, a, e, Omega=0., i=0., omega=0.):
         m = np.asarray(m)[()]
@@ -1156,15 +1160,18 @@ class TwoBody:
     Scalar parameters defining a single binary system in the perifocal plane.
 
     >>> dyad.TwoBody(1., 1., 1., 0.)
+    <dyad._core.TwoBody object at 0x...>
 
     Scalar parameters defining a single orbit in the observer's frame.
 
     >>> dyad.TwoBody(1., 1., 1., 0., 1., 1., 1.)
-
+    <dyad._core.TwoBody object at 0x...>
+    
     Array-like parameters defining multiple orbits.
 
     >>> m, q, a, e = [1., 1.], [1., 1.], [1., 1.], [0., 0.]
-    >>> orb.TwoBody(m, q, a, e)
+    >>> dyad.TwoBody(m, q, a, e)
+    <dyad._core.TwoBody object at 0x...>
 
     """
     def __init__(self, m, q, a, e, Omega=0., i=0., omega=0.):

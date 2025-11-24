@@ -12,14 +12,14 @@ Their catalogue included data for binary systems with primary stars of five spec
 - mid-B, with :math:`m_{1}/\mathrm{M}_{\odot} \in [5, 9)`,
 - early B, with :math:`m_{1}/\mathrm{M}_{\odot} \in [9, 16)`, and
 - O, with :math:`m_{1}/\mathrm{M}_{\odot} \in [16, 40]`,
-  
+
 where :math:`m_{1}` is the mass of the primary star.
 
 The period is dependent on primary mass while the mass ratio and eccentricity are dependent on both period and primary mass.
 Alongside the empirical distributions Moe and Di Stefano gave formulae for the corresponding probability density functions, which Dyad uses to implement the random variables
 :class:`dyad.stats.log_period.moe2017`,
 :class:`dyad.stats.period.moe2017`,
-:class:`dyad.stats.mass_ratio.moe2017`, and 
+:class:`dyad.stats.mass_ratio.moe2017`, and
 :class:`dyad.stats.eccentricity.moe2017`.
 Since these are dependent on other random variables we must use their shape parameters to fully specify them.
 The unit of period is :math:`\mathrm{d}` and the unit of mass is :math:`\mathrm{M}_{\odot}`.
@@ -30,11 +30,16 @@ The probability density functions
 Let us plot the PDFs of each random variable in turn.
 In each case we will consider the average primary mass for each spectral type, namely :math:`m_{1}/\mathrm{M}_{\odot} = 1, 3.5, 7, 12, 28`, which we can specify now.
 
+.. testsetup::
+
+   import numpy as np
+   np.random.seed(0)
+
 .. doctest:: python
 
    >>> import numpy as np
    >>> m_1 = np.array([1., 3.5, 7., 12, 28.])
-   
+
 Log-period
 ----------
 
@@ -51,24 +56,32 @@ To allow for `broadcasting <https://numpy.org/doc/stable/user/basics.broadcastin
    >>> f = stats.log_period.moe2017(m_1[:,None]).pdf(log_p)
 
 Now let us plot these values.
-   
+
 .. doctest:: python
 
    >>> import matplotlib.pyplot as plt
    >>> label = [
-   ...     r"$M_{1} = 1\mathrm{M}_{\odot}$",
-   ...     r"$M_{1} = 3.5\mathrm{M}_{\odot}$",
-   ...     r"$M_{1} = 7\mathrm{M}_{\odot}$",
-   ...     r"$M_{1} = 12\mathrm{M}_{\odot}$",
-   ...     r"$M_{1} = 28\mathrm{M}_{\odot}$"
+   ...    r"$M_{1} = 1\mathrm{M}_{\odot}$",
+   ...    r"$M_{1} = 3.5\mathrm{M}_{\odot}$",
+   ...    r"$M_{1} = 7\mathrm{M}_{\odot}$",
+   ...    r"$M_{1} = 12\mathrm{M}_{\odot}$",
+   ...    r"$M_{1} = 28\mathrm{M}_{\odot}$"
    ... ]
    >>> color = ["red", "orange", "green", "blue", "magenta"]
    >>> fig, ax = plt.subplots()
    >>> for (f_i, label_i, color_i) in zip(f, label, color):
-   >>>     ax.plot(log_p, f_i, label=label_i, color=color_i)
+   ...    ax.plot(log_p, f_i, label=label_i, color=color_i)
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
    >>> ax.legend(frameon=False)
+   <matplotlib.legend.Legend object at 0x...>
    >>> ax.set_xlabel(r"$\log_{10}(p/\mathrm{d})$")
+   Text(0.5, 0, '$\\log_{10}(p/\\mathrm{d})$')
    >>> ax.set_ylabel(r"$f_{log_{10}(P)}$")
+   Text(0, 0.5, '$f_{log_{10}(P)}$')
    >>> plt.show()
 
 .. _logperiod:
@@ -82,7 +95,7 @@ We may also evaluate the conditional PDF of period (rather than log-period)  giv
 where :math:`M_{1}/\mathrm{M}_{\odot} \in [0.8, 40]`.
 
 .. doctest:: python
-	     
+
    >>> p = np.logspace(-1., 9., 500)
    >>> f = stats.period.moe2017(m_1[:,None]).pdf(p)
 
@@ -111,12 +124,20 @@ Which we may plot.
 
    >>> fig, ax = plt.subplots()
    >>> for (f_i, label_i, color_i) in zip(f, label, color):
-   ...     ax.plot(q, f_i, label=label_i, color=color_i)
+   ...    ax.plot(q, f_i, label=label_i, color=color_i)
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
    >>> ax.legend(frameon=False)
+   <matplotlib.legend.Legend object at 0x...>
    >>> ax.set_xlabel(r"$q$")
+   Text(0.5, 0, '$q$')
    >>> ax.set_ylabel(r"$f_Q$")
+   Text(0, 0.5, '$f_Q$')
    >>> plt.show()
-   
+
 .. _mass_ratio_short_period:
 .. figure:: ../figures/moe2017_pdf_mass_ratio_short_period.jpg
    :figwidth: 75%
@@ -125,30 +146,38 @@ Which we may plot.
    The PDF of mass ratio, :math:`Q`, given log-period, :math:`\log_{10}(P/\mathrm{d}) = 0.2` and primary mass :math:`M_{1}`.
 
 Second, the case of :math:`\log_{10}(P/\mathrm{d}) = 8`.
-   
+
 .. doctest:: python
 
    >>> f = stats.mass_ratio.moe2017(8., m_1[:,None]).pdf(q)
 
 Which we may again plot.
-   
+
 .. doctest:: python
 
    >>> fig, ax = plt.subplots()
    >>> for (f_i, label_i, color_i) in zip(f, label, color):
-   ...     ax.plot(q, f_i, label=label_i, color=color_i)
+   ...    ax.plot(q, f_i, label=label_i, color=color_i)
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
    >>> ax.legend(frameon=False)
+   <matplotlib.legend.Legend object at 0x...>
    >>> ax.set_xlabel(r"$q$")
+   Text(0.5, 0, '$q$')
    >>> ax.set_ylabel(r"$f_Q$")
+   Text(0, 0.5, '$f_Q$')
    >>> plt.show()
-   
+
 .. _mass_ratio_long_period:
 .. figure:: ../figures/moe2017_pdf_mass_ratio_long_period.jpg
    :figwidth: 75%
    :align: center
 
    The conditional PDF of mass ratio, :math:`Q`, given log-period, :math:`\log_{10}(P/\mathrm{d}) = 8` and primary mass :math:`M_{1}`.
- 
+
 Eccentricity
 ------------
 
@@ -185,11 +214,20 @@ And plot it.
 
    >>> fig, ax = plt.subplots()
    >>> for (f_i, label_i, color_i) in zip(f, label, color):
-   >>>     ax.plot(e, f_i, label=label_i, color=color_i)
+   ...    ax.plot(e, f_i, label=label_i, color=color_i)
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
    >>> ax.legend(frameon=False)
+   <matplotlib.legend.Legend object at 0x...>
    >>> ax.set_ylim(0., 5.)
+   (0.0, 5.0)
    >>> ax.set_xlabel(r"$e$")
+   Text(0.5, 0, '$e$')
    >>> ax.set_ylabel(r"$f_E$")
+   Text(0, 0.5, '$f_E$')
    >>> plt.show()
 
 Second, evaluate the PDF for :math:`\log_{10}(P/\mathrm{d}) = 8`.
@@ -204,10 +242,18 @@ And again plot it.
 
    >>> fig, ax = plt.subplots()
    >>> for (f_i, label_i, color_i) in zip(f, label, color):
-   >>>     ax.plot(e, f_i, label=label_i, color=color_i)
+   ...     ax.plot(e, f_i, label=label_i, color=color_i)
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
+   [<matplotlib.lines.Line2D object at 0x...>]
    >>> ax.legend(frameon=False)
+   <matplotlib.legend.Legend object at 0x...>
    >>> ax.set_xlabel(r"$e$")
+   Text(0.5, 0, '$e$')
    >>> ax.set_ylabel(r"$f_E$")
+   Text(0, 0.5, '$f_E$')
    >>> plt.show()
 
 .. _eccentricity_long_period:
@@ -277,7 +323,7 @@ First convert the periods to their equivalent primary-star semimajor axes.
 And instantiate a :class:`dyad.TwoBody` object.
 
 .. doctest:: python
-	     
+
    >>> binary = dyad.TwoBody(m_1, q, a_1, e, Omega, i, omega)
 
 Before, we inspected the state of a single member of this population for a given true anomaly.
@@ -301,10 +347,32 @@ Now plot their histograms.
 
    >>> fig, ax = plt.subplots()
    >>> ax.hist(np.log10(r_1), bins="auto", alpha=0.2)
+   (array([ 19.,  44.,  59., 113., 179., 193., 214., 199., 232., 251., 266.,
+	  310., 352., 327., 446., 411., 462., 445., 462., 517., 488., 509.,
+	  485., 463., 438., 421., 414., 364., 315., 272., 197.,  99.,  30.,
+	    4.]), array([-2.45692501, -2.27352866, -2.09013231, -1.90673596, -1.72333961,
+	  -1.53994326, -1.35654691, -1.17315056, -0.98975421, -0.80635786,
+	  -0.62296151, -0.43956516, -0.25616882, -0.07277247,  0.11062388,
+	   0.29402023,  0.47741658,  0.66081293,  0.84420928,  1.02760563,
+	   1.21100198,  1.39439833,  1.57779468,  1.76119103,  1.94458737,
+	   2.12798372,  2.31138007,  2.49477642,  2.67817277,  2.86156912,
+	   3.04496547,  3.22836182,  3.41175817,  3.59515452,  3.77855087]), <BarContainer object of 34 artists>)
    >>> ax.hist(np.log10(r_2), bins="auto", alpha=0.2)
+   (array([ 47., 164., 217., 231., 213., 198., 207., 251., 273., 320., 301.,
+	  354., 387., 495., 488., 456., 433., 495., 487., 500., 488., 475.,
+	  412., 399., 421., 377., 321., 284., 215.,  74.,  17.]), array([-1.79254894, -1.60344834, -1.41434774, -1.22524714, -1.03614653,
+	  -0.84704593, -0.65794533, -0.46884473, -0.27974412, -0.09064352,
+	   0.09845708,  0.28755768,  0.47665828,  0.66575889,  0.85485949,
+	   1.04396009,  1.23306069,  1.4221613 ,  1.6112619 ,  1.8003625 ,
+	   1.9894631 ,  2.17856371,  2.36766431,  2.55676491,  2.74586551,
+	   2.93496611,  3.12406672,  3.31316732,  3.50226792,  3.69136852,
+	   3.88046913,  4.06956973]), <BarContainer object of 31 artists>)
    >>> ax.legend(frameon=False)
+   <matplotlib.legend.Legend object at 0x...>
    >>> ax.set_xlabel(r"\log_{10}($r/\mathrm{AU})$")
+   Text(0.5, 0, '\\log_{10}($r/\\mathrm{AU})$')
    >>> ax.set_ylabel(r"$\nu$")
+   Text(0, 0.5, '$\\nu$')
    >>> plt.show()
 
 .. _radii:
@@ -315,7 +383,7 @@ Now plot their histograms.
    The histograms of primary and secondary star radii.
 
 Now compute the primary and secondary speeds.
-   
+
 .. doctest:: python
 
    >>> v_1 = binary.primary.speed(theta)
@@ -327,10 +395,37 @@ And again plot their histograms.
 
    >>> fig, ax = plt.subplots()
    >>> ax.hist(np.log10(v_1), bins="auto", alpha=0.2)
+   (array([  2.,   1.,   3.,   3.,   3.,  13.,  19.,  23.,  58.,  88., 127.,
+	  172., 220., 277., 317., 382., 412., 489., 440., 503., 499., 457.,
+	  489., 492., 468., 415., 476., 384., 357., 344., 311., 234., 238.,
+	  248., 245., 193., 174., 178., 128.,  65.,  35.,  13.,   5.]), array([-2.26013206, -2.15095209, -2.04177212, -1.93259215, -1.82341218,
+	  -1.71423222, -1.60505225, -1.49587228, -1.38669231, -1.27751234,
+	  -1.16833237, -1.0591524 , -0.94997244, -0.84079247, -0.7316125 ,
+	  -0.62243253, -0.51325256, -0.40407259, -0.29489262, -0.18571266,
+	  -0.07653269,  0.03264728,  0.14182725,  0.25100722,  0.36018719,
+	   0.46936716,  0.57854712,  0.68772709,  0.79690706,  0.90608703,
+	   1.015267  ,  1.12444697,  1.23362694,  1.3428069 ,  1.45198687,
+	   1.56116684,  1.67034681,  1.77952678,  1.88870675,  1.99788672,
+	   2.10706668,  2.21624665,  2.32542662,  2.43460659]), <BarContainer object of 43 artists>)
    >>> ax.hist(np.log10(v_2), bins="auto", alpha=0.2)
+   (array([  1.,   1.,   1.,   2.,   3.,   7.,  15.,  14.,  42.,  72., 126.,
+	  152., 260., 322., 389., 392., 448., 483., 439., 516., 515., 504.,
+	  468., 509., 455., 458., 423., 370., 345., 335., 294., 254., 242.,
+	  164., 218., 231., 201., 161.,  95.,  47.,  23.,   3.]), array([-1.68813221, -1.58586697, -1.48360174, -1.3813365 , -1.27907127,
+	  -1.17680603, -1.0745408 , -0.97227556, -0.87001033, -0.76774509,
+	  -0.66547986, -0.56321463, -0.46094939, -0.35868416, -0.25641892,
+	  -0.15415369, -0.05188845,  0.05037678,  0.15264202,  0.25490725,
+	   0.35717249,  0.45943772,  0.56170296,  0.66396819,  0.76623342,
+	   0.86849866,  0.97076389,  1.07302913,  1.17529436,  1.2775596 ,
+	   1.37982483,  1.48209007,  1.5843553 ,  1.68662054,  1.78888577,
+	   1.89115101,  1.99341624,  2.09568147,  2.19794671,  2.30021194,
+	   2.40247718,  2.50474241,  2.60700765]), <BarContainer object of 42 artists>)
    >>> ax.legend(frameon=False)
+   <matplotlib.legend.Legend object at 0x...>
    >>> ax.set_xlabel(r"$\log_{10}(v/\mathrm{km}~\mathrm{s}^{-1})$")
+   Text(0.5, 0, '$\\log_{10}(v/\\mathrm{km}~\\mathrm{s}^{-1})$')
    >>> ax.set_ylabel(r"$\nu$")
+   Text(0, 0.5, '$\\nu$')
    >>> plt.show()
 
 .. _speed:
@@ -339,7 +434,7 @@ And again plot their histograms.
    :align: center
 
    The histograms of primary and secondary star speeds.
-   
+
 References
 ==========
 

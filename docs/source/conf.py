@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import scipy
 import scipy._lib.uarray as ua
 import numpydoc.docscrape as np_docscrape
+import doctest
 
 from os.path import relpath, dirname
 from docutils import nodes
@@ -534,3 +535,5 @@ plot_rcparams = {
 
 # def setup(app):
 #     app.add_directive("legacy", LegacyDirective)
+
+doctest_optionflags = [doctest.ELLIPSIS]

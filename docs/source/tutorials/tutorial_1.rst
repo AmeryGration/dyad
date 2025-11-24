@@ -26,9 +26,9 @@ This is given in the format :math:`(x/\mathrm{AU}, y/\mathrm{AU}, z/\mathrm{AU},
 .. doctest:: python
 
    >>> orbit.radius(theta)
-   np.float64(0.9907812427855317)
+   0.9907812427855317
    >>> orbit.speed(theta)
-   np.float64(30.06054704930534)
+   30.06054704930534
 
 An instance of the class :class:`dyad.Orbit` also has a number of
 attributes that represent constants of the orbit. These include the arguments with which :class:`dyad.Orbit` was called.
@@ -36,22 +36,22 @@ attributes that represent constants of the orbit. These include the arguments wi
 .. doctest:: python
 
    >>> orbit.mass
-   np.float64(1.0)
+   1.0
    >>> orbit.semimajor_axis
-   np.float64(1.0)
+   1.0
    >>> orbit.eccentricity
-   np.float64(0.0167)
+   0.0167
 
 They also include more interesting constants, such as the period, periapsis and apoapsis. A full list is available in the API documentation for :class:`dyad.Orbit`.
 
 .. doctest:: python
 
    >>> orbit.period
-   np.float64(365.25689844815537)
+   365.25689844815537
    >>> orbit.periapsis
-   np.float64(0.9833)
+   0.9833
    >>> orbit.apoapsis
-   np.float64(1.0167)
+   1.0167
 
 These are given in units of :math:`\mathrm{d}` and :math:`\mathrm{AU}`.
 
@@ -65,7 +65,7 @@ inclination, and argument of pericentre). Suppose that :math:`\Omega =
 
    >>> Omega, i, omega = 1., 1., 1.
    >>> orbit = dyad.Orbit(m, a, e, Omega, i, omega)
-
+   
 All methods and attributes are available as before.
 
 We may not always wish to work with true anomaly but instead prefer mean anomaly or eccentric anomaly.
@@ -75,13 +75,13 @@ Dyad allows us to convert between these quantities.
 
    >>> mu = dyad.mean_anomaly_from_true_anomaly(theta, e)
    >>> dyad.true_anomaly_from_mean_anomaly(mu, e)
-   np.float64(0.9999999999999999)   
+   1.0
    >>> eta = dyad.eccentric_anomaly_from_true_anomaly(theta, e)
    >>> dyad.true_anomaly_from_eccentric_anomaly(eta, e)
-   np.float64(0.9999999999999999)
+   1.0
    >>> eta = dyad.eccentric_anomaly_from_mean_anomaly(mu, e)
    >>> dyad.mean_anomaly_from_eccentric_anomaly(eta, e)
-   np.float64(0.9720848452026835)
+   0.9720848452026836
    
 To plot the evolution in time of any quantity first sample the mean anomaly
 uniformly on the interval :math:`[0, 2\pi)` and convert it to true
@@ -101,7 +101,7 @@ Plot this.
    >>> import matplotlib.pyplot as plt
    >>> fig, ax = plt.subplots()
    >>> ax.plot(mu/(2.*np.pi), r)
-   [<matplotlib.lines.Line2D object at 0x77691038bd00>]
+   [<matplotlib.lines.Line2D object at 0x...>]
    >>> ax.set_xlabel(r"$t/\mathrm{yr}$")
    Text(0.5, 0, '$t/\\mathrm{yr}$')
    >>> ax.set_ylabel(r"$r/\mathrm{au}$")
@@ -145,33 +145,33 @@ example, we may wish to know the orbital state for :math:`\theta = 1`.
 .. doctest:: python
 
    >>> binary.primary.state(1.)
-   array([ 3.26507954,  5.0850601 ,  0.        , -3.92917692,
-           4.94865639,  0.        ])
+   array([ 3.26507954,  5.0850601 ,  0.        , -3.92917692,  4.94865639,
+	   0.        ])
    >>> binary.secondary.state(1.)
-   array([-3.87408583, -6.0335312 , -0.        ,  4.6620514 ,
-          -5.87168532, -0.        ])
+   array([-3.87408583, -6.0335312 , -0.        ,  4.6620514 , -5.87168532,
+          -0.        ])
 
 Likewise the attributes. For example, the period and periapsis of the two stars.
    
 .. doctest:: python
 
    >>> binary.primary.period
-   np.float64(28902.666768527575)
+   28902.666768527575
    >>> binary.secondary.period
-   np.float64(28902.666768527575)
+   28902.666768527575
    >>> binary.primary.periapsis
-   np.float64(5.0933)
+   5.0933
    >>> binary.secondary.periapsis
-   np.float64(6.0433080208827725)
+   6.0433080208827725
 
 Equivalently, we might compute these last two values as follows.
 
 .. doctest:: python
 
    >>> binary.primary.radius(0.)
-   np.float64(5.093300000000001)
+   5.093300000000001
    >>> binary.secondary.radius(0.)
-   np.float64(6.043308020882773)
+   6.043308020882773
 
 Note that all properties of the primary and secondary orbits are
 computed in the observer's frame, with the origin at the primary focus.
