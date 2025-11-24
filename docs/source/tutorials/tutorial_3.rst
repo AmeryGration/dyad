@@ -19,7 +19,7 @@ The probability density functions
 =================================
 
 Let us plot the PDFs of each random variable in turn.
-In each case we will consider the average primary mass for each spectral type, namely :math:`m_{1}/\mathrm{M}_{\odot} = 1, 3.5, 7, 12, 28`, which we can specify now.
+In each case we will consider the average primary mass for each spectral type considered by Moe and Di Stefano, namely :math:`m_{1}/\mathrm{M}_{\odot} = 1, 3.5, 7, 12, 28`, which we can specify now.
 
 .. testsetup::
 
@@ -29,7 +29,7 @@ In each case we will consider the average primary mass for each spectral type, n
 .. doctest:: python
 
    >>> import numpy as np
-   >>> m_1 = np.array([1., 3.5, 7., 12, 28.])
+   >>> m_1 = np.array([1., 3.5, 7., 12.5, 28.])
 
 Log-period
 ----------
@@ -55,7 +55,7 @@ Now let us plot these values.
    ...     r"$M_{1} = 1\mathrm{M}_{\odot}$",
    ...     r"$M_{1} = 3.5\mathrm{M}_{\odot}$",
    ...     r"$M_{1} = 7\mathrm{M}_{\odot}$",
-   ...     r"$M_{1} = 12\mathrm{M}_{\odot}$",
+   ...     r"$M_{1} = 12.5\mathrm{M}_{\odot}$",
    ...     r"$M_{1} = 28\mathrm{M}_{\odot}$"
    ... ]
    >>> color = ["red", "orange", "green", "blue", "magenta"]

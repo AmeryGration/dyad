@@ -1,17 +1,17 @@
-Results of doctest builder run on 2025-11-24 11:14:36
+Results of doctest builder run on 2025-11-24 14:02:07
 =====================================================
 
-Document: tutorials/tutorial_1
+Document: tutorials/tutorial_3
 ------------------------------
 1 items passed all tests:
-  42 tests in python
-42 tests in 1 items.
-42 passed and 0 failed.
+  81 tests in python
+81 tests in 1 items.
+81 passed and 0 failed.
 Test passed.
 
 Doctest summary
 ===============
-   42 tests
+   81 tests
     0 failures in tests
     0 failures in setup code
     0 failures in cleanup code

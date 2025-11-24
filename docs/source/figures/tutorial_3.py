@@ -8,7 +8,7 @@ Code for tutorial_3.rst.
 # import plot
 
 import numpy as np
-m_1 = np.array([1., 3.5, 7., 12, 28.])
+m_1 = np.array([1., 3.5, 7., 12.5, 28.])
 
 import dyad.stats as stats
 log_p = np.linspace(-1., 9., 500)
@@ -19,7 +19,7 @@ label = [
     r"$M_{1} = 1\mathrm{M}_{\odot}$",
     r"$M_{1} = 3.5\mathrm{M}_{\odot}$",
     r"$M_{1} = 7\mathrm{M}_{\odot}$",
-    r"$M_{1} = 12\mathrm{M}_{\odot}$",
+    r"$M_{1} = 12.5\mathrm{M}_{\odot}$",
     r"$M_{1} = 28\mathrm{M}_{\odot}$"
 ]
 color = ["red", "orange", "green", "blue", "magenta"]
