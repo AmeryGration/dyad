@@ -769,39 +769,6 @@ class Orbit:
         """Get the area contained by the orbit"""
         return np.pi*self.semimajor_axis*self.semiminor_axis
 
-    # @property
-    # def energy(self):
-    #     """Get the body's specific total energy"""
-    #     res = self.potential(0.) + self.kinetic_energy(0.)
-
-    #     return res
-
-    # @property
-    # def angular_momentum_magnitude(self):
-    #     """Get the magnitude of the body's specific angular momentum"""
-    #     res = np.sqrt(
-    #         _constants.GRAV_CONST
-    #         *self.mass
-    #         *self.semimajor_axis
-    #         *(1. - self.eccentricity**2.)
-    #     )
-
-    #     return res
-
-    # @property
-    # def angular_momentum(self):
-    #     """Get the body's specific angular momentum"""
-    #     h_x = self.angular_momentum_magnitude*(
-    #         np.sin(self.longitude_of_ascending_node)*np.sin(self.inclination)
-    #     )
-    #     h_y = -self.angular_momentum_magnitude*(
-    #         np.cos(self.longitude_of_ascending_node)*np.sin(self.inclination)
-    #     )
-    #     h_z = self.angular_momentum_magnitude*np.cos(self.inclination)
-    #     res = np.hstack([[h_x, h_y, h_z]]).T
-
-    #     return res
-
     @property
     def period(self):
         """Get the orbital period"""
@@ -1039,66 +1006,6 @@ class Orbit:
 
         """
         return np.hstack([self._position(theta), self._velocity(theta)])
-
-    # def potential(self, theta):
-    #     """Return the gravitational potential at the body's position
-
-    #     Parameters
-    #     ----------
-
-    #     theta : array-like
-
-    #         True anomaly
-
-    #     Returns
-    #     -------
-
-    #     res : ndarray
-
-    #         Potential
-
-    #     Examples
-    #     --------
-
-    #     >>> import dyad
-    #     >>> orbit = dyad.Orbit(1., 1., 0.5)
-    #     >>> orbit.potential([0., 1.])
-    #     array([-0.00059182, -0.00050114])
-        
-    #     """
-    #     res = -_constants.GRAV_CONST*self.mass/self.radius(theta)
-
-    #     return res
-
-    # def kinetic_energy(self, theta):
-    #     """Return the body's specific kinetic energy
-
-    #     Parameters
-    #     ----------
-
-    #     theta : array-like
-
-    #         True anomaly
-
-    #     Returns
-    #     -------
-
-    #     res : ndarray
-
-    #         Kinetic energy
-
-    #     Examples
-    #     --------
-
-    #     >>> import dyad
-    #     >>> orbit = dyad.Orbit(1., 1., 0.5)
-    #     >>> orbit.kinetic_energy([0., 1.])
-    #     array([3.98933787e+09, 3.17427591e+09])
-        
-    #     """
-    #     res = 0.5*self.speed(theta)**2.
-
-    #     return res
 
 
 class TwoBody:
