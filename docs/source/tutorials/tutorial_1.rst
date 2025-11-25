@@ -21,7 +21,7 @@ The state (i.e. position and velocity) of the body is specified by its true anom
    array([ 0.53532139,  0.83371367,  0.        , -0.01447709,  0.00958295,
            0.        ])
 
-This is given in the format :math:`(x/\mathrm{AU}, y/\mathrm{AU}, z/\mathrm{AU}, v_{x}/\mathrm{AU}\,\mathrm{d}^{-1}, v_{y}/\mathrm{AU}\,\mathrm{d}^{-1}, v_{z}/\mathrm{AU}\,\mathrm{d}^{-1})`. We can also compute the radius and speed of the body, which are given in units of :math:`\mathrm{AU}` and :math:`\mathrm{km}~\mathrm{s}^{-1}`.
+This is given in the format :math:`(x/\mathrm{AU}, y/\mathrm{AU}, z/\mathrm{AU}, v_{x}/\mathrm{AU}~\mathrm{d}^{-1}, v_{y}/\mathrm{AU}~\mathrm{d}^{-1}, v_{z}/\mathrm{AU}~\mathrm{d}^{-1})`. We can also compute the radius and speed of the body, which are given in units of :math:`\mathrm{AU}` and :math:`\mathrm{AU}~\mathrm{d}^{-1}`.
 
 .. doctest:: python
 
