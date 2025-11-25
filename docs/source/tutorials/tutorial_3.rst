@@ -4,7 +4,7 @@
 Zero-age main-sequence binary systems
 *************************************
 
-Moe and Di Stefano [MS17]_ reported empirical distributions for the period, :math:`P`, mass-ratio, :math:`Q`, and eccentricity, :math:`E`, of binary systems consisting of two zero-age main-sequence (ZAMS) stars with primaries of types O, B, A, F, and G, i.e. with primaries of mass :math:`M_{1}/\text{M}_{\odot} \in [0.8, 40]`. They determined these by commpiling observations of binary systems in nearby open clusters and stellar associations as well as in volume-limited surveys of the solar neighbourhood.
+Moe and Di Stefano [MS17]_ reported empirical distributions for the period, :math:`P`, mass-ratio, :math:`Q`, and eccentricity, :math:`E`, of binary systems consisting of two zero-age main-sequence (ZAMS) stars with primaries of types O, B, A, F, and G, i.e. with primaries of mass :math:`M_{1}/\text{M}_{\odot} \in [0.8, 40]`. They determined these by compiling observations of binary systems in nearby open clusters and stellar associations as well as in volume-limited surveys of the solar neighbourhood.
 
 They found that the period is dependent on primary mass while the mass ratio and eccentricity are dependent on both period and primary mass.
 Alongside the empirical distributions Moe and Di Stefano gave formulae for the corresponding probability density functions, which Dyad uses to implement the random variables
@@ -19,7 +19,7 @@ The probability density functions
 =================================
 
 Let us plot the PDFs of each random variable in turn.
-In each case we will consider the average primary mass for each spectral type considered by Moe and Di Stefano, namely :math:`m_{1}/\mathrm{M}_{\odot} = 1, 3.5, 7, 12, 28`, which we can specify now.
+In each case we will consider the average primary mass for each spectral type considered by Moe and Di Stefano, namely :math:`m_{1}/\mathrm{M}_{\odot} = 1, 3.5, 7, 12.5, 28`, which we can specify now.
 
 .. testsetup::
 
