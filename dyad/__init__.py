@@ -100,8 +100,7 @@ Functions
    eccentric_anomaly_from_mean_anomaly
 
 """
+from . import _constants
 
 from ._core import *
-
 from . import stats
-from . import constants

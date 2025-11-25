@@ -12,5 +12,4 @@ Subpackages
 .. toctree::
    :maxdepth: 1
 
-   dyad.constants
    dyad.stats

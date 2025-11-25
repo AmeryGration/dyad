@@ -26,7 +26,7 @@ setup(
     author="Amery Gration",
     author_email="amerygration@proton.me",
     url="https://github.com/AmeryGration/dyad",
-    packages=["dyad", "dyad.constants", "dyad.stats"],
+    packages=["dyad", "dyad.stats"],
     license_file="COPYING",
     keywords=[
         # List of keywords:

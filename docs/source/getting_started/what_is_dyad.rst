@@ -33,9 +33,7 @@ The basics
 Units
 =====
 
-Dyad requires mass to be specified in units of solar mass, :math:`\mathrm{M}_{\odot}`, distance in units of astronomical unit, :math:`\mathrm{AU}`, and time in units of days, :math:`\mathrm{d}`.
-In this system the gravitational constant is :math:`\mathrm{G} = 2.959 \times 10^{-4} \mathrm{AU}^{3}\mathrm{M}_{\odot}\mathrm{d}^{-2}`.
-However, speed is in units of kilometers per second, :math:`\mathrm{km}~\mathrm{s}^{-1}`.
+Dyad uses the astronomical system of units: the unit of mass is solar mass, :math:`\mathrm{M}_{\odot}`, the unit of distance is the astronomical unit, :math:`\mathrm{AU}`, and the unit of time is the day, :math:`\mathrm{d}`.
 
 References
 ==========

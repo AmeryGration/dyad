@@ -18,8 +18,8 @@ The state (i.e. position and velocity) of the body is specified by its true anom
 
    >>> theta = 1.
    >>> orbit.state(theta)
-   array([  0.53532139,   0.83371367,   0.        , -25.0664496 ,
-	   16.59245592,   0.        ])
+   array([ 0.53532139,  0.83371367,  0.        , -0.01447709,  0.00958295,
+           0.        ])
 
 This is given in the format :math:`(x/\mathrm{AU}, y/\mathrm{AU}, z/\mathrm{AU}, v_{x}/\mathrm{km}\mathrm{s}^{-1}, v_{y}/\mathrm{km}\mathrm{s}^{-1}, v_{z}/\mathrm{km}\mathrm{s}^{-1})`. We can also compute the radius and speed of the body, which are given in units of :math:`\mathrm{AU}` and :math:`\mathrm{km}~\mathrm{s}^{-1}`.
 
@@ -28,7 +28,7 @@ This is given in the format :math:`(x/\mathrm{AU}, y/\mathrm{AU}, z/\mathrm{AU},
    >>> orbit.radius(theta)
    0.9907812427855317
    >>> orbit.speed(theta)
-   30.06054704930534
+   0.017361418667972937
 
 An instance of the class :class:`dyad.Orbit` also has a number of
 attributes that represent constants of the orbit. These include the arguments with which :class:`dyad.Orbit` was called.
@@ -145,11 +145,11 @@ example, we may wish to know the orbital state for :math:`\theta = 1`.
 .. doctest:: python
 
    >>> binary.primary.state(1.)
-   array([ 3.26507954,  5.0850601 ,  0.        , -3.92917692,  4.94865639,
-	   0.        ])
+   array([ 3.26507954e+00,  5.08506010e+00,  0.00000000e+00, -2.26928956e-03,
+	   2.85808822e-03,  0.00000000e+00])
    >>> binary.secondary.state(1.)
-   array([-3.87408583, -6.0335312 , -0.        ,  4.6620514 , -5.87168532,
-          -0.        ])
+   array([-3.87408583e+00, -6.03353120e+00, -0.00000000e+00,  2.69255999e-03,
+	  -3.39118203e-03, -0.00000000e+00])
 
 Likewise the attributes. For example, the period and periapsis of the two stars.
    

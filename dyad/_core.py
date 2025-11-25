@@ -25,7 +25,7 @@ __all__ = [
 import dyad
 import numpy as np
 import scipy as sp
-import dyad.constants as constants
+import dyad._constants as _constants
 
 def _check_mass(m):
     if not np.all(np.isreal(m)):
@@ -118,7 +118,7 @@ def semimajor_axis_from_period(p, m_1, m_2):
     p = _check_period(p)
     m_1 = _check_mass(m_1)
     m_2 = _check_mass(m_2)
-    res = np.cbrt(constants.GRAV_CONST*(m_1 + m_2)*p**2./(4.*np.pi**2.))
+    res = np.cbrt(_constants.GRAV_CONST*(m_1 + m_2)*p**2./(4.*np.pi**2.))
     res = res[()]
 
     return res
@@ -166,7 +166,7 @@ def period_from_semimajor_axis(a, m_1, m_2):
     a = np.asarray(a)
     m_1 = np.asarray(m_1)
     m_2 = np.asarray(m_2)
-    res = np.sqrt(4.*np.pi**2.*a**3./(constants.GRAV_CONST*(m_1 + m_2)))
+    res = np.sqrt(4.*np.pi**2.*a**3./(_constants.GRAV_CONST*(m_1 + m_2)))
     res = res[()]
 
     return res
@@ -780,12 +780,11 @@ class Orbit:
     # def angular_momentum_magnitude(self):
     #     """Get the magnitude of the body's specific angular momentum"""
     #     res = np.sqrt(
-    #         constants.GRAV_CONST
+    #         _constants.GRAV_CONST
     #         *self.mass
     #         *self.semimajor_axis
     #         *(1. - self.eccentricity**2.)
     #     )
-    #     res = res*constants.KPS
 
     #     return res
 
@@ -809,7 +808,7 @@ class Orbit:
         return (
             2.*np.pi*np.sqrt(
                 self.semimajor_axis**3.
-                /(constants.GRAV_CONST*self.mass)
+                /(_constants.GRAV_CONST*self.mass)
             )
         )
 
@@ -920,14 +919,14 @@ class Orbit:
         >>> import dyad
         >>> orbit = dyad.Orbit(1., 1., 0.5)
         >>> orbit.speed([0., 1.])
-        array([51.58859953, 46.01778013])
+        array([0.02979491, 0.02657749])
 
         """
         return np.sqrt(
-            constants.GRAV_CONST
+            _constants.GRAV_CONST
             *self.mass
             *(2./self.radius(theta) - 1./self.semimajor_axis)
-        )*constants.KPS
+        )
 
     def _position(self, theta):
         r = self.radius(theta)
@@ -1008,7 +1007,7 @@ class Orbit:
             + self.eccentricity*np.cos(self.argument_of_pericentre)
         )
 
-        return np.hstack([[v_x, v_y, v_z]]).T*constants.KPS
+        return np.hstack([[v_x, v_y, v_z]]).T
 
     def state(self, theta):
         """Return the orbital state vector in Cartesian coordinates
@@ -1033,10 +1032,10 @@ class Orbit:
         >>> import dyad
         >>> orbit = dyad.Orbit(1., 1., 0.5)
         >>> orbit.state([0., 1.])
-        array([[  0.5       ,   0.        ,   0.        ,  -0.        ,
-                 51.58859953,   0.        ],
-               [  0.31903819,   0.49687255,   0.        , -28.94020643,
-                 35.7784927 ,   0.        ]])
+        array([[ 0.5       ,  0.        ,  0.        , -0.        ,  0.02979491,
+                 0.        ],
+               [ 0.31903819,  0.49687255,  0.        , -0.01671437,  0.02066381,
+                 0.        ]])
 
         """
         return np.hstack([self._position(theta), self._velocity(theta)])
@@ -1067,7 +1066,7 @@ class Orbit:
     #     array([-0.00059182, -0.00050114])
         
     #     """
-    #     res = -constants.GRAV_CONST*self.mass/self.radius(theta)
+    #     res = -_constants.GRAV_CONST*self.mass/self.radius(theta)
 
     #     return res
 
@@ -1098,7 +1097,6 @@ class Orbit:
         
     #     """
     #     res = 0.5*self.speed(theta)**2.
-    #     res = res*constants.KPS**2.
 
     #     return res
 
@@ -1226,7 +1224,7 @@ class TwoBody:
     #         2.*np.pi
     #         *np.sqrt(
     #             self.semimajor_axis**3.
-    #             /(constants.GRAV_CONST*self.mass)
+    #             /(_constants.GRAV_CONST*self.mass)
     #         )
     #     )
 

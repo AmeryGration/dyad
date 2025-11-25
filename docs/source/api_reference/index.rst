@@ -10,7 +10,6 @@ API definition
 The following packages and subpackages are public.
 
 * :mod:`dyad`
-* :mod:`dyad.constants`
 * :mod:`dyad.stats`
 
 .. toctree::
@@ -18,6 +17,5 @@ The following packages and subpackages are public.
    :hidden:
    :titlesonly:
 
-   dyad.constants <constants>
    dyad.stats <stats>
 
