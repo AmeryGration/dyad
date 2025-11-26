@@ -115,6 +115,42 @@ class TestFunctions(unittest.TestCase):
     ):
         result = dyad.secondary_semimajor_axis_from_primary_semimajor_axis(*x)
         self.assertAlmostEqual(result, target)
+        
+    @parameterized.expand(
+        data.delaunay_elements_from_orbital_elements
+    )
+    def test_delaunay_elements_from_orbital_elements(
+            self, x, target
+    ):
+        result = dyad.delaunay_elements_from_orbital_elements(*x)
+        np.testing.assert_almost_equal(result, target)
+        
+    @parameterized.expand(
+        data.orbital_elements_from_delaunay_elements
+    )
+    def test_orbital_elements_from_delaunay_elements(
+            self, x, target
+    ):
+        result = dyad.orbital_elements_from_delaunay_elements(*x)
+        np.testing.assert_almost_equal(result, target)
+        
+    @parameterized.expand(
+        data.modified_delaunay_elements_from_orbital_elements
+    )
+    def test_modified_delaunay_elements_from_orbital_elements(
+            self, x, target
+    ):
+        result = dyad.modified_delaunay_elements_from_orbital_elements(*x)
+        np.testing.assert_almost_equal(result, target)
+        
+    @parameterized.expand(
+        data.orbital_elements_from_modified_delaunay_elements
+    )
+    def test_orbital_elements_from_modified_delaunay(
+            self, x, target
+    ):
+        result = dyad.orbital_elements_from_modified_delaunay_elements(*x)
+        np.testing.assert_almost_equal(result, target)
 
 
 class TestOrbit(unittest.TestCase):
