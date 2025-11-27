@@ -13,9 +13,12 @@ with physical properties that follow a given distribution. Dyad allows
 the user to choose from a library of such distributions. This library
 includes (but is not limited to):
 
-* the distributions published by Duquennoy and Mayor [DM91]_ and Moe and Stefano [MS17]_ for the mass-ratios and orbital elements of binary stars in the Solar neighbourhood, and
+* the distributions published by Duquennoy and Mayor [DM91]_ and Moe
+  and Stefano [MS17]_ for the mass-ratios and orbital elements of
+  binary stars in the Solar neighbourhood, and
 
-* the distributions published by Chabrier [C03]_, Kroupa [K02]_, and Salpeter [S55]_ for the initial stellar mass.
+* the distributions published by Chabrier [C03]_, Kroupa [K02]_, and
+  Salpeter [S55]_ for the initial stellar mass.
 
 For a full list of available distributions see the API documentation
 for :mod:`dyad.stats`. Dyad also allows the user to compute the
@@ -33,7 +36,30 @@ The basics
 Units
 =====
 
-Dyad uses the astronomical system of units: the unit of mass is solar mass, :math:`\mathrm{M}_{\odot}`, the unit of distance is the astronomical unit, :math:`\mathrm{AU}`, and the unit of time is the day, :math:`\mathrm{d}`.
+Dyad uses the astronomical system of units: the unit of mass is solar
+mass, :math:`\mathrm{M}_{\odot}`, the unit of distance is the
+astronomical unit, :math:`\mathrm{AU}`, and the unit of time is the
+day, :math:`\mathrm{d}`. In this system the gravitational constant is
+:math:`\text{G} = 2.959122080881949 \times
+10^{-4}~\text{M}_{\odot}~\text{d}^{2}~\text{AU}^{-3}`. :numref:`table-units`
+shows the units of derived quantities and their equivalent SI values.
+
+.. _table-units:
+.. table:: The units of derived quantities in Dyad.
+
+   +---------------------------+--------------------------------------+---------------------------------------------------------------------+
+   | Quantity                  | Unit                                 | Equivalent SI value                                                 |
+   +===========================+======================================+=====================================================================+
+   | speed                     | :math:`\text{AU}~\text{d}^{-1}`      | :math:`1731456.8368055555~\text{m}~\text{s}^{-1}`                   |
+   +---------------------------+--------------------------------------+---------------------------------------------------------------------+
+   | action                    | :math:`\text{AU}^{2}~\text{d}^{-1}`  | :math:`2.590222559950685 \times 10^{17}~\text{m}^{2}~\text{s}^{-1}` |
+   +---------------------------+--------------------------------------+---------------------------------------------------------------------+
+   | potential                 | :math:`\text{AU}^{2}~\text{d}^{-2}`  | :math:`2997942777720.7007~\text{m}^{2}~\text{s}^{-2}`               |
+   +---------------------------+--------------------------------------+---------------------------------------------------------------------+
+   | specific energy           | :math:`\text{AU}^{2}~\text{d}^{-2}`  | :math:`2997942777720.7007~\text{m}^{2}~\text{s}^{-2}`               |
+   +---------------------------+--------------------------------------+---------------------------------------------------------------------+
+   | specific angular momentum | :math:`\text{AU}^{2}~\text{d}^{-1}`  | :math:`2.590222559950685 \times 10^{17}~\text{m}^{2}~\text{s}^{-1}` |
+   +---------------------------+--------------------------------------+---------------------------------------------------------------------+
 
 References
 ==========
