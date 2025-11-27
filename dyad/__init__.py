@@ -9,10 +9,6 @@ Dyad (:mod:`dyad`)
 .. include:: ../../../README.md
    :end-before: **Website:**
 
-Distances, times, speeds, and masses are given in units of
-:math:`\mathrm{au}`, :math:`\mathrm{day}`,
-:math:`\mathrm{km}~\mathrm{s}^{-1}`, and :math:`\mathrm{M}_{\odot}`.
-
 The geometry of an orbit is shown in Figures :numref:`orbit` and
 :numref:`orientation`. That orbit is an ellipse with *semimajor axis*,
 :math:`a` and *eccentricity*, :math:`e`. The body's phase is described
@@ -98,6 +94,10 @@ Functions
    mean_anomaly_from_true_anomaly
    eccentric_anomaly_from_true_anomaly
    eccentric_anomaly_from_mean_anomaly
+   delaunay_elements_from_orbital_elements
+   orbital_elements_from_delaunay_elements
+   modified_delaunay_elements_from_orbital_elements
+   orbital_elements_from_modified_delaunay_elements
 
 """
 from . import _constants
