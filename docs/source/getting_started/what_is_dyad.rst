@@ -15,7 +15,7 @@ includes (but is not limited to):
 
 * the distributions published by Duquennoy and Mayor [DM91]_ and Moe
   and Stefano [MS17]_ for the mass-ratios and orbital elements of
-  binary stars in the Solar neighbourhood, and
+  binary stars and
 
 * the distributions published by Chabrier [C03]_, Kroupa [K02]_, and
   Salpeter [S55]_ for the initial stellar mass.
