@@ -80,7 +80,7 @@ Now let us plot these values.
    :figwidth: 75%
    :align: center
 
-   The conditional PDF of log-period, :math:`\log_{10}(P)` given primary mass, :math:`M_{1}`.
+   The conditional PDF of log-period, :math:`\log_{10}(P)` given primary mass, :math:`M_{1}`. Compare this to the lower panel of Figure 37 in the paper by Moe and Di Stefano [MS17]_.
 
 We may also evaluate the conditional PDF of period (rather than log-period)  given primary mass, :math:`f_{P|M_{1}}`, which is nonzero between :math:`P/\mathrm{d} = 10^{0.2}` and :math:`P/\mathrm{d} = 10^{8}`
 where :math:`M_{1}/\mathrm{M}_{\odot} \in [0.8, 40]`.
