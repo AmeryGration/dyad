@@ -165,7 +165,7 @@ A complete population
 Let us synthesize the complete orbital properties of a population of binary stars, namely the mass, mass ratio, and orbital elements.
 These have been determined for binary systems with sun-like primary stars in the solar neighbourhood by Duquennoy and Mayor [DM91]_.
 According to Duquennoy and Mayor the mass ratio and period (which we may convert to semimajor axis) are independent of all other properties while the eccentricity is dependent on period.
-A system with period no longer than the circularization period of :math:`11.6~\text{d}` has vanishing eccentricity.
+A system with period no longer than the circularization period of :math:`11.6~\text{d}` has vanishing eccentricity (Sec. 7.2 Duquennoy and Mayor, 1991).
 Only a system with a period longer than this has an eccentricity that may be treated as a random variable.
 However, that random variable is itself dependent on period.
 
