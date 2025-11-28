@@ -170,7 +170,7 @@ class TestOrbit(unittest.TestCase):
         self.assertRaises(ValueError, dyad.Orbit, *x)
 
     def test_mass(self):
-        result = self.orbit.mass
+        result = self.orbit.central_mass
         target = self.m
 
         self.assertEqual(result, target)

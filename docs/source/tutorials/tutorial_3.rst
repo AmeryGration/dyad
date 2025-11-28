@@ -309,13 +309,12 @@ First convert the periods to their equivalent primary-star semimajor axes.
 
    >>> import dyad
    >>> a = dyad.semimajor_axis_from_period(p, m_1, m_1*q)
-   >>> a_1 = dyad.primary_semimajor_axis_from_semimajor_axis(a, q)
 
 And instantiate a :class:`dyad.TwoBody` object.
 
 .. doctest:: python
 
-   >>> binary = dyad.TwoBody(m_1, q, a_1, e, Omega, i, omega)
+   >>> binary = dyad.TwoBody(m_1, q*m_1, a, e, Omega, i, omega)
 
 Before, we inspected the state of a single member of this population for a given true anomaly.
 This time, let us compute the speeds and radii of all primary and secondary stars and plot their histograms.

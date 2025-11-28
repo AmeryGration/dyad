@@ -212,15 +212,14 @@ The class :class:`dyad.TwoBody` can serve as a container for these values. First
 .. doctest:: python
 
    >>> a = dyad.semimajor_axis_from_period(p, m_1, m_1*q)
-   >>> a_1 = dyad.primary_semimajor_axis_from_semimajor_axis(a, q)
 
 Then instantiate a :class:`dyad.TwoBody` object.
 
 .. doctest:: python
 
-   >>> binary = dyad.TwoBody(m_1, q, a_1, e, Omega, i, omega)
+   >>> binary = dyad.TwoBody(m_1, m_1*q, a, e, Omega, i, omega)
 
-We can now access the methods and attributes of `binary.primary` and `binary.secondary`. For example, their states.
+We can now access the methods and attributes of ``binary.primary`` and ``binary.secondary``. For example, their states.
 
 .. doctest:: python
 

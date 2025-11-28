@@ -1184,48 +1184,73 @@ class Orbit:
         i = _check_angle(i)
         omega = _check_angle(omega)
 
-        self._mass = m
+        self._central_mass = m
         self._semimajor_axis = a
         self._eccentricity = e
         self._longitude_of_ascending_node = Omega
         self._inclination = i
         self._argument_of_pericentre = omega
 
-    @property
-    def orbital_elements(self):
+    # @property
+    def orbital_elements(self, theta=None):
         """Get the orbital elements of the orbit"""
-        res = (
-            self.semimajor_axis,
-            self.eccentricity,
-            self.longitude_of_ascending_node,
-            self.inclination,
-            self.argument_of_pericentre
-        )
+        if theta == None:
+            res = (
+                self.semimajor_axis,
+                self.eccentricity,
+                self.longitude_of_ascending_node,
+                self.inclination,
+                self.argument_of_pericentre,
+            )
+        else:
+            res = (
+                self.semimajor_axis,
+                self.eccentricity,
+                self.longitude_of_ascending_node,
+                self.inclination,
+                self.argument_of_pericentre,
+                theta
+            )
+        res = np.array(list(np.broadcast(*res))).squeeze()
 
         return res
 
-    @property
-    def delaunay_elements(self):
+    # @property
+    def delaunay_elements(self, theta=None):
         """Get the Delaunay elements of the orbit"""
-        res = delaunay_elements_from_orbital_elements(
-            *self.orbital_elements, theta=0., m=self.mass
-        )[:-1]
+        if theta:
+            res = delaunay_elements_from_orbital_elements(
+                *self.orbital_elements(theta=theta).T, m=self.central_mass
+            )
+        else:
+            res = delaunay_elements_from_orbital_elements(
+                *self.orbital_elements().T, theta=0., m=self.central_mass
+            )
+            res = res[:-1]
+        res = np.array(list(np.broadcast(*res))).squeeze()
 
         return res
 
-    @property
-    def modified_delaunay_elements(self):
+    # @property
+    def modified_delaunay_elements(self, theta=None):
         """Get the modified Delaunay elements of the orbit"""
-        res = modified_delaunay_elements_from_orbital_elements(
-            *self.orbital_elements, theta=0., m=self.mass
-        )[:-1]
+        if theta:
+            res = modified_delaunay_elements_from_orbital_elements(
+                *self.orbital_elements(theta=theta).T, m=self.central_mass
+            )
+        else:
+            res = modified_delaunay_elements_from_orbital_elements(
+                *self.orbital_elements().T, theta=0., m=self.central_mass
+            )
+            res = res[:-1]
+        res = np.array(list(np.broadcast(*res))).squeeze()
 
         return res
 
     @property
-    def mass(self):
+    def central_mass(self):
         """Get the central mass"""
-        return self._mass
+        return self._central_mass
 
     @property
     def semimajor_axis(self):
@@ -1283,7 +1308,7 @@ class Orbit:
         return (
             2.*np.pi*np.sqrt(
                 self.semimajor_axis**3.
-                /(_constants.GRAV_CONST*self.mass)
+                /(_constants.GRAV_CONST*self.central_mass)
             )
         )
 
@@ -1292,7 +1317,7 @@ class Orbit:
         """Get the eccentricity vector of the orbit"""
         res = (
             np.cross(self._velocity(0.), self.angular_momentum)
-            /(_constants.GRAV_CONST*self.mass)
+            /(_constants.GRAV_CONST*self.central_mass)
             - self._position(0.)/self.radius(0.)
         )
 
@@ -1304,7 +1329,7 @@ class Orbit:
         res = (
             np.cross(self._velocity(0.), self.angular_momentum)
             - (
-                _constants.GRAV_CONST*self.mass*self._position(0.)
+                _constants.GRAV_CONST*self.central_mass*self._position(0.)
                 /self.radius(0.)
             )
         )
@@ -1323,7 +1348,7 @@ class Orbit:
         """Get the magnitude of the body's specific angular momentum"""
         res = np.sqrt(
             _constants.GRAV_CONST
-            *self.mass
+            *self.central_mass
             *self.semimajor_axis
             *(1. - self.eccentricity**2.)
         )
@@ -1370,7 +1395,7 @@ class Orbit:
         array([-0.00059182, -0.00050114])
         
         """
-        res = -_constants.GRAV_CONST*self.mass/self.radius(theta)
+        res = -_constants.GRAV_CONST*self.central_mass/self.radius(theta)
 
         return res
 
@@ -1516,7 +1541,7 @@ class Orbit:
         """
         return np.sqrt(
             _constants.GRAV_CONST
-            *self.mass
+            *self.central_mass
             *(2./self.radius(theta) - 1./self.semimajor_axis)
         )
 
@@ -1638,7 +1663,7 @@ class Orbit:
         """Get the eccentricity vector of the orbit"""
         res = (
             np.cross(self._velocity(0.), self.angular_momentum)
-            /(_constants.GRAV_CONST*self.mass)
+            /(_constants.GRAV_CONST*self.central_mass)
             - self._position(0.)/self.radius(0.)
         )
 
@@ -1650,7 +1675,7 @@ class Orbit:
         res = (
             np.cross(self._velocity(0.), self.angular_momentum)
             - (
-                _constants.GRAV_CONST*self.mass*self._position(0.)
+                _constants.GRAV_CONST*self.central_mass*self._position(0.)
                 /self.radius(0.)
             )
         )
@@ -1669,7 +1694,7 @@ class Orbit:
         """Get the magnitude of the body's specific angular momentum"""
         res = np.sqrt(
             _constants.GRAV_CONST
-            *self.mass
+            *self.central_mass
             *self.semimajor_axis
             *(1. - self.eccentricity**2.)
         )
@@ -1716,7 +1741,7 @@ class Orbit:
         array([-0.00059182, -0.00050114])
         
         """
-        res = -_constants.GRAV_CONST*self.mass/self.radius(theta)
+        res = -_constants.GRAV_CONST*self.central_mass/self.radius(theta)
 
         return res
 
@@ -1750,9 +1775,16 @@ class Orbit:
 
         return res
 
-class TwoBody:
+class TwoBody(Orbit):
     """A class representing the elliptical orbits of a two-body system
 
+    Represents the dynamics of a bound gravitational two-body
+    system.
+
+    Relative orbit
+
+    Centre-of-mass 
+    
     Represents the two orbits of a bound gravitational two-body
     system. The orbit of the more-massive (resp. less-massive) body is
     defined by its semimajor axis, :math:`a_{1}`
@@ -1769,42 +1801,40 @@ class TwoBody:
     Parameters
     ----------
 
-    m: array-like
+    m_{1}: array-like
 
-        Mass of the more-massive body, :math:`m_{1}`.
+        Mass of the first body, :math:`m_{1}`.
 
-    q: array-like
-    
-        Ratio of the less-massive star to the more-massive star,
-        :math:`q := m_{2}/m_{1}`.
+    m_{2}: array-like
+
+        Mass of the second body, :math:`m_{2}`.
 
     a: array-like
 
-        Semimajor axis of the more-massive body's orbit,
-        :math:`a_{1}`.
+        Semimajor axis of the relative orbit, :math:`a`.
 
     e: array-like
     
-        Eccentricity of the more-massive body's orbit, :math:`e_{1}`.
+        Eccentricity of the relative orbit, :math:`e`.
 
     Omega: array-like
 
-        Longitude of the ascending node of the more-massive body's
-        orbit, :math:`\Omega_{1}`.
+        Longitude of the ascending node of the relative orbit,
+        :math:`\Omega`.
 
     i: array-like
 
-        Inclination of the more-massive body's orbit, :math:`i_{1}`.
+        Inclination of the relative orbit, :math:`i`.
 
     omega: array-like
 
-        Argument of pericentre of the more-massive body's orbit,
-        :math:`\omega_{1}`.
+        Argument of pericentre of the relative orbit, :math:`\omega`.
 
     Examples
     --------
 
-    Scalar parameters defining a single binary system in the perifocal plane.
+    Scalar parameters defining a single binary system in the perifocal
+    plane.
 
     >>> dyad.TwoBody(1., 1., 1., 0.)
     <dyad._core.TwoBody object at 0x...>
@@ -1820,65 +1850,44 @@ class TwoBody:
     >>> dyad.TwoBody(m, q, a, e)
     <dyad._core.TwoBody object at 0x...>
 
+    The relative position and velocity of the secondary star with
+    respect to the primary star.
+
+    >>> dyad.TwoBody(1., 1., 1., 0.).state(1.)
+    array([ 0.54030231,  0.84147098,  0.        , -0.02047084,  0.01314417,
+            0.        ])
+
+    The position and velocity of the primary and secondary stars with
+    respect to the centre-of-mass frame.
+
+    >>> dyad.TwoBody(1., 1., 1., 0.).primary.state(1.)
+    array([ 0.27015115,  0.42073549,  0.        , -0.01023542,  0.00657209,
+            0.        ])
+    >>> dyad.TwoBody(1., 1., 1., 0.).secondary.state(1.)
+    array([-0.27015115, -0.42073549, -0.        ,  0.01023542, -0.00657209,
+           -0.        ])
+
     """
-    def __init__(self, m, q, a, e, Omega=0., i=0., omega=0.):
-        m = np.asarray(m)[()]
-        a = np.asarray(a)[()]
-        e = np.asarray(e)[()]
-        Omega = np.asarray(Omega)[()]
-        i = np.asarray(i)[()]
-        omega = np.asarray(omega)[()]
-        m = _check_mass(m)
-        a = _check_semimajor_axis(a)
-        e = _check_eccentricity(e)
-        Omega = _check_angle(Omega)
-        i = _check_angle(i)
-        omega = _check_angle(omega)
-
-        self._mass = m
-        self._semimajor_axis = a
-        self._eccentricity = e
-        self._longitude_of_ascending_node = Omega
-        self._inclination = i
-        self._argument_of_pericentre = omega
-
-        m_1 = m
-        m_2 = q*m_1
+    def __init__(self, m_1, m_2, a, e, Omega=0., i=0., omega=0.):
+        super().__init__(m_1 + m_2, a, e, Omega, i, omega)
+        self.reduced_mass = m_1*m_2/(m_1 + m_2)
         self.primary = Orbit(
             m_2**3./(m_1 + m_2)**2.,
-            a,
+            # m_1*q**3/(1. + q)**2.,
+            primary_semimajor_axis_from_semimajor_axis(a, m_2/m_1),
             e,
             Omega,
             i,
             omega
         )
+        self.primary.mass = m_1
         self.secondary = Orbit(
             m_1**3./(m_1 + m_2)**2.,
-            a/q,
+            # m_1/(1. + q)**2.,
+            secondary_semimajor_axis_from_semimajor_axis(a, m_2/m_1),
             e,
             Omega,
             i,
             omega + np.pi
         )
-
-    # @property
-    # def energy(self):
-    #     """Get the total energy of the orbit"""
-    #     raise NotImplementedError
-
-    # @property
-    # def period(self):
-    #     """Get the orbital period"""
-    #     return (
-    #         2.*np.pi
-    #         *np.sqrt(
-    #             self.semimajor_axis**3.
-    #             /(_constants.GRAV_CONST*self.mass)
-    #         )
-    #     )
-
-    # @property
-    # def total_mass(self):
-    #     """Get the total energy of the orbit"""
-    #     return (1. + q)*self._mass
-
+        self.secondary.mass = m_2
