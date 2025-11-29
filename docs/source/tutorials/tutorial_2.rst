@@ -132,7 +132,7 @@ Then plot the results.
    The probability density function for true anomaly.
 
 In some cases there is a choice of distribution. These are kept in the
-submodules :mod:`dyad.stats.eccentricity`, :mod:`dyad.stats.period`,
+submodules :mod:`dyad.stats.eccentricity`,
 :mod:`dyad.stats.log_period`, :mod:`dyad.stats.mass`,
 :mod:`dyad.stats.mass_ratio`, :mod:`dyad.stats.semimajor_axis`. For
 example, when considering the eccentricity of an orbit we may wish to
@@ -207,7 +207,7 @@ Note that, since the eccentricities are all different, we do not pass a size arg
    >>> i = dyad.stats.inclination.rvs(size=n)
    >>> omega = dyad.stats.argument_of_pericentre().rvs(size=n)
 
-The class :class:`dyad.TwoBody` can serve as a container for these values. First convert the periods to their equivalent primary-star semimajor axes.
+The class :class:`dyad.TwoBody` can serve as a container for these values. First convert the periods to their equivalent semimajor axes.
 
 .. doctest:: python
 

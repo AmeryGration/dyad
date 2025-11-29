@@ -6,14 +6,18 @@ Zero-age main-sequence binary systems
 
 Moe and Di Stefano [MS17]_ reported empirical distributions for the period, :math:`P`, mass-ratio, :math:`Q`, and eccentricity, :math:`E`, of binary systems consisting of two zero-age main-sequence (ZAMS) stars with primaries of types O, B, A, F, and G, i.e. with primaries of mass :math:`M_{1}/\text{M}_{\odot} \in [0.8, 40]`. They determined these by compiling observations of binary systems in nearby open clusters and stellar associations as well as in volume-limited surveys of the solar neighbourhood.
 
-They found that the period is dependent on primary mass while the mass ratio and eccentricity are dependent on both period and primary mass.
-Alongside the empirical distributions Moe and Di Stefano gave formulae for the corresponding probability density functions, which Dyad uses to implement the random variables
+They found that the period is dependent on primary mass while the mass
+ratio and eccentricity are dependent on both period and primary mass.
+Alongside the empirical distributions Moe and Di Stefano gave formulae
+for the corresponding probability density functions, which Dyad uses
+to implement the random variables
 :class:`dyad.stats.log_period.moe2017`,
-:class:`dyad.stats.period.moe2017`,
 :class:`dyad.stats.mass_ratio.moe2017`, and
-:class:`dyad.stats.eccentricity.moe2017`.
-Since these are dependent on other random variables we must use their shape parameters to fully specify them.
-Recall that Dyad requires period to be specified in units of :math:`\mathrm{d}` and mass to be specified in units :math:`\mathrm{M}_{\odot}`.
+:class:`dyad.stats.eccentricity.moe2017`.  Since these are dependent
+on other random variables we must use their shape parameters to fully
+specify them.  Recall that Dyad requires period to be specified in
+units of :math:`\mathrm{d}` and mass to be specified in units
+:math:`\mathrm{M}_{\odot}`.
 
 The probability density functions
 =================================
@@ -81,14 +85,6 @@ Now let us plot these values.
    :align: center
 
    The conditional PDF of log-period, :math:`\log_{10}(P)` given primary mass, :math:`M_{1}`. Compare this to the lower panel of Figure 37 in the paper by Moe and Di Stefano [MS17]_.
-
-We may also evaluate the conditional PDF of period (rather than log-period)  given primary mass, :math:`f_{P|M_{1}}`, which is nonzero between :math:`P/\mathrm{d} = 10^{0.2}` and :math:`P/\mathrm{d} = 10^{8}`
-where :math:`M_{1}/\mathrm{M}_{\odot} \in [0.8, 40]`.
-
-.. doctest:: python
-
-   >>> p = np.logspace(-1., 9., 500)
-   >>> f = stats.period.moe2017(m_1[:,None]).pdf(p)
 
 Mass ratio
 ----------
