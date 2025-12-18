@@ -12,7 +12,13 @@ the repository and navigate to its top level. Then run the following command.
 .. sourcecode:: bash
 
    $ python -m pip install .
-   
-__ https://github.com/AmeryGration/dyad
 
 Dyad requires Python version 3.10 or greater.
+
+To verify your installation you can run Dyad's test suite as follows.
+
+.. sourcecode:: bash
+
+   $ python -m unittest discover ./tests
+
+__ https://github.com/AmeryGration/dyad
