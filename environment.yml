@@ -7,7 +7,11 @@ name: dyad
 channels:
   - conda-forge
 dependencies:
-  - python>=3.10
+  - python=3.11
+  - numpy=1.26
+  - scipy=1.11
+  - matplotlib=3.10
+  - pillow
   - pip
   - pip:
-    - -r requirements.txt
+      - -r requirements.txt
