@@ -313,14 +313,14 @@ And instantiate a :class:`dyad.TwoBody` object.
    >>> binary = dyad.TwoBody(m_1, q*m_1, a, e, Omega, i, omega)
 
 Before, we inspected the state of a single member of this population for a given true anomaly.
-This time, let us compute the speeds and radii of all primary and secondary stars and plot their histograms.
+This time, let us compute the speeds and orbital radii of all primary and secondary stars and plot their histograms.
 First, sample the true anomaly.
 
 .. doctest:: python
 
    >>> theta = stats.true_anomaly(e).rvs()
 
-And compute the primary and secondary radii at these true anomalies.
+And compute the primary and secondary orbital radii at these true anomalies.
 
 .. doctest:: python
 
@@ -366,7 +366,7 @@ Now plot their histograms.
    :figwidth: 75%
    :align: center
 
-   The histograms of primary and secondary star radii.
+   The histograms of primary and secondary stars' orbital radii.
 
 Now compute the primary and secondary speeds.
 

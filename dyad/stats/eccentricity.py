@@ -255,12 +255,12 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
         return res
 
     def _get_support(self, log10_period, primary_mass):
-        e_min = 0.
+        log10_period = np.asarray(log10_period)
         e_max = 1 - (0.5*10.**log10_period)**(-2./3.)
-        res = [e_min, e_max]
+        res = (np.zeros_like(e_max), e_max)
 
         return res
-    
+        
     def _pdf(self, x, log10_period, primary_mass):
         res = (
             _moe2017_norm(log10_period, primary_mass)
