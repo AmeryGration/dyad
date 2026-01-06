@@ -1,4 +1,4 @@
-﻿dyad.stats.eccentricity.uniform
+dyad.stats.eccentricity.uniform
 ===============================
 
 .. currentmodule:: dyad.stats.eccentricity

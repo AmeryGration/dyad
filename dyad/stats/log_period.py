@@ -161,11 +161,10 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
        &= \exp(1.65)\left(0.04\log_{10}(m_{1})^{2} -
        0.05\log_{10}(m_{1}) + 0.078\right).
 
-    %(after_notes)s
+    `moe2017` takes ``primary_mass`` as a shape parameter for :math:`m_{1}`,
+    the primary mass.
 
-    See also
-    --------
-    dyad.stats.period.moe2017
+    %(after_notes)s
 
     References
     ----------

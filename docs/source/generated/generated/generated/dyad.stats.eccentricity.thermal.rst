@@ -1,4 +1,4 @@
-﻿dyad.stats.eccentricity.thermal
+dyad.stats.eccentricity.thermal
 ===============================
 
 .. currentmodule:: dyad.stats.eccentricity

@@ -181,15 +181,9 @@ class _true_anomaly_gen(_distn_infrastructure.rv_continuous):
 class _rv_uniform_gen(_distn_infrastructure.rv_continuous):
     r"""A uniform continuous random variable
 
-    The distribution is uniform on ``[0, 2\pi)``. Using the parameters
-    ``loc`` and ``scale``, one obtains the uniform distribution on
-    ``[loc, loc + 2.*np.pi*scale]``.
+    The distribution is uniform on :math:`[0, 2\pi)`.
 
     %(before_notes)s
-
-    See Also
-    --------
-    scipy.stats.uniform
 
     %(example)s
 
@@ -212,19 +206,11 @@ class _rv_uniform_gen(_distn_infrastructure.rv_continuous):
         A = 2.*np.pi
         return A*q
 
-    # def _stats(self):
-    #     return 0.5, 1.0/12, 0, -1.2
-
-    def _entropy(self):
-        return 0.0
-
 
 class _longitude_of_ascending_node_gen(_rv_uniform_gen):
     r"""The random variable for the longitude of the ascending node
 
-    The distribution is uniform on ``[0, 2\pi)``. Using the parameters
-    ``loc`` and ``scale``, one obtains the uniform distribution on
-    ``[loc, loc + 2.*np.pi*scale]``.
+    The distribution is uniform on :math:`[0, 2\pi)`.
 
     %(before_notes)s
 
@@ -269,9 +255,7 @@ class _inclination_gen(_distn_infrastructure.rv_continuous):
 class _argument_of_pericentre_gen(_rv_uniform_gen):
     r"""The random variabe for the argument of pericentre
 
-    The distribution is uniform on ``[0, 2\pi)``. Using the parameters
-    ``loc`` and ``scale``, one obtains the uniform distribution on
-    ``[loc, loc + 2.*np.pi*scale]``.
+    The distribution is uniform on :math:`[0, 2\pi)`.
 
     %(before_notes)s
 

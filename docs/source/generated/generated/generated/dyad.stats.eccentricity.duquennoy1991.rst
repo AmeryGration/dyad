@@ -1,4 +1,4 @@
-﻿dyad.stats.eccentricity.duquennoy1991
+dyad.stats.eccentricity.duquennoy1991
 =====================================
 
 .. currentmodule:: dyad.stats.eccentricity

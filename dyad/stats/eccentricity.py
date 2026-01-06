@@ -16,20 +16,20 @@ Probability distributions
 .. autosummary::
    :toctree: generated/
 
-   uniform
-   powerlaw
-   thermal
    duquennoy1991
    moe2017
+   powerlaw
+   thermal
+   uniform
 
 """
 
 __all__ = [
-    "uniform",
-    "powerlaw",
     "thermal",
     "duquennoy1991",
     "moe2017",
+    "uniform",
+    "powerlaw",
 ]
 
 import numpy as np
@@ -38,14 +38,64 @@ import scipy as sp
 from scipy.stats._distn_infrastructure import _ShapeInfo
 from . import _distn_infrastructure
 
-uniform = sp.stats._continuous_distns.uniform_gen(
-    a=0., b=1., name="uniform"
-)
 
-# Ensure you can't override `a` with a negative value
-powerlaw = sp.stats._continuous_distns.powerlaw_gen(
-    a=0., b=1., name="powerlaw"
-)
+class uniform_gen(sp.stats._continuous_distns.uniform_gen):
+    r"""A uniform continuous random variable
+
+    The distribution is uniform on :math:`[0, 1)`.
+
+    %(before_notes)s
+
+    %(example)s
+
+    See also
+    --------
+    scipy.stats.uniform
+    
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        
+uniform = uniform_gen(a=0., b=1., name="eccentricity.uniform")
+
+
+class powerlaw_gen(sp.stats._continuous_distns.powerlaw_gen):
+    r"""A power-function continuous random variable.
+
+    %(before_notes)s
+
+    See Also
+    --------
+    scipy.stats.powerlaw
+
+    Notes
+    -----
+    The probability density function for `powerlaw` is:
+
+    .. math::
+
+        f(x, a) = a x^{a-1}
+
+    for :math:`0 \le x \le 1`, :math:`a > 0`.
+
+    `powerlaw` takes ``a`` as a shape parameter for :math:`a`.
+
+    %(after_notes)s
+
+    For example, the support of `powerlaw` can be adjusted from the default
+    interval ``[0, 1]`` to the interval ``[c, c+d]`` by setting ``loc=c`` and
+    ``scale=d``. For a power-law distribution with infinite support, see
+    `pareto`.
+
+    %(example)s
+
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        
+powerlaw = powerlaw_gen(a=0., b=1., name="eccentricity.powerlaw")
 
 
 class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
@@ -225,7 +275,11 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     Note that this function differs from that proposed by Moe and
     Stefano (2017) who used a minimum log-period of :math:`0.5`. Here
     the mimimum log-period is :math:`0.9375` so that :math:`f_{E|X,
-    M_{1}}` always has a convergent integral. 
+    M_{1}}` always has a convergent integral.
+
+    `moe2017` takes ``log10_period`` as a shape parameter for
+    :math:`x` and ``primary_mass`` as a shape parameer for
+    :math:`m_{1}`.
 
     %(after_notes)s
 

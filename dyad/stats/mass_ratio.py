@@ -18,6 +18,7 @@ Probability distributions
 
    duquennoy1991
    moe2017
+   uniform
 
 """
 
@@ -313,8 +314,9 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
        &\text{if $\log_{10}(p) \in (4, 8]$}.
        \end{cases}
 
-    ``moe2017`` takes ``p`` and ``m`` as a shape parameter for
-    :math:`p`, the period, and :math:`m_{1}`, the primary mass.
+    ``moe2017`` takes ``log10_period`` and ``primary_mass`` as a shape
+    parameter for :math:`\log_{10}(p)`, the period, and :math:`m_{1}`, the
+    primary mass.
     
     %(after_notes)s
 
@@ -1145,14 +1147,14 @@ class uniform_gen(_distn_infrastructure.rv_continuous):
        m_{\min}/m_{1})}
 
     for mass ratio :math:`q \in [\max(q_{\min}, m_{\min}/m_{1}), 1]`
-    where :math:`q_{\min} \in (0, 1]` is the minimum allowed mass
+    where :math:`q_{\min} \in (0, 1)` is the minimum allowed mass
     ratio, :math:`m_{1} \in (0, \infty)` is the primary-star mass, and
     :math:`m_{\min} \in (0, \infty)` is the minimum allowed stellar
-    mass.
+    mass such that :math:`m_{\min} < m_{1}`.
 
     ``moe2017`` takes ``m_1`` as a shape parameter for :math:`m_{1}`,
     the primary mass, ``m_min`` as a shape parameter for
-    :math:`m_{\text{min}`, and ``q_min`` as a shape parameter for
+    :math:`m_{\text{min}}`, and ``q_min`` as a shape parameter for
     :math:`q_{\text{min}}`.
     
     %(after_notes)s

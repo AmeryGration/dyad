@@ -38,7 +38,7 @@ from . import _distn_infrastructure
 
 
 class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
-    r"""The two-piece split-power-law mass random variable
+    r"""The two-piece power-function mass random variable
 
     %(before_notes)s
 
@@ -51,22 +51,23 @@ class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
        =
        A
        \begin{cases}
-       m^{-\alpha}&\text{ if $m \in [a, b)$,}\\
-       Bm^{-\beta}&\text{ if $m \in [b, c]$}
+       m^{c}&\text{ if $m \in [a, s)$,}\\
+       s^{c - d}m^{d}&\text{ if $m \in [s, b]$}
        \end{cases}
 
-    for
+    where
 
     .. math::
-       A = \dfrac{1}{1 - \alpha}(b^{1 - \alpha} - a^{1 - \alpha}) + \dfrac{B}{1 - \beta}(c^{1 - \beta} - b^{1 - \beta}),
 
-    and
+       A = \dfrac{1}{c + 1}(s^{c + 1} - a^{c + 1}) +
+       \dfrac{s^{c - d}}{d + 1}(b^{d + 1} - s^{d + 1}),
 
-    .. math::
-       B = b^{\beta - \alpha}.
+    and :math:`m \in [a, b]` for :math:`0 < a`, :math:`a < s`,
+    :math:`s < b`, :math:`c < 0`, and :math:`d < 0`.
 
-    and :math:`m \in [a, c]`.
-    
+    `splitpowerlaw` takes ``s``, ``a``, ``b``,
+    ``c``, and ``d`` as shape parameters.
+
     %(after_notes)s
 
     %(example)s
@@ -163,6 +164,10 @@ class kroupa2002_gen(_distn_infrastructure.rv_continuous):
        \dfrac{a^{-0.3} - 0.5^{-0.3}}{0.3}
 
     and :math:`m \in [a, b]` where :math:`a < 0.5` and :math:`b > 0.5`.
+
+    `kroupa2002` takes ``a`` as a shape parameter for :math:`a`, the
+    minimum allowed mass, and ``b`` as a shape parameter for
+    :math:`b`, the maximum allowed mass.
     
     %(after_notes)s
 
@@ -212,7 +217,11 @@ class salpeter1955_gen(_distn_infrastructure.rv_continuous):
        f_{M}(m) = \dfrac{c - 1}{a^{1 - c} - b^{1 - c}}\dfrac{1}{m^{c}}
 
     for :math:`m \in [a, b]` and :math:`c = 2.35`.
-    
+
+    `salpeter1955` takes ``a`` as a shape parameter for :math:`a`, the
+    minimum allowed mass, and ``b`` as a shape parameter for
+    :math:`b`, the maximum allowed mass.
+
     %(after_notes)s
 
     References
