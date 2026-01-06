@@ -1,4 +1,4 @@
-﻿dyad.stats.mass\_ratio.moe2017
+dyad.stats.mass\_ratio.moe2017
 ==============================
 
 .. currentmodule:: dyad.stats.mass_ratio

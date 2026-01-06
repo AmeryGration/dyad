@@ -10,4 +10,5 @@
    
       duquennoy1991_gen
       moe2017_gen
+      uniform_gen
    

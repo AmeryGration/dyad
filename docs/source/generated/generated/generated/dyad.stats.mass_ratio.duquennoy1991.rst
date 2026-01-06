@@ -1,4 +1,4 @@
-﻿dyad.stats.mass\_ratio.duquennoy1991
+dyad.stats.mass\_ratio.duquennoy1991
 ====================================
 
 .. currentmodule:: dyad.stats.mass_ratio
