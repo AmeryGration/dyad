@@ -8,6 +8,7 @@ __pycache__
 /dyad/_properties/
 /dyad/stats/_tests/
 /dyad/stats/_period.py
+/dyad/stats/secondary_mass.py
 .python-version
 dev
 env

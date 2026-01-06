@@ -38,13 +38,6 @@ from scipy.interpolate import LinearNDInterpolator
 from . import _distn_infrastructure
 
 
-from importlib.resources import files
-from scipy.interpolate import RegularGridInterpolator
-from scipy.interpolate import LinearNDInterpolator
-from . import _distn_infrastructure
-from . import secondary_mass_random as random
-
-
 class moe2017_gen(_distn_infrastructure.rv_continuous):
     r"""The secondary-star mass random variable of Moe and Stefano (2017)
 
@@ -93,14 +86,13 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     %(example)s
 
     """
-    def _shape_info(self):
-        return [
-            _ShapeInfo("primary_mass", False, (0.08, 150.), (False, False))
-        ]
+    # def _shape_info(self):
+    #     return [
+    #         _ShapeInfo("primary_mass", False, (0.8, 40.), (False, False))
+    #     ]
 
     def _argcheck(self, primary_mass):
-        return (0.08 <= primary_mass) & (primary_mass <= 150.)
-        # return (0. <= primary_mass) & (primary_mass < np.inf)
+        return (0.8 <= primary_mass) & (primary_mass <= 40.)
     
     def _pdf(self, x, primary_mass):
         # x = np.asarray(x)
@@ -192,4 +184,4 @@ _moe2017_values = np.tile(
 )
 _moe2017_ppf_interp = LinearNDInterpolator(_moe2017_points.T, _moe2017_values)
 
-moe2017 = moe2017_gen(a=0.08, b=150., name="secondary_mass.moe2017")
+moe2017 = moe2017_gen(a=0.08, b=40., name="secondary_mass.moe2017")
