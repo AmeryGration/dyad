@@ -7,7 +7,7 @@ __pycache__
 /docs/make.bat
 /dyad/_properties/
 /dyad/stats/_tests/
-/dyad/stats/_period.py/
+/dyad/stats/_period.py
 .python-version
 dev
 env
