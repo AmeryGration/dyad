@@ -46,6 +46,8 @@ class opik1924_gen(sp.stats._continuous_distns.reciprocal_gen):
     :math:`b < c`. The probability density function `opik1924` is
     identical to `scipy.stats.reciprocal`.
 
+    `opik1924` takes ``b`` and ``c`` as shape parameters.
+
     %(after_notes)s
 
     References
