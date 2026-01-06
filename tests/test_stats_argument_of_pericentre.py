@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+"""
+Test functions for stats.argument_of_pericentre module
+
+"""
+
+import unittest
+import data_test_argument_of_pericentre
+
+from dyad.stats import argument_of_pericentre
+from test_stats_infrastructure import test_factory
+
+data = [
+    data_test_argument_of_pericentre.argument_of_pericentre_pdf,
+    data_test_argument_of_pericentre.argument_of_pericentre_cdf,
+    data_test_argument_of_pericentre.argument_of_pericentre_ppf,
+    data_test_argument_of_pericentre.argument_of_pericentre_rvs
+]
+
+
+class TestInclination(test_factory(argument_of_pericentre, data)):
+    pass
+
+
+if __name__ == "__main__":
+    unittest.main()

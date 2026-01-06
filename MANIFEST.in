@@ -1,0 +1,3 @@
+include dyad/stats/data/log_period/*.dat
+include dyad/stats/data/period/*.dat
+include dyad/stats/data/secondary_mass/*.dat

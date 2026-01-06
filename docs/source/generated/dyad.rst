@@ -1,0 +1,15 @@
+dyad package
+============
+
+.. automodule:: dyad
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 1
+
+   dyad.stats
