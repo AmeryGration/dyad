@@ -7,10 +7,12 @@ __pycache__
 /docs/make.bat
 /dyad/_properties/
 /dyad/stats/_tests/
+/dyad/stats/_period/
 .python-version
 dev
 env
 *.pdf
 .coverage
 htmlcov
-#*
+\#*
+\**
