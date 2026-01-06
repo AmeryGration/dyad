@@ -5,7 +5,10 @@ Eccentricity (:mod:`dyad.stats.eccentricity`)
 
 .. currentmodule:: dyad.stats.eccentricity
 
-This module contains probability distributions for the orbital eccentricities of a population of binary stars. In its documentation the random variable is denoted :math:`E` and a realization of that random variable is denoted :math:`e`.
+This module contains probability distributions for the orbital
+eccentricities of a population of binary stars. In its documentation
+the random variable is denoted :math:`E` and a realization of that
+random variable is denoted :math:`e`.
 
 Probability distributions
 =========================

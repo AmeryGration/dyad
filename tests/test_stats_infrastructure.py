@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import unittest
+import warnings
 import numpy as np
 
 from parameterized import parameterized
@@ -28,7 +29,10 @@ def test_factory(rv, data):
 
         @parameterized.expand(data[3])
         def test_rvs(self, x, target):
-            res = self.rv.rvs(*x[:-1], random_state=x[-1])
+            with warnings.catch_warnings():
+                # RV mass_ratio.moe2017 throws error with data set A
+                warnings.simplefilter('ignore', category=DeprecationWarning)
+                res = self.rv.rvs(*x[:-1], random_state=x[-1])
             np.testing.assert_almost_equal(res, target)
 
     return TestContinuousRandomVariable

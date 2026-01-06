@@ -5,7 +5,10 @@ Mass ratio (:mod:`dyad.stats.mass_ratio`)
 
 .. currentmodule:: dyad.stats.mass_ratio
 
-This module contains probability distributions for the mass ratios of the components of a population of binary stars. In its documentation the random variable is denoted :math:`Q` and a realization of that random variable is denoted :math:`q`.
+This module contains probability distributions for the mass ratios of
+the components of a population of binary stars. In its documentation
+the random variable is denoted :math:`Q` and a realization of that
+random variable is denoted :math:`q`.
 
 Probability distributions
 =========================
@@ -20,7 +23,8 @@ Probability distributions
 
 __all__ = [
     "duquennoy1991",
-    "moe2017"
+    "moe2017",
+    "uniform"
 ]
 
 import numpy as np
@@ -1124,3 +1128,67 @@ def _moe2017_delta(log10_period, primary_mass):
     return delta
 
 moe2017 = moe2017_gen(a=0.1, b=1., name="mass_ratio.moe2017")
+
+
+class uniform_gen(_distn_infrastructure.rv_continuous):
+    r"""The mass-ratio random variable for uniform pairing
+
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `uniform` is:
+
+    .. math::
+
+       f_{Q|M_{1}}(q|m_{1}) = \dfrac{1}{1 - \max(q_{\min},
+       m_{\min}/m_{1})}
+
+    for mass ratio :math:`q \in [\max(q_{\min}, m_{\min}/m_{1}), 1]`
+    where :math:`q_{\min} \in (0, 1]` is the minimum allowed mass
+    ratio, :math:`m_{1} \in (0, \infty)` is the primary-star mass, and
+    :math:`m_{\min} \in (0, \infty)` is the minimum allowed stellar
+    mass.
+
+    ``moe2017`` takes ``m_1`` as a shape parameter for :math:`m_{1}`,
+    the primary mass, ``m_min`` as a shape parameter for
+    :math:`m_{\text{min}`, and ``q_min`` as a shape parameter for
+    :math:`q_{\text{min}}`.
+    
+    %(after_notes)s
+
+    References
+    ----------
+
+    %(example)s
+
+    """
+    def _get_support(self, m_1, m_min, q_min):
+        res = (np.maximum(q_min, m_min/m_1), 1)
+        
+        return res
+    
+    def _pdf(self, x, m_1, m_min, q_min):
+        num = np.ones_like(x)
+        denom = 1. - np.maximum(q_min, m_min/m_1)
+        res = num/denom
+        
+        return res
+
+    def _cdf(self, x, m_1, m_min, q_min):
+        num = x - np.maximum(q_min, m_min/m_1)
+        denom = 1. - np.maximum(q_min, m_min/m_1)
+        res = num/denom
+        
+        return res
+
+    def _ppf(self, q, m_1, m_min, q_min):
+        res = (
+            (1. - np.maximum(q_min, m_min/m_1))*q
+            + np.maximum(q_min, m_min/m_1)
+        )
+        
+        return res
+    
+
+uniform = uniform_gen(name="mass_ratio.uniform")

@@ -24,6 +24,8 @@ Probability distributions
 
 __all__ = [
     "moe2017",
+    # "duquennoy1991",
+    # "uniform",
 ]
 
 import os

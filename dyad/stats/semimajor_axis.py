@@ -5,7 +5,10 @@ Semimajor-axis (:mod:`dyad.stats.semimajor_axis`)
 
 .. currentmodule:: dyad.stats.semimajor_axis
 
-This module contains probability distributions for the orbital semimajor axes of a population of binary stars. In its documentation the random variable is denoted :math:`A` and a realization of that random variable is denoted :math:`a`.
+This module contains probability distributions for the orbital
+semimajor axes of a population of binary stars. In its documentation
+the random variable is denoted :math:`A` and a realization of that
+random variable is denoted :math:`a`.
 
 Probability distributions
 =========================
