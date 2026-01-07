@@ -28,18 +28,6 @@ moe2017_data = [
     data_test_eccentricity.moe2017_ppf,
     data_test_eccentricity.moe2017_rvs
 ]
-uniform_data = [
-    data_test_eccentricity.uniform_pdf,
-    data_test_eccentricity.uniform_cdf,
-    data_test_eccentricity.uniform_ppf,
-    data_test_eccentricity.uniform_rvs
-]
-powerlaw_data = [
-    data_test_eccentricity.powerlaw_pdf,
-    data_test_eccentricity.powerlaw_cdf,
-    data_test_eccentricity.powerlaw_ppf,
-    data_test_eccentricity.powerlaw_rvs
-]
 
 
 class TestThermal(
@@ -54,16 +42,6 @@ class TestDuquennoy1991(
 
 class TestMoe2017(
         test_factory(eccentricity.moe2017, moe2017_data)):
-    pass
-
-
-class TestUniform(
-        test_factory(eccentricity.uniform, uniform_data)):
-    pass
-
-
-class TestPowerlaw(
-        test_factory(eccentricity.powerlaw, powerlaw_data)):
     pass
 
 

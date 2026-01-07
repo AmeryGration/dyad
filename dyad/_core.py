@@ -92,7 +92,7 @@ def semimajor_axis_from_period(p, m_1, m_2):
 
     m_2 : array-like
 
-        Mass of the less-massive body, :math:`m_{2}`.
+        Mass of the secondary body, :math:`m_{2}`.
 
     Returns
     -------
@@ -143,7 +143,7 @@ def period_from_semimajor_axis(a, m_1, m_2):
 
     m_2 : array-like
 
-        Mass of the less-massive body, :math:`m_{2}`.
+        Mass of the secondary body, :math:`m_{2}`.
 
     Returns
     -------
@@ -539,7 +539,7 @@ def secondary_semimajor_axis_from_semimajor_axis(a, q):
 
     res : ndarray
 
-        Semimajor axis of the less-massive body, :math:`a_{2}`.
+        Semimajor axis of the secondary body, :math:`a_{2}`.
 
     Examples
     --------
@@ -562,7 +562,7 @@ def primary_semimajor_axis_from_secondary_semimajor_axis(a, q):
 
     a : array-like
 
-        Semimajor axis of the less-massive body, :math:`a_{2}`.
+        Semimajor axis of the secondary body, :math:`a_{2}`.
 
     q : array-like
 
@@ -618,7 +618,7 @@ def secondary_semimajor_axis_from_primary_semimajor_axis(a, q):
 
     res : ndarray
 
-        Semimajor axis of the less-massive body, :math:`a_{1}`.
+        Semimajor axis of the secondary body, :math:`a_{1}`.
 
     Examples
     --------
@@ -787,7 +787,7 @@ def orbital_elements_from_delaunay_elements(
     :math:`\Theta_{2} \in (-\infty, \infty)`, and
     :math:`\Theta_{3} \in (-\infty, \infty)`,
     are the Delaunay elements and where
-    :math:`|J_{1}| < J_{2}` and :math:`J_{2} < J_{3}`
+    :math:`|J_{1}| < J_{2}` and :math:`J_{2} < J_{3}`.
 
     Parameters
     ----------
