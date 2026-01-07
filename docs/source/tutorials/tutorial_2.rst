@@ -14,7 +14,17 @@ a large number of useful methods, in particular ``pdf``, which
 computes the probability density function (PDF), and ``rvs``, which
 generates random variates (i.e. which generates a sample).
 
-For example, consider the random variable for inclination, :math:`I`, where :math:`\cos(I) \sim U(-1, 1)`. This is implemented by Dyad using the class :class:`dyad.stats.inclination`. Instantiate this class as follows.
+For example, consider the random variable for inclination, :math:`I`, which has PDF given by
+
+.. math::
+   
+   f_{I}(i) =
+   \begin{cases}
+   \frac{1}{2}\sin(i) &\text{ if $i \in [0, \pi)$}\\
+   0 &\text{ otherwise.}
+   \end{cases}
+
+This random variable is implemented by Dyad using the class :class:`dyad.stats.inclination`. Instantiate the class as follows.
 
 .. testsetup::
 
@@ -77,7 +87,7 @@ Now plot our results.
 
    The probability density function for inclination.
 
-Some of Dyad's random variables are dependent on other random variables. We must use their shape parameters to fully specify them. For example, the true anomaly of a body moving on an elliptical orbit in a gravitational central potential depends on that orbit's eccentricity, so we are interested in the conditional distribution of :math:`\Theta` given :math:`E`. Again, we may synthesize a sample and compute the PDF. Suppose that :math:`e = 0.5`.
+Some of Dyad's random variables are dependent on other random variables. We must use their shape parameters to fully specify them. For example, the true anomaly of a body moving on an elliptical orbit in a gravitational central potential depends on that orbit's eccentricity, so we are interested in the conditional distribution of :math:`\Theta` given :math:`E`. Again, we can synthesize a sample and compute the PDF. Suppose that :math:`e = 0.5`.
 
 .. doctest:: python
 
@@ -164,7 +174,7 @@ A complete population
 
 Let us synthesize the complete orbital properties of a population of binary stars, namely the mass, mass ratio, and orbital elements.
 These have been determined for binary systems with sun-like primary stars in the solar neighbourhood by Duquennoy and Mayor [DM91]_.
-According to Duquennoy and Mayor the mass ratio and period (which we may convert to semimajor axis) are independent of all other properties while the eccentricity is dependent on period.
+According to Duquennoy and Mayor the mass ratio and period (which we can convert to semimajor axis) are independent of all other properties while the eccentricity is dependent on period.
 A system with period no longer than the circularization period of :math:`11.6~\text{d}` has vanishing eccentricity (Sec. 7.2 Duquennoy and Mayor, 1991).
 Only a system with a period longer than this has an eccentricity that can be treated as a random variable.
 However, that random variable is itself dependent on period.
