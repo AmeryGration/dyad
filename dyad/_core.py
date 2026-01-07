@@ -1775,37 +1775,22 @@ class Orbit:
 
         return res
 
+
 class TwoBody(Orbit):
     """A class representing the elliptical orbits of a two-body system
 
-    Represents the dynamics of a bound gravitational two-body
-    system.
-
-    Relative orbit
-
-    Centre-of-mass 
-    
-    Represents the two orbits of a bound gravitational two-body
-    system. The orbit of the more-massive (resp. less-massive) body is
-    defined by its semimajor axis, :math:`a_{1}`
-    (resp. :math:`a_{2}`), and eccentricity, :math:`e_{1}`
-    (resp. :math:`e_{2}`). Its orientation is defined by the longitude
-    of its ascending node, :math:`\Omega_{1}`
-    (resp. :math:`\Omega_{2}`), inclination, :math:`i_{1}`
-    (resp. :math:`i_{2}`), and argument of pericentre,
-    :math:`\omega_{1}` (resp. :math:`\omega_{2}`). It is the case that
-    :math:`a_{2} = a_{1}/q`, :math:`e_{2} = e_{1}`. :math:`\Omega_{2}
-    = \Omega_{1}`, :math:`i_{2} = i_{1}`, and :math:`\omega_{2} =
-    \omega_{1} + \pi`.
+    Represents the orbit of the secondary star with respect to the
+    primary star as well as the orbit of the primary and secondary
+    stars with respect to the system's centre of mass.
 
     Parameters
     ----------
 
-    m_{1}: array-like
+    m_1: array-like
 
         Mass of the first body, :math:`m_{1}`.
 
-    m_{2}: array-like
+    m_2: array-like
 
         Mass of the second body, :math:`m_{2}`.
 
@@ -1851,14 +1836,16 @@ class TwoBody(Orbit):
     <dyad._core.TwoBody object at 0x...>
 
     The relative position and velocity of the secondary star with
-    respect to the primary star.
+    respect to the primary star in the form :math:`(x, y, z, v_{x}, v_{y},
+    v_{z})`.
 
     >>> dyad.TwoBody(1., 1., 1., 0.).state(1.)
     array([ 0.54030231,  0.84147098,  0.        , -0.02047084,  0.01314417,
             0.        ])
 
     The position and velocity of the primary and secondary stars with
-    respect to the centre-of-mass frame.
+    respect to the centre-of-mass frame each again in the form
+    :math:`x, y, z, v_{x}, v_{y}, v_{z}`.
 
     >>> dyad.TwoBody(1., 1., 1., 0.).primary.state(1.)
     array([ 0.27015115,  0.42073549,  0.        , -0.01023542,  0.00657209,
@@ -1870,8 +1857,9 @@ class TwoBody(Orbit):
     """
     def __init__(self, m_1, m_2, a, e, Omega=0., i=0., omega=0.):
         super().__init__(m_1 + m_2, a, e, Omega, i, omega)
+
         self.reduced_mass = m_1*m_2/(m_1 + m_2)
-        self.primary = Orbit(
+        self._primary = Orbit(
             m_2**3./(m_1 + m_2)**2.,
             # m_1*q**3/(1. + q)**2.,
             primary_semimajor_axis_from_semimajor_axis(a, m_2/m_1),
@@ -1880,8 +1868,8 @@ class TwoBody(Orbit):
             i,
             omega
         )
-        self.primary.mass = m_1
-        self.secondary = Orbit(
+        self._primary.mass = m_1
+        self._secondary = Orbit(
             m_1**3./(m_1 + m_2)**2.,
             # m_1/(1. + q)**2.,
             secondary_semimajor_axis_from_semimajor_axis(a, m_2/m_1),
@@ -1890,4 +1878,15 @@ class TwoBody(Orbit):
             i,
             omega + np.pi
         )
-        self.secondary.mass = m_2
+        self._secondary.mass = m_2
+
+    
+    @property
+    def primary(self):
+        """Get the primary star's orbit as an instance of :class:`Orbit`"""
+        return self._primary
+
+    @property
+    def secondary(self):
+        """Get the secondary star's orbit as an instance of :class:`Orbit`"""
+        return self._secondary

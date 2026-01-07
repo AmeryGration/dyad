@@ -9,6 +9,9 @@ Dyad (:mod:`dyad`)
 .. include:: ../../../README.md
    :end-before: **Website:**
 
+Notes
+-----
+
 The geometry of an orbit is shown in Figures :numref:`orbit` and
 :numref:`orientation`. That orbit is an ellipse with *semimajor axis*,
 :math:`a` and *eccentricity*, :math:`e`. The body's phase is described

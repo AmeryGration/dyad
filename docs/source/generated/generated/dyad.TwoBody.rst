@@ -47,6 +47,8 @@
       ~TwoBody.lrl_vector
       ~TwoBody.periapsis
       ~TwoBody.period
+      ~TwoBody.primary
+      ~TwoBody.secondary
       ~TwoBody.semilatus_rectum
       ~TwoBody.semimajor_axis
       ~TwoBody.semiminor_axis
