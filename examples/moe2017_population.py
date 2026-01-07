@@ -23,7 +23,11 @@ n = 10_000
 m_1 = dyad.stats.mass.salpeter1955(0.8, 40.).rvs(size=n)
 log_p = dyad.stats.log_period.moe2017(m_1).rvs()
 p = 10.**log_p
+import time
+t0 = time.time()
 q = dyad.stats.mass_ratio.moe2017(log_p, m_1).rvs()
+t1 = time.time()
+print(t1 - t0)
 e = np.zeros(n)
 idx = (log_p > 0.9375)
 e[idx] = dyad.stats.eccentricity.moe2017(log_p[idx], m_1[idx]).rvs()

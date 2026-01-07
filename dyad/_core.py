@@ -88,18 +88,18 @@ def semimajor_axis_from_period(p, m_1, m_2):
 
     m_1 : array-like
 
-        Mass of the primary body, :math:`m_{1}`.
+        Mass of the primary body, :math:`m_{1}`
 
     m_2 : array-like
 
-        Mass of the secondary body, :math:`m_{2}`.
+        Mass of the secondary body, :math:`m_{2}`
 
     Returns
     -------
 
     res : ndarray
 
-        Semimajor axis.
+        Semimajor axis
 
     Examples
     --------
@@ -135,22 +135,22 @@ def period_from_semimajor_axis(a, m_1, m_2):
 
     a : array-like
 
-        Total semimajor axis, :math:`a = a_{1} + a_{2}`.
+        Total semimajor axis, :math:`a = a_{1} + a_{2}`
 
     m_1 : array-like
 
-        Mass of the primary body, :math:`m_{1}`.
+        Mass of the primary body, :math:`m_{1}`
 
     m_2 : array-like
 
-        Mass of the secondary body, :math:`m_{2}`.
+        Mass of the secondary body, :math:`m_{2}`
 
     Returns
     -------
 
     res : ndarray
 
-        Semimajor axis.
+        Semimajor axis
 
     Examples
     --------
@@ -183,11 +183,11 @@ def mean_anomaly_from_eccentric_anomaly(eta, e):
 
     eta : array-like
 
-        Eccentric anomaly.
+        Eccentric anomaly
 
     e : array-like
 
-        Eccentricity.
+        Eccentricity
 
     Returns
     -------
@@ -665,7 +665,8 @@ def delaunay_elements_from_orbital_elements(a, e, Omega, i, omega, theta, m):
     2\pi)` is the longitude of the ascending node, :math:`i \in (0,
     \pi)` is the inclination, :math:`\omega \in [0, 2\pi)` is the
     argument of pericentre, and :math:`\mu(\theta) \in [0, 2\pi)` is
-    the mean anomaly.
+    the mean anomaly corresponding to the true anomaly, :math:`\theta
+    \in [0, 2\pi)`.
 
     Parameters
     ----------
@@ -703,7 +704,8 @@ def delaunay_elements_from_orbital_elements(a, e, Omega, i, omega, theta, m):
 
     res : list
 
-        Delaunay elements ``(J_1, J_2, J_3, Theta_1, Theta_2, Theta_3)``
+        Delaunay elements, :math:`(J_{1}, J_{2}, J_{3}, \Theta_{1},
+        \Theta_{2}, \Theta_{3})`.
 
     Warnings
     --------
@@ -780,13 +782,19 @@ def orbital_elements_from_delaunay_elements(
        \omega &= \Theta_{2}
 
     where
-    :math:`J_{1}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in (-\infty, \infty)`,
-    :math:`J_{2}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in (0, \infty)`,
-    :math:`J_{3}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in (0, \infty)`,
+    :math:`J_{1}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in (-\infty, \infty)`
+    is the first Delaunay action,
+    :math:`J_{2}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in (0, \infty)`
+    is the second Delaunay action,
+    :math:`J_{3}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in (0, \infty)`
+    is the third Delaunay action,
     :math:`\Theta_{1} \in (-\infty, \infty)`,
-    :math:`\Theta_{2} \in (-\infty, \infty)`, and
-    :math:`\Theta_{3} \in (-\infty, \infty)`,
-    are the Delaunay elements and where
+    is the first Delaunay angle (longitude of the ascending node),
+    :math:`\Theta_{2} \in (-\infty, \infty)`
+    is the second Delaunay angle (argument of pericentre),
+    :math:`\theta(\Theta_{3}) \in (-\infty, \infty)` is the true
+    anomaly corresponding to :math:`\Theta_{3} \in (-\infty, \infty)`,
+    the third Delaunay angle (mean anomaly) and where
     :math:`|J_{1}| < J_{2}` and :math:`J_{2} < J_{3}`.
 
     Parameters
@@ -825,7 +833,7 @@ def orbital_elements_from_delaunay_elements(
 
     res : tuple
 
-        Orbital elemennts ``(a, e, Omega, i, omega, theta)``
+        Orbital elements :math:`(a, e, \Omega, i, \omega, \theta)`
 
     Examples
     --------
@@ -903,7 +911,8 @@ def modified_delaunay_elements_from_orbital_elements(
     2\pi)` is the longitude of the ascending node, :math:`i \in [0,
     \pi)` is the inclination, :math:`\omega \in [0, 2\pi)` is the
     argument of pericentre, and :math:`\mu(\theta) \in [0, 2\pi)` is
-    the mean anomaly.
+    the mean anomaly corresponding to the true anomaly, :math:`\theta
+    \in [0, 2\pi)`.
 
     Parameters
     ----------
@@ -941,8 +950,9 @@ def modified_delaunay_elements_from_orbital_elements(
 
     res : tuple
 
-        Modified Delaunay elements ``(J_pi, J_Omega, J_lambda, Theta_pi,
-        Theta_Omega, Theta_lambda)``
+        Modified Delaunay elements, :math:`(J_{\varpi},
+        J_{\Omega}, J_{\lambda}, \Theta_{\varpi}, \Theta_{\Omega},
+        \Theta_{\lambda})`.
 
     Examples
     --------
@@ -1015,13 +1025,22 @@ def orbital_elements_from_modified_delaunay_elements(
        \omega &= -\Theta_{\varpi} + \Theta_{\Omega}
 
     where
-    :math:`J_{\varpi}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in [0, \infty)`,
-    :math:`J_{\Omega}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in [0, \infty)`,
-    :math:`J_{\lambda}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in (0, \infty)`,
-    :math:`\Theta_{\varpi} \in (-\infty, \infty)`,
-    :math:`\Theta_{\Omega} \in (-\infty, \infty)`, and
+    :math:`J_{\varpi}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in [0, \infty)`
+    is the first modified Delaunay action,
+    :math:`J_{\Omega}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in [0, \infty)`
+    is the second modified Delaunay action,
+    :math:`J_{\lambda}/(\mathrm{AU}^{2}~\mathrm{d}^{-1}) \in (0, \infty)`
+    is the third modified Delaunay action,
+    :math:`\Theta_{\varpi} \in (-\infty, \infty)`
+    is the first modified Delaunay angle (longitude of pericentre),
+    :math:`\Theta_{\Omega} \in (-\infty, \infty)`
+    is the second modified Delaunay angle (longitude of the ascending node),
     :math:`\Theta_{\lambda} \in (-\infty, \infty)`
-    are the modified Delaunay elements and where
+    is the third modified Delaunay angle (mean longitude),
+    :math:`\theta(\Theta_{\lambda} + \Theta_{\varpi}) \in (-\infty,
+    \infty)` is the true anomaly corresponding to
+    :math:`\Theta_{\lambda} + \Theta_{\varpi}` (the mean anomaly)
+    and where
     :math:`J_{\varpi} < J_{\lambda}` and 
     :math:`J_{\Omega} \le 2(J_{\lambda} - J_{\varpi})`.
 
@@ -1061,7 +1080,7 @@ def orbital_elements_from_modified_delaunay_elements(
 
     res : tuple
 
-        Orbital elemennts ``(a, e, Omega, i, omega, theta)``
+        Orbital elements :math:`(a, e, \Omega, i, \omega, \theta)`.
 
     Examples
     --------
@@ -1641,7 +1660,7 @@ class Orbit:
 
         res : ndarray
 
-            Orbital state in form :math:`x, y, z, v_{x}, v_{y}, v_{z}`.
+            Orbital state in form :math:`x, y, z, v_{x}, v_{y}, v_{z}`
 
         Examples
         --------

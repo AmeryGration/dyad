@@ -277,7 +277,7 @@ Next sample the period.
    >>> p = 10.**log_p
 
 And the mass ratio. (This can be time consuming. A sample of size
-:math:`10\,000` may take a minute or so to be generated.)
+:math:`10\,000` may take several tens of seconds to be generated.)
 
 .. doctest:: python
 
