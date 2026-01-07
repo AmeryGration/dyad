@@ -1,4 +1,4 @@
-﻿dyad.stats.mass\_ratio.uniform
+dyad.stats.mass\_ratio.uniform
 ==============================
 
 .. currentmodule:: dyad.stats.mass_ratio
