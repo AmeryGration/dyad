@@ -255,7 +255,7 @@ A complete population
 
 Let us now synthesize a population of ZAMS binary systems using the distributions of Moe and Di Stefano.
 We will use the primary-constrained pairing method to synthesize the primary- and secondary-star masses [K09]_.
-According to this method we synthesize the primary-star star mass assuming that it is distributed according to the initial mass function and then synthesize the secondary-star mass using the conditional distribution of secondary-star mass given primary-star mass.
+According to this method we synthesize the primary-star star mass assuming that it is distributed according to the initial mass function and then synthesize the secondary-star mass using the conditional distribution of mass ratio given log-period and primary mass.
 
 First, specify a sample size.
 
@@ -263,7 +263,7 @@ First, specify a sample size.
 
    >>> n_binary = 10_000
 
-And sample the primary mass using a Salpeter random variable on the interval :math:`0.8, 40`. 
+And sample the primary mass using a Salpeter random variable on the interval :math:`M_{1}/\mathrm{M}_{\odot} \in [0.8, 40]`. 
 
 .. doctest:: python
 
@@ -276,7 +276,8 @@ Next sample the period.
    >>> log_p = stats.log_period.moe2017(m_1).rvs()
    >>> p = 10.**log_p
 
-And the mass ratio. (This can be time consuming. A sample of size :math:`100\,000` may take several minutes or more to be generated.)
+And the mass ratio. (This can be time consuming. A sample of size
+:math:`10\,000` may take a minute or so to be generated.)
 
 .. doctest:: python
 
@@ -312,9 +313,9 @@ And instantiate a :class:`dyad.TwoBody` object.
 
    >>> binary = dyad.TwoBody(m_1, q*m_1, a, e, Omega, i, omega)
 
-Before, we inspected the state of a single member of this population for a given true anomaly.
-This time, let us compute the speeds and orbital radii of all primary and secondary stars and plot their histograms.
-First, sample the true anomaly.
+Let us compute the speeds and orbital radii of all primary and
+secondary stars and plot their histograms. First, sample the true
+anomaly.
 
 .. doctest:: python
 

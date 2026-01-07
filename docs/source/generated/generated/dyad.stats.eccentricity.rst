@@ -10,6 +10,4 @@
    
       duquennoy1991_gen
       moe2017_gen
-      powerlaw_gen
-      uniform_gen
    

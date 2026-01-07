@@ -9,6 +9,7 @@ import scipy
 import scipy._lib.uarray as ua
 import numpydoc.docscrape as np_docscrape
 import doctest
+import sphinx_rtd_theme
 
 from os.path import relpath, dirname
 from docutils import nodes
@@ -33,21 +34,17 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 ########################################################################
 
 extensions = [
-    "sphinx.ext.viewcode",
     "sphinx.ext.autodoc",
     "sphinx.ext.doctest",
     "sphinx.ext.autosummary",
-    "sphinx.ext.coverage",
+    "sphinx.ext.viewcode",
     "sphinx.ext.mathjax",
     "sphinx.ext.intersphinx",
-    "numpydoc",
+    "sphinx.ext.coverage",
     "sphinx_copybutton",
     "sphinx_design",
-    # "scipyoptdoc",
-    # "doi_role",
+    "numpydoc",
     "matplotlib.sphinxext.plot_directive",
-    # "myst_nb",
-    # "jupyterlite_sphinx",
 ]
 
 html_logo = "dyad_logo_white.png"
@@ -72,7 +69,7 @@ master_doc = "index"
 sys.path.insert(0, os.path.abspath("../../dyad"))
 
 project = "Dyad"
-copyright = "2024, Amery Gration"
+copyright = "2026, Amery Gration"
 author = "Amery Gration"
 version = "0.0.0"
 release = "0.0.0"
@@ -84,24 +81,10 @@ if os.environ.get("CIRCLE_JOB", False) and \
 
 print(f"{project} (VERSION {version})")
 
-# There are two options for replacing |today|: either, you set today to some
-# non-false value, then it is used:
-#today = ""
-# Else, today_fmt is used as the format for a strftime call.
 today_fmt = "%B %d, %Y"
-
-# List of documents that shouldn"t be included in the build.
-#unused_docs = []
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 default_role = "autolink"
-
-# List of directories, relative to source directories, that shouldn"t be searched
-# for source files.
-exclude_dirs = []
-exclude_patterns = [  # glob-style
-    "**.ipynb",
-]
 
 # If true, "()" will be appended to :func: etc. cross-reference text.
 add_function_parentheses = False
@@ -117,157 +100,14 @@ show_authors = False
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "sphinx"
 
-# # Ensure all our internal links work
-# nitpicky = True
-# nitpick_ignore = [
-#     # This ignores errors for classes (OptimizeResults, sparse.dok_matrix)
-#     # which inherit methods from `dict`. missing references to builtins get
-#     # ignored by default (see https://github.com/sphinx-doc/sphinx/pull/7254),
-#     # but that fix doesn"t work for inherited methods.
-#     ("py:class", "a shallow copy of D"),
-#     ("py:class", "a set-like object providing a view on D's keys"),
-#     ("py:class", "a set-like object providing a view on D's items"),
-#     ("py:class", "an object providing a view on D's values"),
-#     ("py:class", "None.  Remove all items from D."),
-#     ("py:class", "(k, v), remove and return some (key, value) pair as a"),
-#     ("py:class", "None.  Update D from dict/iterable E and F."),
-#     ("py:class", "v, remove specified key and return the corresponding value."),
-# ]
+doctest_optionflags = [doctest.ELLIPSIS]
 
-# # be strict about warnings in our examples, we should write clean code
-# # (exceptions permitted for pedagogical purposes below)
-# warnings.resetwarnings()
-# warnings.filterwarnings("error")
-# # allow these and show them
-# warnings.filterwarnings("default", module="sphinx")  # internal warnings
-# # global weird ones that can be safely ignored
-# for key in (
-#         r"OpenSSL\.rand is deprecated",  # OpenSSL package in linkcheck
-#         r"distutils Version",  # distutils
-#         ):
-#     warnings.filterwarnings(  # deal with other modules having bad imports
-#         "ignore", message=".*" + key, category=DeprecationWarning)
-# warnings.filterwarnings(  # matplotlib<->pyparsing issue
-#     "ignore", message="Exception creating Regex for oneOf.*",
-#     category=SyntaxWarning)
-# # warnings in examples (mostly) that we allow
-# # TODO: eventually these should be eliminated!
-# for key in (
-#         "invalid escape sequence",  # numpydoc 0.8 has some bad escape chars
-#         "The integral is probably divergent",  # stats.mielke example
-#         "underflow encountered in square",  # signal.filtfilt underflow
-#         "underflow encountered in multiply",  # scipy.spatial.HalfspaceIntersection
-#         "underflow encountered in nextafter",  # tuterial/interpolate.rst
-#         # stats.skewnorm, stats.norminvgauss, stats.gaussian_kde,
-#         # tutorial/stats.rst (twice):
-#         "underflow encountered in exp",
-#         ):
-#     warnings.filterwarnings(
-#         "once", message=".*" + key)
-# # docutils warnings when using notebooks (see gh-17322)
-# # these will hopefully be removed in the near future
-# for key in (
-#     r"The frontend.OptionParser class will be replaced",
-#     r"The frontend.Option class will be removed",
-#     ):
-#     warnings.filterwarnings("ignore", message=key, category=DeprecationWarning)
-# warnings.filterwarnings(
-#     "ignore",
-#     message=r".*is obsoleted by Node.findall()",
-#     category=PendingDeprecationWarning,
-# )
-# warnings.filterwarnings(
-#     "ignore",
-#     message=r"There is no current event loop",
-#     category=DeprecationWarning,
-# )
-# # See https://github.com/sphinx-doc/sphinx/issues/12589
-# suppress_warnings = [
-#     "autosummary.import_cycle",
-# ]
+########################################################################
+# HTML output
+########################################################################
 
-# ########################################################################
-# # HTML output
-# ########################################################################
-
-# html_theme = "pydata_sphinx_theme"
 html_theme = "sphinx_rtd_theme"
 
-# # html_logo = "_static/logo.svg"
-# # html_favicon = "_static/favicon.ico"
-
-# html_sidebars = {
-#     "index": ["search-button-field"],
-#     "**": ["search-button-field", "sidebar-nav-bs"]
-# }
-
-# html_theme_options = {
-#     "github_url": "https://github.com/scipy/scipy",
-#     "twitter_url": "https://twitter.com/SciPy_team",
-#     "header_links_before_dropdown": 6,
-#     "icon_links": [],
-#     "logo": {
-#         "text": "SciPy",
-#     },
-#     "navbar_start": ["navbar-logo"],
-#     "navbar_end": ["version-switcher", "theme-switcher", "navbar-icon-links"],
-#     "navbar_persistent": [],
-#     "switcher": {
-#         "json_url": "https://scipy.github.io/devdocs/_static/version_switcher.json",
-#         "version_match": version,
-#     },
-#     "show_version_warning_banner": True,
-#     "secondary_sidebar_items": ["page-toc"],
-#     # The service https://plausible.io is used to gather simple
-#     # and privacy-friendly analytics for the site. The dashboard can be accessed
-#     # at https://analytics.scientific-python.org/docs.scipy.org
-#     # The Scientific-Python community is hosting and managing the account.
-#     "analytics": {
-#         "plausible_analytics_domain": "docs.scipy.org",
-#         "plausible_analytics_url": "https://views.scientific-python.org/js/script.js",
-#     },
-# }
-
-# if "dev" in version:
-#     html_theme_options["switcher"]["version_match"] = "development"
-#     html_theme_options["show_version_warning_banner"] = False
-
-# if "versionwarning" in tags:  # noqa: F821
-#     # Specific to docs.scipy.org deployment.
-#     # See https://github.com/scipy/docs.scipy.org/blob/main/_static/versionwarning.js_t
-#     src = ("var script = document.createElement('script');\n"
-#            "script.type = 'text/javascript';\n"
-#            "script.src = '/doc/_static/versionwarning.js';\n"
-#            "document.head.appendChild(script);")
-#     html_context = {
-#         "VERSIONCHECK_JS": src
-#     }
-#     html_js_files = ["versioncheck.js"]
-
-# html_title = f"{project} v{version} Manual"
-# html_static_path = ["_static"]
-# html_last_updated_fmt = "%b %d, %Y"
-
-# html_css_files = [
-#     "scipy.css",
-#     "try_examples.css",
-# ]
-
-# # html_additional_pages = {
-# #     "index": "indexcontent.html",
-# # }
-# html_additional_pages = {}
-# html_use_modindex = True
-# html_domain_indices = False
-# html_copy_source = False
-# html_file_suffix = ".html"
-
-# htmlhelp_basename = "dyad"
-
-# # mathjax_path = "scipy-mathjax/MathJax.js?config=scipy-mathjax"
-
-# sphinx-copybutton configurations
-# copybutton_prompt_text = ">>> "
 copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
 copybutton_prompt_is_regexp = True
 copybutton_only_copy_prompt_lines = True
@@ -301,9 +141,9 @@ np_docscrape.ClassDoc.extra_public_methods = [  # should match class.rst
     "__call__", "__mul__", "__getitem__", "__len__",
 ]
 
-# ########################################################################
-# # Autosummary
-# ########################################################################
+########################################################################
+# Autosummary
+########################################################################
 
 # autosummary_generate = True
 
@@ -318,37 +158,18 @@ np_docscrape.ClassDoc.extra_public_methods = [  # should match class.rst
 #     "scipy.signal.ShortTimeFFT.t": "scipy.signal.ShortTimeFFT.t.lower",
 # }
 
-
-# ########################################################################
-# # Autodoc
-# ########################################################################
+########################################################################
+# Autodoc
+########################################################################
 
 # autodoc_default_options = {
 #     "inherited-members": None,
 # }
 # autodoc_typehints = "none"
 
-
-# ########################################################################
-# # Coverage checker
-# ########################################################################
-# coverage_ignore_modules = r"""
-#     """.split()
-# coverage_ignore_functions = r"""
-#     test($|_) (some|all)true bitwise_not cumproduct pkgload
-#     generic\.
-#     """.split()
-# coverage_ignore_classes = r"""
-#     """.split()
-
-# coverage_c_path = []
-# coverage_c_regexes = {}
-# coverage_ignore_c_items = {}
-
-
-#------------------------------------------------------------------------------
+########################################################################
 # Matplotlib plot_directive options
-#------------------------------------------------------------------------------
+########################################################################
 
 plot_pre_code = (
 """
@@ -391,149 +212,4 @@ plot_rcparams = {
     "text.usetex": False,
 }
 
-########################################################################
-# # Source code links
-# ########################################################################
 
-# # Not the same as from sphinx.util import inspect and needed here
-# import inspect  # noqa: E402
-
-# for name in ["sphinx.ext.linkcode", "linkcode", "numpydoc.linkcode"]:
-#     try:
-#         __import__(name)
-#         extensions.append(name)
-#         break
-#     except ImportError:
-#         pass
-# else:
-#     print("NOTE: linkcode extension not found -- no links to source generated")
-
-
-# def linkcode_resolve(domain, info):
-#     """
-#     Determine the URL corresponding to Python object
-#     """
-#     if domain != "py":
-#         return None
-
-#     modname = info["module"]
-#     fullname = info["fullname"]
-
-#     submod = sys.modules.get(modname)
-#     if submod is None:
-#         return None
-
-#     obj = submod
-#     for part in fullname.split("."):
-#         try:
-#             obj = getattr(obj, part)
-#         except Exception:
-#             return None
-
-#     # Use the original function object if it is wrapped.
-#     while hasattr(obj, "__wrapped__"):
-#         obj = obj.__wrapped__
-#     # SciPy"s distributions are instances of *_gen. Point to this
-#     # class since it contains the implementation of all the methods.
-#     if isinstance(obj, (rv_generic, multi_rv_generic)):
-#         obj = obj.__class__
-#     try:
-#         fn = inspect.getsourcefile(obj)
-#     except Exception:
-#         fn = None
-#     if not fn:
-#         try:
-#             fn = inspect.getsourcefile(sys.modules[obj.__module__])
-#         except Exception:
-#             fn = None
-#     if not fn:
-#         return None
-
-#     try:
-#         source, lineno = inspect.getsourcelines(obj)
-#     except Exception:
-#         lineno = None
-
-#     if lineno:
-#         linespec = "#L%d-L%d" % (lineno, lineno + len(source) - 1)
-#     else:
-#         linespec = ""
-
-#     startdir = os.path.abspath(os.path.join(dirname(scipy.__file__), ".."))
-#     fn = relpath(fn, start=startdir).replace(os.path.sep, "/")
-
-#     if fn.startswith("scipy/"):
-#         m = re.match(r"^.*dev0\+([a-f0-9]+)$", scipy.__version__)
-#         base_url = "https://github.com/scipy/scipy/blob"
-#         if m:
-#             return f"{base_url}/{m.group(1)}/{fn}{linespec}"
-#         elif "dev" in scipy.__version__:
-#             return f"{base_url}/main/{fn}{linespec}"
-#         else:
-#             return f"{base_url}/v{scipy.__version__}/{fn}{linespec}"
-#     else:
-#         return None
-
-
-# # Tell overwrite numpydoc"s logic to render examples containing rng.
-# SphinxDocString._str_examples = _rng_html_rewrite(
-#     SphinxDocString._str_examples
-# )
-
-
-# class LegacyDirective(Directive):
-#     """
-#     Adapted from docutils/parsers/rst/directives/admonitions.py
-
-#     Uses a default text if the directive does not have contents. If it does,
-#     the default text is concatenated to the contents.
-
-#     """
-#     has_content = True
-#     node_class = nodes.admonition
-#     optional_arguments = 1
-
-#     def run(self):
-#         try:
-#             obj = self.arguments[0]
-#         except IndexError:
-#             # Argument is empty; use default text
-#             obj = "submodule"
-#         text = (f"This {obj} is considered legacy and will no longer receive "
-#                 "updates. While we currently have no plans to remove it, "
-#                 "we recommend that new code uses more modern alternatives instead."
-#         )
-
-#         try:
-#             self.content[0] = text+" "+self.content[0]
-#         except IndexError:
-#             # Content is empty; use the default text
-#             source, lineno = self.state_machine.get_source_and_line(
-#                 self.lineno
-#             )
-#             self.content.append(
-#                 text,
-#                 source=source,
-#                 offset=lineno
-#             )
-#         text = "\n".join(self.content)
-#         # Create the admonition node, to be populated by `nested_parse`
-#         admonition_node = self.node_class(rawsource=text)
-#         # Set custom title
-#         title_text = "Legacy"
-#         textnodes, _ = self.state.inline_text(title_text, self.lineno)
-#         title = nodes.title(title_text, "", *textnodes)
-#         # Set up admonition node
-#         admonition_node += title
-#         # Select custom class for CSS styling
-#         admonition_node["classes"] = ["admonition-legacy"]
-#         # Parse the directive contents
-#         self.state.nested_parse(self.content, self.content_offset,
-#                                 admonition_node)
-#         return [admonition_node]
-
-
-# def setup(app):
-#     app.add_directive("legacy", LegacyDirective)
-
-doctest_optionflags = [doctest.ELLIPSIS]

@@ -5,9 +5,9 @@ Synthesizing a population of binary stars
 *****************************************
 
 Dyad has a subpackage, :mod:`dyad.stats`, that contains probability
-distributions for the masses, mass ratios, and orbital elements of a
-population of binary stars. These probability distributions are
-implemented in the same way as Scipy's continous random variables (see
+distributions for the mass ratios and orbital elements of a population
+of binary stars. These probability distributions are implemented in
+the same way as Scipy's continous random variables (see
 :class:`scipy.stats.rv_continuous` and, for an example,
 :class:`scipy.stats.loguniform`). As a result, they come equipped with
 a large number of useful methods, in particular ``pdf``, which
@@ -26,7 +26,7 @@ For example, consider the random variable for inclination, :math:`I`, where :mat
    >>> import dyad
    >>> rv = dyad.stats.inclination
 
-Now compute the PDF on the interval :math:`[0, \pi]`.
+Now compute the PDF on the interval :math:`[0, \pi)`.
 
 .. doctest:: python
 
@@ -166,7 +166,7 @@ Let us synthesize the complete orbital properties of a population of binary star
 These have been determined for binary systems with sun-like primary stars in the solar neighbourhood by Duquennoy and Mayor [DM91]_.
 According to Duquennoy and Mayor the mass ratio and period (which we may convert to semimajor axis) are independent of all other properties while the eccentricity is dependent on period.
 A system with period no longer than the circularization period of :math:`11.6~\text{d}` has vanishing eccentricity (Sec. 7.2 Duquennoy and Mayor, 1991).
-Only a system with a period longer than this has an eccentricity that may be treated as a random variable.
+Only a system with a period longer than this has an eccentricity that can be treated as a random variable.
 However, that random variable is itself dependent on period.
 
 Dyad uses the distributions published by Duquennoy and Mayor to implement the random variables
@@ -174,7 +174,6 @@ Dyad uses the distributions published by Duquennoy and Mayor to implement the ra
 :class:`dyad.stats.log_period.duquennoy1991`, and 
 :class:`dyad.stats.eccentricity.duquennoy1991`.
 Since eccentricity is dependent on period we must use its shape parameter, ``period``, to fully specify it.
-The unit of period is :math:`\mathrm{d}`.
 
 The primary stars in question have primary masses of :math:`M_{1}/\text{M}_{\odot} \in [0.9, 1.2]` but the distributions of Duquennoy and Mayor are frequently assumed to hold for systems with red-giant primary stars, which have masses of :math:`0.8~\mathrm{M}_{\odot}`.
 Let us sample the mass ratio and the period for such a population.

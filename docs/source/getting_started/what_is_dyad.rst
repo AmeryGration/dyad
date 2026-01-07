@@ -13,24 +13,21 @@ with physical properties that follow a given distribution. Dyad allows
 the user to choose from a library of such distributions. This library
 includes (but is not limited to):
 
-* the distributions published by Duquennoy and Mayor [DM91]_ and Moe
-  and Stefano [MS17]_ for the mass-ratios and orbital elements of
-  binary stars and
+* the distributions of binary-star mass ratios and orbital elements
+  published by Duquennoy and Mayor [DM91]_ and Moe and Stefano [MS17]_
+  and
 
-* the distributions published by Chabrier [C03]_, Kroupa [K02]_, and
-  Salpeter [S55]_ for the initial stellar mass.
+* the distributions of initial stellar mass published by Kroupa [K02]_
+  and Salpeter [S55]_.
 
 For a full list of available distributions see the API documentation
-for :mod:`dyad.stats`. Dyad also allows the user to compute the
-distributions of the primary- and secondary-star masses in a manner
-consistent with a given mass function and pairing function. It does so
-by implementing the method of Gration, Izzard, and Das [GID25]_.
+for :mod:`dyad.stats`. 
 
 The basics
 ==========
 
 .. include:: ../../../dyad/__init__.py
-   :start-after: `\mathrm{M}_{\odot}`.
+   :start-after: -----
    :end-before: Classes
 
 Units
@@ -42,7 +39,7 @@ astronomical unit, :math:`\mathrm{AU}`, and the unit of time is the
 day, :math:`\mathrm{d}`. In this system the gravitational constant is
 :math:`\text{G} = 2.959122080881949 \times
 10^{-4}~\text{M}_{\odot}~\text{d}^{2}~\text{AU}^{-3}`. :numref:`table-units`
-shows the units of derived quantities and their equivalent SI values.
+shows the units of several derived quantities and their equivalent SI values.
 
 .. _table-units:
 .. table:: The units of derived quantities in Dyad.
@@ -77,12 +74,6 @@ References
     the interrelation between period (P) and mass-ratio (Q)
     distributions of binary stars.\' *The Astrophysical Journal
     Supplement Series* 230 (2): 15.
-
-.. [C03]
-
-   Chabrier, G. 2003. \'Galactic stellar and substellar initial
-   mass function\'. *Publications of the Astronomical Society of the
-   Pacific* 115 (July): 763--95. 
    
 .. [K02]
 
@@ -93,7 +84,3 @@ References
 
     Salpeter, E. E. 1955. \'The luminosity function and stellar
     evolution.\' *The Astrophysical Journal* 121 (January): 161.
-
-.. [GID25]
-
-   Gration, A., Izzard, R., and P. Das. Forthcoming.
