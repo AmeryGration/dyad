@@ -18,9 +18,7 @@ Probability distributions
 
    duquennoy1991
    moe2017
-   powerlaw
    thermal
-   uniform
 
 """
 

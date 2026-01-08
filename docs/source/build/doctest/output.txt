@@ -1,0 +1,33 @@
+Results of doctest builder run on 2026-01-08 11:47:16
+=====================================================
+
+Document: tutorials/tutorial_1
+------------------------------
+1 items passed all tests:
+  53 tests in python
+53 tests in 1 items.
+53 passed and 0 failed.
+Test passed.
+
+Document: tutorials/tutorial_2
+------------------------------
+1 items passed all tests:
+  42 tests in python
+42 tests in 1 items.
+42 passed and 0 failed.
+Test passed.
+
+Document: tutorials/tutorial_3
+------------------------------
+1 items passed all tests:
+  78 tests in python
+78 tests in 1 items.
+78 passed and 0 failed.
+Test passed.
+
+Doctest summary
+===============
+  173 tests
+    0 failures in tests
+    0 failures in setup code
+    0 failures in cleanup code
