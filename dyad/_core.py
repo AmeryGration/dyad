@@ -1213,7 +1213,7 @@ class Orbit:
     # @property
     def orbital_elements(self, theta=None):
         """Get the orbital elements of the orbit"""
-        if theta == None:
+        if theta is None:
             res = (
                 self.semimajor_axis,
                 self.eccentricity,
