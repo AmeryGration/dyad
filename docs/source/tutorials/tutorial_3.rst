@@ -4,7 +4,7 @@
 Zero-age main-sequence binary systems
 *************************************
 
-Moe and Di Stefano [MS17]_ reported empirical distributions for the period, :math:`P`, mass-ratio, :math:`Q`, and eccentricity, :math:`E`, of binary systems consisting of two zero-age main-sequence (ZAMS) stars with primaries of types O, B, A, F, and G, i.e. with primaries of mass :math:`M_{1}/\text{M}_{\odot} \in [0.8, 40]`. They determined these by compiling observations of binary systems in nearby open clusters and stellar associations as well as in volume-limited surveys of the solar neighbourhood.
+Moe and Di Stefano [MS17]_ reported empirical distributions for the period, :math:`P`, mass-ratio, :math:`Q`, and eccentricity, :math:`E`, of binary systems consisting of two zero-age main-sequence (ZAMS) stars with primaries of types O, B, A, F, and G, i.e. with primaries of mass :math:`m_{1}/\text{M}_{\odot} \in [0.8, 40]`. They determined these by compiling observations of binary systems in nearby open clusters and stellar associations as well as in volume-limited surveys of the solar neighbourhood.
 
 They found that the period is dependent on primary mass while the mass
 ratio and eccentricity are dependent on both period and primary mass.
@@ -15,8 +15,8 @@ to implement the random variables
 :class:`dyad.stats.mass_ratio.moe2017`, and
 :class:`dyad.stats.eccentricity.moe2017`.  Since these are dependent
 on other random variables we must use their shape parameters to fully
-specify them.  Recall that Dyad requires period to be specified in
-units of :math:`\mathrm{d}` and mass to be specified in units
+specify them.  Recall that Dyad requires periods to be specified in
+units of :math:`\mathrm{d}` and masses to be specified in units
 :math:`\mathrm{M}_{\odot}`.
 
 The probability density functions
@@ -172,7 +172,7 @@ Let us evaluate the conditional PDF of mass ratio given log-period and primary m
 Dyad implements the eccentricity random variable using the class :class:`dyad.stats.eccentricity.moe2017`, which has shape parameters ``log10_period`` and ``primary_mass``.
 The minimum period is known as the \'circularization period\',
 If a binary system has a period shorter than the circularization period then its eccentricity is zero.
-Dyad uses a circularation period of :math:`0.9375`, which differs from the value of :math:`0.5` used by Moe and Di Stefano in order to ensure that the PDF always has finite integral.
+Dyad uses a circularization period of :math:`0.9375`, which differs from the value of :math:`0.5` used by Moe and Di Stefano in order to ensure that the PDF always has finite integral.
 For a full discussion, see the API documentation.
 
 The PDF is qualitatively different for short- and long-period binary systems.
@@ -263,7 +263,7 @@ First, specify a sample size.
 
    >>> n_binary = 10_000
 
-And sample the primary mass using a Salpeter random variable on the interval :math:`M_{1}/\mathrm{M}_{\odot} \in [0.8, 40]`. 
+And sample the primary mass using a Salpeter random variable on the interval :math:`m_{1}/\mathrm{M}_{\odot} \in [0.8, 40]`. 
 
 .. doctest:: python
 

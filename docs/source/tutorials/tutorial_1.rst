@@ -121,12 +121,12 @@ Delaunay elements
 -----------------
 
 Given the central mass we may convert any set of orbital elements, :math:`(a, e, \Omega, i, \omega, \theta)` to the equivalent set of Delaunay elements, :math:`(J_{1}, J_{2}, J_{3}, \Theta_{1}, \Theta_{2}, \Theta_{3})` and vice versa.
-The functions are :func:`dyad.delaunay_elements_from_orbital_elements` and :func:`dyad.orbital_elements_from_delaunay_elements`
+The functions are :func:`dyad.delaunay_elements_from_orbital_elements` and :func:`dyad.orbital_elements_from_delaunay_elements`.
 See the API documentation for the definitions used by Dyad.
 
 Delaunay elements are not fully defined for :math:`e = 0` or :math:`i = 0` (as we have here) so we must instead use modified Delaunay elements, :math:`(J_{\varpi}, J_{\Omega}, J_{\lambda}, \Theta_{\varpi}, \Theta_{\Omega}, \Theta_{\lambda})`.
-The functions are :func:`dyad.modified_delaunay_elements_from_orbital_elements` and :func:`dyad.orbital_elements_from_modified_delaunay_elements`
-See the API documentation for the definitions used by Dyad.
+The functions are :func:`dyad.modified_delaunay_elements_from_orbital_elements` and :func:`dyad.orbital_elements_from_modified_delaunay_elements`.
+Again, see the API documentation for the definitions used by Dyad.
 
 .. doctest:: python
 
@@ -156,7 +156,7 @@ We can use the keyword ``theta`` to specify the true anomaly. In this case the f
 Representing a binary system
 ****************************
 
-To a good approximation the Alpha Centauri A--B system is an isolated binary. The two component stars have masses :math:`M_{A} = 1.0790~\text{M}_{\odot}` and :math:`M_{B} = 0.9092~\text{M}_{\odot}`. The relative orbit has a semimajor axis :math:`a = 23.182~\text{AU}` and an eccentricity :math:`e = 0.5195`. We may represent this system using the class :class:`dyad.TwoBody`.
+To a good approximation the Alpha Centauri A--B system is an isolated binary. The two component stars have masses :math:`m_{A} = 1.0790~\text{M}_{\odot}` and :math:`m_{B} = 0.9092~\text{M}_{\odot}`. The relative orbit has a semimajor axis :math:`a = 23.182~\text{AU}` and an eccentricity :math:`e = 0.5195`. We may represent this system using the class :class:`dyad.TwoBody`.
 
 .. doctest:: python
 
