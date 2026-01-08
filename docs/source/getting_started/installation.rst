@@ -26,7 +26,7 @@ __ https://github.com/AmeryGration/dyad
 Conda
 =====
 
-You may wish to install Dyad within a virtual environment. If you use Conda to manage your environments then you can use the file ``environment.yml`` to create an environment called 'dyad'.
+You may wish to install Dyad within a virtual environment. If you use Conda to manage your environments then you can use the file ``environment.yml`` to create an environment called 'dyad'. From the top level of the repository run the following command. 
 
 .. sourcecode:: bash
 
