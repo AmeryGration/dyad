@@ -10,6 +10,7 @@ and secondary stars.
 
 """
 
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -52,12 +53,13 @@ header = (
     + "v_{y} (km s^{-1}), "
     + "v_{z} (km s^{-1})"
 )
+os.makedirs("./data/", exist_ok=True)
 np.savetxt(
-    "./Data/moe2017_primary_stars.dat", xv_1, delimiter=", ",
+    "./data/moe2017_primary_stars.dat", xv_1, delimiter=", ",
     header=header
 )
 np.savetxt(
-    "./Data/moe2017_secondary_stars.dat", xv_2, delimiter=", ",
+    "./data/moe2017_secondary_stars.dat", xv_2, delimiter=", ",
     header=header
 )
 
@@ -72,5 +74,6 @@ ax.hist(
 ax.legend(frameon=False)
 ax.set_xlabel(r"$v_{z}/\text{km}~\text{s}^{-1}$")
 ax.set_ylabel(r"$\nu$")
-fig.savefig("./Figures/moe2017_los_velocity.pdf")
+os.makedirs("./figures/", exist_ok=True)
+fig.savefig("./figures/moe2017_los_velocity.pdf")
 plt.show()

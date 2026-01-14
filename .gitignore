@@ -9,6 +9,8 @@ __pycache__
 /dyad/stats/_tests/
 /dyad/stats/_period.py
 /dyad/stats/secondary_mass.py
+/examples/data/
+/examples/figures/
 .python-version
 dev
 env

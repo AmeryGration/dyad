@@ -10,6 +10,7 @@ velocities of the primary and secondary stars.
 
 """
 
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 import dyad
@@ -46,12 +47,13 @@ header = (
     + "v_{y} (km s^{-1}), "
     + "v_{z} (km s^{-1})"
 )
+os.makedirs("./data/", exist_ok=True)
 np.savetxt(
-    "./Data/duquennoy1991_primary_stars.dat", xv_1, delimiter=", ",
+    "./data/duquennoy1991_primary_stars.dat", xv_1, delimiter=", ",
     header=header
 )
 np.savetxt(
-    "./Data/duquennoy1991_secondary_stars.dat", xv_2, delimiter=", ",
+    "./data/duquennoy1991_secondary_stars.dat", xv_2, delimiter=", ",
     header=header
 )
 
@@ -66,5 +68,6 @@ ax.hist(
 ax.legend(frameon=False)
 ax.set_xlabel(r"$v_{z}/\text{km}~\text{s}^{-1}$")
 ax.set_ylabel(r"$\nu$")
-fig.savefig("./Figures/duquennoy1991_los_velocity.pdf")
+os.makedirs("./figures/", exist_ok=True) 
+fig.savefig("./figures/duquennoy1991_los_velocity.pdf")
 plt.show()
