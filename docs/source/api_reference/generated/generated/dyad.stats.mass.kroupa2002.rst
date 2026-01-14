@@ -1,6 +1,6 @@
-dyad.stats.mass.kroupa2002
+dyad.stats.mass.kroupa2001
 ==========================
 
 .. currentmodule:: dyad.stats.mass
 
-.. autodata:: kroupa2002
+.. autodata:: kroupa2001

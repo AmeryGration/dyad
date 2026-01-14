@@ -17,11 +17,11 @@ salpeter1955_data = [
     data_test_mass.salpeter1955_ppf,
     data_test_mass.salpeter1955_rvs
 ]
-kroupa2002_data = [
-    data_test_mass.kroupa2002_pdf,
-    data_test_mass.kroupa2002_cdf,
-    data_test_mass.kroupa2002_ppf,
-    data_test_mass.kroupa2002_rvs
+kroupa2001_data = [
+    data_test_mass.kroupa2001_pdf,
+    data_test_mass.kroupa2001_cdf,
+    data_test_mass.kroupa2001_ppf,
+    data_test_mass.kroupa2001_rvs
 ]
 splitpowerlaw_data = [
     data_test_mass.splitpowerlaw_pdf,
@@ -35,7 +35,7 @@ class TestSalpeter1955(test_factory(mass.salpeter1955, salpeter1955_data)):
     pass
 
 
-class TestKroupa2002(test_factory(mass.kroupa2002, kroupa2002_data)):
+class TestKroupa2001(test_factory(mass.kroupa2001, kroupa2001_data)):
     pass
 
 

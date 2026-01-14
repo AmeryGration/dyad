@@ -11,7 +11,7 @@ distcont = [
     ["eccentricity.moe2017", ((2.56, 1.),)],
     ["log_period.moe2017", (1.,)],
     ["mass.salpeter1955", ((0.4, 10.),)],
-    ["mass.kroupa2002", ((0.08, 150.),)],
+    ["mass.kroupa2001", ((0.08, 150.),)],
     ["mass.splitpowerlaw", ((0.5, 0.08, 150., -1.3, -2.3),)],
     ["mass_ratio.moe2017", ((2.56, 1.),)],
     ["mass_ratio.uniform", ((100., 0.08, 0.1),)],

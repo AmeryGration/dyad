@@ -8,7 +8,7 @@
 
    .. autosummary::
    
-      kroupa2002_gen
+      kroupa2001_gen
       salpeter1955_gen
       splitpowerlaw_gen
    

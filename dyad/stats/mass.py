@@ -17,7 +17,7 @@ Probability distributions
    :toctree: generated/
 
    splitpowerlaw
-   kroupa2002
+   kroupa2001
    salpeter1955
 
 """
@@ -26,7 +26,7 @@ __all__ = [
     "splitpowerlaw",
     "salpeter1955",
     # "millerscalo1979",
-    "kroupa2002",
+    "kroupa2001",
     # "chabrier2003",
     # "maschberger2013"
 ]
@@ -139,14 +139,14 @@ class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
 splitpowerlaw = splitpowerlaw_gen(name="mass.splitpowerlaw")
 
 
-class kroupa2002_gen(_distn_infrastructure.rv_continuous):
+class kroupa2001_gen(_distn_infrastructure.rv_continuous):
     r"""The mass random variable of Kroupa (2002)
 
     %(before_notes)s
 
     Notes
     -----
-    The probability density function for `kroupa2002` is:
+    The probability density function for `kroupa2001` is:
 
     .. math::
        f_{M}(m)
@@ -165,7 +165,7 @@ class kroupa2002_gen(_distn_infrastructure.rv_continuous):
 
     and :math:`m \in [a, b]` where :math:`a < 0.5` and :math:`b > 0.5`.
 
-    `kroupa2002` takes ``a`` as a shape parameter for :math:`a`, the
+    `kroupa2001` takes ``a`` as a shape parameter for :math:`a`, the
     minimum allowed mass, and ``b`` as a shape parameter for
     :math:`b`, the maximum allowed mass.
     
@@ -201,7 +201,7 @@ class kroupa2002_gen(_distn_infrastructure.rv_continuous):
         return res
 
 
-kroupa2002 = kroupa2002_gen(name="mass.kroupa2002")
+kroupa2001 = kroupa2001_gen(name="mass.kroupa2001")
 
 
 class salpeter1955_gen(_distn_infrastructure.rv_continuous):
