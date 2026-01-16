@@ -1,5 +1,5 @@
 ---
-title: 'Dyad: a binary-star dynamics and statistics package for Python'
+title: 'Dyad: a binary-star dynamics and statistics library for Python'
 tags:
   - Python
   - astronomy
@@ -12,57 +12,103 @@ authors:
     affiliation: 1
 affiliations:
   - name: Astrophysics Research Group, University of Surrey, Guildford, GU2 7XH, United Kingdom
-    index: 1
+	index: 1
     ror: 00ks66431
-date: 3 March 2025
+date: 16 January 2026
 bibliography: paper.bib
 ---
 
 # Summary
 
-Dyad is a pure-Python two-body dynamics and binary-star statistics
-package for astrophysicists. It allows the user to compute the
-kinematic properties of a bound gravitational two-body system given
-that system's component masses and orbital elements. It also allows
-the user to synthesize a population of binary stars with component
-masses and orbital elements that follow a given
-distribution. Specifically, Dyad allows the user to synthesize
-primary- and secondary-star masses in a manner consistent with given
-distributions of stellar masses and mass ratios. It does so by
-implementing the method of @gration2025b. Accordingly, Dyad provides a
-library of distributions for stellar mass, mass-ratio, and the orbital
-elements. This library includes (but is not limited to) the
-distributions for (1) the initial stellar mass published by
-@chabrier2003, @kroupa2001, and @salpeter1955, and (2) the
-mass-ratios and orbital elements of binary stars in the Solar
-neighbourhood published by @duquennoy1991 and @moe2017.
+Dyad is a Python library for studying the dynamics of binary stars
+considered as gravitational two-body systems. By convention,
+astrophysicists designate the brighter of the two components of a binary
+star as a reference body, which they call the \`primary star\', and the
+dimmer of the two components as a subject body, which they call the
+\`secondary star\'. In a frame centred on the primary star the secondary
+star then moves on an elliptical orbit with one focus located at the
+origin. This orbit can be specified by its orbital elements, namely the
+semimajor axis (which specifies the size of the ellipse), eccentricity
+(which specifies the shape of the ellipse), and true anomaly (which
+specifies the secondary star\'s location on the ellipse) along with the
+longitude of its ascending node, its inclination, and its argument of
+pericentre (which together specify the orientation of the ellipse).
+
+The dynamics of the system are completely determined by the two stars\'
+masses and the secondary star\'s orbital elements. In a population of
+binary stars these eight parameters vary from member to member and can
+each be treated as a random variable having some probability
+distribution. Dyad provides a class, `dyad.TwoBody`, and a module,
+`dyad.stats`, for dealing with such a population of binary stars. The
+`dyad.TwoBody` class represents a gravitational two-body system while
+the `dyad.stats` module provides a suite of classes representing the
+probability distributions of stellar mass, mass-ratio, and orbital
+elements. Dyad implements these probability distributions in the same
+way that SciPy [@virtanen2020] implements its probability distributions
+(see, for example,
+[`scipy.stats.norm`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html),
+[`scipy.stats.lognorm`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html),
+or
+[`scipy.stats.expon`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.expon.html)).
+
+You can initialize `dyad.TwoBody` by specifying the primary and
+secondary bodies\' masses together with the secondary body\'s orbital
+elements and then use that class\'s methods to compute the two bodies\'
+angular momenta, total energies, and eccentricity vectors as well as
+positions, velocities, kinetic energies, and potential energies either
+in the primary star\'s frame or the centre-of-mass frame. The
+`dyad.stats` module includes (but is not limited to) classes
+representing the probability distributions of (1) stellar masses as
+proposed by @kroupa2001 and @salpeter1955, and (2) the mass-ratios and
+orbital elements of binary stars as proposed by @duquennoy1991 and
+@moe2017. You can use it to evaluate the probability density functions,
+cumulative distribution functions, and inverse cumulative distribution
+functions of these quantities, as well as to compute their moments,
+i.e. their means, variances, skewnesses, *etc*. Most importantly, you
+can use `dyad.stats` to generate samples of these quantities. By using
+`dyad.TwoBody` and `dyad.stats` together you can therefore generate a
+custom representation of a population of binary stars.
 
 # Statement of need
 
-I wrote Dyad to implement the work on binary-star population dynamics
-and stellar population synthesis presented by @gration2025a and
-@gration2025b. Although binary-star population dynamics is an active
-area of research [see, for example, @minor2010; @rastello2020; and
-@arroyo-polonio2023] there is no publicly available software to
-implement it. To compute the kinematic properties of binary systems
-researchers new to the subject must write their own software. I hope
-that Dyad fills this gap. Stellar population synthesis (i.e. the
-modelling of the evolution of populations of stellar systems) is also
-an active area of research [@izzard2019]. However, the software is
-better developed. In order to run population synthesis programmes the
-user must provide a description of the initial unevolved
-population. This can be done by sampling the appropriate random
-variables. A number of packages allow the user to do this. Some [such
-as *Binary_c-python* by @hendriks2023; or *IMF* by @ginsburg2021]
-provide a probability density function, which can be used by an
-out-of-package sampling routine (such as rejection sampling or
-Markov-chain Monte-Carlo sampling). Others [such as COSMIC by
-@breivik2020; or COMPAS by @riley2022] do not provide the probability
-density function explicitly but allow the user to generate samples
-directly. Uniquely, Dyad implements these distributions as instances
-of the *Scipy* random variable class `scipy.stats.rv_continous`,
-allowing the full functionality provided by that class. This includes
-the evaluation of the probability density function and the generation
-of samples of a given size.
+I wrote Dyad to perform the work on binary-star population dynamics that
+my colleagues and I presented in the paper \`Stellar velocity
+distributions in binary-rich ultrafaint galaxies\' [@gration2025].
+Galactic dynamicists typically treat a galaxy as a population of single
+stars moving in the gravitational potential generated by those stars
+together with a halo of dark matter. They construct a model of its
+kinematics (say, a model of the probability density of its stars\'
+positions and velocities) which they then fit to obervations (say, those
+stars\' on-sky positions and line-of-sight velocities) in order to infer
+the physical properties of that galaxy, for example its total mass.
+However, a large number of stars are binary, meaning that these models
+are misspecified since the kinematics of stars in a binary-rich galaxy
+are different from those in a binary-free galaxy. If observations
+contain binary stars then these inferences will be wrong. The error will
+be small for large disc galaxies but will be large for small spheroidal
+galaxies. For these small spheroidal galaxies the total mass is always
+proportional to the velocity dispersion and in our paper my colleagues
+and I quantifed the error in the inferred galactic mass by constructing
+the velocity distribution using Dyad.
+
+The modelling of binary-rich galaxies is an active area of research
+[see, for example, the papers by @minor2010; @rastello2020; and
+@arroyo-polonio2023]. However, there is no publicly available software
+dedicated to the field. The situation is different for the allied field
+of population synthesis, in which stellar physicists generate a
+representation of a population of binary stars by simulating the
+dynamical and chemical evolution of some initial population. There is a
+large amount of software that can perform these simulations. Amongst the
+available packages are COSMIC [@breivik2020], COMPAS [@riley2022], and
+binary~c~ [@izzard2023]. These packages invariably allow you to generate
+the initial population by sampling stellar mass, mass-ratio, and orbital
+elements. In that respect they provide functionality similar to Dyad\'s.
+But typically they provide only the sampling routine and no further
+functionality, such as the ability to evaluate the probability density
+functions themselves. Moreover, each package provides a different
+library of sampling routines and these do not always allow for
+correlations between quantities. None of them was the laboratory that we
+required for our work. That laboratory was Dyad, which I hope others
+will find useful too.
 
 # References

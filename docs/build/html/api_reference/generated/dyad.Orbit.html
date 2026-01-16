@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dyad.Orbit &mdash; Dyad 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=7026087e"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=30646c52"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Dyad
+              <img src="../../_static/dyad_logo_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/what_is_dyad.html">What is Dyad?</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorial_1.html">Representing a Keplerian system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorial_1.html#representing-a-binary-system">Representing a binary system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorial_2.html">Synthesizing a population of binary stars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorial_3.html">Zero-age main-sequence binary systems</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Dyad API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../community_guidelines/index.html">Contribute to Dyad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community_guidelines/index.html#report-problems-with-dyad">Report problems with Dyad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community_guidelines/index.html#seek-support">Seek support</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Dyad</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">dyad.Orbit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api_reference/generated/dyad.Orbit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dyad-orbit">
+<h1>dyad.Orbit<a class="headerlink" href="#dyad-orbit" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="dyad.Orbit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dyad.</span></span><span class="sig-name descname"><span class="pre">Orbit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Omega</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dyad/_core.html#Orbit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dyad.Orbit" title="Link to this definition"></a></dt>
+<dd><p>A class representing an elliptical orbit</p>
+<p>Represents the bound orbit of a body in a gravitational central
+potential.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>m: array-like</strong></dt><dd><p>The mass of the body generating the central potential</p>
+</dd>
+<dt><strong>a: array-like</strong></dt><dd><p>Semimajor axis.</p>
+</dd>
+<dt><strong>e: array-like</strong></dt><dd><p>Eccentricity.</p>
+</dd>
+<dt><strong>Omega: array-like</strong></dt><dd><p>Longitude of ascending node.</p>
+</dd>
+<dt><strong>i: array-like</strong></dt><dd><p>Inclination.</p>
+</dd>
+<dt><strong>omega: array-like</strong></dt><dd><p>Argument of pericentre.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">angular_momentum</span></code></dt><dd><p>Get the body’s specific angular momentum</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">angular_momentum_magnitude</span></code></dt><dd><p>Get the magnitude of the body’s specific angular momentum</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">apoapsis</span></code></dt><dd><p>Get the apoapsis of the orbit</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">area</span></code></dt><dd><p>Get the area contained by the orbit</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">argument_of_pericentre</span></code></dt><dd><p>Get the orbit’s argument of pericentre</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">central_mass</span></code></dt><dd><p>Get the central mass</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentricity</span></code></dt><dd><p>Get the orbit’s eccentricity</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentricity_vector</span></code></dt><dd><p>Get the eccentricity vector of the orbit</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">energy</span></code></dt><dd><p>Get the body’s specific total energy</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">inclination</span></code></dt><dd><p>Get the inclination of the orbit</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude_of_ascending_node</span></code></dt><dd><p>Get the longitude of the ascending node of the orbit</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">lrl_vector</span></code></dt><dd><p>Get the Laplace-Runge-Lenz vector of the orbit</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">periapsis</span></code></dt><dd><p>Get the periapsis of the orbit</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">period</span></code></dt><dd><p>Get the orbital period</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">semilatus_rectum</span></code></dt><dd><p>Get the orbit’s semilatus rectum</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimajor_axis</span></code></dt><dd><p>Get the orbit’s semimajor axis</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiminor_axis</span></code></dt><dd><p>Get the orbit’s semiminor axis</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delaunay_elements</span></code>([theta])</p></td>
+<td><p>Get the Delaunay elements of the orbit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentric_anomaly</span></code>(theta)</p></td>
+<td><p>Return the body's eccentric anomaly</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">kinetic_energy</span></code>(theta)</p></td>
+<td><p>Return the body's specific kinetic energy</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_anomaly</span></code>(theta)</p></td>
+<td><p>Return the body's mean anomaly</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">modified_delaunay_elements</span></code>([theta])</p></td>
+<td><p>Get the modified Delaunay elements of the orbit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">orbital_elements</span></code>([theta])</p></td>
+<td><p>Get the orbital elements of the orbit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">potential</span></code>(theta)</p></td>
+<td><p>Return the gravitational potential at the body's position</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">radius</span></code>(theta)</p></td>
+<td><p>Return the body's radius</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">speed</span></code>(theta)</p></td>
+<td><p>Return the body's speed</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code>(theta)</p></td>
+<td><p>Return the orbital state vector in Cartesian coordinates</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Scalar parameters defining a single orbit in the perifocal plane.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dyad</span><span class="o">.</span><span class="n">Orbit</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="go">&lt;dyad._core.Orbit object at 0x...&gt;</span>
+</pre></div>
+</div>
+<p>Scalar parameters defining a single orbit in the observer’s frame.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dyad</span><span class="o">.</span><span class="n">Orbit</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="go">&lt;dyad._core.Orbit object at 0x...&gt;</span>
+</pre></div>
+</div>
+<p>Array-like parameters defining multiple orbits.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dyad</span><span class="o">.</span><span class="n">Orbit</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="go">&lt;dyad._core.Orbit object at 0x...&gt;</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="dyad.Orbit.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Omega</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dyad/_core.html#Orbit.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dyad.Orbit.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dyad.Orbit.__init__" title="dyad.Orbit.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(m, a, e[, Omega, i, omega])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delaunay_elements</span></code>([theta])</p></td>
+<td><p>Get the Delaunay elements of the orbit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentric_anomaly</span></code>(theta)</p></td>
+<td><p>Return the body's eccentric anomaly</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">kinetic_energy</span></code>(theta)</p></td>
+<td><p>Return the body's specific kinetic energy</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_anomaly</span></code>(theta)</p></td>
+<td><p>Return the body's mean anomaly</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">modified_delaunay_elements</span></code>([theta])</p></td>
+<td><p>Get the modified Delaunay elements of the orbit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">orbital_elements</span></code>([theta])</p></td>
+<td><p>Get the orbital elements of the orbit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">potential</span></code>(theta)</p></td>
+<td><p>Return the gravitational potential at the body's position</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">radius</span></code>(theta)</p></td>
+<td><p>Return the body's radius</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">speed</span></code>(theta)</p></td>
+<td><p>Return the body's speed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code>(theta)</p></td>
+<td><p>Return the orbital state vector in Cartesian coordinates</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">angular_momentum</span></code></p></td>
+<td><p>Get the body's specific angular momentum</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">angular_momentum_magnitude</span></code></p></td>
+<td><p>Get the magnitude of the body's specific angular momentum</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">apoapsis</span></code></p></td>
+<td><p>Get the apoapsis of the orbit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">area</span></code></p></td>
+<td><p>Get the area contained by the orbit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">argument_of_pericentre</span></code></p></td>
+<td><p>Get the orbit's argument of pericentre</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">central_mass</span></code></p></td>
+<td><p>Get the central mass</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentricity</span></code></p></td>
+<td><p>Get the orbit's eccentricity</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentricity_vector</span></code></p></td>
+<td><p>Get the eccentricity vector of the orbit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">energy</span></code></p></td>
+<td><p>Get the body's specific total energy</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">inclination</span></code></p></td>
+<td><p>Get the inclination of the orbit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude_of_ascending_node</span></code></p></td>
+<td><p>Get the longitude of the ascending node of the orbit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">lrl_vector</span></code></p></td>
+<td><p>Get the Laplace-Runge-Lenz vector of the orbit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">periapsis</span></code></p></td>
+<td><p>Get the periapsis of the orbit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">period</span></code></p></td>
+<td><p>Get the orbital period</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">semilatus_rectum</span></code></p></td>
+<td><p>Get the orbit's semilatus rectum</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimajor_axis</span></code></p></td>
+<td><p>Get the orbit's semimajor axis</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiminor_axis</span></code></p></td>
+<td><p>Get the orbit's semiminor axis</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Amery Gration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

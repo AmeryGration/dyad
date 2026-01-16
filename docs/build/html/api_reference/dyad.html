@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dyad (dyad) &mdash; Dyad 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7026087e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=30646c52"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Dyad
+              <img src="../_static/dyad_logo_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/what_is_dyad.html">What is Dyad?</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial_1.html">Representing a Keplerian system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial_1.html#representing-a-binary-system">Representing a binary system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial_2.html">Synthesizing a population of binary stars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial_3.html">Zero-age main-sequence binary systems</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Dyad API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../community_guidelines/index.html">Contribute to Dyad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community_guidelines/index.html#report-problems-with-dyad">Report problems with Dyad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community_guidelines/index.html#seek-support">Seek support</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Dyad</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Dyad (<code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad</span></code>)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api_reference/dyad.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dyad-dyad">
+<span id="dyad-api"></span><span id="module-dyad"></span><h1>Dyad (<a class="reference internal" href="#module-dyad" title="dyad"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dyad</span></code></a>)<a class="headerlink" href="#dyad-dyad" title="Link to this heading"></a></h1>
+<p>Dyad is a two-body dynamics and binary-star statistics package for astrophysicists.</p>
+<p>It provides:</p>
+<ol class="arabic simple">
+<li><p>a class object, <a class="reference internal" href="generated/dyad.Orbit.html#dyad.Orbit" title="dyad.Orbit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dyad.Orbit</span></code></a>, that represents the bound orbit of a body in a gravitational central potential,</p></li>
+<li><p>a class object, <a class="reference internal" href="generated/dyad.TwoBody.html#dyad.TwoBody" title="dyad.TwoBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dyad.TwoBody</span></code></a>, that represents the component orbits of a bound gravitational two-body system,</p></li>
+<li><p>a suite of probability distributions, <a class="reference internal" href="stats.html#module-dyad.stats" title="dyad.stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dyad.stats</span></code></a>, for the orbital properties of a population of binary stars, and</p></li>
+<li><p>a suite of utility functions for computing derived properties.</p></li>
+</ol>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<p>The geometry of an orbit is shown in Figures <a class="reference internal" href="../getting_started/what_is_dyad.html#orbit"><span class="std std-numref">Fig. 1</span></a> and
+<a class="reference internal" href="../getting_started/what_is_dyad.html#orientation"><span class="std std-numref">Fig. 2</span></a>. That orbit is an ellipse with <em>semimajor axis</em>,
+<span class="math notranslate nohighlight">\(a\)</span> and <em>eccentricity</em>, <span class="math notranslate nohighlight">\(e\)</span>. The body’s phase is described
+by its <em>true anomaly</em>, :math:`  heta`, which is the angle subtended
+by the body and the primary vertex (i.e. the point of perigee) at the
+primary focus, <span class="math notranslate nohighlight">\(F_{1}\)</span>. The <em>perifocal coordinate system</em> has
+origin <span class="math notranslate nohighlight">\(F_{1}\)</span> and orthogonal basis <span class="math notranslate nohighlight">\((\mathbf{e}_{p},
+\mathbf{e}_{q}, \mathbf{e}_{w})\)</span> such that <span class="math notranslate nohighlight">\(\mathbf{e}_{p}\)</span> is
+parallel with the latus rectum, <span class="math notranslate nohighlight">\(\mathbf{e}_{q}\)</span> is parallel
+with the major axis, and <span class="math notranslate nohighlight">\(\mathbf{e}_{w}\)</span> is parallel with the
+body’s angular momentum. If the observer’s frame is coordinatized by
+the orthogonal basis <span class="math notranslate nohighlight">\((\mathbf{e}_{x}, \mathbf{e}_{y},
+\mathbf{e}_{z})\)</span> then the perifocal system is a rotation of the
+observer’s system defined by Euler angles <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(i\)</span>,
+and <span class="math notranslate nohighlight">\(\omega\)</span> (being the <em>longitude of the ascending node</em>, the
+<em>inclination</em>, and the <em>argument of pericentre</em>).</p>
+<figure class="align-center" id="id1" style="width: 75%">
+<span id="orbit"></span><img alt="../_images/elliptical_orbit.jpg" src="../_images/elliptical_orbit.jpg" />
+<figcaption>
+<p><span class="caption-text">The orbit of a bound body in a gravitational central potential. The
+pericentral frame has coordinates <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> while the
+perifocal frame has coordinates <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id2" style="width: 75%">
+<span id="orientation"></span><img alt="../_images/orbital_euler_angles.jpg" src="../_images/orbital_euler_angles.jpg" />
+<figcaption>
+<p><span class="caption-text">The orientation of the perifocal coordinates system with respect to
+the coordinate system of the observer is described by the Euler
+angles <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(\omega\)</span>. The unit
+vector <span class="math notranslate nohighlight">\(\mathbf{e}_{N}\)</span> is parallel with the <em>line of nodes</em>
+(i.e. the straight line passing through <span class="math notranslate nohighlight">\(F_{1}\)</span> and the
+<em>ascending node</em>, being the point at which the orbit and the
+observer’s plane of reference intersect).</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The geometry of a binary system’s component orbits is shown in Figure
+<a class="reference internal" href="../getting_started/what_is_dyad.html#twobodysystem"><span class="std std-numref">Fig. 3</span></a>. Both bodies move on elliptical orbits with
+primary foci coincident with the system’s centre of mass (COM)
+frame. The more-massive (resp. less-massive) body moves as if in a
+central potential generated by a mass of <span class="math notranslate nohighlight">\(m_{2}^{3}/(m_{1} +
+m_{2})^{2}\)</span> (resp. <span class="math notranslate nohighlight">\(m_{1}^{3}/(m_{1} + m_{2})^{2}\)</span>). Its orbit
+is described by its semimajor axis, <span class="math notranslate nohighlight">\(a_{1}\)</span>
+(resp. <span class="math notranslate nohighlight">\(a_{2}\)</span>), and eccentricity, <span class="math notranslate nohighlight">\(e_{1}\)</span>
+(resp. <span class="math notranslate nohighlight">\(e_{2}\)</span>). Its orientation is defined by the longitude of
+its ascending node, <span class="math notranslate nohighlight">\(\Omega_{1}\)</span> (resp. <span class="math notranslate nohighlight">\(\Omega_{2}\)</span>),
+inclination, <span class="math notranslate nohighlight">\(i_{1}\)</span> (resp. <span class="math notranslate nohighlight">\(i_{2}\)</span>), and argument of
+pericentre, <span class="math notranslate nohighlight">\(\omega_{1}\)</span> (resp. <span class="math notranslate nohighlight">\(\omega_{2}\)</span>). The phase
+of the more-massive (resp. less-massive) body is described by its true
+anomaly, :math:`        heta_{1}` (resp. :math:`        heta_{2})`. It is the case
+that <span class="math notranslate nohighlight">\(a_{2} = a_{1}/q\)</span>, <span class="math notranslate nohighlight">\(e_{2} = e_{1}\)</span>. <span class="math notranslate nohighlight">\(\Omega_{2}
+= \Omega_{1}\)</span>, <span class="math notranslate nohighlight">\(i_{2} = i_{1}\)</span>, <span class="math notranslate nohighlight">\(\omega_{2} = \omega_{1} +
+\pi\)</span> and :math:`        heta_{1} =      heta_{2}`.</p>
+<figure class="align-center" id="id3" style="width: 75%">
+<span id="twobodysystem"></span><img alt="../_images/twobody_system.jpg" src="../_images/twobody_system.jpg" />
+<figcaption>
+<p><span class="caption-text">The orbits of the components of a two-body system.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.Orbit.html#dyad.Orbit" title="dyad.Orbit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Orbit</span></code></a>(m, a, e[, Omega, i, omega])</p></td>
+<td><p>A class representing an elliptical orbit</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.TwoBody.html#dyad.TwoBody" title="dyad.TwoBody"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoBody</span></code></a>(m_1, m_2, a, e[, Omega, i, omega])</p></td>
+<td><p>A class representing the elliptical orbits of a two-body system</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.semimajor_axis_from_period.html#dyad.semimajor_axis_from_period" title="dyad.semimajor_axis_from_period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimajor_axis_from_period</span></code></a>(p, m_1, m_2)</p></td>
+<td><p>Return the semimajor axis given the period</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.period_from_semimajor_axis.html#dyad.period_from_semimajor_axis" title="dyad.period_from_semimajor_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">period_from_semimajor_axis</span></code></a>(a, m_1, m_2)</p></td>
+<td><p>Return the period given the semimajor axis</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.true_anomaly_from_mean_anomaly.html#dyad.true_anomaly_from_mean_anomaly" title="dyad.true_anomaly_from_mean_anomaly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">true_anomaly_from_mean_anomaly</span></code></a>(mu, e)</p></td>
+<td><p>Return the true anomaly</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.true_anomaly_from_eccentric_anomaly.html#dyad.true_anomaly_from_eccentric_anomaly" title="dyad.true_anomaly_from_eccentric_anomaly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">true_anomaly_from_eccentric_anomaly</span></code></a>(eta, e)</p></td>
+<td><p>Return the true anomaly</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.mean_anomaly_from_eccentric_anomaly.html#dyad.mean_anomaly_from_eccentric_anomaly" title="dyad.mean_anomaly_from_eccentric_anomaly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_anomaly_from_eccentric_anomaly</span></code></a>(eta, e)</p></td>
+<td><p>Return the mean anomaly</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.mean_anomaly_from_true_anomaly.html#dyad.mean_anomaly_from_true_anomaly" title="dyad.mean_anomaly_from_true_anomaly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_anomaly_from_true_anomaly</span></code></a>(theta, e)</p></td>
+<td><p>Return the mean anomaly</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.eccentric_anomaly_from_true_anomaly.html#dyad.eccentric_anomaly_from_true_anomaly" title="dyad.eccentric_anomaly_from_true_anomaly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentric_anomaly_from_true_anomaly</span></code></a>(theta, e)</p></td>
+<td><p>Return the eccentric anomaly</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.eccentric_anomaly_from_mean_anomaly.html#dyad.eccentric_anomaly_from_mean_anomaly" title="dyad.eccentric_anomaly_from_mean_anomaly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentric_anomaly_from_mean_anomaly</span></code></a>(mu, e)</p></td>
+<td><p>Return the eccentric anomaly</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.delaunay_elements_from_orbital_elements.html#dyad.delaunay_elements_from_orbital_elements" title="dyad.delaunay_elements_from_orbital_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delaunay_elements_from_orbital_elements</span></code></a>(a, ...)</p></td>
+<td><p>Return the Delaunay elements given the orbital elements</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.orbital_elements_from_delaunay_elements.html#dyad.orbital_elements_from_delaunay_elements" title="dyad.orbital_elements_from_delaunay_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">orbital_elements_from_delaunay_elements</span></code></a>(J_1, ...)</p></td>
+<td><p>Return the orbital elements given the Delaunay elements</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/dyad.modified_delaunay_elements_from_orbital_elements.html#dyad.modified_delaunay_elements_from_orbital_elements" title="dyad.modified_delaunay_elements_from_orbital_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modified_delaunay_elements_from_orbital_elements</span></code></a>(a, ...)</p></td>
+<td><p>Return the modified Delaunay elements given the orbital elements</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/dyad.orbital_elements_from_modified_delaunay_elements.html#dyad.orbital_elements_from_modified_delaunay_elements" title="dyad.orbital_elements_from_modified_delaunay_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">orbital_elements_from_modified_delaunay_elements</span></code></a>(...)</p></td>
+<td><p>Return the orbital elements given the modified Delaunay elements</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Amery Gration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

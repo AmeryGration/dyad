@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+
+"""
+Test functions for stats.inclination module
+
+"""
+
+import unittest
+import numpy as np
+import data_test_inclination as data
+
+from dyad.stats import inclination
+from test_stats_infrastructure import test_factory
+
+np.random.seed(9371887)
+
+inclination_data = [
+    data.inclination_pdf,
+    data.inclination_cdf,
+    data.inclination_ppf,
+    data.inclination_rvs
+]
+
+
+class TestInclination(test_factory(inclination, inclination_data)):
+    pass
+
+
+if __name__ == "__main__":
+    unittest.main()
