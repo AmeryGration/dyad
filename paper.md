@@ -100,7 +100,7 @@ representation of a population of binary stars by simulating the
 dynamical and chemical evolution of some initial population. There is a
 large amount of software that can perform these simulations. Amongst the
 available packages are COSMIC [@breivik2020], COMPAS [@riley2022], and
-binary~c~ [@izzard2023]. These packages invariably allow you to generate
+binary_c [@izzard2023]. These packages invariably allow you to generate
 the initial population by sampling stellar mass, mass-ratio, and orbital
 elements. In that respect they provide functionality similar to Dyad\'s.
 But typically they provide only the sampling routine and no further
