@@ -11,8 +11,8 @@ authors:
     orcid: 0000-0003-1379-6696
     affiliation: 1
 affiliations:
-  - name: Astrophysics Research Group, University of Surrey, Guildford, GU2 7XH, United Kingdom
-	index: 1
+  - name: Astrophysics Research Group, University of Surrey, Guildford, GU2 7XH, United 
+    index: 1
     ror: 00ks66431
 date: 16 January 2026
 bibliography: paper.bib
