@@ -70,7 +70,8 @@ from . import mass
 from . import mass_ratio
 from . import log_period
 # from . import period
-# from . import secondary_mass
+from . import primary_mass
+from . import secondary_mass
 from . import semimajor_axis
 
 

@@ -33,7 +33,8 @@ import scipy as sp
 
 from scipy._lib._util import _lazyselect
 from scipy._lib._util import _lazywhere
-from . import _distn_infrastructure
+from .. import _distn_infrastructure
+from . import random
 
 _truncnorm = sp.stats.truncnorm
 
