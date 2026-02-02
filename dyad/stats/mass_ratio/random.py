@@ -13,21 +13,38 @@ __all__ = [
 
 
 class kroupa2001_gen(_distn_infrastructure.rv_continuous):
-    r"""The primary-star mass random variable for random pairing
+    r"""The random-pairing mass-ratio random variable (Kroupa mass function)
 
     %(before_notes)s
 
     Notes
     -----
-    xxx
+    The probability density function for `random.kroupa2001` is:
+
+    .. math::
+
+       f_{Q|M_{1}}(q|m_{1}) = 
+       = m_{1}\dfrac{f_{M}(qm_{1})}{F_{M}(m_{1})}
+
+    for mass ratio :math:`q \in (0, 1]` and primary_mass :math:`m_{1}
+    \in [a, b]` where :math:`f_{M}` and :math:`F_{M}` are the
+    probability density function and the cumulative distribution
+    function for the mass random variable of Kroupa
+    (`dyad.stats.mass.kroupa2001`), which iself has support on the
+    interval :math:`[a, b]`.
+
+    `random.kroupa2001` takes ``m_{1}`` as a shape parameter for
+    :math:`m_{1}`, the primary mass, ``a`` as a shape parameter for
+    :math:`a`, the minimum allowed mass, and ``b`` as a shape
+    parameter for :math:`b`, the maximum allowed mass.
 
     %(after_notes)s
 
-    See also
-    --------
-
     References
     ----------
+    Malkov, O., and H. Zinnecker. 2001. \'Binary stars and the
+    fundamental initial mass function\'. *Monthly Notices of the Royal
+    Astronomical Society* 321 (1): 149–54.
 
     %(example)s
 
@@ -69,7 +86,7 @@ kroupa2001 = kroupa2001_gen(name="mass_ratio.random.kroupa2001")
 
 
 class salpeter1955_gen(_distn_infrastructure.rv_continuous):
-    r"""The primary-star mass random variable for random pairing
+    r"""The mass-ratio random variable for random pairing
 
     %(before_notes)s
 
@@ -125,7 +142,7 @@ salpeter1955 = salpeter1955_gen(name="mass_ratio.random.salpeter1955")
 
 
 class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
-    r"""The primary-star mass random variable for random pairing
+    r"""The mass-ratio random variable for random pairing
 
     %(before_notes)s
 
@@ -173,3 +190,8 @@ class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
 
 
 splitpowerlaw = splitpowerlaw_gen(name="mass_ratio.random.splitpowerlaw")
+
+
+class Test(_distn_infrastructure.rv_continuous):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)

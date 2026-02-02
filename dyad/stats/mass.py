@@ -140,7 +140,7 @@ splitpowerlaw = splitpowerlaw_gen(name="mass.splitpowerlaw")
 
 
 class kroupa2001_gen(_distn_infrastructure.rv_continuous):
-    r"""The mass random variable of Kroupa (2002)
+    r"""The mass random variable of Kroupa (2001)
 
     %(before_notes)s
 
