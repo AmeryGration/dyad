@@ -51,25 +51,37 @@ import scipy as sp
 
 y_kroupa2001 = mass_ratio.random.kroupa2001(1., 0.08, 150.).pdf(x)
 rvs_kroupa2001 = mass_ratio.random.kroupa2001(1., 0.08, 150.).rvs(size=100_000)
-
 Y_kroupa2001 = mass_ratio.random.kroupa2001(1., 0.08, 150.).cdf(x)
 
 fig, ax = plt.subplots()
 ax.hist(rvs_kroupa2001, bins=100, density=True, alpha=0.5)
 ax.plot(x, y_kroupa2001)
 ax.plot(x, Y_kroupa2001)
-# ax.set_yscale("log")
-# plt.show()
 
 y_salpeter1955 = mass_ratio.random.salpeter1955(1., 0.08, 150.).pdf(x)
-rvs_salpeter1955 = mass_ratio.random.salpeter1955(1., 0.08, 150.).rvs(size=100_000)
-
+rvs_salpeter1955 = mass_ratio.random.salpeter1955(
+    1., 0.08, 150.
+).rvs(size=100_000)
 Y_salpeter1955 = mass_ratio.random.salpeter1955(1., 0.08, 150.).cdf(x)
 
-# fig, ax = plt.subplots()
 ax.hist(rvs_salpeter1955, bins=100, density=True, alpha=0.5)
 ax.plot(x, y_salpeter1955)
 ax.plot(x, Y_salpeter1955)
+
+y_splitpowerlaw = mass_ratio.random.splitpowerlaw(
+    1., 10., 0.08, 150., -1.3, -2.3
+).pdf(x)
+rvs_splitpowerlaw = mass_ratio.random.splitpowerlaw(
+    1., 10., 0.08, 150., -1.3, -2.3
+).rvs(size=100_000)
+Y_splitpowerlaw = mass_ratio.random.splitpowerlaw(
+    1., 10., 0.08, 150., -1.3, -2.3
+).cdf(x)
+
+# fig, ax = plt.subplots()
+ax.hist(rvs_splitpowerlaw, bins=100, density=True, alpha=0.5)
+ax.plot(x, y_splitpowerlaw)
+ax.plot(x, Y_splitpowerlaw)
 ax.set_yscale("log")
 plt.show()
 
