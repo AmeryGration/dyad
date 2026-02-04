@@ -5,10 +5,6 @@ __pycache__
 /pytest_cache/
 /docs/build/
 /docs/make.bat
-/dyad/_properties/
-/dyad/stats/_tests/
-/dyad/stats/_period.py
-/dyad/stats/secondary_mass.py
 /examples/data/
 /examples/figures/
 .python-version
