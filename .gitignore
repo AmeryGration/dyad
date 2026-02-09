@@ -4,6 +4,7 @@ __pycache__
 /dyad.egg-info/
 /pytest_cache/
 /docs/build/
+/docs/source/build/doctest/
 /docs/make.bat
 /examples/data/
 /examples/figures/
