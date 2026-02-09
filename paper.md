@@ -11,7 +11,7 @@ authors:
     orcid: 0000-0003-1379-6696
     affiliation: 1
 affiliations:
-  - name: Astrophysics Research Group, University of Surrey, Guildford, GU2 7XH, United 
+  - name: Astrophysics Research Group, University of Surrey, Guildford, GU2 7XH, United Kingdom
     index: 1
     ror: 00ks66431
 date: 16 January 2026
@@ -100,7 +100,7 @@ representation of a population of binary stars by simulating the
 dynamical and chemical evolution of some initial population. There is a
 large amount of software that can perform these simulations. Amongst the
 available packages are COSMIC [@breivik2020], COMPAS [@riley2022], and
-binary_c [@izzard2023]. These packages invariably allow you to generate
+binary_c [@hendriks2023]. These packages invariably allow you to generate
 the initial population by sampling stellar mass, mass-ratio, and orbital
 elements. In that respect they provide functionality similar to Dyad\'s.
 But typically they provide only the sampling routine and no further
