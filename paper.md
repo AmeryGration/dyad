@@ -111,4 +111,8 @@ correlations between quantities. None of them was the laboratory that we
 required for our work. That laboratory was Dyad, which I hope others
 will find useful too.
 
+# Acknowledgements
+
+This work was supported by UK Research and Innovation grant MR/S032223/1.
+
 # References
