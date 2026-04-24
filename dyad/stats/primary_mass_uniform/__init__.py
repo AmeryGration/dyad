@@ -24,7 +24,7 @@ Probability distributions
 __all__ = [
     "kroupa2001",
     "salpeter1955",
-    # "splitpowerlaw",
+    "splitpowerlaw",
 ]
 
 import numpy as np
@@ -199,9 +199,9 @@ class salpeter1955_gen(_distn_infrastructure.rv_continuous):
        xxx
 
     where :math:`f_{M}` is the probability density function for the
-    mass random variable of Kroupa (2001) and :math:`f_{M_{2}|M_{2}}`
-    is the conditional secondary mass function for uniform pairing,
-    which is given by
+    mass random variable of Salpeter (1955) and
+    :math:`f_{M_{2}|M_{2}}` is the conditional secondary mass function
+    for uniform pairing, which is given by
 
     .. math::
        f_{M_{2}|M_{2}}(m_{2}|m_{1})
@@ -274,4 +274,94 @@ class salpeter1955_gen(_distn_infrastructure.rv_continuous):
 salpeter1955 = salpeter1955_gen(name="primary_mass.uniform.salpeter1955")
 
 
-print("hello")
+class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
+    r"""The primary-star mass random variable for uniform pairing
+
+    %(before_notes)s
+
+    Notes
+    -----
+
+    The probability density function for `uniform.splitpowerlaw` is the
+    solution to the integral equation
+
+    .. math::
+       xxx
+
+    where :math:`f_{M}` is the probability density function for the
+    two-piece power-function mass random variable and
+    :math:`f_{M_{2}|M_{2}}` is the conditional secondary mass function
+    for uniform pairing, which is given by
+
+    .. math::
+       f_{M_{2}|M_{2}}(m_{2}|m_{1})
+       = \dfrac{1}{m_{1}}f_{Q|M_{1}}(m_{2}/m_{1})|m_{2})
+
+    where :math:`f_{Q|M_{1}}` is the conditional mass-ratio function
+    for uniform pairing.
+    
+    %(after_notes)s
+
+    See also
+    --------
+    dyad.stats.mass.splitpowerlaw
+    dyad.stats.mass_ratio.uniform
+    
+    References
+    ----------
+    Kroupa, P. 2001. \'The initial mass function and its variation
+    (review)\'. *ASP conference series* 285 (January): 86.
+
+    %(example)s
+
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._interp = None
+        
+    def pdf_interp(self, s, a, b, c, d, q_min):
+        if self._interp is None:
+            self._interp = interp(mass.splitpowerlaw(*s, *a, *b, *c, *d),
+                                  *q_min)
+
+        return self._interp[0]
+
+    def cdf_interp(self, s, a, b, c, d, q_min):
+        if self._interp is None:
+            self._interp = interp(mass.splitpowerlaw(*s, *a, *b, *c, *d),
+                                  *q_min)
+
+        return self._interp[1]
+
+    def ppf_interp(self, s, a, b, c, d, q_min):
+        if self._interp is None:
+            self._interp = interp(mass.splitpowerlaw(*s, *a, *b, *c, *d),
+                                  *q_min)
+
+        return self._interp[2]
+
+    def _argcheck(self, s, a, b, c, d, q_min):
+        return (0. < a) & (a < b) & (a < 0.5) & (0. < q_min ) & (q_min < 1.)
+
+    def _get_support(self, s, a, b, c, d, q_min):
+        res = (a, b)
+
+        return res
+        
+    def _pdf(self, x, s, a, b, c, d, q_min):
+        res = self.pdf_interp(s, a, b, c, d, q_min)(x)
+
+        return res
+
+    def _cdf(self, x, s, a, b, c, d, q_min):
+        res = self.cdf_interp(s, a, b, c, d, q_min)(x)
+
+        return res
+
+    def _ppf(self, x, s, a, b, c, d, q_min):
+        res = self.ppf_interp(s, a, b, c, d, q_min)(x)
+
+        return res
+
+
+splitpowerlaw = splitpowerlaw_gen(name="primary_mass.uniform.splitpowerlaw")
