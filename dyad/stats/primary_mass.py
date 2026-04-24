@@ -25,3 +25,4 @@ import scipy as sp
 
 from . import _distn_infrastructure
 from . import primary_mass_random as random
+from . import primary_mass_uniform as uniform
