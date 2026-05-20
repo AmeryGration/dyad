@@ -30,10 +30,9 @@ __all__ = [
 
 import numpy as np
 import scipy as sp
-
 from scipy._lib._util import _lazyselect
-from scipy._lib._util import _lazywhere
 from . import _distn_infrastructure
+from ._lazywhere_function import _lazywhere
 
 _truncnorm = sp.stats.truncnorm
 
@@ -57,7 +56,7 @@ class duquennoy1991_gen(_distn_infrastructure.rv_continuous):
     function for a Gaussian random variable with mean :math:`\mu` and
     variance :math:`\sigma^{2}` and where :math:`\mu = 0.23` and
     :math:`\sigma = 0.42`.
-    
+
     %(after_notes)s
 
     References
@@ -167,7 +166,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 
     .. math::
        F_{\text{twin}}(p, m_{1})
-       = 
+       =
        \dfrac{\int_{0.95}^{1}c_{\text{twin}}(p, m_{1})\mathrm{d}\,q}
        {\int_{0.3}^{1}q^{\delta(p, m_{1})}\mathrm{d}\,q
        + \int_{0.95}^{1}c_{\text{twin}}(p, m_{1})\mathrm{d}\,q},
@@ -283,7 +282,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
        &\text{if $\log_{10}(p) \in (5, 8]$}
        \end{cases}\\
        \delta_{2}(p, m_{1})
-       &= 
+       &=
        \;\!\delta_{1}(p, 1.2) + \dfrac{1}{2.3}(\delta_{3}(p, 3.5) -
        \;\!\delta_{1}(p, 1.2))(m_{1} - 1.2)\\
        \delta_{3}(p, m_{1})
@@ -317,7 +316,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
     ``moe2017`` takes ``log10_period`` and ``primary_mass`` as a shape
     parameter for :math:`\log_{10}(p)`, the period, and :math:`m_{1}`, the
     primary mass.
-    
+
     %(after_notes)s
 
     References
@@ -335,7 +334,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
         ib = _ShapeInfo("primary_mass", False, (0.8, 40.), (True, True))
 
         return [ia, ib]
-    
+
     def _argcheck(self, log10_period, primary_mass):
         res = (
             (0.2 <= log10_period) & (log10_period <= 8.)
@@ -395,7 +394,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
             choice,
             (x, norm, gamma, delta, log10_period, primary_mass)
         )
-        
+
         return res
 
     def _cdf(self, x, log10_period, primary_mass):
@@ -423,8 +422,8 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
                 condition, (x, norm, gamma, delta), f=choice[0], f2=choice[1]
             )
 
-            return res            
-        
+            return res
+
         def g_2(x, norm, gamma, delta, log10_period, primary_mass):
             def g_2a(x, norm, gamma, delta, log10_period, primary_mass):
                 res = norm*(np.log(x) - np.log(0.3))
@@ -452,7 +451,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
             )
 
             return res
-            
+
         def g_3(x, norm, gamma, delta, log10_period, primary_mass):
             def g_3a(x, norm, gamma, delta, log10_period, primary_mass):
                 res = np.log(x) - np.log(0.95)
@@ -490,7 +489,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
         x = np.asarray(x)
         log10_period = np.asarray(log10_period)
         primary_mass = np.asarray(primary_mass)
-        
+
         gamma = _moe2017_gamma(log10_period, primary_mass)
         delta = _moe2017_delta(log10_period, primary_mass)
         norm = _moe2017_norm(gamma, delta, log10_period, primary_mass)
@@ -520,7 +519,7 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
                 res = 0.1*np.exp(q/0.3**(delta - gamma))
 
                 return res
-            
+
             def f_1b(q, gamma, delta, norm):
                 q = q/norm
                 base = (gamma + 1.)*q/0.3**(delta - gamma) + 0.1**(gamma + 1.)
@@ -551,9 +550,9 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
                     /(gamma + 1.)
                 )
                 res = 0.3*np.exp(q - a)
-                
+
                 return res
-            
+
             def f_2b(q, gamma, delta, norm):
                 q = q/norm
                 a = (
@@ -626,13 +625,13 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
                 ).squeeze()
             except:
                 res = q
-                
+
             return res
 
         q = np.atleast_1d(q)
         log10_period = np.atleast_1d(log10_period)
         primary_mass = np.atleast_1d(primary_mass)
-        
+
         gamma = _moe2017_gamma(log10_period, primary_mass)
         delta = _moe2017_delta(log10_period, primary_mass)
         norm = _moe2017_norm(gamma, delta, log10_period, primary_mass)
@@ -732,7 +731,7 @@ def _moe2017_norm(gamma, delta, log10_period, primary_mass):
         + 0.05*_moe2017_twin_excess_constant(delta, log10_period, primary_mass)
     )
     res = num/denom
-    
+
     return res
 
 def _moe2017_twin_excess_constant(delta, log10_period, primary_mass):
@@ -748,7 +747,7 @@ def _moe2017_twin_excess_constant(delta, log10_period, primary_mass):
             *(1. - _moe2017_twin_excess_fraction(log10_period, primary_mass))
         )
         res = num/denom
-        
+
         return res
 
     def f_2(delta, log10_period, primary_mass):
@@ -817,7 +816,7 @@ def _moe2017_twin_excess_fraction(log10_period, primary_mass):
 
     log10_period = np.array(log10_period)
     primary_mass = np.asarray(primary_mass)
-    
+
     condition = (
         (0.2 <= log10_period)
         & (log10_period <= 1.),
@@ -848,7 +847,7 @@ def _moe2017_log10_excess_twin_period(primary_mass):
         return res
 
     primary_mass = np.asarray(primary_mass)
-    
+
     condition = (
             (0. < primary_mass) & (primary_mass <= 6.5),
             (6.5 < primary_mass) & (primary_mass < np.inf)
@@ -879,7 +878,7 @@ def _moe2017_gamma(log10_period, primary_mass):
         )
 
         return res
-        
+
     def gamma_3(log10_period, primary_mass):
         def f_1(log10_period, primary_mass):
             res = 0.2*np.ones_like(log10_period)
@@ -894,7 +893,7 @@ def _moe2017_gamma(log10_period, primary_mass):
         def f_3(log10_period, primary_mass):
             res = -0.7 - 0.2*(log10_period - 5.5)
             return res
-        
+
         condition = (
             (0.2 <= log10_period) & (log10_period <= 2.5),
             (2.5 < log10_period) & (log10_period <= 5.5),
@@ -1156,7 +1155,7 @@ class uniform_gen(_distn_infrastructure.rv_continuous):
     the primary mass, ``m_min`` as a shape parameter for
     :math:`m_{\text{min}}`, and ``q_min`` as a shape parameter for
     :math:`q_{\text{min}}`.
-    
+
     %(after_notes)s
 
     References
@@ -1167,21 +1166,21 @@ class uniform_gen(_distn_infrastructure.rv_continuous):
     """
     def _get_support(self, m_1, m_min, q_min):
         res = (np.maximum(q_min, m_min/m_1), 1)
-        
+
         return res
-    
+
     def _pdf(self, x, m_1, m_min, q_min):
         num = np.ones_like(x)
         denom = 1. - np.maximum(q_min, m_min/m_1)
         res = num/denom
-        
+
         return res
 
     def _cdf(self, x, m_1, m_min, q_min):
         num = x - np.maximum(q_min, m_min/m_1)
         denom = 1. - np.maximum(q_min, m_min/m_1)
         res = num/denom
-        
+
         return res
 
     def _ppf(self, q, m_1, m_min, q_min):
@@ -1189,8 +1188,8 @@ class uniform_gen(_distn_infrastructure.rv_continuous):
             (1. - np.maximum(q_min, m_min/m_1))*q
             + np.maximum(q_min, m_min/m_1)
         )
-        
+
         return res
-    
+
 
 uniform = uniform_gen(name="mass_ratio.uniform")

@@ -29,7 +29,7 @@ __all__ = [
 import numpy as np
 import scipy as sp
 
-from importlib.resources import files
+from importlib.resources import files, as_file
 from scipy.interpolate import RegularGridInterpolator
 from scipy.interpolate import LinearNDInterpolator
 from dyad.stats import mass_ratio
@@ -188,36 +188,43 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
         x = np.asarray(x)
         primary_mass = np.asarray(primary_mass)
         res = _moe2017_pdf_interp((x, primary_mass))
-        
+
         return res
 
     def _cdf(self, x, primary_mass):
         x = np.asarray(x)
         primary_mass = np.asarray(primary_mass)
         res = _moe2017_cdf_interp((x, primary_mass))
-        
+
         return res
 
     def _ppf(self, q, primary_mass):
         q = np.asarray(q)
         primary_mass = np.asarray(primary_mass)
         res = _moe2017_ppf_interp((q, primary_mass))
-        
+
         return res
 
 # For guidance on the use of data files see:
 # https://setuptools.pypa.io/en/latest/userguide/datafiles.html
 # (section `Accessing Data Files at Runtime')
+
+
 path = "dyad.stats.data.log_period"
-with files(path).joinpath("log10_period_sample.dat") as f_name:
+
+with as_file(files(path).joinpath("log10_period_sample.dat")) as f_name:
     _moe2017_log10_period_sample = np.loadtxt(f_name)
-with files(path).joinpath("primary_mass_sample.dat") as f_name:
+
+with as_file(files(path).joinpath("primary_mass_sample.dat")) as f_name:
     _moe2017_primary_mass_sample = np.loadtxt(f_name)
-with files(path).joinpath("frequency_sample.dat") as f_name:
+
+with as_file(files(path).joinpath("frequency_sample.dat")) as f_name:
     _moe2017_frequency_sample = np.loadtxt(f_name)
-with files(path).joinpath("cumulative_frequency_sample.dat") as f_name:
+
+with as_file(files(path).joinpath("cumulative_frequency_sample.dat")) as f_name:
     _moe2017_cumulative_frequency_sample = np.loadtxt(f_name)
-    
+
+
 _moe2017_pdf_interp = RegularGridInterpolator(
     (_moe2017_log10_period_sample, _moe2017_primary_mass_sample),
     _moe2017_frequency_sample.T,
