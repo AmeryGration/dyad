@@ -377,6 +377,28 @@ class moe2017_hist_gen(sp.stats.rv_continuous):
     r"""The eccentricity random variable of Moe and Stefano (2017) as
     a histogram
 
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `moe2017_hist`.
+
+
+    `moe2017` takes ``log10_period`` as a shape parameter for
+    :math:`x` and ``log10_primary_mass`` as a shape parameer for
+    :math:`m_{1}`.
+
+    %(after_notes)s
+    
+    References
+    ----------
+    Moe, Maxwell, and Rosanne Di Stefano. 2017. \'Mind your Ps and Qs:
+    the interrelation between period (P) and mass-ratio (Q)
+    distributions of binary stars.\' *The Astrophysical Journal
+    Supplement Series* 230 (2): 15.
+
+    %(example)s
+
     """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
