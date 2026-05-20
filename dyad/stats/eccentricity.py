@@ -26,11 +26,14 @@ __all__ = [
     "thermal",
     "duquennoy1991",
     "moe2017",
+    "moe2017_hist",
 ]
 
+import json
 import numpy as np
 import scipy as sp
 
+from importlib.resources import files
 from scipy.stats._distn_infrastructure import _ShapeInfo
 from . import _distn_infrastructure
 
@@ -368,3 +371,79 @@ def _moe2017_eta(log10_period, primary_mass):
     return res
 
 moe2017 = moe2017_gen(a=0., b=1., name="eccentricity.moe2017")
+
+
+class moe2017_hist_gen(sp.stats.rv_continuous):
+    r"""The eccentricity random variable of Moe and Stefano (2017) as
+    a histogram
+
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._xedges = edges_eccentricity
+        self._yedges = edges_log10_period
+        self._zedges = edges_log10_primary_mass
+        self._counts = counts
+        self._cumsum = cumsum
+        self._counts = np.pad(self._counts, ((1, 1), (1, 1), (1, 1)),
+                              "constant")
+        self._cumsum = np.pad(self._cumsum, ((1, 1), (1, 0), (1, 0)),
+                              "constant")
+
+    def _argcheck(self, log10_period, log10_primary_mass):
+        res = (
+            (0. < log10_period)
+            & (log10_period <= 8.)
+            & (-1.05 <= log10_primary_mass)
+            & (log10_primary_mass <= 1.65)
+        )
+
+        return res
+
+    def _pdf(self, e, log10_period, log10_primary_mass):
+        idx_e = np.searchsorted(
+            self._xedges, e#, side="right"
+        )
+        idx_log10_period = np.searchsorted(
+            self._yedges, log10_period#, side="right"
+        )
+        idx_log10_primary_mass = np.searchsorted(
+            self._zedges, log10_primary_mass#, side="right"
+        )
+        res = self._counts[idx_log10_primary_mass, idx_log10_period, idx_e]
+
+        return res
+
+    def _cdf(self, e, log10_period, log10_primary_mass):
+        def _fun(x, log10_period, log10_primary_mass):
+            idx_log10_period = np.searchsorted(
+                self._yedges, log10_period#, side="right"
+            )
+            idx_log10_primary_mass = np.searchsorted(
+                self._zedges, log10_primary_mass#, side="right"
+            )
+            res = np.interp(
+                x, self._xedges,
+                self._cumsum[idx_log10_primary_mass, idx_log10_period]
+            )
+
+            return res
+
+        res = np.vectorize(_fun)(e, log10_period, log10_primary_mass)
+
+        return res
+
+
+path = "dyad.stats.data.moe2017.eccentricity"
+with open(files(path).joinpath("data.json"), "r") as f:
+    _moe2017_hist_data = json.load(f)
+
+edges_eccentricity = np.array(_moe2017_hist_data["edges_eccentricity"])
+edges_log10_period = np.array(_moe2017_hist_data["edges_log10_period"])
+edges_log10_primary_mass = np.array(
+    _moe2017_hist_data["edges_log10_primary_mass"]
+)
+counts = np.array(_moe2017_hist_data["counts"])
+cumsum = np.array(_moe2017_hist_data["cumsum"])
+
+moe2017_hist = moe2017_hist_gen(a=0., b=1.)
