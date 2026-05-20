@@ -3,14 +3,35 @@
 
 import numpy as np
 
-
 try:
     # scipy <= 1.15
     from scipy._lib._array_api import array_namespace
 except ModuleNotFoundError:
     # later scipy
+    class _NumpyArrayNamespace:
+        bool = np.bool_
+        bool_ = np.bool_
+
+        def __getattr__(self, name):
+            return getattr(np, name)
+
+        @staticmethod
+        def astype(x, dtype, *, copy=True):
+            return np.asarray(x).astype(dtype, copy=copy)
+
+        @staticmethod
+        def asarray(x, dtype=None, *, copy=None):
+            if copy is None:
+                return np.asarray(x, dtype=dtype)
+            return np.array(x, dtype=dtype, copy=copy)
+
+    _numpy_array_namespace = _NumpyArrayNamespace()
+
     def array_namespace(*arrays):
-        return np
+        return _numpy_array_namespace
+
+
+
 
 def _lazywhere(cond, arrays, f, fillvalue=None, f2=None):
     """Return elements chosen from two possibilities depending on a condition
