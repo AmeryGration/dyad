@@ -315,4 +315,4 @@ edges_log10_primary_mass = np.array(
 counts = np.array(_moe2017_hist_data["counts"])
 cumsum = np.array(_moe2017_hist_data["cumsum"])
 
-moe2017_hist = moe2017_hist_gen(a=0., b=8.)
+moe2017_hist = moe2017_hist_gen(a=0., b=8., name="log_period.moe2017_hist")

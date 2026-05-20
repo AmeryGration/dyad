@@ -468,4 +468,4 @@ edges_log10_primary_mass = np.array(
 counts = np.array(_moe2017_hist_data["counts"])
 cumsum = np.array(_moe2017_hist_data["cumsum"])
 
-moe2017_hist = moe2017_hist_gen(a=0., b=1.)
+moe2017_hist = moe2017_hist_gen(a=0., b=1., name="eccentricity.moe2017_hist")
