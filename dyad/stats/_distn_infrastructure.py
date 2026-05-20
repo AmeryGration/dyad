@@ -27,7 +27,62 @@ from scipy import optimize
 from scipy import integrate
 
 # to approximate the pdf of a continuous distribution given its cdf
-from scipy._lib._finite_differences import _derivative
+try:
+    # if we have scipy<=1.15 this should work
+    from scipy._lib._finite_differences import _derivative
+except ModuleNotFoundError:
+    # otherwise, use this for newer scipy
+    import numpy as np
+
+    def _derivative(func, x0, dx=1.0, n=1, args=(), order=3):
+        """
+        Compatibility replacement for the old scipy._lib._finite_differences._derivative.
+
+        Supports the common n=1 and n=2 cases used by scipy.stats-style
+        distribution infrastructure.
+        """
+        if order < n + 1:
+            raise ValueError("'order' must be at least n + 1")
+        if order % 2 == 0:
+            raise ValueError("'order' must be odd")
+
+        if n == 1:
+            if order == 3:
+                weights = np.array([-1, 0, 1]) / 2.0
+                offsets = np.array([-1, 0, 1])
+            elif order == 5:
+                weights = np.array([1, -8, 0, 8, -1]) / 12.0
+                offsets = np.array([-2, -1, 0, 1, 2])
+            else:
+                raise NotImplementedError(
+                    "compatibility _derivative only supports n=1 with order 3 or 5"
+                )
+
+            return sum(
+                w * func(x0 + o * dx, *args)
+                for w, o in zip(weights, offsets)
+            ) / dx
+
+        if n == 2:
+            if order == 3:
+                weights = np.array([1, -2, 1])
+                offsets = np.array([-1, 0, 1])
+            elif order == 5:
+                weights = np.array([-1, 16, -30, 16, -1]) / 12.0
+                offsets = np.array([-2, -1, 0, 1, 2])
+            else:
+                raise NotImplementedError(
+                    "compatibility _derivative only supports n=2 with order 3 or 5"
+                )
+
+            return sum(
+                w * func(x0 + o * dx, *args)
+                for w, o in zip(weights, offsets)
+            ) / dx**2
+
+        raise NotImplementedError(
+            "compatibility _derivative only supports first and second derivatives"
+        )
 
 # for scipy.stats.entropy. Attempts to import just that function or file
 # have cause import problems
