@@ -51,7 +51,7 @@ for i, key_i in enumerate(key_log10_primary_mass):
             )
 
 # Normalize histogram of mass_ratio
-cumsum = np.cumsum(counts*0.1, axis=2)
+cumsum = np.cumsum(counts*mass_ratio_width, axis=2)
 counts /= cumsum[:,:,-1][:,:,None]
 cumsum /= cumsum[:,:,-1][:,:,None]
 
@@ -66,24 +66,24 @@ data = {
 with open("moe2017.json", "w") as f:
     json.dump(data, f, indent=2)
 
-# ########################################################################
-# # Plot PDFs and CDFs
-# ########################################################################
+########################################################################
+# Plot PDFs and CDFs
+########################################################################
 
-# import plot
-# import matplotlib as mpl
-# import matplotlib.pyplot as plt
+import plot
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 
-# mpl.style.use("sm")
+mpl.style.use("sm")
 
-# fig, ax = plot.plot()
-# ax.stairs(counts[0][2], edges_mass_ratio, color="red")
-# ax.stairs(counts[-1][2], edges_mass_ratio, color="magenta")
-# plt.savefig("./Figures/mass_ratio_0_hist.pdf")
-# # plt.show()
+fig, ax = plot.plot()
+ax.stairs(counts[0][2], edges_mass_ratio, color="red")
+ax.stairs(counts[-1][2], edges_mass_ratio, color="magenta")
+plt.savefig("./Figures/mass_ratio_0_hist.pdf")
+plt.show()
 
-# fig, ax = plot.plot()
-# ax.stairs(counts[0][-1], edges_mass_ratio, color="red")
-# ax.stairs(counts[-1][-1], edges_mass_ratio, color="magenta")
-# plt.savefig("./Figures/mass_ratio_1_hist.pdf")
-# plt.show()
+fig, ax = plot.plot()
+ax.stairs(counts[0][-1], edges_mass_ratio, color="red")
+ax.stairs(counts[-1][-1], edges_mass_ratio, color="magenta")
+plt.savefig("./Figures/mass_ratio_1_hist.pdf")
+plt.show()

@@ -9,7 +9,7 @@ with open("../dykes_data.json") as f:
 
 log10_period = moe2017["log10M1"][0]["0.0"]["logP"].keys()
 log10_period = np.array([float(key) for key in log10_period])
-log10_period_width = np.diff(log10_period)[0]
+log10_period_width = 0.5
 edges_log10_period = log10_period - log10_period_width/2.
 edges_log10_period = np.append(
     edges_log10_period, edges_log10_period[-1] + log10_period_width
@@ -17,7 +17,7 @@ edges_log10_period = np.append(
 
 log10_primary_mass = moe2017["log10M1"][0].keys()
 log10_primary_mass = np.array([float(key) for key in log10_primary_mass])
-log10_primary_mass_width = np.diff(log10_primary_mass)[0]
+log10_primary_mass_width = 0.1
 edges_log10_primary_mass = log10_primary_mass - log10_primary_mass_width/2.
 edges_log10_primary_mass = np.append(
     edges_log10_primary_mass,
@@ -29,7 +29,7 @@ counts = np.array([
      for j in moe2017["log10M1"][0]["0.0"]["logP"].keys()]
      for i in moe2017["log10M1"][0].keys()
 ])
-cumsum = np.cumsum(counts*0.1, axis=1)
+cumsum = np.cumsum(counts*log10_period_width, axis=1)
 counts /= cumsum[:,-1][:,None]
 cumsum /= cumsum[:,-1][:,None]
 
@@ -40,7 +40,7 @@ data = {
     "cumsum": cumsum.tolist(),
 }
 
-with open("moe2017.json", "w") as f:
+with open("data.json", "w") as f:
     json.dump(data, f, indent=2)
 
 # ########################################################################

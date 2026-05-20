@@ -52,7 +52,7 @@ for i, key_i in enumerate(key_log10_primary_mass):
             )
 
 # Normalize histogram of eccentricity
-cumsum = np.cumsum(counts*0.1, axis=2)
+cumsum = np.cumsum(counts*eccentricity_width, axis=2)
 counts /= cumsum[:,:,-1][:,:,None]
 cumsum /= cumsum[:,:,-1][:,:,None]
 
@@ -80,11 +80,11 @@ mpl.style.use("sm")
 fig, ax = plot.plot()
 ax.stairs(counts[0][2], edges_eccentricity, color="red")
 ax.stairs(counts[-1][2], edges_eccentricity, color="magenta")
-plt.savefig("./Figures/eccentricity_0_hist.pdf")
+# plt.savefig("./Figures/eccentricity_0_hist.pdf")
 plt.show()
 
 fig, ax = plot.plot()
 ax.stairs(counts[0][-1], edges_eccentricity, color="red")
 ax.stairs(counts[-1][-1], edges_eccentricity, color="magenta")
-plt.savefig("./Figures/eccentricity_1_hist.pdf")
+# plt.savefig("./Figures/eccentricity_1_hist.pdf")
 plt.show()

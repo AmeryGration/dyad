@@ -281,10 +281,10 @@ class moe2017_hist_gen(sp.stats.rv_continuous):
 
     def _pdf(self, x, log10_primary_mass):
         idx_x = np.searchsorted(
-            self._xedges, x, side="right"
+            self._xedges, x #, side="right"
         )
         idx_primary_mass = np.searchsorted(
-            self._yedges, log10_primary_mass, side="right"
+            self._yedges, log10_primary_mass #, side="right"
         )
         res = self._counts[idx_primary_mass, idx_x]
 
@@ -293,7 +293,7 @@ class moe2017_hist_gen(sp.stats.rv_continuous):
     def _cdf(self, x, log10_primary_mass):
         def _fun(x, log10_primary_mass):
             idx_primary_mass = np.searchsorted(
-                self._yedges, log10_primary_mass, side="right"
+                self._yedges, log10_primary_mass #, side="right"
             )
             res = np.interp(x, self._xedges, self._cumsum[idx_primary_mass])
 
@@ -309,7 +309,9 @@ with open(files(path).joinpath("data.json"), "r") as f:
     _moe2017_hist_data = json.load(f)
 
 edges_log10_period = np.array(_moe2017_hist_data["edges_log10_period"])
-edges_log10_primary_mass = np.array(_moe2017_hist_data["edges_log10_primary_mass"])
+edges_log10_primary_mass = np.array(
+    _moe2017_hist_data["edges_log10_primary_mass"]
+)
 counts = np.array(_moe2017_hist_data["counts"])
 cumsum = np.array(_moe2017_hist_data["cumsum"])
 
