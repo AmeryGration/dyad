@@ -1,7 +1,16 @@
 # replacement for _lazywhere which has been
 # deprecated from scipy
 
-from scipy._lib._array_api import array_namespace
+import numpy as np
+
+
+try:
+    # scipy <= 1.15
+    from scipy._lib._array_api import array_namespace
+except ModuleNotFoundError:
+    # later scipy
+    def array_namespace(*arrays):
+        return np
 
 def _lazywhere(cond, arrays, f, fillvalue=None, f2=None):
     """Return elements chosen from two possibilities depending on a condition
