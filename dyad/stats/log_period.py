@@ -24,8 +24,10 @@ Probability distributions
 __all__ = [
     "duquennoy1991",
     "moe2017",
+    "moe2017_hist",
 ]
 
+import json
 import numpy as np
 import scipy as sp
 
@@ -260,3 +262,97 @@ _moe2017_values = np.tile(
 _moe2017_ppf_interp = LinearNDInterpolator(_moe2017_points.T, _moe2017_values)
 
 moe2017 = moe2017_gen(a=0.2, b=8., name="log_period.moe2017")
+
+
+class moe2017_hist_gen(sp.stats.rv_continuous):
+    r"""The log-period random variable of Moe and Stefano (2017) as a
+    histogram
+
+    %(before_notes)s
+
+    Notes
+    -----
+
+    The probability density function for `moe2017_hist` is the
+    conditional PDF for log-period, :math:`X`, given log-primary mass,
+    :math:`\log_{10}(M)`,
+    
+    .. math::
+       f_{X|\log_{10}(M_{1})}(x|\log(m_{1}))
+
+    for :math:`x \in [0., 8]` and :math:`\log(m_{1}) \in [-1.05,
+    1.65]`. It is the histogram computed using the data collected by
+    Moe & Di Stefano (2017) and published by Mirouh et al. (2023).
+
+    ``moe2017`` takes ``log10_primary_mass`` as a shape parameter for
+    :math:`\log_{10}(m_{1})`, the log-primary mass.
+    
+    %(after_notes)s
+
+    References
+    ----------
+    Moe, M., and R. Di Stefano. 2017. \'Mind your Ps and Qs:
+    the interrelation between period (P) and mass-ratio (Q)
+    distributions of binary stars.\' *The Astrophysical Journal
+    Supplement Series* 230 (2): 15.
+
+    Mirouh, G. M., Hendriks, D. D., Dykes S., Moe, M., and
+    R. G. Izzard. 2023. \'Detailed Equilibrium and Dynamical Tides:
+    Impact on Circularization and Synchronization in Open
+    Clusters\'. */Monthly Notices of the Royal Astronomical Society* 524
+    (3): 3978–99.
+
+    %(example)s
+
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._xedges = edges_log10_period
+        self._yedges = edges_log10_primary_mass
+        self._counts = counts
+        self._cumsum = cumsum
+        self._counts = np.pad(self._counts, ((1, 1), (1, 1)), "constant")
+        self._cumsum = np.pad(self._cumsum, ((1, 1), (1, 0)), "constant")
+
+    def _argcheck(self, log10_primary_mass):
+        res = (-1.05 <= log10_primary_mass) & (log10_primary_mass <= 1.65)
+
+        return res
+
+    def _pdf(self, x, log10_primary_mass):
+        idx_x = np.searchsorted(
+            self._xedges, x #, side="right"
+        )
+        idx_primary_mass = np.searchsorted(
+            self._yedges, log10_primary_mass #, side="right"
+        )
+        res = self._counts[idx_primary_mass, idx_x]
+
+        return res
+
+    def _cdf(self, x, log10_primary_mass):
+        def _fun(x, log10_primary_mass):
+            idx_primary_mass = np.searchsorted(
+                self._yedges, log10_primary_mass #, side="right"
+            )
+            res = np.interp(x, self._xedges, self._cumsum[idx_primary_mass])
+
+            return res
+
+        res = np.vectorize(_fun)(x, log10_primary_mass)
+
+        return res
+
+
+path = "dyad.stats.data.moe2017.log_period"
+with open(files(path).joinpath("data.json"), "r") as f:
+    _moe2017_hist_data = json.load(f)
+
+edges_log10_period = np.array(_moe2017_hist_data["edges_log10_period"])
+edges_log10_primary_mass = np.array(
+    _moe2017_hist_data["edges_log10_primary_mass"]
+)
+counts = np.array(_moe2017_hist_data["counts"])
+cumsum = np.array(_moe2017_hist_data["cumsum"])
+
+moe2017_hist = moe2017_hist_gen(a=0., b=8., name="log_period.moe2017_hist")

@@ -25,12 +25,15 @@ Probability distributions
 __all__ = [
     "duquennoy1991",
     "moe2017",
+    "moe2017_hist"
     "uniform"
 ]
 
+import json
 import numpy as np
 import scipy as sp
 
+from importlib.resources import files
 from scipy._lib._util import _lazyselect
 from scipy._lib._util import _lazywhere
 from . import _distn_infrastructure
@@ -1194,3 +1197,121 @@ class uniform_gen(_distn_infrastructure.rv_continuous):
     
 
 uniform = uniform_gen(name="mass_ratio.uniform")
+
+
+class moe2017_hist_gen(sp.stats.rv_continuous):
+    r"""The mass-ratio random variable of Moe and Stefano (2017) as a
+    histogram
+
+    %(before_notes)s
+
+    Notes
+    -----
+
+    The probability density function for `moe2017_hist` is the
+    conditional PDF for mass ratio, :math:`Q`, given log-period,
+    :math:`X`, and log-primary mass, :math:`\log_{10}(M)`,
+    
+    .. math::
+       f_{Q|X, \log_{10}(M_{1})}(q|x, \log(m_{1}))
+
+    for :math:`q \in [0.1, 1]`, :math:`x \in [0., 8]`, and
+    :math:`\log(m_{1}) \in [-1.05, 1.65]`. It is the histogram
+    computed using the data collected by Moe & Di Stefano (2017) and
+    published by Mirouh et al. (2023).
+
+    ``moe2017`` takes ``log10_period`` and ``log10_primary_mass`` as
+    shape parameters for :math:`x`, the log-period, and
+    :math:`\log_{10}(m_{1})`, the log-primary mass.
+    
+    %(after_notes)s
+
+    References
+    ----------
+    Moe, M., and R. Di Stefano. 2017. \'Mind your Ps and Qs:
+    the interrelation between period (P) and mass-ratio (Q)
+    distributions of binary stars.\' *The Astrophysical Journal
+    Supplement Series* 230 (2): 15.
+
+    Mirouh, G. M., Hendriks, D. D., Dykes S., Moe, M., and
+    R. G. Izzard. 2023. \'Detailed Equilibrium and Dynamical Tides:
+    Impact on Circularization and Synchronization in Open
+    Clusters\'. */Monthly Notices of the Royal Astronomical Society* 524
+    (3): 3978–99.
+
+    %(example)s
+
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._xedges = _moe2017_hist_edges_mass_ratio
+        self._yedges = _moe2017_hist_edges_log10_period
+        self._zedges = _moe2017_hist_edges_log10_primary_mass
+        self._counts = _moe2017_hist_counts
+        self._cumsum = _moe2017_hist_cumsum
+        self._counts = np.pad(self._counts, ((1, 1), (1, 1), (1, 1)),
+                              "constant")
+        self._cumsum = np.pad(self._cumsum, ((1, 1), (1, 0), (1, 0)),
+                              "constant")
+
+    def _argcheck(self, log10_period, log10_primary_mass):
+        res = (
+            (0. < log10_period)
+            & (log10_period <= 8.)
+            & (-1.05 <= log10_primary_mass)
+            & (log10_primary_mass <= 1.65)
+        )
+
+        return res
+
+    def _pdf(self, q, log10_period, log10_primary_mass):
+        idx_q = np.searchsorted(
+            self._xedges, q#, side="right"
+        )
+        idx_log10_period = np.searchsorted(
+            self._yedges, log10_period#, side="right"
+        )
+        idx_log10_primary_mass = np.searchsorted(
+            self._zedges, log10_primary_mass#, side="right"
+        )
+        res = self._counts[idx_log10_primary_mass, idx_log10_period, idx_q]
+
+        return res
+
+    def _cdf(self, q, log10_period, log10_primary_mass):
+        def _fun(x, log10_period, log10_primary_mass):
+            idx_log10_period = np.searchsorted(
+                self._yedges, log10_period#, side="right"
+            )
+            idx_log10_primary_mass = np.searchsorted(
+                self._zedges, log10_primary_mass#, side="right"
+            )
+            res = np.interp(
+                x, self._xedges,
+                self._cumsum[idx_log10_primary_mass, idx_log10_period]
+            )
+
+            return res
+
+        res = np.vectorize(_fun)(q, log10_period, log10_primary_mass)
+
+        return res
+
+
+path = "dyad.stats.data.moe2017.mass_ratio"
+with open(files(path).joinpath("data.json"), "r") as f:
+    _moe2017_hist_data = json.load(f)
+
+_moe2017_hist_edges_mass_ratio = np.array(
+    _moe2017_hist_data["edges_mass_ratio"]
+)
+_moe2017_hist_edges_log10_period = np.array(
+    _moe2017_hist_data["edges_log10_period"]
+)
+_moe2017_hist_edges_log10_primary_mass = np.array(
+    _moe2017_hist_data["edges_log10_primary_mass"]
+)
+_moe2017_hist_counts = np.array(_moe2017_hist_data["counts"])
+_moe2017_hist_cumsum = np.array(_moe2017_hist_data["cumsum"])
+
+moe2017_hist = moe2017_hist_gen(a=0., b=1., name="mass_ratio.moe2017_name")
