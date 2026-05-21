@@ -119,7 +119,7 @@ intersphinx_mapping = get_intersphinx_mapping(
     packages={
         "python",
         "numpy",
-        "scipy",
+        "scipy==1.15.0",
         "neps",
         "matplotlib",
         "asv",
