@@ -1200,8 +1200,46 @@ uniform = uniform_gen(name="mass_ratio.uniform")
 
 
 class moe2017_hist_gen(sp.stats.rv_continuous):
-    r"""The mass-rtaio random variable of Moe and Stefano (2017) as a
+    r"""The mass-ratio random variable of Moe and Stefano (2017) as a
     histogram
+
+    %(before_notes)s
+
+    Notes
+    -----
+
+    The probability density function for `moe2017_hist` is the
+    conditional PDF for mass ratio, :math:`Q`, given log-period,
+    :math:`X`, and log-primary mass, :math:`\log_{10}(M)`,
+    
+    .. math::
+       f_{Q|X, \log_{10}(M_{1})}(q|x, \log(m_{1}))
+
+    for :math:`q \in [0.1, 1]`, :math:`x \in [0., 8]`, and
+    :math:`\log(m_{1}) \in [-1.05, 1.65]`. It is the histogram
+    computed using the data collected by Moe & Di Stefano (2017) and
+    published by Mirouh et al. (2023).
+
+    ``moe2017`` takes ``log10_period`` and ``log10_primary_mass`` as
+    shape parameters for :math:`x`, the log-period, and
+    :math:`\log_{10}(m_{1})`, the log-primary mass.
+    
+    %(after_notes)s
+
+    References
+    ----------
+    Moe, M., and R. Di Stefano. 2017. \'Mind your Ps and Qs:
+    the interrelation between period (P) and mass-ratio (Q)
+    distributions of binary stars.\' *The Astrophysical Journal
+    Supplement Series* 230 (2): 15.
+
+    Mirouh, G. M., Hendriks, D. D., Dykes S., Moe, M., and
+    R. G. Izzard. 2023. \'Detailed Equilibrium and Dynamical Tides:
+    Impact on Circularization and Synchronization in Open
+    Clusters\'. */Monthly Notices of the Royal Astronomical Society* 524
+    (3): 3978–99.
+
+    %(example)s
 
     """
     def __init__(self, *args, **kwargs):

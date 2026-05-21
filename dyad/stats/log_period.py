@@ -265,6 +265,46 @@ moe2017 = moe2017_gen(a=0.2, b=8., name="log_period.moe2017")
 
 
 class moe2017_hist_gen(sp.stats.rv_continuous):
+    r"""The log-period random variable of Moe and Stefano (2017) as a
+    histogram
+
+    %(before_notes)s
+
+    Notes
+    -----
+
+    The probability density function for `moe2017_hist` is the
+    conditional PDF for log-period, :math:`X`, given log-primary mass,
+    :math:`\log_{10}(M)`,
+    
+    .. math::
+       f_{X|\log_{10}(M_{1})}(x|\log(m_{1}))
+
+    for :math:`x \in [0., 8]` and :math:`\log(m_{1}) \in [-1.05,
+    1.65]`. It is the histogram computed using the data collected by
+    Moe & Di Stefano (2017) and published by Mirouh et al. (2023).
+
+    ``moe2017`` takes ``log10_primary_mass`` as a shape parameter for
+    :math:`\log_{10}(m_{1})`, the log-primary mass.
+    
+    %(after_notes)s
+
+    References
+    ----------
+    Moe, M., and R. Di Stefano. 2017. \'Mind your Ps and Qs:
+    the interrelation between period (P) and mass-ratio (Q)
+    distributions of binary stars.\' *The Astrophysical Journal
+    Supplement Series* 230 (2): 15.
+
+    Mirouh, G. M., Hendriks, D. D., Dykes S., Moe, M., and
+    R. G. Izzard. 2023. \'Detailed Equilibrium and Dynamical Tides:
+    Impact on Circularization and Synchronization in Open
+    Clusters\'. */Monthly Notices of the Royal Astronomical Society* 524
+    (3): 3978–99.
+
+    %(example)s
+
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._xedges = edges_log10_period
