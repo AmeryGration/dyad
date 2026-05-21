@@ -71,8 +71,7 @@ sys.path.insert(0, os.path.abspath("../../dyad"))
 project = "Dyad"
 copyright = "2026, Amery Gration"
 author = "Amery Gration"
-version = "0.0.0"
-release = "0.0.0"
+version = "0.2.0"
 
 if os.environ.get("CIRCLE_JOB", False) and \
         os.environ.get("CIRCLE_BRANCH", "") != "main":
