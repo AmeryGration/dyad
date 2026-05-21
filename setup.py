@@ -47,7 +47,7 @@ setup(
     # platforms="",
     # cmdclass="",
     install_requires=[
-        "numpy<=1.21",
+        "numpy",
         "scipy<=1.15",
         "matplotlib",
         "numpydoc",
