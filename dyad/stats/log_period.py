@@ -29,7 +29,7 @@ __all__ = [
 import numpy as np
 import scipy as sp
 
-from importlib.resources import files
+from importlib.resources import files, as_file
 from scipy.interpolate import RegularGridInterpolator
 from scipy.interpolate import LinearNDInterpolator
 from dyad.stats import mass_ratio
@@ -209,14 +209,14 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
 # https://setuptools.pypa.io/en/latest/userguide/datafiles.html
 # (section `Accessing Data Files at Runtime')
 path = "dyad.stats.data.log_period"
-with files(path).joinpath("log10_period_sample.dat") as f_name:
-    _moe2017_log10_period_sample = np.loadtxt(f_name)
-with files(path).joinpath("primary_mass_sample.dat") as f_name:
-    _moe2017_primary_mass_sample = np.loadtxt(f_name)
-with files(path).joinpath("frequency_sample.dat") as f_name:
-    _moe2017_frequency_sample = np.loadtxt(f_name)
-with files(path).joinpath("cumulative_frequency_sample.dat") as f_name:
-    _moe2017_cumulative_frequency_sample = np.loadtxt(f_name)
+with as_file(files(path).joinpath("log10_period_sample.dat")) as f:
+    _moe2017_log10_period_sample = np.loadtxt(f)
+with as_file(files(path).joinpath("primary_mass_sample.dat")) as f:
+    _moe2017_primary_mass_sample = np.loadtxt(f)
+with as_file(files(path).joinpath("frequency_sample.dat")) as f:
+    _moe2017_frequency_sample = np.loadtxt(f)
+with as_file(files(path).joinpath("cumulative_frequency_sample.dat")) as f:
+    _moe2017_cumulative_frequency_sample = np.loadtxt(f)
     
 _moe2017_pdf_interp = RegularGridInterpolator(
     (_moe2017_log10_period_sample, _moe2017_primary_mass_sample),

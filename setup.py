@@ -19,7 +19,7 @@ long_description = (Path(__file__).parent/"README.md").read_text()
 
 setup(
     name="dyad",
-    version="0.1.0",
+    version="0.2.0",
     description=description, 
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -38,17 +38,17 @@ setup(
     ],
     classifiers=[
         # List of classifiers here: https://pypi.org/classifiers/
-        "Development Status :: 2 – Pre-Alpha",
+        "Development Status :: 3 – Alpha",
         "Intended Audience :: Science/Research",
         "Topic :: Scientific/Engineering :: Astronomy",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.14",
     ],
     # platforms="",
     # cmdclass="",
     install_requires=[
-        "numpy>=1.21.6",
-        "scipy>=1.11",
+        "numpy<=1.21",
+        "scipy<=1.15",
         "matplotlib",
         "numpydoc",
         "intersphinx_registry",
