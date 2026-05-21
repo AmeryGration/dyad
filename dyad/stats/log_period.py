@@ -18,6 +18,7 @@ Probability distributions
 
    duquennoy1991
    moe2017
+   moe2017_hist
 
 """
 
@@ -275,7 +276,7 @@ class moe2017_hist_gen(sp.stats.rv_continuous):
 
     The probability density function for `moe2017_hist` is the
     conditional PDF for log-period, :math:`X`, given log-primary mass,
-    :math:`\log_{10}(M)`,
+    :math:`\log_{10}(M_{1})`,
     
     .. math::
        f_{X|\log_{10}(M_{1})}(x|\log(m_{1}))

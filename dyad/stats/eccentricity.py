@@ -18,6 +18,7 @@ Probability distributions
 
    duquennoy1991
    moe2017
+   moe2017_hist
    thermal
 
 """
@@ -384,7 +385,7 @@ class moe2017_hist_gen(sp.stats.rv_continuous):
 
     The probability density function for `moe2017_hist` is the
     conditional PDF for eccentricity, :math:`E`, given log-period,
-    :math:`X`, and log-primary mass, :math:`\log_{10}(M)`,
+    :math:`X`, and log-primary mass, :math:`\log_{10}(M_{1})`,
     
     .. math::
        f_{E|X, \log_{10}(M_{1})}(e|x, \log(m_{1}))

@@ -18,6 +18,7 @@ Probability distributions
 
    duquennoy1991
    moe2017
+   moe2017_hist
    uniform
 
 """
