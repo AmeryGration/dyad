@@ -313,7 +313,7 @@ class moe2017_hist_gen(sp.stats.rv_continuous):
         self._counts = counts
         self._cumsum = cumsum
         self._counts = np.pad(self._counts, ((1, 1), (1, 1)), "constant")
-        self._cumsum = np.pad(self._cumsum, ((1, 1), (1, 0)), "constant")
+        self._cumsum = np.pad(self._cumsum, ((1, 0), (1, 0)), "constant")
 
     def _argcheck(self, log10_primary_mass):
         res = (-1.05 <= log10_primary_mass) & (log10_primary_mass <= 1.65)
@@ -322,10 +322,10 @@ class moe2017_hist_gen(sp.stats.rv_continuous):
 
     def _pdf(self, x, log10_primary_mass):
         idx_x = np.searchsorted(
-            self._xedges, x #, side="right"
+            self._xedges, x, side="right"
         )
         idx_primary_mass = np.searchsorted(
-            self._yedges, log10_primary_mass #, side="right"
+            self._yedges, log10_primary_mass, side="right"
         )
         res = self._counts[idx_primary_mass, idx_x]
 
@@ -334,7 +334,7 @@ class moe2017_hist_gen(sp.stats.rv_continuous):
     def _cdf(self, x, log10_primary_mass):
         def _fun(x, log10_primary_mass):
             idx_primary_mass = np.searchsorted(
-                self._yedges, log10_primary_mass #, side="right"
+                self._yedges, log10_primary_mass, side="right"
             )
             res = np.interp(x, self._xedges, self._cumsum[idx_primary_mass])
 
