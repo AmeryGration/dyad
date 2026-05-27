@@ -4,8 +4,10 @@ import json
 import numpy as np
 import scipy as sp
 
-with open("../dykes_data.json") as f:
-    moe2017 = json.load(f)
+path = "dyad.stats.data.moe2017"
+with as_file(files(path).joinpath("dykes_data.json")) as path:
+    with path.open("r") as f:
+        moe2017 = json.load(f)
 
 log10_period = moe2017["log10M1"][0]["0.0"]["logP"].keys()
 log10_period = np.array([float(key) for key in log10_period])
@@ -39,22 +41,23 @@ data = {
     "counts": counts.tolist(),
     "cumsum": cumsum.tolist(),
 }
+path = "dyad.stats.data.moe2017.eccentricity"
+with as_file(files(path).joinpath("data.json")) as path:
+    with path.open("w") as f:
+        json.dump(data, f, indent=2)
 
-with open("data.json", "w") as f:
-    json.dump(data, f, indent=2)
+########################################################################
+# Plot PDFs and CDFs
+########################################################################
 
-# ########################################################################
-# # Plot PDFs and CDFs
-# ########################################################################
+import plot
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 
-# import plot
-# import matplotlib as mpl
-# import matplotlib.pyplot as plt
+mpl.style.use("sm")
 
-# mpl.style.use("sm")
-
-# fig, ax = plot.plot()
-# ax.stairs(counts[0], edges_log10_period, color="red")
-# ax.stairs(counts[-1], edges_log10_period, color="magenta")
-# plt.savefig("./Figures/log10_period_hist.pdf")
-# plt.show()
+fig, ax = plot.plot()
+ax.stairs(counts[0], edges_log10_period, color="red")
+ax.stairs(counts[-1], edges_log10_period, color="magenta")
+plt.savefig("./Figures/log10_period_hist.pdf")
+plt.show()

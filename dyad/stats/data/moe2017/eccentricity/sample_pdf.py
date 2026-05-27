@@ -4,10 +4,14 @@ import json
 import numpy as np
 import scipy as sp
 
-# Load JSON file containing data of Moe and Di Stefano (2017)
-with open("../dykes_data.json") as f:
-    moe2017 = json.load(f)
+from importlib.resources import files, as_file
 
+# # Load JSON file containing data of Moe and Di Stefano (2017)
+path = "dyad.stats.data.moe2017"
+with as_file(files(path).joinpath("dykes_data.json")) as path:
+    with path.open("r") as f:
+        moe2017 = json.load(f)
+    
 # Find edges of eccentricity bins
 eccentricity = moe2017["log10M1"][0]["0.0"]["logP"]["0.25"]["e"].keys()
 eccentricity = np.array([float(key) for key in eccentricity])
@@ -64,8 +68,10 @@ data = {
     "counts": counts.tolist(),
     "cumsum": cumsum.tolist(),
 }
-# with open("data.json", "w") as f:
-#     json.dump(data, f, indent=2)
+path = "dyad.stats.data.moe2017.eccentricity"
+with as_file(files(path).joinpath("data.json")) as path:
+    with path.open("w") as f:
+        json.dump(data, f, indent=2)
 
 ########################################################################
 # Plot PDFs and CDFs
@@ -80,11 +86,11 @@ mpl.style.use("sm")
 fig, ax = plot.plot()
 ax.stairs(counts[0][2], edges_eccentricity, color="red")
 ax.stairs(counts[-1][2], edges_eccentricity, color="magenta")
-# plt.savefig("./Figures/eccentricity_0_hist.pdf")
+plt.savefig("./Figures/eccentricity_0_hist.pdf")
 plt.show()
 
 fig, ax = plot.plot()
 ax.stairs(counts[0][-1], edges_eccentricity, color="red")
 ax.stairs(counts[-1][-1], edges_eccentricity, color="magenta")
-# plt.savefig("./Figures/eccentricity_1_hist.pdf")
+plt.savefig("./Figures/eccentricity_1_hist.pdf")
 plt.show()

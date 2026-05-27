@@ -5,8 +5,10 @@ import numpy as np
 import scipy as sp
 
 # Load JSON file containing data of Moe and Di Stefano (2017)
-with open("../dykes_data.json") as f:
-    moe2017 = json.load(f)
+path = "dyad.stats.data.moe2017"
+with as_file(files(path).joinpath("dykes_data.json")) as path:
+    with path.open("r") as f:
+        moe2017 = json.load(f)
 
 # Find edges of mass-ratio bins
 mass_ratio = moe2017["log10M1"][0]["0.0"]["logP"]["0.25"]["q"].keys()
@@ -63,8 +65,10 @@ data = {
     "counts": counts.tolist(),
     "cumsum": cumsum.tolist(),
 }
-with open("moe2017.json", "w") as f:
-    json.dump(data, f, indent=2)
+path = "dyad.stats.data.moe2017.eccentricity"
+with as_file(files(path).joinpath("data.json")) as path:
+    with path.open("w") as f:
+        json.dump(data, f, indent=2)
 
 ########################################################################
 # Plot PDFs and CDFs
