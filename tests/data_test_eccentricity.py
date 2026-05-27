@@ -26,6 +26,9 @@ If the function `dyad.stats.eccentricity.{attribute,method}(*args)` returns
 the value `val` then the test is passed.
 
 """
+
+import numpy as np
+
 thermal_pdf = [
     [[0.0], 0.0],
     [[1.0], 2.0],
