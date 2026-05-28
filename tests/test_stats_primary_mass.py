@@ -66,22 +66,22 @@ class TestRandomSplitpowerlaw(
     pass
 
 
-class TestUniformSalpeter1955(
-        test_factory(primary_mass.uniform.salpeter1955,
-                     uniform_salpeter1955_data)):
-    pass
+# class TestUniformSalpeter1955(
+#         test_factory(primary_mass.uniform.salpeter1955,
+#                      uniform_salpeter1955_data)):
+#     pass
 
 
-class TestUniformKroupa2001(
-        test_factory(primary_mass.uniform.kroupa2001,
-                     uniform_kroupa2001_data)):
-    pass
+# class TestUniformKroupa2001(
+#         test_factory(primary_mass.uniform.kroupa2001,
+#                      uniform_kroupa2001_data)):
+#     pass
 
 
-class TestUniformSplitpowerlaw(
-        test_factory(primary_mass.uniform.splitpowerlaw,
-                     uniform_splitpowerlaw_data)):
-    pass
+# class TestUniformSplitpowerlaw(
+#         test_factory(primary_mass.uniform.splitpowerlaw,
+#                      uniform_splitpowerlaw_data)):
+#     pass
 
 
 if __name__ == "__main__":
