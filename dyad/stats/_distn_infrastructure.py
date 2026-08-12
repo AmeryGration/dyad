@@ -13,7 +13,7 @@ from itertools import zip_longest
 
 from scipy._lib import doccer
 from ._distr_params import distcont, distdiscrete
-from scipy._lib._util import check_random_state, _lazywhere
+from scipy._lib._util import check_random_state
 
 from scipy.special import comb, entr
 
@@ -24,9 +24,6 @@ from scipy import optimize
 
 # for functions of continuous distributions (e.g. moments, entropy, cdf)
 from scipy import integrate
-
-# to approximate the pdf of a continuous distribution given its cdf
-from scipy._lib._finite_differences import _derivative
 
 # for scipy.stats.entropy. Attempts to import just that function or file
 # have cause import problems
@@ -42,6 +39,43 @@ from scipy.stats._censored_data import CensoredData
 from scipy.stats._warnings_errors import FitError
 
 import dyad
+
+########################################################################
+# Monkey-patch missing modules in Scipy v1.16.1
+########################################################################
+import sys
+import types
+import numpy as np
+import scipy
+
+finite_diff_module = types.ModuleType("scipy._lib._finite_differences")
+
+def _derivative(f, x, dx=1e-6):
+    """Central difference implementation used by legacy rv_continuous"""
+    return (f(x + dx) - f(x - dx)) / (2 * dx)
+
+finite_diff_module._derivative = _derivative
+sys.modules["scipy._lib._finite_differences"] = finite_diff_module
+scipy._lib._finite_differences = finite_diff_module
+
+def _lazywhere(cond, arrays, f, fillvalue=np.nan, f2=None):
+    """Vectorised masking layer used by legacy Scipy distributions"""
+    arrays = np.broadcast_arrays(*arrays)
+    cond = np.array(cond, dtype=bool, copy=False)
+    out = np.full(cond.shape, fillvalue)
+    
+    if f2 is None:
+        if np.any(cond):
+            out[cond] = f(*[a[cond] for a in arrays])
+    else:
+        if np.any(cond):
+            out[cond] = f(*[a[cond] for a in arrays])
+        if np.any(~cond):
+            out[~cond] = f2(*[a[~cond] for a in arrays])
+    return out
+
+# Bind _lazywhere to the specific internal location the old stats engine targets
+scipy._lib._util._lazywhere = _lazywhere
 
 # These are the docstring parts used for substitution in specific
 # distribution docstrings
