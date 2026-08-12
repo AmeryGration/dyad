@@ -12,5 +12,6 @@ sphinx:
   
 python:
    install:
-   # Removing 'method: pip' stops the broken compilation loop
+   - method: pip
+     path: .
    - requirements: requirements.txt
