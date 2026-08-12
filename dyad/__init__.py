@@ -1,4 +1,4 @@
-""".. _dyad_api:
+r""".. _dyad_api:
 
 ==================
 Dyad (:mod:`dyad`)
