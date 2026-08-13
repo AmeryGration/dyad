@@ -27,7 +27,7 @@ old_isdesc = inspect.isdescriptor
 inspect.isdescriptor = (lambda obj: old_isdesc(obj)
                         and not isinstance(obj, ua._Function))
 
-# sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 ########################################################################
 # General configuration
@@ -65,13 +65,14 @@ numfig = True
 # The main toctree document.
 master_doc = "index"
 
-# # General substitutions.
-# sys.path.insert(0, os.path.abspath("../../dyad"))
+# General substitutions.
+sys.path.insert(0, os.path.abspath("../../dyad"))
 
 project = "Dyad"
 copyright = "2026, Amery Gration"
 author = "Amery Gration"
-version = "0.2.0"
+version = "0.0.0"
+release = "0.0.0"
 
 if os.environ.get("CIRCLE_JOB", False) and \
         os.environ.get("CIRCLE_BRANCH", "") != "main":

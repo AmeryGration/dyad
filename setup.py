@@ -1,5 +1,4 @@
 from setuptools import setup
-from setuptools import find_packages
 from pathlib import Path
 
 # See here: https://github.com/phobson/paramnormal/blob/main/setup.py
@@ -20,15 +19,14 @@ long_description = (Path(__file__).parent/"README.md").read_text()
 
 setup(
     name="dyad",
-    version="0.2.0dev",
+    version="0.2.0",
     description=description, 
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Amery Gration",
     author_email="amerygration@proton.me",
     url="https://github.com/AmeryGration/dyad",
-    packages=find_packages(), 
-    # packages=["dyad", "dyad.stats"],
+    packages=["dyad", "dyad.stats"],
     license_file="COPYING",
     keywords=[
         # List of keywords:
@@ -50,7 +48,7 @@ setup(
     # cmdclass="",
     install_requires=[
         "numpy",
-        "scipy",
+        "scipy<=1.15",
         "matplotlib",
         "numpydoc",
         "intersphinx_registry",

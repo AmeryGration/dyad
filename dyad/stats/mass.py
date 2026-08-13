@@ -179,9 +179,7 @@ class kroupa2001_gen(_distn_infrastructure.rv_continuous):
     %(example)s
 
     """
-    def _argcheck(self, a, b):
-        return (0. < a) & (a < b) & (a < 0.5)
-
+    # Check 0 < a < b.
     def _get_support(self, a, b):
         res = a, b
 
