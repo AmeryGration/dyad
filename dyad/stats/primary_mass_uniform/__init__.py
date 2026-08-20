@@ -293,7 +293,6 @@ class kroupa2001_gen(sp.stats.rv_continuous):
 
     def pdf_interp(self, a, b, q_min):
         if self._interp is None:
-            print(111111)
             self._pdf_interp, self._cdf_interp, self._ppf_interp = interp(
                 g_kroupa2001, k_uniform, a, b, q_min
             )
@@ -302,7 +301,6 @@ class kroupa2001_gen(sp.stats.rv_continuous):
 
     def cdf_interp(self, a, b, q_min):
         if self._interp is None:
-            print(222222)
             self._pdf_interp, self._cdf_interp, self._ppf_interp = interp(
                 g_kroupa2001, k_uniform, a, b, q_min
             )
@@ -310,7 +308,6 @@ class kroupa2001_gen(sp.stats.rv_continuous):
         return self._cdf_interp
 
     def ppf_interp(self, a, b, q_min):
-        print(3333333)
         if self._interp is None:
             self._pdf_interp, self._cdf_interp, self._ppf_interp = interp(
                 g_kroupa2001, k_uniform, a, b, q_min
