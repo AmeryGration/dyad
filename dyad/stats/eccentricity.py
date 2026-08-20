@@ -256,10 +256,14 @@ class moe2017_gen(_distn_infrastructure.rv_continuous):
         return res
         
     def _pdf(self, x, log10_period, primary_mass):
-        res = (
-            _moe2017_norm(log10_period, primary_mass)
-            *x**_moe2017_eta(log10_period, primary_mass)
-        )
+        with np.errstate(divide='ignore'):
+            # If x==0. and _moe2017_eta(log10_period, primary_mass) <
+            # 0. then x**_moe2017_eta(log10_period, primary_mass)
+            # triggers a warning.
+            res = (
+                _moe2017_norm(log10_period, primary_mass)
+                *x**_moe2017_eta(log10_period, primary_mass)
+            )
 
         return res
 
