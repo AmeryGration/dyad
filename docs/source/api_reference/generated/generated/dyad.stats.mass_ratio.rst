@@ -10,5 +10,6 @@ dyad.stats.mass\_ratio
    
       duquennoy1991_gen
       moe2017_gen
+      moe2017_hist_gen
       uniform_gen
    

@@ -1,3 +1,7 @@
+#
+# Author:  Travis Oliphant  2002-2011 with contributions from
+#          SciPy Developers 2004-2011
+#
 from scipy._lib._util import getfullargspec_no_self as _getfullargspec
 
 import sys
