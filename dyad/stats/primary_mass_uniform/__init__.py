@@ -306,7 +306,7 @@ class salpeter1955_gen(_distn_infrastructure.rv_continuous):
 
         return self._ppf_interp
 
-    def _argcheck(self, a, b):
+    def _argcheck(self, a, b, q_min):
         res = (0. < a) & (0. < b) & (a < b)
 
         return res
