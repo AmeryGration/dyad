@@ -24,7 +24,7 @@ Probability distributions
 __all__ = [
     "kroupa2001",
     "salpeter1955",
-    "splitpowerlaw",
+    # "splitpowerlaw",
 ]
 
 import numpy as np
@@ -174,29 +174,6 @@ class BackwardVolterraNystromSolver:
 
         return x_nodes, f_nodes
 
-    
-def g_kroupa2001(x, m_min, m_max):
-    """Return value of known function in log space"""
-    m = 10.**np.array(x)
-    res = 2.*mass.kroupa2001(m_min, m_max).pdf(m)
-
-    return res
-
-def g_salpeter1955(x, m_min, m_max):
-    """Return value of known function in log space"""
-    m = 10.**np.array(x)
-    res = 2.*mass.salpeter1955(m_min, m_max).pdf(m)
-
-    return res
-
-# def k_random(x_1, x_2):
-#     """Return CSMF for random pairing in log space"""
-#     m_1 = 10.**np.array(x_1)
-#     m_2 = 10.**np.array(x_2)
-#     res = rv_mass.pdf(m_2)/rv_mass.cdf(m_1)
-#     res *= np.log(10.)*m_1
-
-#     return res
 
 def k_uniform(x_1, x_2, m_min=0.08, q_min=0.1):
     """Return value of CSMF for uniform pairing in log space"""
@@ -209,55 +186,6 @@ def k_uniform(x_1, x_2, m_min=0.08, q_min=0.1):
 
     return res
 
-# q_min = 0.1
-# m_min = 0.08
-# m_max = 150.
-
-# eps = 1.e-06
-# a = np.log10(m_min) + eps
-# b = np.log10(m_max) - eps
-# c = -1.
-# # sol_random = BackwardVolterraNystromSolver(g_kroupa2001, k_random, a, b, c)
-# # x_nodes, y_random = sol_random.solve_system(n_nodes)
-# g = _FuncWrapper(g_kroupa2001, (m_min, m_max))
-# # g = _FuncWrapper(g_salpeter1955, (m_min, m_max))
-# k = _CovfuncWrapper(k_uniform, (m_min, q_min))
-# n_nodes = 2**9
-
-# sol_uniform = BackwardVolterraNystromSolver(g, k, a, b, c)
-# x_nodes, y_nodes = sol_uniform.solve_system(n_nodes)
-# x_nodes = 10.**x_nodes
-# x_nodes[0] = m_min
-# x_nodes[-1] = m_max
-
-# G_nodes = sp.integrate.cumulative_trapezoid(y_nodes, x_nodes, initial=0.)
-# G_nodes /= G_nodes[-1]
-# _pdf_uniform = sp.interpolate.interp1d(x_nodes, y_nodes, kind="linear",
-#                                        bounds_error=False, fill_value=0.)
-# _cdf_uniform = sp.interpolate.interp1d(x_nodes, G_nodes, kind="quadratic",
-#                                      bounds_error=False, fill_value=(0, 1))
-# _ppf_uniform = sp.interpolate.interp1d(G_nodes, x_nodes, kind="quadratic",
-#                                      bounds_error=False, fill_value=np.nan)
-
-# import plot
-
-# fig, ax = plot.plot()
-# # ax.plot(x_nodes, y_random, label=r"random")
-# ax.plot(x_nodes, y_nodes, label=r"uniform")
-# # ax.plot(x_nodes, _pdf_uniform(x_nodes), label=r"uniform")
-# # ax.plot(x_nodes, _cdf_uniform(x_nodes), label=r"uniform")
-# # ax.plot(np.linspace(0., 1.), _ppf_uniform(np.linspace(0., 1.)),
-# #         label=r"uniform")
-# ax.legend(frameon=False)
-# ax.set_xscale("log")
-# ax.set_yscale("log")
-# ax.set_xlabel(r"$m_{1}$")
-# ax.set_ylabel(r"$f_{M_{1}}$")
-# plt.savefig("./Figures/vie_ii_primary_mass.jpg")
-# plt.savefig("./Figures/vie_ii_primary_mass.pdf")
-# plt.show()
-
-# Create interpolator
 def interp(g, k, m_min, m_max, q_min, n_nodes=2**9):
     g = _FuncWrapper(g, (m_min, m_max))
     k = _CovfuncWrapper(k, (m_min, q_min))
@@ -338,133 +266,80 @@ class kroupa2001_gen(sp.stats.rv_continuous):
 
         return res
 
+    
+def g_kroupa2001(x, m_min, m_max):
+    """Return value of known function in log space"""
+    m = 10.**np.array(x)
+    res = 2.*mass.kroupa2001(m_min, m_max).pdf(m)
 
-# q_min = 0.1
-# m_min = 0.08
-# m_max = 150.
-# pdf_interp, _, _ = interp(g_kroupa2001, k_uniform, m_min, m_max, q_min)
+    return res
+
 kroupa2001 = kroupa2001_gen(name="primary_mass.uniform.kroupa2001")
-# kroupa2001 = kroupa2001(m_min, m_max, q_min)
-# # kroupa2001 = dyad.stats.primary_mass.uniform.kroupa2001(m_min, m_max, q_min)
 
-# x = np.logspace(np.log10(m_min), np.log10(m_max), 50)
-# f = kroupa2001.pdf(x)
-# F = kroupa2001.cdf(x)
 
-# import plot
+class salpeter1955_gen(_distn_infrastructure.rv_continuous):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._interp = None
 
-# fig, ax = plot.plot()
-# ax.plot(x, f, label=r"uniform")
-# ax.plot(x, F, label=r"uniform")
-# ax.legend(frameon=False)
-# ax.set_xscale("log")
-# ax.set_yscale("log")
-# ax.set_xlabel(r"$m_{1}$")
-# ax.set_ylabel(r"$f_{M_{1}}$")
-# plt.savefig("./Figures/vie_ii_primary_mass.jpg")
-# plt.savefig("./Figures/vie_ii_primary_mass.pdf")
-# plt.show()
+    def pdf_interp(self, a, b, q_min):
+        if self._interp is None:
+            self._pdf_interp, self._cdf_interp, self._ppf_interp = interp(
+                g_salpeter1955, k_uniform, a, b, q_min
+            )
+            
+        return self._pdf_interp
 
-# f, _, _ = interp(g_kroupa2001, k_uniform, m_min, m_max, q_min)
-# f(x)
+    def cdf_interp(self, a, b, q_min):
+        if self._interp is None:
+            self._pdf_interp, self._cdf_interp, self._ppf_interp = interp(
+                g_salpeter1955, k_uniform, a, b, q_min
+            )
 
-########################################################################
+        return self._cdf_interp
 
-# def g_salpeter1955(x, m_min, m_max):
-#     """Return value of known function in log space"""
-#     m = 10.**np.array(x)
-#     res = 2.*dyad.stats.mass.salpeter1955(m_min, m_max).pdf(m)
+    def ppf_interp(self, a, b, q_min):
+        if self._interp is None:
+            self._pdf_interp, self._cdf_interp, self._ppf_interp = interp(
+                g_salpeter1955, k_uniform, a, b, q_min
+            )
 
-#     return res
+        return self._ppf_interp
 
-# class salpeter1955_gen(_distn_infrastructure.rv_continuous):
-#     r"""The primary-star mass random variable for uniform pairing
+    def _argcheck(self, a, b):
+        res = (0. < a) & (0. < b) & (a < b)
 
-#     %(before_notes)s
+        return res
 
-#     Notes
-#     -----
+    def _get_support(self, a, b, q_min):
+        res = (a, b)
 
-#     The probability density function for `uniform.salpeter1955` is the
-#     solution to the integral equation
-
-#     .. math::
-#        xxx
-
-#     where :math:`f_{M}` is the probability density function for the
-#     mass random variable of Salpeter (1955) and
-#     :math:`f_{M_{2}|M_{2}}` is the conditional secondary mass function
-#     for uniform pairing, which is given by
-
-#     .. math::
-#        f_{M_{2}|M_{2}}(m_{2}|m_{1})
-#        = \dfrac{1}{m_{1}}f_{Q|M_{1}}(m_{2}/m_{1})|m_{2})
-
-#     where :math:`f_{Q|M_{1}}` is the conditional mass-ratio function
-#     for uniform pairing.
+        return res
     
-#     %(after_notes)s
+    def _pdf(self, x, a, b, q_min):
+        res = self.pdf_interp(a, b, q_min)(x)
 
-#     See also
-#     --------
-#     dyad.stats.mass.salpeter1955
-#     dyad.stats.mass_ratio.uniform
-    
-#     References
-#     ----------
-#     Kroupa, P. 2001. \'The initial mass function and its variation
-#     (review)\'. *ASP conference series* 285 (January): 86.
+        return res
 
-#     %(example)s
+    def _cdf(self, x, a, b, q_min):
+        res = self.cdf_interp(a, b, q_min)(x)
 
-#     """
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self._interp = None
-        
-#     def pdf_interp(self, a, b, q_min):
-#         if self._interp is None:
-#             self._interp = interp(mass.salpeter1955(*a, *b), *q_min)
+        return res
 
-#         return self._interp[0]
+    def _ppf(self, x, a, b, q_min):
+        res = self.ppf_interp(a, b, q_min)(x)
 
-#     def cdf_interp(self, a, b, q_min):
-#         if self._interp is None:
-#             self._interp = interp(mass.salpeter1955(*a, *b), *q_min)
-
-#         return self._interp[1]
-
-#     def ppf_interp(self, a, b, q_min):
-#         if self._interp is None:
-#             self._interp = interp(mass.salpeter1955(*a, *b), *q_min)
-
-#         return self._interp[2]
-
-#     def _argcheck(self, a, b, q_min):
-#         return (0. < a) & (a < b) & (a < 0.5) & (0. < q_min ) & (q_min < 1.)
-
-#     def _get_support(self, a, b, q_min):
-#         res = (a, b)
-
-#         return res
-        
-#     def _pdf(self, x, a, b, q_min):
-#         res = self.pdf_interp(a, b, q_min)(x)
-
-#         return res
-
-#     def _cdf(self, x, a, b, q_min):
-#         res = self.cdf_interp(a, b, q_min)(x)
-
-#         return res
-
-#     def _ppf(self, x, a, b, q_min):
-#         res = self.ppf_interp(a, b, q_min)(x)
-
-#         return res
+        return res
 
 
-# salpeter1955 = salpeter1955_gen(name="primary_mass.uniform.salpeter1955")
+def g_salpeter1955(x, m_min, m_max):
+    """Return value of known function in log space"""
+    m = 10.**np.array(x)
+    res = 2.*mass.salpeter1955(m_min, m_max).pdf(m)
+
+    return res
+
+salpeter1955 = salpeter1955_gen(name="primary_mass.uniform.salpeter1955")
 
 
 # class splitpowerlaw_gen(_distn_infrastructure.rv_continuous):
@@ -511,51 +386,60 @@ kroupa2001 = kroupa2001_gen(name="primary_mass.uniform.kroupa2001")
 #     def __init__(self, *args, **kwargs):
 #         super().__init__(*args, **kwargs)
 #         self._interp = None
-        
-#     def pdf_interp(self, s, a, b, c, d, q_min):
+
+#     def pdf_interp(self, a, b, q_min):
 #         if self._interp is None:
-#             self._interp = interp(mass.splitpowerlaw(*s, *a, *b, *c, *d),
-#                                   *q_min)
+#             self._pdf_interp, self._cdf_interp, self._ppf_interp = interp(
+#                 g_salpeter1955, k_uniform, a, b, q_min
+#             )
+            
+#         return self._pdf_interp
 
-#         return self._interp[0]
-
-#     def cdf_interp(self, s, a, b, c, d, q_min):
+#     def cdf_interp(self, a, b, q_min):
 #         if self._interp is None:
-#             self._interp = interp(mass.splitpowerlaw(*s, *a, *b, *c, *d),
-#                                   *q_min)
+#             self._pdf_interp, self._cdf_interp, self._ppf_interp = interp(
+#                 g_salpeter1955, k_uniform, a, b, q_min
+#             )
 
-#         return self._interp[1]
+#         return self._cdf_interp
 
-#     def ppf_interp(self, s, a, b, c, d, q_min):
+#     def ppf_interp(self, a, b, q_min):
 #         if self._interp is None:
-#             self._interp = interp(mass.splitpowerlaw(*s, *a, *b, *c, *d),
-#                                   *q_min)
+#             self._pdf_interp, self._cdf_interp, self._ppf_interp = interp(
+#                 g_salpeter1955, k_uniform, a, b, q_min
+#             )
 
-#         return self._interp[2]
+#         return self._ppf_interp
 
-#     def _argcheck(self, s, a, b, c, d, q_min):
-#         return (0. < a) & (a < b) & (a < 0.5) & (0. < q_min ) & (q_min < 1.)
+#     def _argcheck(self, s, a, b, c, d):
+#         return (0. < a) & (a < b) & (a < s) & (s < b) & (c < 0.) & (d < 0.)
 
-    
-#     def _get_support(self, s, a, b, c, d, q_min):
+#     def _get_support(self, a, b, q_min):
 #         res = (a, b)
 
 #         return res
-        
-#     def _pdf(self, x, s, a, b, c, d, q_min):
-#         res = self.pdf_interp(s, a, b, c, d, q_min)(x)
+    
+#     def _pdf(self, x, a, b, q_min):
+#         res = self.pdf_interp(a, b, q_min)(x)
 
 #         return res
 
-#     def _cdf(self, x, s, a, b, c, d, q_min):
-#         res = self.cdf_interp(s, a, b, c, d, q_min)(x)
+#     def _cdf(self, x, a, b, q_min):
+#         res = self.cdf_interp(a, b, q_min)(x)
 
 #         return res
 
-#     def _ppf(self, x, s, a, b, c, d, q_min):
-#         res = self.ppf_interp(s, a, b, c, d, q_min)(x)
+#     def _ppf(self, x, a, b, q_min):
+#         res = self.ppf_interp(a, b, q_min)(x)
 
 #         return res
 
+
+# def g_splitpowerlaw(x, m_min, m_max):
+#     """Return value of known function in log space"""
+#     m = 10.**np.array(x)
+#     res = 2.*mass.kroupa2001(m_min, m_max).pdf(m)
+
+#     return res
 
 # splitpowerlaw = splitpowerlaw_gen(name="primary_mass.uniform.splitpowerlaw")
