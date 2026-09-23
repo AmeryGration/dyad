@@ -1163,6 +1163,10 @@ class uniform_gen(_distn_infrastructure.rv_continuous):
     
     %(after_notes)s
 
+    See also
+    --------
+    dyad.stats.secondary_mass.uniform
+    
     References
     ----------
 
